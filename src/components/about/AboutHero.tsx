@@ -1,21 +1,122 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useRef, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FloatingHandDrawn } from './HandDrawnSVG';
 import WebGLFluidBackground from './WebGLFluidBackground';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function AboutHero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const canvasWrapperRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const floatingElementsRef = useRef<HTMLDivElement>(null);
+  const particlesRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Canvas opacity - 텍스트 등장과 연동
+  const canvasOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.2, 0.4, 0.5, 0.3]);
+
+  useEffect(() => {
+    if (!sectionRef.current || !titleRef.current) return;
+
+    // 1. 타이틀 letter-spacing 스크롤 반응성 (확대/축소 제외, letter-spacing만 유지)
+    // scale 효과는 제거하고 letter-spacing만 유지
+    gsap.fromTo(
+      titleRef.current,
+      { letterSpacing: '0.02em', scale: 1 }, // scale 고정
+      {
+        letterSpacing: '-0.02em',
+        scale: 1, // scale 고정 - 확대/축소 방지
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top center',
+          end: 'bottom top',
+          scrub: 0.5,
+        },
+      }
+    );
+
+    // 2. 장식 요소들 미세한 스크롤 반응성 (0.5~1% 정도)
+    const floatingDots = floatingElementsRef.current?.querySelectorAll('.floating-dot');
+    const particles = particlesRef.current?.querySelectorAll('div');
+
+    if (floatingDots) {
+      floatingDots.forEach((dot, i) => {
+        gsap.to(dot, {
+          y: -10 - (i % 3) * 3,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top center',
+            end: 'bottom top',
+            scrub: 0.3,
+          },
+        });
+      });
+    }
+
+    if (particles) {
+      particles.forEach((particle, i) => {
+        gsap.to(particle, {
+          y: -8 - (i % 5) * 2,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top center',
+            end: 'bottom top',
+            scrub: 0.4,
+          },
+        });
+      });
+    }
+
+    // 3. Canvas 호흡 효과 (텍스트 등장 후 활성화)
+    if (canvasWrapperRef.current) {
+      const canvasEl = canvasWrapperRef.current.querySelector('canvas');
+      if (canvasEl) {
+        gsap.fromTo(
+          canvasEl,
+          { opacity: 0.2 },
+          {
+            opacity: 0.5,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 60%',
+              end: 'bottom top',
+              scrub: true,
+            },
+          }
+        );
+      }
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
     <section 
+      ref={sectionRef}
+      id="about-hero"
       className="relative flex items-center justify-center overflow-hidden bg-white"
       style={{
         minHeight: 'clamp(100vh, 120vw, 120vh)',
       }}
     >
-      {/* WebGL Fluid Gradient Background */}
-      <WebGLFluidBackground />
+      {/* WebGL Fluid Gradient Background - 텍스트 등장과 연동 */}
+      <div ref={canvasWrapperRef} className="canvas-wrapper">
+        <WebGLFluidBackground />
+      </div>
       
-      {/* Floating Hand-Drawn SVG Elements */}
-      <FloatingHandDrawn />
+      {/* Floating Hand-Drawn SVG Elements - 미세한 스크롤 반응성 */}
+      <div ref={floatingElementsRef}>
+        <FloatingHandDrawn />
+      </div>
       
       {/* Multi-layer gradient background */}
       <div className="absolute inset-0">
@@ -47,12 +148,12 @@ export default function AboutHero() {
         }}
       />
 
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Floating Particles - 미세한 스크롤 반응성 */}
+      <div ref={particlesRef} className="absolute inset-0 overflow-hidden pointer-events-none">
         {Array.from({ length: 25 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 rounded-full"
+            className="floating-dot absolute w-2 h-2 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -111,8 +212,9 @@ export default function AboutHero() {
         }}
       />
       
+      {/* 시선의 중심 축 - 중앙 텍스트 영역 focus */}
       <div 
-        className="relative z-10 max-w-7xl mx-auto text-center"
+        className="hero-focus relative z-10 max-w-7xl mx-auto text-center"
         style={{
           paddingLeft: 'clamp(1.5rem, 4vw, 3rem)',
           paddingRight: 'clamp(1.5rem, 4vw, 3rem)',
@@ -120,6 +222,15 @@ export default function AboutHero() {
           paddingBottom: 'clamp(6rem, 15vw, 12rem)',
         }}
       >
+        {/* Focus 영역 배경 */}
+        <div 
+          className="hero-focus-bg absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 40%, transparent 70%)',
+            margin: '-20%',
+            zIndex: -1,
+          }}
+        />
         
         {/* Small label */}
         <motion.div
@@ -157,16 +268,17 @@ export default function AboutHero() {
         
         {/* Main Title - LARGE */}
         <motion.h1
+          ref={titleRef}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-6xl mx-auto"
+          className="hero-title max-w-6xl mx-auto"
           style={{ 
             fontFamily: "'Noto Serif KR', serif",
             fontSize: 'clamp(2.5rem, 8vw, 8rem)',
             fontWeight: 700,
             lineHeight: 1.1,
-            letterSpacing: 'clamp(-0.02em, -0.04vw, -0.04em)',
+            letterSpacing: '0.02em', // GSAP가 스크롤에 따라 조절
             color: '#1a1a1a',
           }}
         >
@@ -175,7 +287,7 @@ export default function AboutHero() {
           <span 
             className="inline-block"
             style={{
-              background: 'linear-gradient(135deg, #8fbc88 0%, #2d5016 100%)',
+              background: 'linear-gradient(135deg, #8fbc88 0%, #2d5016 70%, #1f3a10 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -185,6 +297,18 @@ export default function AboutHero() {
           </span>
         </motion.h1>
       </div>
+
+      {/* 모바일에서 Canvas 약화 */}
+      <style>{`
+        @media (max-width: 768px) {
+          .canvas-wrapper canvas {
+            opacity: 0.2 !important;
+          }
+          .hero-focus-bg {
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 40%, transparent 70%) !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

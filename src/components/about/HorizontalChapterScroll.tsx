@@ -67,14 +67,16 @@ function HorizontalChapterCard({ number, title, subtitle, description, color, gr
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
       onClick={scrollToSection}
-      className="relative group cursor-pointer w-full h-[320px]"
+      className="relative group cursor-pointer w-full h-[320px] md:h-[320px] chapter-card"
     >
-      {/* Premium paint texture decoration */}
-      <PremiumPaintTexture 
-        color={color} 
-        isHovered={isHovered}
-        index={index}
-      />
+      {/* Premium paint texture decoration - 모바일에서 축소 */}
+      <div className="chapter-card-paint">
+        <PremiumPaintTexture 
+          color={color} 
+          isHovered={isHovered}
+          index={index}
+        />
+      </div>
       
       {/* Glow effect */}
       <motion.div
@@ -91,7 +93,7 @@ function HorizontalChapterCard({ number, title, subtitle, description, color, gr
       <div className="relative h-full">
         {/* Glass background */}
         <div 
-          className="absolute inset-0 rounded-[48px] border transition-all duration-700"
+          className="absolute inset-0 rounded-[48px] md:rounded-[48px] border transition-all duration-700"
           style={{
             background: isHovered 
               ? `linear-gradient(135deg, ${gradient.replace(')', ', 0.12)')}, ${gradient.replace(')', ', 0.04)')})`
@@ -106,7 +108,7 @@ function HorizontalChapterCard({ number, title, subtitle, description, color, gr
         
         {/* Content */}
         <div 
-          className="relative px-6 py-6 md:px-8 md:py-8 h-full flex flex-col gap-8"
+          className="relative px-6 py-6 md:px-8 md:py-8 h-full flex flex-col gap-8 chapter-card-content"
           style={{ transform: 'translateZ(30px)' }}
         >
           {/* Top: Number + Title */}
@@ -124,9 +126,10 @@ function HorizontalChapterCard({ number, title, subtitle, description, color, gr
                   scale: isHovered ? 1.05 : 1,
                 }}
                 transition={{ duration: 0.4 }}
+                className="chapter-card-number"
                 style={{ 
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(3.5rem, 6vw, 5.5rem)',
+                  fontSize: 'clamp(2.2rem, 4vw, 5.5rem)',
                   fontWeight: 300,
                   lineHeight: 1,
                   letterSpacing: '-0.05em',
@@ -158,8 +161,8 @@ function HorizontalChapterCard({ number, title, subtitle, description, color, gr
             </motion.div>
           </div>
           
-          {/* Bottom: Description + CTA */}
-          <div className="flex flex-col items-start text-left max-w-[340px] self-start">
+          {/* Bottom: Description + CTA - 모바일에서 숨김 */}
+          <div className="flex flex-col items-start text-left max-w-[340px] self-start chapter-card-bottom">
             {/* Description - always visible, forced 2 lines */}
             <motion.p
               animate={{
@@ -167,7 +170,7 @@ function HorizontalChapterCard({ number, title, subtitle, description, color, gr
                 y: isHovered ? 0 : 8,
               }}
               transition={{ duration: 0.4 }}
-              className="mb-6"
+              className="mb-6 chapter-card-desc"
               style={{ 
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(0.75rem, 1.1vw, 0.85rem)',
@@ -190,9 +193,10 @@ function HorizontalChapterCard({ number, title, subtitle, description, color, gr
                 x: isHovered ? 0 : 20,
               }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 chapter-card-explore"
             >
               <span 
+                className="chapter-card-explore-text"
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: '10px',
@@ -205,7 +209,7 @@ function HorizontalChapterCard({ number, title, subtitle, description, color, gr
                 Explore
               </span>
               <svg 
-                className="w-5 h-5" 
+                className="w-5 h-5 chapter-card-explore-icon" 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
@@ -311,19 +315,19 @@ export default function HorizontalChapterScroll() {
                 lineHeight: 1.85,
               }}
             >
-              크레용숲의 이야기를 세 개의 챕터로 펼쳐봅니다.<br />
-              가로로 스크롤하며 각 챕터를 탐험해보세요.
+              크레용숲의 이야기를 세 개의 챕터로 펼쳐봅니다.
+              <span className="hidden md:inline"><br />가로로 스크롤하며 각 챕터를 탐험해보세요.</span>
             </p>
           </div>
         </motion.div>
         
-        {/* Horizontal scroll hint */}
+        {/* Horizontal scroll hint - 데스크톱에서만 표시 */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="mb-12 px-6 md:px-12"
+          className="hidden md:block mb-12 px-6 md:px-12"
         >
           <div className="flex items-center gap-4 max-w-7xl mx-auto">
             <motion.div
@@ -347,10 +351,10 @@ export default function HorizontalChapterScroll() {
           </div>
         </motion.div>
         
-        {/* Grid layout container */}
+        {/* Grid layout container - 모바일 3열 그리드 */}
         <div className="relative px-6 md:px-12">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 lg:gap-8 chapter-grid">
               {chapters.map((chapter, index) => (
                 <HorizontalChapterCard 
                   key={chapter.number} 
@@ -363,6 +367,121 @@ export default function HorizontalChapterScroll() {
           </div>
         </div>
       </div>
+
+      {/* 모바일 전용 스타일 - 컴팩트 카드 레이아웃 */}
+      <style>{`
+        /* 모바일 3열 그리드 레이아웃 */
+        @media (max-width: 768px) {
+          .chapter-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+          }
+
+          .chapter-card {
+            height: 100px !important; /* 320px → 100px (더 작게) */
+            border-radius: 14px;
+          }
+
+          .chapter-card .absolute.inset-0 {
+            border-radius: 14px !important;
+          }
+
+          /* 숫자 축소 */
+          .chapter-card-number {
+            font-size: 1.4rem !important;
+            line-height: 1 !important;
+          }
+
+          /* 타이틀 축소 */
+          .chapter-card h3 {
+            font-size: 0.7rem !important;
+            line-height: 1.1 !important;
+            white-space: nowrap !important;
+          }
+
+          /* 모바일에서 설명은 숨기고 Explore 버튼만 표시 */
+          .chapter-card-desc {
+            display: none !important;
+          }
+          
+          /* Explore 버튼만 모바일에서 표시 */
+          .chapter-card-bottom {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 0.3rem !important;
+            margin-top: 0 !important; /* gap으로 간격 조절하므로 margin 제거 */
+          }
+
+          /* 모바일 Explore 버튼 스타일 */
+          .chapter-card-explore {
+            gap: 0.25rem !important;
+          }
+
+          .chapter-card-explore-text {
+            font-size: 8px !important;
+            letter-spacing: 0.1em !important;
+          }
+
+          .chapter-card-explore-icon {
+            width: 0.875rem !important;
+            height: 0.875rem !important;
+          }
+
+          /* 페인트 SVG 축소 및 투명도 낮춤 */
+          .chapter-card-paint {
+            transform: scale(0.5) !important;
+            opacity: 0.08 !important;
+          }
+
+          .chapter-card-paint > * {
+            opacity: 0.08 !important;
+          }
+
+          /* 호버 효과 모바일에서 제거 */
+          .chapter-card:hover .absolute.inset-0 {
+            border-width: 1.5px !important;
+          }
+
+          /* 모바일에서 3D 틸트 효과 제거 */
+          .chapter-card {
+            transform-style: flat !important;
+            rotateX: 0 !important;
+            rotateY: 0 !important;
+          }
+
+          /* 패딩 대폭 축소 */
+          .chapter-card-content {
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+            padding-top: 0.35rem !important;
+            padding-bottom: 0.4rem !important;
+            gap: 0.4rem !important; /* 상단과 하단 사이 간격 축소 */
+            justify-content: flex-start !important; /* space-between 제거 */
+          }
+
+          /* Number와 Title 컨테이너 간격 축소 */
+          .chapter-card .flex.items-center.gap-2 {
+            gap: 0.2rem !important;
+          }
+
+          /* Top 영역 간격 축소 */
+          .chapter-card .flex.items-start.justify-between {
+            gap: 0.2rem !important;
+            margin-bottom: 0 !important; /* 불필요한 마진 제거 */
+          }
+
+          /* Glow 효과 모바일에서 제거 */
+          .chapter-card .absolute.-inset-8 {
+            display: none !important;
+          }
+
+          /* Number와 Title 간격 축소 */
+          .chapter-card .flex.items-center.gap-2 {
+            gap: 0.25rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

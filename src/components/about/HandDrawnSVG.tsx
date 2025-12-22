@@ -194,7 +194,7 @@ export function FloatingHandDrawn() {
       {elements.map((el, i) => (
         <motion.div
           key={i}
-          className="absolute pointer-events-none"
+          className="floating-dot absolute pointer-events-none"
           style={{
             top: el.top,
             bottom: el.bottom,

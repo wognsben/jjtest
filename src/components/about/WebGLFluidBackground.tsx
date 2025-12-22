@@ -201,11 +201,12 @@ export default function WebGLFluidBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none"
+      className="absolute inset-0 pointer-events-none webgl-canvas"
       style={{ 
         width: '100%',
         height: '100%',
-        opacity: 0.6,
+        opacity: 0.3, // 기본값 낮춤 - GSAP가 제어
+        transition: 'opacity 0.3s ease-out',
       }}
     />
   );
