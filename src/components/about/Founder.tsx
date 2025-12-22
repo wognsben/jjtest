@@ -1,10 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { getImagePath } from '../../utils/imageUtils';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Founder() {
   const sectionRef = useRef<HTMLElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -13,6 +18,88 @@ export default function Founder() {
   
   const imageY = useTransform(scrollYProgress, [0, 1], [30, -30]);
   const textY = useTransform(scrollYProgress, [0, 1], [15, -15]);
+
+  useEffect(() => {
+    if (!cardRef.current) return;
+
+    const card = cardRef.current;
+
+    // 1. 카드 전체 - Subtle Entrance Motion
+    gsap.fromTo(
+      card,
+      {
+        opacity: 0,
+        y: 24,
+        filter: 'blur(6px)',
+      },
+      {
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 75%',
+        },
+      }
+    );
+
+    // 2. 배경 이미지 - Very Slow Parallax
+    gsap.to(card, {
+      backgroundPosition: '50% 46%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 0.6,
+      },
+    });
+
+    // 3. 상단 타이틀 영역 - Text Presence Reveal
+    const title = card.querySelector('h3');
+    const subtitle = card.querySelector('h3 + p');
+    
+    if (title && subtitle) {
+      gsap.from([title, subtitle], {
+        opacity: 0,
+        y: 10,
+        letterSpacing: '-0.04em',
+        duration: 0.9,
+        ease: 'power2.out',
+        stagger: 0.12,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 80%',
+        },
+      });
+    }
+
+    // 4. 경력 라인들 (01~05) - Micro Stagger
+    const careerLines = card.querySelectorAll('.group');
+    if (careerLines.length > 0) {
+      gsap.from(careerLines, {
+        opacity: 0,
+        x: -6,
+        duration: 0.6,
+        ease: 'power2.out',
+        stagger: 0.08,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 70%',
+        },
+      });
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.vars.trigger === card) {
+          trigger.kill();
+        }
+      });
+    };
+  }, []);
 
   return (
     <>
@@ -536,45 +623,49 @@ export default function Founder() {
               }}
             >
               <div className="flex flex-row gap-2 md:gap-3" style={{ width: '100%' }}>
-              {[1, 2, 3, 4, 5, 6].map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                  className="relative group overflow-hidden rounded-lg shadow-md"
-                  style={{ 
-                    flex: '1 1 0',
-                    height: '240px',
-                    minWidth: 0,
-                  }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <ImageWithFallback
-                    src={`https://images.unsplash.com/photo-${1500000000000 + index}?w=150&h=150&fit=crop`}
-                    alt={`크레용숲 활동 ${item}`}
-                    className="w-full h-full object-cover"
-                  />
-                  
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-brown-900/60 via-brown-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </motion.div>
-              ))}
+              {[1, 2, 3, 4, 5, 6].map((item, index) => {
+                const extension = item === 6 ? 'png' : 'jpg';
+                return (
+                  <motion.div
+                    key={item}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                    className="relative group overflow-hidden rounded-lg shadow-md"
+                    style={{ 
+                      flex: '1 1 0',
+                      height: '240px',
+                      minWidth: 0,
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <ImageWithFallback
+                      src={getImagePath(`/assets/about/under of founder/under of founder-${item}.${extension}`)}
+                      alt={`크레용숲 활동 ${item}`}
+                      className="w-full h-full object-cover"
+                    />
+                    
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-brown-900/60 via-brown-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </motion.div>
+                );
+              })}
               </div>
             </motion.div>
 
             {/* Credentials Text */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="mx-auto"
+            <div
+              ref={cardRef}
+              className="mx-auto relative founder-card"
               style={{
                 width: '1500px',
                 maxWidth: '100%',
-                background: '#FAF9F7',
+                backgroundColor: '#FAF9F7',
+                backgroundImage: `url(${getImagePath('/assets/about/under of founder/founder-typo.jpg')})`,
+                backgroundSize: 'cover',
+                backgroundPosition: '50% 50%',
+                backgroundRepeat: 'no-repeat',
                 borderRadius: '32px',
                 padding: 'clamp(40px, 6vw, 64px)',
                 border: '1px solid rgba(166, 124, 82, 0.12)',
@@ -583,13 +674,7 @@ export default function Founder() {
               }}
             >
               {/* Name & Main Title */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="mb-8 pb-6 border-b border-brown-200/30"
-              >
+              <div className="mb-8 pb-6 border-b border-brown-200/30">
                 <h3
                   className="mb-3"
                   style={{
@@ -613,17 +698,10 @@ export default function Founder() {
                 >
                   색채심리 기반 예술교육가
                 </p>
-              </motion.div>
+              </div>
 
               {/* Career Items - Horizontal Text Layout */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="mb-8"
-                style={{ width: '100%' }}
-              >
+              <div className="mb-8" style={{ width: '100%' }}>
                 <div className="flex gap-2 md:gap-3 lg:gap-4 items-center flex-wrap md:flex-nowrap justify-start md:justify-between">
                   {[
                     '색채심리 기반 자기이해 콘텐츠 기획자',
@@ -635,7 +713,7 @@ export default function Founder() {
                     <CareerTextItem key={index} credential={credential} index={index} />
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
               {/* Books and Awards Section - Horizontal Layout */}
               <motion.div
@@ -815,9 +893,8 @@ export default function Founder() {
                   </a>
                 </div>
               </motion.div>
-            </motion.div>
+            </div>
           </motion.div>
-
         </div>
       </section>
 
@@ -828,6 +905,35 @@ export default function Founder() {
         .scrollbar-hide {
           -ms-overflow-style: none;
           scrollbar-width: none;
+        }
+
+        /* 5. Hover 시 카드 전체 - Breathing Effect (PC만) */
+        @media (hover: hover) {
+          .founder-card {
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+
+          .founder-card:hover {
+            transform: translateY(-2px);
+            box-shadow:
+              0 40px 80px rgba(0, 0, 0, 0.06),
+              0 10px 30px rgba(0, 0, 0, 0.04);
+          }
+        }
+
+        /* 6. 테두리 & 구분선 - Glow Pulse */
+        @keyframes subtleGlow {
+          0%, 100% { 
+            border-color: rgba(166, 124, 82, 0.12);
+          }
+          50% { 
+            border-color: rgba(166, 124, 82, 0.18);
+          }
+        }
+
+        .founder-card {
+          animation: subtleGlow 8s ease-in-out infinite;
         }
       `}</style>
     </>

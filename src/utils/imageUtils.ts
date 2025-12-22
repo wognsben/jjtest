@@ -16,7 +16,7 @@ const GITHUB_RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITH
  * 이미지 경로를 환경에 맞게 변환
  * 
  * @param assetPath - /assets/... 형식의 경로
- * @returns 개발 환경: /assets/..., 프로덕션: GitHub Raw URL
+ * @returns GitHub Raw URL (로컬에 파일이 없으므로 항상 GitHub에서 로드)
  */
 export const getImagePath = (assetPath: string): string => {
   // 경로가 /assets/로 시작하지 않으면 그대로 반환
@@ -24,14 +24,11 @@ export const getImagePath = (assetPath: string): string => {
     return assetPath;
   }
 
-  // 개발 환경에서는 로컬 경로 사용
-  if (import.meta.env.DEV) {
-    return assetPath;
-  }
-
-  // 프로덕션 환경에서는 GitHub Raw URL 사용
+  // 로컬에 파일이 없으므로 항상 GitHub Raw URL 사용
   const relativePath = assetPath.replace('/assets/', '');
-  return `${GITHUB_RAW_BASE}/${relativePath}`;
+  // 경로를 URL 인코딩하여 공백 등의 특수문자 처리
+  const encodedPath = relativePath.split('/').map(segment => encodeURIComponent(segment)).join('/');
+  return `${GITHUB_RAW_BASE}/${encodedPath}`;
 };
 
 /**
