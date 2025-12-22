@@ -59,7 +59,6 @@ export function Credits3DFallback() {
               duration: 0.9,
               ease: [0.16, 1, 0.3, 1],
               repeat: Infinity,
-              ease: 'easeInOut',
             }}
           />
         </svg>

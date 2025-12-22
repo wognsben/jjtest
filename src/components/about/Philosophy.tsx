@@ -293,8 +293,6 @@ export default function Philosophy() {
               style={{
                 minHeight: 'clamp(400px, 60vw, 600px)',
                 borderRadius: 'clamp(2rem, 4vw, 2.5rem)',
-              }}
-              style={{
                 boxShadow: '0 40px 100px rgba(0, 0, 0, 0.12), 0 20px 50px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04)'
               }}
             >
