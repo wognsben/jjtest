@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color palette - White base with green/pink accents */
+  --color-primary: #1a1a1a;
+  --color-secondary: #333333;
+  --color-tertiary: #666666;
+  --color-muted: #999999;
+  
+  --color-accent-green: #2d5016;
+  --color-accent-green-light: #8fbc88;
+  --color-accent-green-soft: #B8E6B8;
+  --color-accent-green-pale: #B8D4B8;
+  
+  --color-accent-beige: #F5E6E6;
+  --color-accent-brown: #A67C52;
+  
+  --color-bg-white: #FFFFFF;
+  --color-bg-cream: #FCFAF5;
+  
+  /* Legacy colors for compatibility */
+  --color-brown-900: #1a1a1a;
+  --color-brown-800: #333333;
+  --color-brown-700: #666666;
+  --color-brown-600: #999999;
+  --color-brown-500: #999999;
+  --color-brown-400: #A67C52;
+  --color-brown-300: #A67C52;
+  --color-brown-200: rgba(166, 124, 82, 0.2);
+  --color-brown-100: #F5E6E6;
+  --color-brown-50: #FCFAF5;
+  
+  --color-beige: #F5E6E6;
+  --color-paper: #FFFFFF;
+  
+  --color-green-accent: #8fbc88;
+  --color-green-light: #B8E6B8;
+  
+  --color-pink-warm: #F5E6E6;
+  --color-pink-soft: #F5E6E6;
+  
+  --color-yellow-soft: #FFD700;
+  --color-pink-card: #E8D5E8;
+  --color-brown-card: #E8D5C4;
+  --color-green-card: #B8D4B8;
+
+  /* Typography */
+  --font-family-sans: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-serif: 'Noto Serif KR', 'Cormorant Garamond', Georgia, serif;
+  
+  /* Spacing */
+  --spacing-section: 12rem;
+  --spacing-section-mobile: 6rem;
+}
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Sloop+Script+Pro:wght@400&display=swap');
+  
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-primary;
+    font-family: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+    font-weight: 300;
+  }
+
+  h1 {
+    font-family: 'Noto Serif KR', 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(3.5rem, 8vw, 8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+  }
+
+  h2 {
+    font-family: 'Noto Serif KR', 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+  }
+
+  h3 {
+    font-family: 'Noto Serif KR', 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  h4 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.85;
+    letter-spacing: -0.005em;
+    font-weight: 300;
+  }
+
+  small {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+}
+
+/* Utility classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .paper-texture {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjkiIG51bU9jdGF2ZXM9IjQiIHJlc3VsdD0ibm9pc2UiLz48ZmVDb2xvck1hdHJpeCBpbi0ibm9pc2UiIHR5cGU9InNhdHVyYXRlIiB2YWx1ZXM9IjAiLz48L2ZpbHRlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI0ZGRiIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMC4wMyIvPjwvc3ZnPg==');
+  }
+  
+  .grain-texture {
+    position: relative;
+  }
+  
+  .grain-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiLz48ZmVDb2xvck1hdHJpeCB0eXBlPSJzYXR1cmF0ZSIgdmFsdWVzPSIwIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI0ZGRiIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMC4wMyIvPjwvc3ZnPg==');
+    pointer-events: none;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+  }
+  
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.05) 20%, rgba(0, 0, 0, 0.05) 80%, transparent);
+    border: none;
+    margin: 0;
+  }
+  
+  .torn-paper-edge {
+    clip-path: polygon(
+      0 0, 100% 0, 100% 2%, 98% 4%, 100% 6%, 99% 8%, 100% 10%, 
+      98% 12%, 100% 14%, 99% 16%, 100% 18%, 98% 20%, 100% 22%, 
+      99% 24%, 100% 26%, 98% 28%, 100% 30%, 100% 100%, 0 100%
+    );
+  }
+  
+  .bokeh-overlay {
+    background: 
+      radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.4) 0%, transparent 30%),
+      radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.3) 0%, transparent 35%),
+      radial-gradient(circle at 45% 60%, rgba(255, 255, 255, 0.25) 0%, transparent 25%);
+    mix-blend-mode: overlay;
+  }
+}
