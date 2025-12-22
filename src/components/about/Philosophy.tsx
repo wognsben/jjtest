@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import HandDrawnSVG from './HandDrawnSVG';
 import WebGLFluidBackground from './WebGLFluidBackground';
+import { getImagePath } from '../../utils/imageUtils';
 
 export default function Philosophy() {
   // Removed all parallax scroll effects
@@ -300,7 +301,7 @@ export default function Philosophy() {
               <motion.img
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                src="/assets/about/The Origin of Color/The Origin of Color.jpg"
+                src={getImagePath("/assets/about/The Origin of Color/The Origin of Color.jpg")}
                 alt="The Origin of Color"
                 className="absolute inset-0 w-full h-full object-cover"
               />

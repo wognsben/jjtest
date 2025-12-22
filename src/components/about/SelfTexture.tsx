@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { getImagePath } from '../../utils/imageUtils';
 
 export default function SelfTexture() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -227,7 +228,7 @@ export default function SelfTexture() {
               >
                 <div className="w-full h-full rounded-3xl overflow-hidden bg-[#FAF7F3]">
                   <img
-                    src="/assets/about/selftexture/selftexture.png"
+                    src={getImagePath("/assets/about/selftexture/selftexture.png")}
                     alt="자기결"
                     className="w-full h-full object-cover rounded-3xl"
                     style={{
@@ -237,13 +238,13 @@ export default function SelfTexture() {
                     console.error('Image load error:', e.currentTarget.src);
                     const src = e.currentTarget.src;
                     if (src.endsWith('.png')) {
-                      e.currentTarget.src = '/assets/about/selftexture/selftexture.jpg';
+                      e.currentTarget.src = getImagePath('/assets/about/selftexture/selftexture.jpg');
                     } else if (src.endsWith('.jpg')) {
-                      e.currentTarget.src = '/assets/about/selftexture/selftexture.PNG';
+                      e.currentTarget.src = getImagePath('/assets/about/selftexture/selftexture.PNG');
                     } else if (src.endsWith('.PNG')) {
-                      e.currentTarget.src = '/assets/about/selftexture/selftexture.JPG';
+                      e.currentTarget.src = getImagePath('/assets/about/selftexture/selftexture.JPG');
                     } else {
-                      e.currentTarget.src = '/assets/about/selftexture/selftexture.png';
+                      e.currentTarget.src = getImagePath('/assets/about/selftexture/selftexture.png');
                     }
                   }}
                   />

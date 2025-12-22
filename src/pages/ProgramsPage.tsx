@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChildArtSection2, ChildArtSection3, ChildArtSection4, ChildArtSection5 } from '../components/ChildArtSections';
+import { getImagePath } from '../utils/imageUtils';
 import { ChildArtSection6 } from '../components/ChildArtSection6';
 import { ChildArtSection7 } from '../components/ChildArtSection7';
 import { YouthArtSection1, YouthArtSection2, YouthArtSection3 } from '../components/YouthArtSections';
@@ -72,20 +73,20 @@ function ChildArtSection() {
           {/* Main Image */}
           <div className="relative aspect-[16/9] md:aspect-[21/9]">
             <img 
-              src="/assets/about/crayon forest/crayon forest.png"
+              src={getImagePath("/assets/about/crayon forest/crayon forest.png")}
               alt="크레용숲 어린이색채학교"
               className="w-full h-full object-cover"
               onError={(e) => {
                 console.error('Image load error:', e.currentTarget.src);
                 const src = e.currentTarget.src;
                 if (src.endsWith('.png')) {
-                  e.currentTarget.src = '/assets/about/crayon forest/crayon forest.jpg';
+                  e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.jpg');
                 } else if (src.endsWith('.jpg')) {
-                  e.currentTarget.src = '/assets/about/crayon forest/crayon forest.PNG';
+                  e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.PNG');
                 } else if (src.endsWith('.PNG')) {
-                  e.currentTarget.src = '/assets/about/crayon forest/crayon forest.JPG';
+                  e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.JPG');
                 } else {
-                  e.currentTarget.src = '/assets/about/crayon forest/crayon forest.png';
+                  e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.png');
                 }
               }}
             />

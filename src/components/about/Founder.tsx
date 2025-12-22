@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { getImagePath } from '../../utils/imageUtils';
 
 export default function Founder() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -103,7 +104,7 @@ export default function Founder() {
                       }}
                     >
                       <motion.img
-                        src="/assets/about/founder/파운더2.PNG"
+                        src={getImagePath("/assets/about/founder/파운더2.PNG")}
                         alt="크레용숲 교육 현장"
                         className="w-full h-auto"
                         whileHover={{ scale: 1.01 }}
@@ -140,7 +141,7 @@ export default function Founder() {
                       }}
                     >
                       <motion.img
-                        src="/assets/about/founder/파운더1.PNG"
+                        src={getImagePath("/assets/about/founder/파운더1.PNG")}
                         alt="크레용숲 교육 현장"
                         className="w-full h-auto"
                         whileHover={{ scale: 1.05, rotate: '-3deg' }}
@@ -172,7 +173,7 @@ export default function Founder() {
                       }}
                     >
                       <motion.img
-                        src="/assets/about/founder/파운더3.PNG"
+                        src={getImagePath("/assets/about/founder/파운더3.PNG")}
                         alt="크레용숲 교육 현장"
                         className="w-full h-auto"
                         whileHover={{ scale: 1.01 }}

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
+import { getImagePath } from '../../utils/imageUtils';
 
 interface Card3DProps {
   num: number;
@@ -235,10 +236,10 @@ function Card3D({ num, index, imageSrc }: Card3DProps) {
 
 export default function Premium3DGrid() {
   const images = [
-    '/assets/about/stressful child/4x4-1.PNG',
-    '/assets/about/stressful child/4x4-2.PNG',
-    '/assets/about/stressful child/4x4-3.PNG',
-    '/assets/about/stressful child/4x4-4.PNG',
+    getImagePath('/assets/about/stressful child/4x4-1.PNG'),
+    getImagePath('/assets/about/stressful child/4x4-2.PNG'),
+    getImagePath('/assets/about/stressful child/4x4-3.PNG'),
+    getImagePath('/assets/about/stressful child/4x4-4.PNG'),
   ];
 
   return (

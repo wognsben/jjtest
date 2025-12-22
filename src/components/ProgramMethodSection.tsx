@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { getImagePath } from '../utils/imageUtils';
 
 // Program Page Method Section
 export default function ProgramMethodSection() {
@@ -48,7 +49,7 @@ export default function ProgramMethodSection() {
           className="relative"
         >
           <img 
-            src="/assets/about/The Origin of Color/The Origin of Color.jpg"
+            src={getImagePath("/assets/about/The Origin of Color/The Origin of Color.jpg")}
             alt="스에나가 메소드 색채심리연구소"
             className="w-full h-auto rounded-3xl"
           />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { getImagePath } from '../../utils/imageUtils';
 
 const stages = [
   {
@@ -159,10 +160,10 @@ export default function EmotionalArtProgram() {
                     <img
                       src={
                         stage.id === 1
-                          ? '/assets/about/emotion art teaching/emotion art first.jpg'
+                          ? getImagePath('/assets/about/emotion art teaching/emotion art first.jpg')
                           : stage.id === 2
-                          ? '/assets/about/emotion art teaching/emotion art middle.jpg'
-                          : '/assets/about/emotion art teaching/emotion art after.PNG'
+                          ? getImagePath('/assets/about/emotion art teaching/emotion art middle.jpg')
+                          : getImagePath('/assets/about/emotion art teaching/emotion art after.PNG')
                       }
                       alt={`${stage.title} - ${stage.subtitle}`}
                       className="absolute inset-0 w-full h-full object-cover"

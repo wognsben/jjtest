@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { getImagePath } from '../../utils/imageUtils';
 
 export default function WhatIsEmotionalArt() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -12,9 +13,9 @@ export default function WhatIsEmotionalArt() {
   const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   const images = [
-    '/assets/about/meaning of emotional art/meaning of emotional art-1.jpg',
-    '/assets/about/meaning of emotional art/meaning of emotional art-2.jpg',
-    '/assets/about/meaning of emotional art/meaning of emotional art-3.jpg',
+    getImagePath('/assets/about/meaning of emotional art/meaning of emotional art-1.jpg'),
+    getImagePath('/assets/about/meaning of emotional art/meaning of emotional art-2.jpg'),
+    getImagePath('/assets/about/meaning of emotional art/meaning of emotional art-3.jpg'),
   ];
 
   return (

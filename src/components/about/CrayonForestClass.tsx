@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { getImagePath } from '../../utils/imageUtils';
 
 export default function CrayonForestClass() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -264,20 +265,20 @@ export default function CrayonForestClass() {
               }}
             >
               <img 
-                src="/assets/about/crayon forest/crayon forest.png"
+                src={getImagePath("/assets/about/crayon forest/crayon forest.png")}
                 alt="크레용숲 클래스"
                 className="w-full h-auto"
                 onError={(e) => {
                   console.error('Image load error:', e.currentTarget.src);
                   const src = e.currentTarget.src;
                   if (src.endsWith('.png')) {
-                    e.currentTarget.src = '/assets/about/crayon forest/crayon forest.jpg';
+                    e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.jpg');
                   } else if (src.endsWith('.jpg')) {
-                    e.currentTarget.src = '/assets/about/crayon forest/crayon forest.PNG';
+                    e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.PNG');
                   } else if (src.endsWith('.PNG')) {
-                    e.currentTarget.src = '/assets/about/crayon forest/crayon forest.JPG';
+                    e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.JPG');
                   } else {
-                    e.currentTarget.src = '/assets/about/crayon forest/crayon forest.png';
+                    e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.png');
                   }
                 }}
               />

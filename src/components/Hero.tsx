@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
+import { getImagePath } from '../utils/imageUtils';
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -90,7 +91,7 @@ export default function Hero() {
         }}
       >
         <motion.img 
-          src="/assets/main/hero.jpg"
+          src={getImagePath("/assets/main/hero.jpg")}
           alt="Paint texture"
           className="paint-image"
           style={{

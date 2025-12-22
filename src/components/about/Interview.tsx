@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { getImagePath } from '../../utils/imageUtils';
 
 export default function Interview() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -160,7 +161,7 @@ export default function Interview() {
                 }}
               >
                 <img
-                  src="/assets/about/interview/interview-1.png"
+                  src={getImagePath("/assets/about/interview/interview-1.png")}
                   alt="꽃밭샘 김결 인터뷰"
                   onError={(e) => {
                     const target = e.currentTarget;
@@ -168,13 +169,13 @@ export default function Interview() {
                     console.error('Image load error:', src);
                     // 확장자 자동 처리
                     if (src.endsWith('.png')) {
-                      target.src = '/assets/about/interview/interview-1.jpg';
+                      target.src = getImagePath('/assets/about/interview/interview-1.jpg');
                     } else if (src.endsWith('.jpg')) {
-                      target.src = '/assets/about/interview/interview-1.PNG';
+                      target.src = getImagePath('/assets/about/interview/interview-1.PNG');
                     } else if (src.endsWith('.PNG')) {
-                      target.src = '/assets/about/interview/interview-1.JPG';
+                      target.src = getImagePath('/assets/about/interview/interview-1.JPG');
                     } else {
-                      target.src = '/assets/about/interview/interview-1.png';
+                      target.src = getImagePath('/assets/about/interview/interview-1.png');
                     }
                   }}
                   className="w-full h-full object-contain"
@@ -399,7 +400,7 @@ export default function Interview() {
                 className="relative"
               >
                 <img
-                  src="/assets/about/interview/interview-2.png"
+                  src={getImagePath("/assets/about/interview/interview-2.png")}
                   alt="인터뷰 2"
                   onError={(e) => {
                     const target = e.currentTarget;
@@ -407,13 +408,13 @@ export default function Interview() {
                     console.error('Image load error:', src);
                     // 확장자 자동 처리
                     if (src.endsWith('.png')) {
-                      target.src = '/assets/about/interview/interview-2.jpg';
+                      target.src = getImagePath('/assets/about/interview/interview-2.jpg');
                     } else if (src.endsWith('.jpg')) {
-                      target.src = '/assets/about/interview/interview-2.PNG';
+                      target.src = getImagePath('/assets/about/interview/interview-2.PNG');
                     } else if (src.endsWith('.PNG')) {
-                      target.src = '/assets/about/interview/interview-2.JPG';
+                      target.src = getImagePath('/assets/about/interview/interview-2.JPG');
                     } else {
-                      target.src = '/assets/about/interview/interview-2.png';
+                      target.src = getImagePath('/assets/about/interview/interview-2.png');
                     }
                   }}
                   className="w-full h-auto rounded-2xl shadow-2xl"

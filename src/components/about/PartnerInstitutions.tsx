@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { getImagePath } from '../../utils/imageUtils';
 
 export default function PartnerInstitutions() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -115,7 +116,7 @@ export default function PartnerInstitutions() {
             >
               {/* Background Image */}
               <motion.img
-                src="/assets/about/emotion and touch/emotion and touch.png"
+                src={getImagePath("/assets/about/emotion and touch/emotion and touch.png")}
                 alt="크레용숲 철학 - 자연 속에서 자라는 아이들"
                 className="w-full h-full object-cover"
                 whileHover={{ scale: 1.05 }}
@@ -125,13 +126,13 @@ export default function PartnerInstitutions() {
                   // 확장자 시도 (.jpg, .PNG 등)
                   const src = e.currentTarget.src;
                   if (src.endsWith('.png')) {
-                    e.currentTarget.src = '/assets/about/emotion and touch/emotion and touch.jpg';
+                    e.currentTarget.src = getImagePath('/assets/about/emotion and touch/emotion and touch.jpg');
                   } else if (src.endsWith('.jpg')) {
-                    e.currentTarget.src = '/assets/about/emotion and touch/emotion and touch.PNG';
+                    e.currentTarget.src = getImagePath('/assets/about/emotion and touch/emotion and touch.PNG');
                   } else if (src.endsWith('.PNG')) {
-                    e.currentTarget.src = '/assets/about/emotion and touch/emotion and touch.JPG';
+                    e.currentTarget.src = getImagePath('/assets/about/emotion and touch/emotion and touch.JPG');
                   } else {
-                    e.currentTarget.src = '/assets/about/emotion and touch/emotion and touch.png';
+                    e.currentTarget.src = getImagePath('/assets/about/emotion and touch/emotion and touch.png');
                   }
                 }}
               />

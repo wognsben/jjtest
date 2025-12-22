@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { getImagePath } from '../../utils/imageUtils';
 
 const stages = [
   {
@@ -108,20 +109,20 @@ export default function ArtisticGrowth() {
               >
                 {/* Tree image */}
                 <img
-                  src="/assets/about/art tree/art tree.jpg"
+                  src={getImagePath("/assets/about/art tree/art tree.jpg")}
                   alt="예술 성장 지도"
                   className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.02]"
                   onError={(e) => {
                     console.error('Image load error:', e.currentTarget.src);
                     const src = e.currentTarget.src;
                     if (src.endsWith('.jpg')) {
-                      e.currentTarget.src = '/assets/about/art tree/art tree.png';
+                      e.currentTarget.src = getImagePath('/assets/about/art tree/art tree.png');
                     } else if (src.endsWith('.png')) {
-                      e.currentTarget.src = '/assets/about/art tree/art tree.PNG';
+                      e.currentTarget.src = getImagePath('/assets/about/art tree/art tree.PNG');
                     } else if (src.endsWith('.PNG')) {
-                      e.currentTarget.src = '/assets/about/art tree/art tree.JPG';
+                      e.currentTarget.src = getImagePath('/assets/about/art tree/art tree.JPG');
                     } else {
-                      e.currentTarget.src = '/assets/about/art tree/art tree.jpg';
+                      e.currentTarget.src = getImagePath('/assets/about/art tree/art tree.jpg');
                     }
                   }}
                 />

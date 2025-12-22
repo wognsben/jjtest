@@ -19,6 +19,7 @@ import ScrollProgress, { ScrollHint } from './components/ScrollProgress';
 import CustomCursor from './components/CustomCursor';
 import LoadingScreen from './components/LoadingScreen';
 import { useKeyboardNav } from './hooks/useKeyboardNav';
+import { getImagePath } from './utils/imageUtils';
 
 export default function App() {
   const [currentPage, setCurrentPage] = React.useState<'home' | 'about' | 'program' | 'contact'>('home');
@@ -383,7 +384,6 @@ export default function App() {
         style={{ opacity: 1 - fadeProgress }}
       >
         <div className="flex flex-col items-center gap-2">
-          <span className="text-xs tracking-[0.1em] text-muted uppercase">Scroll</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
@@ -564,7 +564,7 @@ export default function App() {
         <div className="absolute inset-0 pointer-events-none paint-bg-menu">
           <img
             ref={paintBgRef}
-            src="/assets/main/hero.jpg"
+            src={getImagePath("/assets/main/hero.jpg")}
             alt=""
             className="absolute inset-0 w-full h-full object-cover"
             style={{

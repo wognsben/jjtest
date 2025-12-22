@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { getImagePath } from '../../utils/imageUtils';
 
 export default function Karte() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -174,7 +175,7 @@ export default function Karte() {
               className="relative space-y-6"
             >
               <img 
-                src="/assets/about/6months carte/6months carte.png"
+                src={getImagePath("/assets/about/6months carte/6months carte.png")}
                 alt="6개월 성장카르테"
                 onError={(e) => {
                   const target = e.currentTarget;
@@ -182,14 +183,14 @@ export default function Karte() {
                   console.error('Image load error:', src);
                   // 확장자 자동 처리
                   if (src.endsWith('.png')) {
-                    target.src = '/assets/about/6months carte/6months carte.jpg';
+                    target.src = getImagePath('/assets/about/6months carte/6months carte.jpg');
                   } else if (src.endsWith('.jpg')) {
-                    target.src = '/assets/about/6months carte/6months carte.PNG';
+                    target.src = getImagePath('/assets/about/6months carte/6months carte.PNG');
                   } else if (src.endsWith('.PNG')) {
-                    target.src = '/assets/about/6months carte/6months carte.JPG';
+                    target.src = getImagePath('/assets/about/6months carte/6months carte.JPG');
                   } else {
                     // 확장자가 없는 경우 .png부터 시도
-                    target.src = '/assets/about/6months carte/6months carte.png';
+                    target.src = getImagePath('/assets/about/6months carte/6months carte.png');
                   }
                 }}
                 className="w-full h-auto rounded-2xl shadow-2xl"

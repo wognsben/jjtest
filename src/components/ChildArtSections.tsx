@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import BlobMorph from './BlobMorph';
+import { getImagePath } from '../utils/imageUtils';
 
 // CHILD ART Section 2: Philosophy & Questions
 export function ChildArtSection2() {
@@ -407,20 +408,20 @@ export function ChildArtSection4() {
           }}
         >
           <img
-            src="/assets/about/crayon forest/crayon forest.png"
+            src={getImagePath("/assets/about/crayon forest/crayon forest.png")}
             alt="크레용숲 어린이 작품"
             className="w-full h-auto"
             onError={(e) => {
               console.error('Image load error:', e.currentTarget.src);
               const src = e.currentTarget.src;
               if (src.endsWith('.png')) {
-                e.currentTarget.src = '/assets/about/crayon forest/crayon forest.jpg';
+                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.jpg');
               } else if (src.endsWith('.jpg')) {
-                e.currentTarget.src = '/assets/about/crayon forest/crayon forest.PNG';
+                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.PNG');
               } else if (src.endsWith('.PNG')) {
-                e.currentTarget.src = '/assets/about/crayon forest/crayon forest.JPG';
+                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.JPG');
               } else {
-                e.currentTarget.src = '/assets/about/crayon forest/crayon forest.png';
+                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.png');
               }
             }}
           />
@@ -507,20 +508,20 @@ export function ChildArtSection5() {
           className="mb-20"
         >
           <img
-            src="/assets/about/crayon forest/crayon forest.png"
+            src={getImagePath("/assets/about/crayon forest/crayon forest.png")}
             alt="크레용숲 차일드아트 어린이 색채학교"
             className="w-full h-auto rounded-3xl shadow-lg"
             onError={(e) => {
               console.error('Image load error:', e.currentTarget.src);
               const src = e.currentTarget.src;
               if (src.endsWith('.png')) {
-                e.currentTarget.src = '/assets/about/crayon forest/crayon forest.jpg';
+                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.jpg');
               } else if (src.endsWith('.jpg')) {
-                e.currentTarget.src = '/assets/about/crayon forest/crayon forest.PNG';
+                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.PNG');
               } else if (src.endsWith('.PNG')) {
-                e.currentTarget.src = '/assets/about/crayon forest/crayon forest.JPG';
+                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.JPG');
               } else {
-                e.currentTarget.src = '/assets/about/crayon forest/crayon forest.png';
+                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.png');
               }
             }}
           />
