@@ -110,7 +110,10 @@ function FloatingBlob({ delay = 0, className = "" }: { delay?: number; className
         delay,
         ease: [0.16, 1, 0.3, 1]
       }}
-      className={`absolute pointer-events-none ${className}`}
+      className={`absolute pointer-events-none floating-blob ${className}`}
+      style={{
+        margin: '-25px',
+      }}
     >
       <motion.svg
         animate={{ 
@@ -142,12 +145,23 @@ function FloatingBlob({ delay = 0, className = "" }: { delay?: number; className
   );
 }
 
-function StepCard({ step, index, isLast }: { step: typeof steps[0]; index: number; isLast: boolean }) {
+function StepCard({ step, index, isLast, isMobile = false }: { step: typeof steps[0]; index: number; isLast: boolean; isMobile?: boolean }) {
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   
+  // 카드 리듬: Sense, Expression, Story만 강조
+  const getCardTransform = () => {
+    if (isMobile) return { y: 0, scale: 1 };
+    if (index === 0) return { y: -2, scale: 1 }; // Sense
+    if (index === 1) return { y: -6, scale: 1.02 }; // Expression
+    if (index === 2) return { y: -2, scale: 1 }; // Story
+    return { y: 0, scale: 1 }; // Archive, Integration
+  };
+  
+  const baseTransform = getCardTransform();
+  
   return (
-    <div className="flex items-center gap-4 md:gap-6 lg:gap-7">
+    <div className={`flex items-center ${isMobile ? 'gap-6' : 'gap-4 md:gap-6 lg:gap-7'}`}>
       <motion.div
         ref={cardRef}
         initial={{ opacity: 0, y: 30 }}
@@ -159,16 +173,17 @@ function StepCard({ step, index, isLast }: { step: typeof steps[0]; index: numbe
         className="relative cursor-pointer group flex-shrink-0"
       >
         <motion.div 
-          className="w-44 h-32 md:w-52 md:h-36 lg:w-56 lg:h-36 relative rounded-3xl transition-all duration-500"
+          className={isMobile ? "growth-card-mobile relative rounded-3xl transition-all duration-500" : "w-44 h-32 md:w-52 md:h-36 lg:w-56 lg:h-36 relative rounded-3xl transition-all duration-500"}
           style={{
             backgroundColor: step.color,
             boxShadow: isHovered 
               ? `0 12px 40px ${step.color}60, 0 6px 20px ${step.color}40`
-              : `0 4px 16px ${step.color}30, 0 2px 8px ${step.color}20`
+              : `0 4px 16px ${step.color}30, 0 2px 8px ${step.color}20`,
+            transform: `translateY(${baseTransform.y}px) scale(${baseTransform.scale})`
           }}
           animate={{
-            scale: isHovered ? 1.02 : 1,
-            y: isHovered ? -4 : 0
+            scale: isHovered ? (baseTransform.scale * 1.02) : baseTransform.scale,
+            y: isHovered ? (baseTransform.y - 4) : baseTransform.y
           }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
@@ -229,14 +244,14 @@ function StepCard({ step, index, isLast }: { step: typeof steps[0]; index: numbe
         </motion.div>
       </motion.div>
       
-      {/* Arrow connector */}
-      {!isLast && (
+      {/* Arrow connector - Desktop only */}
+      {!isLast && !isMobile && (
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: index * 0.12 + 0.3 }}
-          className="relative flex-shrink-0 hidden md:block"
+          className="relative flex-shrink-0 hidden lg:block"
         >
           <svg 
             width="40" 
@@ -312,7 +327,13 @@ export default function GrowthNew() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="absolute top-12 left-8 md:left-12 lg:left-24 z-20"
       >
-        <p className="text-xs tracking-[0.15em] text-tertiary uppercase opacity-60">
+        <p 
+          className="text-xs text-tertiary uppercase"
+          style={{
+            opacity: 0.45,
+            letterSpacing: '0.18em'
+          }}
+        >
           04. GROWTH STRUCTURE
         </p>
       </motion.div>
@@ -327,12 +348,12 @@ export default function GrowthNew() {
       
       {/* Floating blobs with parallax */}
       <motion.div style={{ y: y1 }}>
-        <FloatingBlob delay={0.4} className="top-24 left-[8%] text-pink-soft" />
+        <FloatingBlob delay={0.4} className="top-24 left-4 md:left-[8%] text-pink-soft" />
       </motion.div>
       <motion.div style={{ y: y2 }}>
-        <FloatingBlob delay={0.6} className="bottom-32 right-[12%] text-accent-green" />
+        <FloatingBlob delay={0.6} className="bottom-32 right-4 md:right-[12%] text-accent-green" />
       </motion.div>
-      <FloatingBlob delay={0.8} className="top-1/3 right-[8%] text-pink-soft/60" />
+      <FloatingBlob delay={0.8} className="top-1/3 right-4 md:right-[8%] text-pink-soft/60" />
       
       <div className="relative mx-auto">
         {/* Title */}
@@ -393,7 +414,7 @@ export default function GrowthNew() {
           </div>
           
           {/* Tablet/Mobile view - scrollable */}
-          <div className="lg:hidden overflow-x-auto pb-8 -mx-6 px-6">
+          <div className="lg:hidden horizontal-scroll pb-8 -mx-6 px-6">
             <div className="flex items-center gap-6 min-w-max">
               {steps.map((step, index) => (
                 <StepCard 
@@ -401,6 +422,7 @@ export default function GrowthNew() {
                   step={step} 
                   index={index}
                   isLast={index === steps.length - 1}
+                  isMobile={true}
                 />
               ))}
             </div>
@@ -446,6 +468,54 @@ export default function GrowthNew() {
           />
         </motion.div>
       </div>
+
+      {/* FloatingBlob overflow fix styles + Mobile card styles + Horizontal scrollbar hide */}
+      <style>{`
+        .floating-blob {
+          z-index: 1;
+        }
+        
+        /* Horizontal scrollbar hide - 프리미엄 모바일 UX */
+        .horizontal-scroll {
+          overflow-x: auto;
+          scrollbar-width: none;        /* Firefox */
+          -ms-overflow-style: none;     /* IE 10+ */
+          position: relative;
+        }
+        
+        .horizontal-scroll::-webkit-scrollbar {
+          display: none;                /* Chrome, Safari */
+        }
+        
+        /* Optional: 스크롤 인디케이터 (미세한 그림자 효과) */
+        .horizontal-scroll::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 32px;
+          width: 24px;
+          background: linear-gradient(
+            to left,
+            rgba(255, 255, 255, 0.9),
+            transparent
+          );
+          pointer-events: none;
+          z-index: 2;
+        }
+        
+        @media (max-width: 768px) {
+          .floating-blob {
+            margin: -20px !important;
+          }
+          
+          .growth-card-mobile {
+            width: 240px;
+            height: 140px;
+            flex: 0 0 auto;
+          }
+        }
+      `}</style>
     </section>
   );
 }

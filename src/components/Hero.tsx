@@ -1,9 +1,66 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isPaintVisible, setIsPaintVisible] = useState(false);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start']
+  });
+  
+  // Paint layer scroll fade - starts from 0.65 after reveal
+  const scrollPaintOpacity = useTransform(
+    scrollYProgress, 
+    [0, 0.5, 0.8], 
+    [0.65, 0.25, 0.08]
+  );
+  const scrollPaintBlurValue = useTransform(
+    scrollYProgress, 
+    [0, 0.5, 0.8], 
+    [0, 4, 10]
+  );
+  
+  // Title remains slightly visible when paint fades
+  const titleOpacity = useTransform(scrollYProgress, [0.6, 0.9], [1, 0.95]);
+  const titleLetterSpacing = useTransform(scrollYProgress, [0.6, 0.9], ['-0.025em', '-0.015em']);
+  
+  // Track blur value for animation
+  const [currentBlur, setCurrentBlur] = useState(6);
+  
+  // Update blur on scroll
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    if (isPaintVisible) {
+      if (latest < 0.5) {
+        setCurrentBlur(latest * 8); // 0 to 4
+      } else if (latest < 0.8) {
+        setCurrentBlur(4 + (latest - 0.5) * 20); // 4 to 10
+      } else {
+        setCurrentBlur(10);
+      }
+    }
+  });
+  
+  // Paint reveal on page load
+  useEffect(() => {
+    const handleLoad = () => {
+      requestAnimationFrame(() => {
+        setIsPaintVisible(true);
+        setCurrentBlur(0);
+      });
+    };
+    
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad);
+      return () => window.removeEventListener('load', handleLoad);
+    }
+  }, []);
   return (
     <section 
+      id="hero-section"
+      ref={sectionRef}
       className="relative overflow-hidden bg-white"
       style={{
         minHeight: '100vh',
@@ -19,13 +76,20 @@ export default function Hero() {
       />
 
       {/* PAINT LAYER - Full viewport, behind all content */}
-      <div 
-        className="absolute inset-0 pointer-events-none paint-layer"
+      <motion.div 
+        className={`absolute inset-0 pointer-events-none paint-layer ${isPaintVisible ? 'is-visible' : ''}`}
         style={{
           zIndex: 2,
+          opacity: isPaintVisible ? scrollPaintOpacity : 0.18,
+        }}
+        transition={{
+          opacity: {
+            duration: 0.9,
+            ease: [0.16, 1, 0.3, 1],
+          },
         }}
       >
-        <img 
+        <motion.img 
           src="/assets/main/hero.jpg"
           alt="Paint texture"
           className="paint-image"
@@ -33,24 +97,46 @@ export default function Hero() {
             position: 'absolute',
             top: '50%',
             left: '50%',
-            width: '100vw',
-            height: '100vh',
+            width: '100%',
+            height: '100%',
+            minWidth: '100vw',
+            minHeight: '100vh',
             transform: 'translate(-50%, -50%)',
             mixBlendMode: 'multiply',
-            opacity: 0.65,
+            opacity: 1,
             objectFit: 'cover',
+            objectPosition: '46% 58%',
+          }}
+          animate={{
+            filter: `blur(${currentBlur}px)`,
+          }}
+          transition={{
+            filter: {
+              duration: 0.9,
+              ease: [0.16, 1, 0.3, 1],
+            },
           }}
         />
         
-        {/* Paint light overlay */}
+        {/* Paint light overlay - thickness feeling, not digital light */}
         <div 
           className="absolute inset-0 paint-light"
           style={{
-            background: 'radial-gradient(at 35% 30%, rgba(255,255,255,0.35), transparent 60%)',
+            background: 'radial-gradient(at 40% 35%, rgba(255,255,255,0.22), rgba(255,255,255,0.05) 45%, transparent 65%)',
             mixBlendMode: 'overlay',
           }}
         />
-      </div>
+        
+        {/* Paint layer depth gradient - brightness variation */}
+        <div 
+          className="absolute inset-0 paint-depth"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.25) 100%)',
+            mixBlendMode: 'overlay',
+            pointerEvents: 'none',
+          }}
+        />
+      </motion.div>
 
       {/* Content Container */}
       <div 
@@ -80,9 +166,15 @@ export default function Hero() {
               className="w-8 h-8 md:w-10 md:h-10" 
               viewBox="0 0 24 24" 
               fill="none" 
-              style={{ opacity: 0.7 }}
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeWidth="1.5"
+              style={{ opacity: 0.5 }}
             >
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor" />
+              <path 
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                fill="none"
+              />
             </svg>
             <p 
               className="text-secondary"
@@ -113,15 +205,19 @@ export default function Hero() {
                   delay: 0.4, 
                   ease: [0.22, 1, 0.36, 1] 
                 }}
-                className="relative inline-block"
+                className="relative inline-block title-with-mask"
                 style={{ 
                   fontFamily: "'IM Fell English', 'Noto Serif KR', serif",
                   fontSize: 'clamp(3rem, 8vw, 7rem)',
                   fontWeight: 400,
-                  letterSpacing: '-0.02em',
+                  letterSpacing: titleLetterSpacing,
                   fontStyle: 'italic',
                   color: '#2D5016',
                   lineHeight: 1.1,
+                  textShadow: '0 0.5px 0 rgba(0,0,0,0.03)',
+                  opacity: titleOpacity,
+                  position: 'relative',
+                  zIndex: 5,
                 }}
               >
                 FORÊT DES CRAYONS
@@ -160,9 +256,24 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Mobile-specific styles */}
+      {/* Enhanced styles */}
       <style>{`
+        /* Title mask for clearer relationship with paint */
+        .title-with-mask::after {
+          content: '';
+          position: absolute;
+          inset: -0.2em;
+          background: white;
+          mix-blend-mode: lighten;
+          opacity: 0.05;
+          pointer-events: none;
+          z-index: -1;
+        }
+
         @media (max-width: 768px) {
+          .paint-layer {
+            transform: translateY(-8%);
+          }
           .paint-layer .paint-image {
             opacity: 0.45 !important;
           }
@@ -171,3 +282,4 @@ export default function Hero() {
     </section>
   );
 }
+

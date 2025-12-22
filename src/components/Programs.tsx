@@ -215,20 +215,62 @@ export default function Programs() {
     };
   }, [isBlobInView]);
   
+  const [isEntering, setIsEntering] = useState(false);
+  const sectionObserverRef = useRef<IntersectionObserver | null>(null);
+  
+  // IntersectionObserver for section entrance
+  useEffect(() => {
+    if (sectionRef.current) {
+      sectionObserverRef.current = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsEntering(true);
+          }
+        },
+        { threshold: 0.1 }
+      );
+      sectionObserverRef.current.observe(sectionRef.current);
+    }
+    
+    return () => {
+      if (sectionObserverRef.current && sectionRef.current) {
+        sectionObserverRef.current.disconnect();
+      }
+    };
+  }, []);
+  
   return (
     <section 
       ref={sectionRef}
-      className="relative py-32 md:py-40 lg:py-48 px-6 md:px-12 lg:px-24 overflow-hidden bg-gradient-to-b from-white via-beige/10 to-white"
+      className={`relative py-32 md:py-40 lg:py-48 px-6 md:px-12 lg:px-24 overflow-hidden bg-gradient-to-b from-white via-beige/10 to-white next-section ${isEntering ? 'is-entering' : ''}`}
     >
+      {/* Paint afterglow - color memory from hero */}
+      <div 
+        className="absolute inset-0 pointer-events-none paint-afterglow"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '240px',
+          pointerEvents: 'none',
+          zIndex: 0,
+          background: 'radial-gradient(at 50% -20%, rgba(168, 198, 143, 0.22), rgba(255, 214, 128, 0.18) 30%, transparent 65%)',
+          opacity: isEntering ? 1 : 0,
+          transition: 'opacity 0.6s cubic-bezier(.16,1,.3,1)',
+        }}
+      />
+      
       {/* Subtle texture */}
       <div 
         className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          zIndex: 0,
         }}
       />
       
-      <div className="relative max-w-[1600px] mx-auto">
+      <div className="relative max-w-[1600px] mx-auto" style={{ zIndex: 1 }}>
         {/* Header text */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -238,16 +280,16 @@ export default function Programs() {
           className="max-w-6xl mx-auto space-y-6 text-center"
           style={{ marginBottom: '50px' }}
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl text-primary leading-tight" style={{ fontFamily: "'Noto Serif KR', serif" }}>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl text-primary" style={{ fontFamily: "'Noto Serif KR', serif", lineHeight: 1.35 }}>
             <RebuildText text="크레용숲은" />
             {' '}
-            <span style={{ color: '#a8c68f' }}>
+            <span style={{ color: 'rgba(168, 198, 143, 0.9)' }}>
               <RebuildText text="감정과 감각," delay={0.1} />
             </span>
             {' '}
             <RebuildText text="그리고" delay={0.2} />
             {' '}
-            <span style={{ color: '#a8c68f' }}>
+            <span style={{ color: 'rgba(168, 198, 143, 0.9)' }}>
               <RebuildText text="창조적 표현을" delay={0.25} />
             </span>
             {' '}
@@ -279,7 +321,7 @@ export default function Programs() {
             animate={{ opacity: morphValue >= 0.9 ? 1 : 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 lg:gap-16 px-4 md:px-8 w-full max-w-7xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 lg:gap-16 px-4 md:px-8 w-full max-w-7xl">
               {programs.map((program, index) => (
                 <motion.div
                   key={program.id}
@@ -292,14 +334,20 @@ export default function Programs() {
                 >
                   {/* Circle with content inside - CONSISTENT SIZE for all circles */}
                   <div 
-                    className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full flex items-center justify-center p-6 md:p-10 lg:p-12 overflow-hidden transition-shadow duration-600"
+                    className="relative rounded-full flex items-center justify-center p-6 md:p-10 lg:p-12 overflow-hidden transition-shadow duration-600 program-circle"
                     style={{ 
+                      width: '42vw',
+                      height: '42vw',
+                      maxWidth: '180px',
+                      maxHeight: '180px',
                       backgroundColor: program.color,
                       boxShadow: `0 8px 24px ${program.color}30, 0 4px 12px ${program.color}20`,
                       aspectRatio: '1 / 1'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = `0 12px 32px ${program.color}40, 0 6px 16px ${program.color}25`;
+                      if (window.innerWidth >= 768) {
+                        e.currentTarget.style.boxShadow = '0 12px 32px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(255,255,255,0.25)';
+                      }
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.boxShadow = `0 8px 24px ${program.color}30, 0 4px 12px ${program.color}20`;
@@ -312,7 +360,7 @@ export default function Programs() {
                       fill="none"
                       style={{ 
                         transform: 'scale(1.03)',
-                        filter: 'blur(0.25px)'
+                        filter: 'blur(0.35px)'
                       }}
                     >
                       <path
@@ -328,7 +376,7 @@ export default function Programs() {
                         stroke={program.darkColor}
                         strokeWidth="2.8"
                         fill="none"
-                        opacity="0.7"
+                        opacity="0.6"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
@@ -350,13 +398,15 @@ export default function Programs() {
                       style={{ width: '90%', minWidth: '180px' }}
                     >
                       <div
+                        className="circle-content"
                         style={{ 
                           color: program.textColor, 
                           fontWeight: 600,
                           opacity: 0.95,
                           lineHeight: '1.5',
                           wordBreak: 'keep-all',
-                          fontSize: 'clamp(9px, 2vw, 14px)'
+                          fontSize: 'clamp(9px, 2vw, 14px)',
+                          textShadow: '0 0.5px 0 rgba(0,0,0,0.06)'
                         }}
                       >
                         <div style={{ marginBottom: '2px' }}>
@@ -437,6 +487,32 @@ export default function Programs() {
           </motion.div>
         </div>
       </div>
+
+      {/* Enhanced styles */}
+      <style>{`
+        @media (min-width: 640px) {
+          .program-circle {
+            width: 224px !important;
+            height: 224px !important;
+            max-width: none !important;
+            max-height: none !important;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .program-circle {
+            width: 288px !important;
+            height: 288px !important;
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .program-circle {
+            width: 320px !important;
+            height: 320px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -57,7 +57,10 @@ function FloatingBlob({ delay = 0, className = "" }: { delay?: number; className
         delay,
         ease: [0.16, 1, 0.3, 1]
       }}
-      className={`absolute pointer-events-none ${className}`}
+      className={`absolute pointer-events-none floating-blob ${className}`}
+      style={{
+        margin: '-20px',
+      }}
     >
       <motion.svg
         animate={{ 
@@ -139,9 +142,9 @@ export default function MethodNew() {
         />
         
         {/* Floating blobs */}
-        <FloatingBlob delay={0.5} className="top-12 left-12 text-white" />
-        <FloatingBlob delay={0.7} className="bottom-24 right-24 text-accent-green" />
-        <FloatingBlob delay={0.9} className="top-1/3 right-12 text-pink-soft" />
+        <FloatingBlob delay={0.5} className="top-12 left-4 md:left-12 text-white" />
+        <FloatingBlob delay={0.7} className="bottom-24 right-4 md:right-24 text-accent-green" />
+        <FloatingBlob delay={0.9} className="top-1/3 right-4 md:right-12 text-pink-soft" />
         
         <div className="relative max-w-5xl mx-auto text-center space-y-10 md:space-y-12">
           <motion.p
@@ -193,8 +196,8 @@ export default function MethodNew() {
         />
         
         {/* Decorative blobs */}
-        <FloatingBlob delay={0.3} className="top-20 right-[10%] text-accent-green" />
-        <FloatingBlob delay={0.6} className="bottom-32 left-[15%] text-pink-soft" />
+        <FloatingBlob delay={0.3} className="top-20 right-4 md:right-[10%] text-accent-green" />
+        <FloatingBlob delay={0.6} className="bottom-32 left-4 md:left-[15%] text-pink-soft" />
         
         <div className="relative max-w-[1600px] mx-auto">
           {/* Title */}
@@ -346,6 +349,19 @@ export default function MethodNew() {
           </motion.div>
         </div>
       </section>
+
+      {/* FloatingBlob overflow fix styles */}
+      <style>{`
+        .floating-blob {
+          z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+          .floating-blob {
+            margin: -15px !important;
+          }
+        }
+      `}</style>
     </>
   );
 }
