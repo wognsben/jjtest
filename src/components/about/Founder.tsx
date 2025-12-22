@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Founder() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -20,11 +21,39 @@ export default function Founder() {
   const textY = useTransform(scrollYProgress, [0, 1], [15, -15]);
 
   useEffect(() => {
+    // 1. 이미지 갤러리 - Stagger Reveal
+    if (galleryRef.current) {
+      const galleryItems = galleryRef.current.querySelectorAll('.founder-gallery-item');
+      if (galleryItems.length > 0) {
+        gsap.fromTo(
+          galleryItems,
+          {
+            opacity: 0,
+            y: 18,
+            scale: 0.98,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: 'power2.out',
+            stagger: 0.06,
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: galleryRef.current,
+              start: 'top 80%',
+            },
+          }
+        );
+      }
+    }
+
     if (!cardRef.current) return;
 
     const card = cardRef.current;
 
-    // 1. 카드 전체 - Subtle Entrance Motion
+    // 2. 카드 전체 - Subtle Entrance Motion
     gsap.fromTo(
       card,
       {
@@ -45,56 +74,45 @@ export default function Founder() {
       }
     );
 
-    // 2. 배경 이미지 - Very Slow Parallax
+    // 3. 배경 이미지 - Slow Drift Parallax
     gsap.to(card, {
-      backgroundPosition: '50% 46%',
+      backgroundPosition: '50% 44%',
       ease: 'none',
       scrollTrigger: {
         trigger: card,
         start: 'top bottom',
         end: 'bottom top',
-        scrub: 0.6,
+        scrub: 0.5,
       },
     });
 
-    // 3. 상단 타이틀 영역 - Text Presence Reveal
-    const title = card.querySelector('h3');
-    const subtitle = card.querySelector('h3 + p');
-    
-    if (title && subtitle) {
-      gsap.from([title, subtitle], {
-        opacity: 0,
-        y: 10,
-        letterSpacing: '-0.04em',
-        duration: 0.9,
-        ease: 'power2.out',
-        stagger: 0.12,
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 80%',
+    // 4. 카드 내부 콘텐츠 - Hierarchy Reveal
+    const cardChildren = card.querySelectorAll('.founder-card-section');
+    if (cardChildren.length > 0) {
+      gsap.fromTo(
+        cardChildren,
+        {
+          opacity: 0,
+          y: 12,
         },
-      });
-    }
-
-    // 4. 경력 라인들 (01~05) - Micro Stagger
-    const careerLines = card.querySelectorAll('.group');
-    if (careerLines.length > 0) {
-      gsap.from(careerLines, {
-        opacity: 0,
-        x: -6,
-        duration: 0.6,
-        ease: 'power2.out',
-        stagger: 0.08,
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 70%',
-        },
-      });
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          stagger: 0.12,
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 75%',
+          },
+        }
+      );
     }
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === card) {
+        if (trigger.vars.trigger === card || trigger.vars.trigger === galleryRef.current) {
           trigger.kill();
         }
       });
@@ -608,12 +626,9 @@ export default function Founder() {
             className="space-y-16"
           >
             {/* 6 Image Grid */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="mx-auto"
+            <div
+              ref={galleryRef}
+              className="mx-auto founder-gallery"
               style={{ 
                 width: '1500px', 
                 maxWidth: '100%',
@@ -626,19 +641,14 @@ export default function Founder() {
               {[1, 2, 3, 4, 5, 6].map((item, index) => {
                 const extension = item === 6 ? 'png' : 'jpg';
                 return (
-                  <motion.div
+                  <div
                     key={item}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                    className="relative group overflow-hidden rounded-lg shadow-md"
+                    className="founder-gallery-item relative group overflow-hidden rounded-lg shadow-md"
                     style={{ 
                       flex: '1 1 0',
                       height: '240px',
                       minWidth: 0,
                     }}
-                    whileHover={{ scale: 1.05 }}
                   >
                     <ImageWithFallback
                       src={getImagePath(`/assets/about/under of founder/under of founder-${item}.${extension}`)}
@@ -648,11 +658,11 @@ export default function Founder() {
                     
                     {/* Hover overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-brown-900/60 via-brown-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </motion.div>
+                  </div>
                 );
               })}
               </div>
-            </motion.div>
+            </div>
 
             {/* Credentials Text */}
             <div
@@ -674,7 +684,7 @@ export default function Founder() {
               }}
             >
               {/* Name & Main Title */}
-              <div className="mb-8 pb-6 border-b border-brown-200/30">
+              <div className="founder-card-section mb-8 pb-6 border-b border-brown-200/30">
                 <h3
                   className="mb-3"
                   style={{
@@ -701,7 +711,7 @@ export default function Founder() {
               </div>
 
               {/* Career Items - Horizontal Text Layout */}
-              <div className="mb-8" style={{ width: '100%' }}>
+              <div className="founder-card-section mb-8" style={{ width: '100%' }}>
                 <div className="flex gap-2 md:gap-3 lg:gap-4 items-center flex-wrap md:flex-nowrap justify-start md:justify-between">
                   {[
                     '색채심리 기반 자기이해 콘텐츠 기획자',
@@ -716,14 +726,7 @@ export default function Founder() {
               </div>
 
               {/* Books and Awards Section - Horizontal Layout */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.9 }}
-                className="mb-8 flex flex-row gap-8 md:gap-12 lg:gap-16"
-                style={{ flexWrap: 'wrap' }}
-              >
+              <div className="founder-card-section mb-8 flex flex-row gap-8 md:gap-12 lg:gap-16" style={{ flexWrap: 'wrap' }}>
                 {/* Books Section */}
                 <div style={{ flex: '1', minWidth: '200px' }}>
                   <h4
@@ -797,22 +800,15 @@ export default function Founder() {
                       >
                         • {award}
                       </motion.p>
-                    ))}
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
 
-              {/* Social Links Section - Premium Minimal Style */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-12 pt-8"
-                style={{
-                  borderTop: '1px solid rgba(166, 124, 82, 0.08)',
-                }}
-              >
+                  {/* Social Links Section - Premium Minimal Style */}
+                  <div className="founder-card-section mt-12 pt-8" style={{
+                    borderTop: '1px solid rgba(166, 124, 82, 0.08)',
+                  }}>
                 {/* Divider - Gradient */}
                 <div 
                   className="mb-8"
@@ -892,7 +888,7 @@ export default function Founder() {
                     Blog
                   </a>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -907,7 +903,51 @@ export default function Founder() {
           scrollbar-width: none;
         }
 
-        /* 5. Hover 시 카드 전체 - Breathing Effect (PC만) */
+        /* 1. 이미지 갤러리 - Hover Zoom */
+        @media (hover: hover) {
+          .founder-gallery-item img {
+            transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+
+          .founder-gallery-item:hover img {
+            transform: scale(1.035);
+          }
+        }
+
+        /* 2. 경력 라인 - Micro Interaction (PC만) */
+        @media (hover: hover) {
+          .founder-card .group:hover p {
+            transform: translateX(2px);
+            color: #4a4a4a;
+            transition: transform 0.4s ease, color 0.4s ease;
+          }
+
+          .founder-card .group:hover span {
+            color: rgba(166, 124, 82, 0.6);
+            transition: color 0.4s ease;
+          }
+        }
+
+        /* 3. 카드 전체 - Breathing Effect */
+        @keyframes slowBreath {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-1px); }
+        }
+
+        @keyframes subtleGlow {
+          0%, 100% { 
+            border-color: rgba(166, 124, 82, 0.12);
+          }
+          50% { 
+            border-color: rgba(166, 124, 82, 0.18);
+          }
+        }
+
+        .founder-card {
+          animation: slowBreath 10s ease-in-out infinite, subtleGlow 8s ease-in-out infinite;
+        }
+
+        /* 4. Hover 시 카드 전체 - Breathing Effect (PC만) */
         @media (hover: hover) {
           .founder-card {
             transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
@@ -922,18 +962,13 @@ export default function Founder() {
           }
         }
 
-        /* 6. 테두리 & 구분선 - Glow Pulse */
-        @keyframes subtleGlow {
-          0%, 100% { 
-            border-color: rgba(166, 124, 82, 0.12);
-          }
-          50% { 
-            border-color: rgba(166, 124, 82, 0.18);
-          }
+        /* 5. 하단 링크 - Editorial Finish */
+        .founder-card a {
+          transition: color 0.4s ease;
         }
 
-        .founder-card {
-          animation: subtleGlow 8s ease-in-out infinite;
+        .founder-card a:hover {
+          color: #4a4a4a;
         }
       `}</style>
     </>
