@@ -1,10 +1,10 @@
 import { motion } from 'motion/react';
 
 export default function PremiumIntegrityOrbit() {
-  // 중심점과 반지름 설정
+  // 중심점과 반지름 설정 (간격을 늘리기 위해 radius 증가)
   const centerX = 400;
   const centerY = 360;
-  const radius = 220;
+  const radius = 280; // 220에서 280으로 증가하여 카드와 중심 원 사이 간격 확보
   
   // 오각형 배치를 위한 각도 계산 (위부터 시계방향)
   const angles = [-90, -18, 54, 126, 198]; // 도 단위
@@ -54,9 +54,16 @@ export default function PremiumIntegrityOrbit() {
 
   return (
     <div className="w-full flex justify-center py-12 md:py-20">
-      <svg viewBox="0 0 800 720" className="w-full max-w-5xl">
-        {/* 배경 */}
-        <rect x="0" y="0" width="800" height="720" fill="#FEFDFB" />
+      <svg viewBox="0 0 800 720" className="w-full max-w-5xl" style={{ filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.08))' }}>
+        {/* 배경 - 미세한 그라데이션 추가 */}
+        <defs>
+          <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FEFDFB" />
+            <stop offset="50%" stopColor="#FFFBF8" />
+            <stop offset="100%" stopColor="#FEFDFB" />
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="800" height="720" fill="url(#bgGradient)" />
 
         {/* 미세한 관계 암시 라인 (보이지만 읽히지 않게) */}
         <g opacity="0.15">
@@ -93,6 +100,28 @@ export default function PremiumIntegrityOrbit() {
 function CenterNode() {
   return (
     <g>
+      {/* 외부 글로우 효과 */}
+      <defs>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <filter id="centerShadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+          <feOffset dx="0" dy="4" result="offsetblur"/>
+          <feComponentTransfer>
+            <feFuncA type="linear" slope="0.3"/>
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
       {/* 여운 링 1 */}
       <motion.circle
         cx="400"
@@ -106,7 +135,7 @@ function CenterNode() {
         whileInView={{ scale: 1, opacity: 0.35 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2, delay: 0.2 }}
-        style={{ transformOrigin: '50% 50%', transformBox: 'fill-box' }}
+        style={{ transformOrigin: '50% 50%', transformBox: 'fill-box', filter: 'url(#glow)' }}
       />
 
       {/* 여운 링 2 */}
@@ -122,10 +151,10 @@ function CenterNode() {
         whileInView={{ scale: 1, opacity: 0.25 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2, delay: 0.4 }}
-        style={{ transformOrigin: '50% 50%', transformBox: 'fill-box' }}
+        style={{ transformOrigin: '50% 50%', transformBox: 'fill-box', filter: 'url(#glow)' }}
       />
 
-      {/* 중심 원 */}
+      {/* 중심 원 - 그림자 효과 추가 */}
       <motion.circle
         cx="400"
         cy="360"
@@ -134,8 +163,17 @@ function CenterNode() {
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8, type: 'spring', bounce: 0.3 }}
-        style={{ transformOrigin: '50% 50%', transformBox: 'fill-box' }}
+        whileHover={{ scale: 1.02 }}
+        transition={{ 
+          scale: { duration: 0.3, ease: 'easeOut' },
+          default: { duration: 0.8, type: 'spring', bounce: 0.3 }
+        }}
+        style={{ 
+          transformOrigin: '50% 50%', 
+          transformBox: 'fill-box',
+          filter: 'url(#centerShadow)',
+          cursor: 'pointer'
+        }}
       />
 
       {/* 내부 하이라이트 */}
@@ -237,27 +275,56 @@ function PremiumNode({
 
   return (
     <motion.g
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ 
         duration: 0.8, 
-        delay: 1.2 + index * 0.2
+        delay: 1.2 + index * 0.2,
+        type: 'spring',
+        stiffness: 100
+      }}
+      whileHover={{ scale: 1.03, y: -2 }}
+      style={{ 
+        cursor: 'pointer',
+        filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.1))'
       }}
     >
       <g transform={`translate(${left}, ${top})`}>
-      {/* 타이틀 pill 배경 */}
+      {/* 카드 배경 그림자 */}
+      <defs>
+        <filter id={`cardShadow${index}`} x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+          <feOffset dx="0" dy="4" result="offsetblur"/>
+          <feComponentTransfer>
+            <feFuncA type="linear" slope="0.25"/>
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      {/* 타이틀 pill 배경 - 그라데이션 추가 */}
+      <defs>
+        <linearGradient id={`pillGradient${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
+          <stop offset="100%" stopColor="rgba(255,255,255,0.7)" />
+        </linearGradient>
+      </defs>
       <rect
         x="0"
         y="0"
         width={W}
         height={pillH}
         rx={rPill}
-        fill="white"
-        opacity="0.7"
+        fill={`url(#pillGradient${index})`}
+        opacity="1"
+        style={{ filter: `url(#cardShadow${index})` }}
       />
       
-      {/* 타이틀 pill 테두리 */}
+      {/* 타이틀 pill 테두리 - 더 부드러운 선 */}
       <rect
         x="0"
         y="0"
@@ -267,6 +334,7 @@ function PremiumNode({
         fill="none"
         stroke="#E38B63"
         strokeWidth="2"
+        opacity="0.8"
       />
 
       {/* 타이틀 (한글) */}
@@ -302,18 +370,24 @@ function PremiumNode({
         {titleEn}
       </text>
 
-      {/* 바디 박스 */}
+      {/* 바디 박스 - 그라데이션 배경 */}
+      <defs>
+        <linearGradient id={`boxGradient${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FBE6DD" stopOpacity="0.98" />
+          <stop offset="100%" stopColor="#F9DDD3" stopOpacity="0.92" />
+        </linearGradient>
+      </defs>
       <rect
         x="12"
         y={pillH + 8}
         width={W - 24}
         height={boxH}
         rx={rBox}
-        fill="#FBE6DD"
-        opacity="0.95"
+        fill={`url(#boxGradient${index})`}
+        opacity="1"
       />
 
-      {/* 바디 박스 미세한 테두리 */}
+      {/* 바디 박스 미세한 테두리 - 더 정교하게 */}
       <rect
         x="12"
         y={pillH + 8}
@@ -323,7 +397,7 @@ function PremiumNode({
         fill="none"
         stroke="#E38B63"
         strokeWidth="0.5"
-        opacity="0.3"
+        opacity="0.4"
       />
 
       {/* 바디 텍스트 */}

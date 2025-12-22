@@ -195,7 +195,7 @@ export default function EmotionalArtProgram() {
                   <div className="relative">
                     {/* Premium SVG Container */}
                     <svg
-                      viewBox="0 0 400 260"
+                      viewBox="0 0 400 320"
                       className="w-full h-auto"
                       style={{
                         filter: `drop-shadow(0 8px 24px ${stage.color}30)`,
@@ -206,7 +206,7 @@ export default function EmotionalArtProgram() {
                         x="3"
                         y="3"
                         width="394"
-                        height="254"
+                        height="314"
                         rx="24"
                         fill="#FFFCF9"
                         opacity="0.95"
@@ -217,10 +217,10 @@ export default function EmotionalArtProgram() {
                         d="M 24 3 
                            L 376 5 
                            Q 392 6, 394 22
-                           L 396 234
-                           Q 395 250, 379 252
-                           L 24 257
-                           Q 8 256, 6 240
+                           L 396 294
+                           Q 395 310, 379 312
+                           L 24 317
+                           Q 8 316, 6 300
                            L 4 22
                            Q 5 6, 21 4
                            Z"
@@ -245,10 +245,10 @@ export default function EmotionalArtProgram() {
                         d="M 30 14
                            L 370 16
                            Q 380 17, 382 27
-                           L 384 233
-                           Q 383 243, 373 244
-                           L 30 247
-                           Q 20 246, 18 236
+                           L 384 293
+                           Q 383 303, 373 304
+                           L 30 307
+                           Q 20 306, 18 296
                            L 16 27
                            Q 17 17, 27 16
                            Z"
@@ -271,7 +271,7 @@ export default function EmotionalArtProgram() {
                     {/* Text Content (positioned over SVG) */}
                     <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-7 lg:p-8">
                       {/* Top */}
-                      <div className="space-y-3">
+                      <div className="space-y-3 flex-shrink-0">
                         <div className="flex items-center gap-4">
                           <span 
                             className="text-5xl font-light"
@@ -297,16 +297,18 @@ export default function EmotionalArtProgram() {
                       </div>
 
                       {/* Bottom */}
-                      <p 
-                        className="text-sm md:text-base leading-relaxed"
-                        style={{ 
-                          color: '#555',
-                          lineHeight: '1.65',
-                          whiteSpace: 'pre-line',
-                        }}
-                      >
-                        {stage.description}
-                      </p>
+                      <div className="flex-1 flex items-end">
+                        <p 
+                          className="text-sm md:text-base leading-relaxed w-full"
+                          style={{ 
+                            color: '#555',
+                            lineHeight: '1.65',
+                            whiteSpace: 'pre-line',
+                          }}
+                        >
+                          {stage.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </motion.div>

@@ -211,12 +211,12 @@ export default function SelfTexture() {
             }}
             className="relative flex items-center justify-center lg:justify-end"
           >
-            <div className="relative w-full max-w-md aspect-[3/4]">
+            <div className="relative w-full max-w-md aspect-[3/4] rounded-3xl overflow-hidden">
               
               {/* Layer 1: Canvas depth/noise (프리미엄 효과) */}
               <canvas
                 ref={canvasRef}
-                className="absolute inset-0 w-full h-full pointer-events-none z-10"
+                className="absolute inset-0 w-full h-full pointer-events-none z-10 rounded-3xl"
                 style={{ mixBlendMode: 'multiply' }}
               />
               
@@ -225,13 +225,14 @@ export default function SelfTexture() {
                 className="absolute inset-0 w-full h-full"
                 style={{ x, y }}
               >
-                <img
-                  src="/assets/about/selftexture/selftexture.png"
-                  alt="자기결"
-                  className="w-full h-full object-contain"
-                  style={{
-                    filter: 'contrast(0.98) saturate(1.05)',
-                  }}
+                <div className="w-full h-full rounded-3xl overflow-hidden bg-[#FAF7F3]">
+                  <img
+                    src="/assets/about/selftexture/selftexture.png"
+                    alt="자기결"
+                    className="w-full h-full object-cover rounded-3xl"
+                    style={{
+                      filter: 'contrast(0.98) saturate(1.05)',
+                    }}
                   onError={(e) => {
                     console.error('Image load error:', e.currentTarget.src);
                     const src = e.currentTarget.src;
@@ -245,7 +246,8 @@ export default function SelfTexture() {
                       e.currentTarget.src = '/assets/about/selftexture/selftexture.png';
                     }
                   }}
-                />
+                  />
+                </div>
                 
                 {/* Placeholder: Watercolor-style background until image is provided */}
                 <div 

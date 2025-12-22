@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 
-export default function InstitutionCollaboration() {
+interface InstitutionCollaborationProps {
+  onShowPartners?: () => void;
+}
+
+export default function InstitutionCollaboration({ onShowPartners }: InstitutionCollaborationProps) {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -9,6 +13,19 @@ export default function InstitutionCollaboration() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleShowPartners = () => {
+    if (onShowPartners) {
+      onShowPartners();
+      // 스크롤 to section
+      setTimeout(() => {
+        const element = document.getElementById('section-education-partners');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  };
 
   const images = [
     'https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=800&q=80',
@@ -88,6 +105,7 @@ export default function InstitutionCollaboration() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              onClick={handleShowPartners}
               className="group relative px-8 py-3.5 rounded-full overflow-hidden transition-all duration-600 self-start"
               style={{
                 backgroundColor: 'transparent',

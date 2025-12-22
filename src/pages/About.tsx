@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AboutHero from '../components/about/AboutHero';
 import HorizontalChapterScroll from '../components/about/HorizontalChapterScroll';
 import ChapterSection from '../components/about/ChapterSection';
@@ -23,6 +23,7 @@ import { SectionNav } from '../components/ScrollProgress';
 import { useSectionKeyboardNav } from '../hooks/useKeyboardNav';
 
 export default function About() {
+  const [showEducationPartners, setShowEducationPartners] = useState(false);
   const sections = [
     { id: 'about-hero', label: 'Intro' },
     { id: 'chapter-cards', label: 'Chapters' },
@@ -36,6 +37,9 @@ export default function About() {
   
   return (
     <div className="bg-white">
+      {/* Floating Navigation */}
+      <FloatingNav />
+      
       {/* Section navigation dots */}
       <SectionNav sections={sections} />
       
@@ -79,11 +83,11 @@ export default function About() {
         <EmotionalArtProgram />
         <Karte />
         <PartnerInstitutions />
-        <InstitutionCollaboration />
+        <InstitutionCollaboration onShowPartners={() => setShowEducationPartners(true)} />
       </ChapterSection>
       
       {/* Education Partners Section */}
-      <EducationPartners />
+      {showEducationPartners && <EducationPartners />}
       
       {/* Interview Section - Independent */}
       <Interview />

@@ -506,9 +506,16 @@ export default function Founder() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-row gap-2 md:gap-3 mx-auto"
-              style={{ width: '1500px', maxWidth: '100%' }}
+              className="mx-auto"
+              style={{ 
+                width: '1500px', 
+                maxWidth: '100%',
+                paddingLeft: 'clamp(40px, 6vw, 64px)',
+                paddingRight: 'clamp(40px, 6vw, 64px)',
+                boxSizing: 'border-box',
+              }}
             >
+              <div className="flex flex-row gap-2 md:gap-3" style={{ width: '100%' }}>
               {[1, 2, 3, 4, 5, 6].map((item, index) => (
                 <motion.div
                   key={item}
@@ -516,8 +523,12 @@ export default function Founder() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                  className="relative group overflow-hidden rounded-lg shadow-md flex-shrink-0"
-                  style={{ width: '240px', height: '240px' }}
+                  className="relative group overflow-hidden rounded-lg shadow-md"
+                  style={{ 
+                    flex: '1 1 0',
+                    height: '240px',
+                    minWidth: 0,
+                  }}
                   whileHover={{ scale: 1.05 }}
                 >
                   <ImageWithFallback
@@ -530,6 +541,7 @@ export default function Founder() {
                   <div className="absolute inset-0 bg-gradient-to-t from-brown-900/60 via-brown-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </motion.div>
               ))}
+              </div>
             </motion.div>
 
             {/* Credentials Text */}
@@ -547,6 +559,7 @@ export default function Founder() {
                 padding: 'clamp(40px, 6vw, 64px)',
                 border: '1px solid rgba(166, 124, 82, 0.12)',
                 boxShadow: '0 2px 20px rgba(0, 0, 0, 0.04)',
+                boxSizing: 'border-box',
               }}
             >
               {/* Name & Main Title */}
@@ -582,37 +595,26 @@ export default function Founder() {
                 </p>
               </motion.div>
 
-              {/* Credentials List */}
+              {/* Career Items - Horizontal Text Layout */}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="mb-8 space-y-2"
+                transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="mb-8"
+                style={{ width: '100%' }}
               >
-                {[
-                  '색채심리 기반 자기이해 콘텐츠 기획자',
-                  '20년 경력 패션 소재 디자이너 & 컬러리스트',
-                  '국제색채심리협회 전문색채심리사',
-                  '스에나가 메소드 색채심리연구소 선임연구원',
-                  '아트앤포레스트 · 크레용숲 대표',
-                ].map((credential, index) => (
-                  <motion.p
-                    key={index}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.7 + index * 0.05 }}
-                    style={{
-                      fontFamily: "'Noto Sans KR', sans-serif",
-                      fontSize: 'clamp(13px, 1.4vw, 15px)',
-                      color: '#6B5C4F',
-                      lineHeight: '1.6',
-                    }}
-                  >
-                    • {credential}
-                  </motion.p>
-                ))}
+                <div className="flex gap-2 md:gap-3 lg:gap-4 items-center flex-wrap md:flex-nowrap justify-start md:justify-between">
+                  {[
+                    '색채심리 기반 자기이해 콘텐츠 기획자',
+                    '20년 경력 패션 소재 디자이너 & 컬러리스트',
+                    '국제색채심리협회 전문색채심리사',
+                    '스에나가 메소드 색채심리연구소 선임연구원',
+                    '아트앤포레스트 · 크레용숲 대표',
+                  ].map((credential, index) => (
+                    <CareerTextItem key={index} credential={credential} index={index} />
+                  ))}
+                </div>
               </motion.div>
 
               {/* Books and Awards Section - Horizontal Layout */}
@@ -702,103 +704,95 @@ export default function Founder() {
                 </div>
               </motion.div>
 
-              {/* Social Links Section */}
+              {/* Social Links Section - Premium Minimal Style */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-12 pt-8 border-t border-brown-200/30"
+                className="mt-12 pt-8"
+                style={{
+                  borderTop: '1px solid rgba(166, 124, 82, 0.08)',
+                }}
               >
-                {/* Social Buttons */}
-                <div className="flex flex-wrap gap-3 justify-center mb-8">
+                {/* Divider - Gradient */}
+                <div 
+                  className="mb-8"
+                  style={{
+                    height: '1px',
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(166, 124, 82, 0.08) 30%, rgba(166, 124, 82, 0.12) 50%, rgba(166, 124, 82, 0.08) 70%, transparent 100%)',
+                  }}
+                />
+
+                {/* Social Links - Quiet text links */}
+                <div className="flex flex-wrap gap-6 md:gap-8 lg:gap-10 justify-center md:justify-start">
                   <a
                     href="https://www.instagram.com/art_and_for.rest"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative px-6 py-3 rounded-full border-2 transition-all duration-600 hover:scale-[1.02]"
+                    className="hover:text-[#4A4A4A] transition-colors duration-300"
                     style={{
-                      borderColor: 'rgba(255, 182, 193, 0.6)',
-                      color: 'rgba(255, 182, 193, 1)',
+                      fontFamily: "'Noto Sans KR', sans-serif",
+                      fontSize: 'clamp(13px, 1.2vw, 14px)',
+                      fontWeight: 300,
+                      letterSpacing: '-0.01em',
+                      color: '#8B8B8B',
+                      textDecoration: 'none',
                     }}
                   >
-                    <span style={{ fontSize: 'clamp(13px, 1.2vw, 15px)', letterSpacing: '0.03em', fontWeight: 500 }}>
-                      INSTAGRAM
-                    </span>
-                    <div 
-                      className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-600"
-                      style={{ backgroundColor: 'rgba(255, 182, 193, 1)' }}
-                    />
+                    Instagram
                   </a>
                   
                   <a
                     href="https://brunch.co.kr/@jsm925"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative px-6 py-3 rounded-full border-2 transition-all duration-600 hover:scale-[1.02]"
+                    className="hover:text-[#4A4A4A] transition-colors duration-300"
                     style={{
-                      borderColor: 'rgba(143, 188, 136, 0.6)',
-                      color: 'rgba(143, 188, 136, 1)',
+                      fontFamily: "'Noto Sans KR', sans-serif",
+                      fontSize: 'clamp(13px, 1.2vw, 14px)',
+                      fontWeight: 300,
+                      letterSpacing: '-0.01em',
+                      color: '#8B8B8B',
+                      textDecoration: 'none',
                     }}
                   >
-                    <span style={{ fontSize: 'clamp(13px, 1.2vw, 15px)', letterSpacing: '0.03em', fontWeight: 500 }}>
-                      BRUNCH
-                    </span>
-                    <div 
-                      className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-600"
-                      style={{ backgroundColor: 'rgba(143, 188, 136, 1)' }}
-                    />
+                    Brunch
                   </a>
                   
                   <a
                     href="https://www.ibabynews.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative px-6 py-3 rounded-full border-2 transition-all duration-600 hover:scale-[1.02]"
+                    className="hover:text-[#4A4A4A] transition-colors duration-300"
                     style={{
-                      borderColor: 'rgba(217, 119, 87, 0.6)',
-                      color: 'rgba(217, 119, 87, 1)',
+                      fontFamily: "'Noto Sans KR', sans-serif",
+                      fontSize: 'clamp(13px, 1.2vw, 14px)',
+                      fontWeight: 300,
+                      letterSpacing: '-0.01em',
+                      color: '#8B8B8B',
+                      textDecoration: 'none',
                     }}
                   >
-                    <span style={{ fontSize: 'clamp(13px, 1.2vw, 15px)', letterSpacing: '0.03em', fontWeight: 500 }}>
-                      베이비뉴스
-                    </span>
-                    <div 
-                      className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-600"
-                      style={{ backgroundColor: 'rgba(217, 119, 87, 1)' }}
-                    />
+                    베이비뉴스
                   </a>
 
                   <a
                     href="https://blog.naver.com/art_and_forrest"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative px-6 py-3 rounded-full border-2 transition-all duration-600 hover:scale-[1.02]"
+                    className="hover:text-[#4A4A4A] transition-colors duration-300"
                     style={{
-                      borderColor: 'rgba(166, 124, 82, 0.6)',
-                      color: 'rgba(166, 124, 82, 1)',
+                      fontFamily: "'Noto Sans KR', sans-serif",
+                      fontSize: 'clamp(13px, 1.2vw, 14px)',
+                      fontWeight: 300,
+                      letterSpacing: '-0.01em',
+                      color: '#8B8B8B',
+                      textDecoration: 'none',
                     }}
                   >
-                    <span style={{ fontSize: 'clamp(13px, 1.2vw, 15px)', letterSpacing: '0.03em', fontWeight: 500 }}>
-                      BLOG
-                    </span>
-                    <div 
-                      className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-600"
-                      style={{ backgroundColor: 'rgba(166, 124, 82, 1)' }}
-                    />
+                    Blog
                   </a>
-                </div>
-
-                {/* Text Links - 버튼 바로 아래에 배치 */}
-                <div className="mt-6 space-y-1.5 text-center">
-                  <p style={{
-                    fontFamily: "'Noto Sans KR', sans-serif",
-                    fontSize: 'clamp(12px, 1.1vw, 13px)',
-                    color: '#999',
-                    lineHeight: '1.6',
-                  }}>
-                    인스타그램 art_and_for.rest · 브런치 brunch.co.kr/@jsm925 · 베이비뉴스 ibabynews.com
-                  </p>
                 </div>
               </motion.div>
             </motion.div>
@@ -806,6 +800,87 @@ export default function Founder() {
 
         </div>
       </section>
+
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </>
+  );
+}
+
+// Premium Career Text Item Component
+function CareerTextItem({ credential, index }: { credential: string; index: number }) {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ 
+        duration: 0.7, 
+        delay: 0.7 + index * 0.08,
+        ease: [0.16, 1, 0.3, 1]
+      }}
+      className="group relative flex items-center"
+      style={{ flexShrink: 1, minWidth: 0 }}
+    >
+      {/* Number - 숨김 (공간 절약) */}
+      <motion.span
+        className="hidden md:inline-block"
+        style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: '9px',
+          fontWeight: 500,
+          color: 'rgba(166, 124, 82, 0.35)',
+          letterSpacing: '0.12em',
+          marginRight: '12px',
+          flexShrink: 0,
+          transition: 'all 0.6s cubic-bezier(.16, 1, .3, 1)',
+        }}
+        whileHover={!isMobile ? { 
+          color: 'rgba(166, 124, 82, 0.5)',
+        } : {}}
+      >
+        {String(index + 1).padStart(2, '0')}
+      </motion.span>
+
+      {/* Divider - 작은 화면에서만 숨김 */}
+      <motion.div
+        className="hidden md:block w-px h-6 mr-3 flex-shrink-0"
+        style={{
+          background: 'linear-gradient(180deg, transparent 0%, rgba(166, 124, 82, 0.12) 50%, transparent 100%)',
+          transition: 'all 0.6s cubic-bezier(.16, 1, .3, 1)',
+        }}
+        whileHover={!isMobile ? {
+          background: 'linear-gradient(180deg, transparent 0%, rgba(166, 124, 82, 0.25) 50%, transparent 100%)',
+        } : {}}
+      />
+
+      {/* Text - 더 작고 간결하게 */}
+      <motion.p
+        style={{
+          fontFamily: "'Noto Sans KR', sans-serif",
+          fontSize: 'clamp(11px, 1.1vw, 13px)',
+          color: '#6B5C4F',
+          fontWeight: 400,
+          lineHeight: '1.5',
+          letterSpacing: '-0.015em',
+          whiteSpace: 'nowrap',
+          transition: 'all 0.6s cubic-bezier(.16, 1, .3, 1)',
+        }}
+        whileHover={!isMobile ? { 
+          color: '#4A4A4A',
+        } : {}}
+      >
+        {credential}
+      </motion.p>
+    </motion.div>
   );
 }
