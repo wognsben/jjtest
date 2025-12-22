@@ -82,7 +82,7 @@ export default function EmotionalFoundation() {
                     <h2 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)',
+                        fontSize: '2rem',
                         lineHeight: 1.3,
                         fontWeight: 600,
                         color: '#8fbc88',

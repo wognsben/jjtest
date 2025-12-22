@@ -9,7 +9,11 @@ export default function Philosophy() {
   return (
     <section 
       id="chapter-philosophy"
-      className="relative py-40 md:py-56 lg:py-72 overflow-hidden"
+      className="relative overflow-hidden"
+      style={{
+        paddingTop: 'clamp(6rem, 15vw, 18rem)',
+        paddingBottom: 'clamp(6rem, 15vw, 18rem)',
+      }}
     >
       {/* WebGL Fluid Background */}
       <div className="absolute inset-0">
@@ -59,14 +63,29 @@ export default function Philosophy() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-16 md:top-20 right-8 md:right-16 lg:right-24 z-30"
+        className="absolute z-30"
+        style={{
+          top: 'clamp(4rem, 10vw, 5rem)',
+          right: 'clamp(2rem, 6vw, 6rem)',
+        }}
       >
         <div className="relative group">
           <div className="absolute inset-0 bg-pink-100/40 rounded-full blur-sm" />
-          <div className="relative px-8 py-3 rounded-full border border-pink-300/50 bg-gradient-to-r from-pink-50 to-pink-100/80 backdrop-blur-sm">
+          <div 
+            className="relative rounded-full border border-pink-300/50 bg-gradient-to-r from-pink-50 to-pink-100/80 backdrop-blur-sm"
+            style={{
+              paddingLeft: 'clamp(1.5rem, 4vw, 2rem)',
+              paddingRight: 'clamp(1.5rem, 4vw, 2rem)',
+              paddingTop: 'clamp(0.625rem, 1.5vw, 0.75rem)',
+              paddingBottom: 'clamp(0.625rem, 1.5vw, 0.75rem)',
+            }}
+          >
             <span 
-              className="text-xs tracking-[0.2em] text-brown-700 italic"
-              style={{ fontFamily: "'Noto Serif KR', 'Noto Serif', serif" }}
+              className="tracking-[0.2em] text-brown-700 italic"
+              style={{ 
+                fontFamily: "'Noto Serif KR', 'Noto Serif', serif",
+                fontSize: 'clamp(0.625rem, 1.2vw, 0.75rem)',
+              }}
             >
               PHILOSOPHY
             </span>
@@ -74,8 +93,19 @@ export default function Philosophy() {
         </div>
       </motion.div>
       
-      <div className="relative max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 h-full">
-        <div className="relative min-h-[80vh] flex items-center">
+      <div 
+        className="relative max-w-[1920px] mx-auto h-full"
+        style={{
+          paddingLeft: 'clamp(1.5rem, 4vw, 4rem)',
+          paddingRight: 'clamp(1.5rem, 4vw, 4rem)',
+        }}
+      >
+        <div 
+          className="relative flex items-center"
+          style={{
+            minHeight: 'clamp(60vh, 80vw, 80vh)',
+          }}
+        >
           
           {/* Left - Floating Glass Card with Text */}
             <motion.div
@@ -83,19 +113,30 @@ export default function Philosophy() {
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-20 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[50%] xl:w-[45%] lg:h-[750px]"
+              className="relative z-20 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[50%] xl:w-[45%]"
+              style={{
+                minHeight: 'clamp(500px, 75vw, 750px)',
+                maxHeight: 'clamp(600px, 90vw, 900px)',
+              }}
             >
             {/* Glass card background */}
-            <div className="relative h-full flex flex-col">
+            <div className="relative flex flex-col" style={{ minHeight: '100%' }}>
               <div 
-                className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-[32px] border border-white/60"
+                className="absolute inset-0 bg-white/80 backdrop-blur-xl border border-white/60"
                 style={{
+                  borderRadius: 'clamp(1.5rem, 3vw, 2rem)',
                   boxShadow: '0 20px 60px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.8)'
                 }}
               />
               
               {/* Content */}
-              <div className="relative p-10 md:p-12 lg:p-14 xl:p-16 space-y-8 md:space-y-10 flex-1 overflow-y-auto overflow-x-hidden">
+              <div 
+                className="relative flex-1 overflow-x-hidden"
+                style={{
+                  padding: 'clamp(2.5rem, 6vw, 4rem)',
+                }}
+              >
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(2rem, 5vw, 2.5rem)' }}>
                 
                 {/* Title with Divider */}
                 <motion.div
@@ -130,7 +171,7 @@ export default function Philosophy() {
                       transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                       style={{
                         display: 'inline-block',
-                        width: '6rem',
+                        width: 'clamp(4rem, 10vw, 6rem)',
                         height: '1px',
                         background: 'linear-gradient(to right, #8fbc88, transparent)',
                         transformOrigin: 'left',
@@ -152,7 +193,7 @@ export default function Philosophy() {
                       lineHeight: 1.85,
                       color: '#666666',
                       fontWeight: 300,
-                      marginBottom: '20px',
+                      marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
                     }}
                   >
                     크레용(Crayon)이라는 단어는 프랑스어 'craie(분필)'와 라틴어 'creta(흙)'에서 유래되었습니다.
@@ -169,7 +210,7 @@ export default function Philosophy() {
                       lineHeight: 1.85,
                       color: '#666666',
                       fontWeight: 300,
-                      marginBottom: '20px',
+                      marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
                     }}
                   >
                     고대의 화가들은 <span style={{ color: '#666666', fontWeight: 700 }}>벌꿀 왁스</span>에 안료를 섞어 빛을 기록했고, 르네상스 화가들은 부서지는 <span style={{ color: '#666666', fontWeight: 700 }}>파스텔</span>을 길들였습니다.
@@ -200,7 +241,7 @@ export default function Philosophy() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
                   className="border-t border-accent-green/20"
-                  style={{ paddingTop: '30px' }}
+                  style={{ paddingTop: 'clamp(1.5rem, 4vw, 1.875rem)' }}
                 >
                   <blockquote
                     style={{ 
@@ -212,16 +253,16 @@ export default function Philosophy() {
                       letterSpacing: '-0.01em',
                     }}
                   >
-                    <div style={{ marginBottom: '20px' }}>
+                    <div style={{ marginBottom: 'clamp(1rem, 2vw, 1.25rem)' }}>
                       그리고 지금, 그 오래된 이야기는 크레용숲에서 다시 피어납니다.
                     </div>
-                    <div style={{ marginBottom: '20px' }}>
+                    <div style={{ marginBottom: 'clamp(1rem, 2vw, 1.25rem)' }}>
                       여기서는 <span style={{ backgroundColor: 'rgba(255, 182, 193, 0.3)', padding: '2px 6px', borderRadius: '4px' }}>아이뿐 아니라 <span style={{ color: '#8fbc88', fontWeight: 700 }}>우리 모두가</span> 잃어버린 <span style={{ color: '#8fbc88', fontWeight: 700 }}>순수한 감각을</span> 되찾습니다.</span>
                     </div>
-                    <div style={{ marginBottom: '20px' }}>
+                    <div style={{ marginBottom: 'clamp(1rem, 2vw, 1.25rem)' }}>
                       낙서 한 줄에도 세상이 열리던 그 마음을 다시 만나는 장소이기도 합니다.
                     </div>
-                    <div style={{ marginBottom: '20px' }}>
+                    <div style={{ marginBottom: 'clamp(1rem, 2vw, 1.25rem)' }}>
                       색은 감정을 깨우고, 선은 마음의 결을 드러내며, 다시 우리 안의 '숲'을 자라게 합니다.
                     </div>
                     <div>
@@ -229,6 +270,7 @@ export default function Philosophy() {
                     </div>
                   </blockquote>
                 </motion.div>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -239,12 +281,19 @@ export default function Philosophy() {
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 mt-12 lg:mt-0 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[48%] xl:w-[50%] lg:h-[750px]"
+            className="relative z-10 mt-12 lg:mt-0 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[48%] xl:w-[50%]"
+            style={{
+              height: 'clamp(500px, 75vw, 750px)',
+            }}
           >
             <motion.div 
               whileHover={{ scale: 1.01 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="relative h-full min-h-[600px] rounded-[40px] overflow-hidden group cursor-pointer"
+              className="relative h-full overflow-hidden group cursor-pointer"
+              style={{
+                minHeight: 'clamp(400px, 60vw, 600px)',
+                borderRadius: 'clamp(2rem, 4vw, 2.5rem)',
+              }}
               style={{
                 boxShadow: '0 40px 100px rgba(0, 0, 0, 0.12), 0 20px 50px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04)'
               }}

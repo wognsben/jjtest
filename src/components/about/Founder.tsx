@@ -18,8 +18,10 @@ export default function Founder() {
       <hr className="section-divider" />
       <section 
         ref={sectionRef}
-        className="relative py-32 md:py-48 lg:py-64 overflow-hidden"
+        className="relative overflow-hidden"
         style={{
+          paddingTop: 'clamp(6rem, 15vw, 16rem)',
+          paddingBottom: 'clamp(6rem, 15vw, 16rem)',
           background: 'linear-gradient(180deg, rgba(255, 182, 193, 0.08) 0%, rgba(255, 182, 193, 0.04) 50%, rgba(255, 182, 193, 0.02) 100%)',
         }}
       >
@@ -31,7 +33,13 @@ export default function Founder() {
           }}
         />
 
-        <div className="relative max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20">
+        <div 
+          className="relative max-w-[1600px] mx-auto"
+          style={{
+            paddingLeft: 'clamp(1.5rem, 5vw, 5rem)',
+            paddingRight: 'clamp(1.5rem, 5vw, 5rem)',
+          }}
+        >
           
           {/* Label */}
           <motion.div
@@ -39,19 +47,23 @@ export default function Founder() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-16"
+            style={{ marginBottom: 'clamp(3rem, 8vw, 4rem)' }}
           >
             <div 
-              className="inline-block px-6 py-2 rounded-full border-2"
+              className="inline-block rounded-full border-2"
               style={{
                 backgroundColor: 'rgba(143, 188, 136, 0.1)',
                 borderColor: 'rgba(143, 188, 136, 0.3)',
                 color: '#8FBC88',
                 fontFamily: "'Inter', sans-serif",
-                fontSize: '13px',
+                fontSize: 'clamp(0.625rem, 1.5vw, 0.8125rem)',
                 fontWeight: 500,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
+                paddingLeft: 'clamp(1.25rem, 3vw, 1.5rem)',
+                paddingRight: 'clamp(1.25rem, 3vw, 1.5rem)',
+                paddingTop: 'clamp(0.375rem, 1vw, 0.5rem)',
+                paddingBottom: 'clamp(0.375rem, 1vw, 0.5rem)',
               }}
             >
               Founder's Message
@@ -64,7 +76,10 @@ export default function Founder() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="grid lg:grid-cols-5 gap-12 lg:gap-20 items-start"
+            className="grid lg:grid-cols-5 items-start"
+            style={{
+              gap: 'clamp(2rem, 6vw, 5rem)',
+            }}
           >
             {/* Image - 2 columns */}
             <motion.div
@@ -108,11 +123,12 @@ export default function Founder() {
                     whileInView={{ opacity: 1, scale: 1, rotate: -5 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute z-10 left-[-20px] md:left-[-30px]"
+                    className="absolute z-10"
                     style={{
                       width: '45%',
-                      maxWidth: '280px',
-                      top: '-40px',
+                      maxWidth: 'clamp(200px, 25vw, 280px)',
+                      left: 'clamp(-20px, -2vw, -30px)',
+                      top: 'clamp(-30px, -3vw, -40px)',
                       bottom: 'auto',
                     }}
                   >
@@ -144,7 +160,10 @@ export default function Founder() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative z-0 mt-12 md:mt-16"
+                    className="relative z-0"
+                    style={{
+                      marginTop: 'clamp(2rem, 5vw, 4rem)',
+                    }}
                   >
                     <div 
                       className="relative overflow-hidden rounded-3xl"

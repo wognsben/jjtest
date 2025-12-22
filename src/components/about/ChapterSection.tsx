@@ -14,7 +14,13 @@ export default function ChapterSection({ id, number, title, subtitle, color, chi
   return (
     <div id={id} className="relative">
       {/* Chapter divider with label */}
-      <div className="relative py-24 md:py-32 overflow-hidden">
+      <div 
+        className="relative overflow-hidden"
+        style={{
+          paddingTop: 'clamp(4rem, 12vw, 8rem)',
+          paddingBottom: 'clamp(4rem, 12vw, 8rem)',
+        }}
+      >
         {/* Background gradient */}
         <div 
           className="absolute inset-0"
@@ -31,8 +37,19 @@ export default function ChapterSection({ id, number, title, subtitle, color, chi
           }}
         />
         
-        <div className="relative max-w-7xl mx-auto px-6 md:px-12">
-          <div className="flex items-center gap-8 md:gap-12">
+        <div 
+          className="relative max-w-7xl mx-auto"
+          style={{
+            paddingLeft: 'clamp(1.5rem, 4vw, 3rem)',
+            paddingRight: 'clamp(1.5rem, 4vw, 3rem)',
+          }}
+        >
+          <div 
+            className="flex flex-col md:flex-row items-center"
+            style={{
+              gap: 'clamp(2rem, 6vw, 3rem)',
+            }}
+          >
             {/* Left: Chapter number */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -42,9 +59,10 @@ export default function ChapterSection({ id, number, title, subtitle, color, chi
               className="flex-shrink-0"
             >
               <span 
-                className="text-9xl md:text-[12rem] lg:text-[16rem] font-light opacity-[0.08] leading-none block"
+                className="font-light opacity-[0.08] leading-none block"
                 style={{ 
                   fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(6rem, 15vw, 16rem)',
                   color: color.replace(')', '').replace('rgba(', '').split(',').slice(0, 3).join(','),
                 }}
               >
@@ -62,8 +80,11 @@ export default function ChapterSection({ id, number, title, subtitle, color, chi
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               >
                 <h2 
-                  className="text-5xl md:text-7xl lg:text-8xl text-brown-900 leading-tight tracking-tight"
-                  style={{ fontFamily: "'Noto Serif KR', serif" }}
+                  className="text-brown-900 leading-tight tracking-tight"
+                  style={{ 
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(2.5rem, 6vw, 8rem)',
+                  }}
                 >
                   {title}
                 </h2>
@@ -75,12 +96,16 @@ export default function ChapterSection({ id, number, title, subtitle, color, chi
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-auto pt-8"
+                className="mt-auto"
+                style={{
+                  paddingTop: 'clamp(1.5rem, 4vw, 2rem)',
+                }}
               >
                 <p 
-                  className="text-2xl md:text-3xl tracking-wide"
+                  className="tracking-wide"
                   style={{ 
                     fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(1.25rem, 3vw, 1.875rem)',
                     color: color.replace(')', '').replace('rgba(', '').split(',').slice(0, 3).join(','),
                   }}
                 >
@@ -96,8 +121,11 @@ export default function ChapterSection({ id, number, title, subtitle, color, chi
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-12 w-32 h-px origin-left"
+            className="origin-left"
             style={{
+              marginTop: 'clamp(2rem, 5vw, 3rem)',
+              width: 'clamp(6rem, 15vw, 8rem)',
+              height: '1px',
               background: `linear-gradient(to right, transparent, ${color}, transparent)`,
             }}
           />

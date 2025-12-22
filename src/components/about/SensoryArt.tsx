@@ -124,7 +124,7 @@ export default function SensoryArt() {
                     <h2 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.5rem, 3vw, 2.1rem)',
+                        fontSize: 'clamp(1.5rem, 3vw, 1.6rem)',
                         lineHeight: 1.3,
                         fontWeight: 600,
                         color: '#5a8c4a',

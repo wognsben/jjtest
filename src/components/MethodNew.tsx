@@ -207,7 +207,10 @@ export default function MethodNew() {
           >
             <h2 
               className="text-brown-900 mb-4"
-              style={{ fontFamily: "'Noto Serif KR', serif" }}
+              style={{ 
+                fontFamily: "'Noto Serif KR', serif",
+                fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
+              }}
             >
               <span style={{ color: '#2e7d32' }}>스에나가 하트앤컬러 메소드</span>는 무엇인가요?
             </h2>

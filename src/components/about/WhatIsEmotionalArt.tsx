@@ -132,7 +132,7 @@ export default function WhatIsEmotionalArt() {
                     <h3 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
+                        fontSize: 'clamp(1.25rem, 2vw, 1.2rem)',
                         lineHeight: 1.4,
                         fontWeight: 500,
                         color: '#4A4A4A',

@@ -5,7 +5,12 @@ import WebGLFluidBackground from './WebGLFluidBackground';
 
 export default function AboutHero() {
   return (
-    <section className="relative min-h-[120vh] flex items-center justify-center overflow-hidden bg-white">
+    <section 
+      className="relative flex items-center justify-center overflow-hidden bg-white"
+      style={{
+        minHeight: 'clamp(100vh, 120vw, 120vh)',
+      }}
+    >
       {/* WebGL Fluid Gradient Background */}
       <WebGLFluidBackground />
       
@@ -79,8 +84,10 @@ export default function AboutHero() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-20 left-[10%] w-64 h-64 rounded-full opacity-20 blur-3xl"
+        className="absolute top-20 left-[10%] rounded-full opacity-20 blur-3xl"
         style={{
+          width: 'clamp(8rem, 20vw, 16rem)',
+          height: 'clamp(8rem, 20vw, 16rem)',
           background: 'radial-gradient(circle, rgba(143,188,136,0.4) 0%, transparent 70%)',
         }}
       />
@@ -96,30 +103,48 @@ export default function AboutHero() {
           ease: "easeInOut",
           delay: 1,
         }}
-        className="absolute bottom-32 right-[15%] w-80 h-80 rounded-full opacity-15 blur-3xl"
+        className="absolute bottom-32 right-[15%] rounded-full opacity-15 blur-3xl"
         style={{
+          width: 'clamp(12rem, 25vw, 20rem)',
+          height: 'clamp(12rem, 25vw, 20rem)',
           background: 'radial-gradient(circle, rgba(255,182,193,0.5) 0%, transparent 70%)',
         }}
       />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-40 md:py-48 text-center">
+      <div 
+        className="relative z-10 max-w-7xl mx-auto text-center"
+        style={{
+          paddingLeft: 'clamp(1.5rem, 4vw, 3rem)',
+          paddingRight: 'clamp(1.5rem, 4vw, 3rem)',
+          paddingTop: 'clamp(6rem, 15vw, 12rem)',
+          paddingBottom: 'clamp(6rem, 15vw, 12rem)',
+        }}
+      >
         
         {/* Small label */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-12"
+          style={{ marginBottom: 'clamp(2rem, 5vw, 3rem)' }}
         >
           <div className="inline-block">
             <div className="relative">
               <div className="absolute inset-0 bg-accent-green/10 rounded-full blur-xl" />
-              <div className="relative px-8 py-3 rounded-full border-2 border-accent-green/30 bg-white/60 backdrop-blur-sm">
+              <div 
+                className="relative rounded-full border-2 border-accent-green/30 bg-white/60 backdrop-blur-sm"
+                style={{
+                  paddingLeft: 'clamp(1.5rem, 4vw, 2rem)',
+                  paddingRight: 'clamp(1.5rem, 4vw, 2rem)',
+                  paddingTop: 'clamp(0.625rem, 1.5vw, 0.75rem)',
+                  paddingBottom: 'clamp(0.625rem, 1.5vw, 0.75rem)',
+                }}
+              >
                 <span 
                   className="tracking-[0.3em] text-accent-green uppercase"
                   style={{ 
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: '13px',
+                    fontSize: 'clamp(0.625rem, 1.5vw, 0.8125rem)',
                     fontWeight: 600,
                   }}
                 >
@@ -138,10 +163,10 @@ export default function AboutHero() {
           className="max-w-6xl mx-auto"
           style={{ 
             fontFamily: "'Noto Serif KR', serif",
-            fontSize: 'clamp(3.5rem, 8vw, 8rem)',
+            fontSize: 'clamp(2.5rem, 8vw, 8rem)',
             fontWeight: 700,
             lineHeight: 1.1,
-            letterSpacing: '-0.04em',
+            letterSpacing: 'clamp(-0.02em, -0.04vw, -0.04em)',
             color: '#1a1a1a',
           }}
         >
