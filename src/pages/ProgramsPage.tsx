@@ -354,34 +354,6 @@ export default function ProgramsPage() {
     setOpenProgram(openProgram === programId ? null : programId);
   };
 
-  // 커스텀 이벤트 리스너: 네비게이션 버튼에서 섹션 열기
-  React.useEffect(() => {
-    const handleOpenProgram = (event: CustomEvent<string>) => {
-      const targetSection = event.detail;
-      
-      // 이미 열려있는 섹션이면 스크롤만 수행 (다시 열지 않음)
-      if (openProgram === targetSection) {
-        // 이미 열려있으므로 스크롤만 (섹션 상단으로)
-        const element = document.querySelector(`[data-section="${targetSection}"]`);
-        element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return;
-      }
-      
-      // 열려있지 않으면 열기 + 스크롤 (애니메이션 후 스크롤)
-      setOpenProgram(targetSection);
-      // 아코디언 애니메이션(0.6s) 후 스크롤
-      setTimeout(() => {
-        const element = document.querySelector(`[data-section="${targetSection}"]`);
-        element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 150);
-    };
-
-    window.addEventListener('openProgram', handleOpenProgram as EventListener);
-
-    return () => {
-      window.removeEventListener('openProgram', handleOpenProgram as EventListener);
-    };
-  }, [openProgram]);
 
   return (
     <div className="min-h-screen bg-white">

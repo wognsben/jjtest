@@ -168,8 +168,9 @@ export default function ProgramMethodSection() {
                 <div className="flex flex-wrap gap-3">
                   <button
                     onClick={() => {
-                      // 커스텀 이벤트로 아코디언 열기 + 스크롤 (ProgramsPage에서 처리)
-                      window.dispatchEvent(new CustomEvent('openProgram', { detail: 'childart' }));
+                      // 스크롤만 수행 (섹션 열기는 사용자가 "자세히 보기" 클릭)
+                      const element = document.querySelector('[data-section="childart"]');
+                      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }}
                     className="program-pill"
                   >
@@ -177,7 +178,8 @@ export default function ProgramMethodSection() {
                   </button>
                   <button
                     onClick={() => {
-                      window.dispatchEvent(new CustomEvent('openProgram', { detail: 'youthart' }));
+                      const element = document.querySelector('[data-section="youthart"]');
+                      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }}
                     className="program-pill"
                   >
@@ -185,7 +187,8 @@ export default function ProgramMethodSection() {
                   </button>
                   <button
                     onClick={() => {
-                      window.dispatchEvent(new CustomEvent('openProgram', { detail: 'adultart' }));
+                      const element = document.querySelector('[data-section="adultart"]');
+                      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }}
                     className="program-pill"
                   >
@@ -193,7 +196,8 @@ export default function ProgramMethodSection() {
                   </button>
                   <button
                     onClick={() => {
-                      window.dispatchEvent(new CustomEvent('openProgram', { detail: 'moments' }));
+                      const element = document.querySelector('[data-section="moments"]');
+                      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }}
                     className="program-pill"
                   >
