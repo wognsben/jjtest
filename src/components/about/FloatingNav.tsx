@@ -1,9 +1,11 @@
-import { useEffect, useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
 
 interface NavItem {
   id: string;
   number: string;
+  title: string;
+  subtitle: string;
   color: string;
 }
 
@@ -11,45 +13,66 @@ const navItems: NavItem[] = [
   { 
     id: 'about-hero', 
     number: '',
-    color: 'rgba(166, 124, 82, 1)',
+    title: 'Intro',
+    subtitle: '소개',
+    color: 'rgba(166, 124, 82, 1)'
   },
   { 
     id: 'chapter-cards', 
     number: '',
-    color: 'rgba(166, 124, 82, 1)',
+    title: 'Chapters',
+    subtitle: '목차',
+    color: 'rgba(166, 124, 82, 1)'
   },
   { 
     id: 'chapter-philosophy', 
     number: '01',
-    color: 'rgba(255, 182, 193, 1)',
+    title: 'Philosophy',
+    subtitle: '우리의 철학',
+    color: 'rgba(255, 182, 193, 1)'
   },
   { 
     id: 'chapter-aboutus', 
     number: '02',
-    color: 'rgba(143, 188, 136, 1)',
+    title: 'About Us',
+    subtitle: '우리의 이야기',
+    color: 'rgba(143, 188, 136, 1)'
   },
   { 
     id: 'chapter-founder', 
     number: '03',
-    color: 'rgba(217, 119, 87, 1)',
+    title: 'Founder',
+    subtitle: '설립자',
+    color: 'rgba(217, 119, 87, 1)'
   },
 ];
 
 export default function FloatingNav() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
   
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       
+      // Show nav after scrolling a bit (or always show on desktop)
       setIsVisible(scrollY > 100);
       
+      // Detect active section with improved logic
       let currentActive: string | null = null;
-      const scrollPosition = scrollY + windowHeight * 0.4;
+      const scrollPosition = scrollY + windowHeight * 0.4; // Trigger point at 40% of viewport
       
+      // Check sections in reverse order to get the topmost visible one
       for (let i = navItems.length - 1; i >= 0; i--) {
         const section = document.getElementById(navItems[i].id);
         if (section) {
@@ -57,11 +80,13 @@ export default function FloatingNav() {
           const sectionHeight = section.offsetHeight;
           const sectionBottom = sectionTop + sectionHeight;
           
+          // Section is active if scroll position is within its bounds
           if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
             currentActive = navItems[i].id;
             break;
           }
           
+          // If we're past the last section, it's active
           if (i === navItems.length - 1 && scrollPosition >= sectionTop) {
             currentActive = navItems[i].id;
             break;
@@ -69,11 +94,13 @@ export default function FloatingNav() {
         }
       }
       
+      // Fallback: if no section found, check if we're before first section
       if (!currentActive) {
         const firstSection = document.getElementById(navItems[0].id);
         if (firstSection && scrollPosition < firstSection.offsetTop) {
           currentActive = navItems[0].id;
         } else if (firstSection && scrollPosition >= firstSection.offsetTop) {
+          // Default to first section if we're past it but haven't found another
           currentActive = navItems[0].id;
         }
       }
@@ -81,6 +108,7 @@ export default function FloatingNav() {
       setActiveSection(currentActive);
     };
     
+    // Throttle scroll events for better performance
     let ticking = false;
     const throttledScroll = () => {
       if (!ticking) {
@@ -93,7 +121,7 @@ export default function FloatingNav() {
     };
     
     window.addEventListener('scroll', throttledScroll, { passive: true });
-    handleScroll();
+    handleScroll(); // Initial check
     
     return () => window.removeEventListener('scroll', throttledScroll);
   }, []);
@@ -101,7 +129,7 @@ export default function FloatingNav() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80;
+      const offset = 80; // Account for any fixed headers
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
       
@@ -112,6 +140,7 @@ export default function FloatingNav() {
     }
   };
   
+  // Calculate progress for each section
   const getSectionProgress = (index: number): number => {
     if (!activeSection) return 0;
     const activeIndex = navItems.findIndex(item => item.id === activeSection);
@@ -119,6 +148,7 @@ export default function FloatingNav() {
     
     if (index < activeIndex) return 1;
     if (index === activeIndex) {
+      // Calculate progress within current section
       const section = document.getElementById(navItems[activeIndex].id);
       if (!section) return 0;
       
@@ -140,137 +170,226 @@ export default function FloatingNav() {
       {isVisible && (
         <motion.div
           ref={containerRef}
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 30 }}
+          exit={{ opacity: 0, x: 40 }}
           transition={{ 
-            duration: 0.6, 
+            duration: 0.8, 
             ease: [0.16, 1, 0.3, 1] 
           }}
-          className="fixed right-4 md:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-[100] hidden md:block"
-          style={{ pointerEvents: 'auto' }}
+          className="fixed right-6 md:right-8 top-1/2 -translate-y-1/2 z-[100] hidden md:block"
+          style={{ pointerEvents: 'auto', overflow: 'visible' }}
         >
           {/* Container */}
-          <div className="relative">
-            {/* Premium glassmorphism background */}
+          <div className="relative" style={{ overflow: 'visible' }}>
+            {/* Subtle background blur */}
             <div 
-              className="absolute -inset-1 rounded-[28px]"
+              className="absolute inset-0 rounded-full"
               style={{
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.5) 100%)',
-                backdropFilter: 'blur(24px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-                boxShadow: '0 4px 24px rgba(166, 124, 82, 0.08), 0 1px 2px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.6)',
-                border: '1px solid rgba(255,255,255,0.5)',
+                background: 'rgba(255, 255, 255, 0.4)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.06)',
               }}
             />
             
             {/* Main container */}
-            <div className="relative px-3 py-5 rounded-[24px]">
-              <div className="flex flex-col gap-5 items-center">
+            <div 
+              className="relative px-4 py-6 rounded-full"
+              style={{
+                background: 'rgba(255, 255, 255, 0.5)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                border: '1px solid rgba(166, 124, 82, 0.08)',
+                overflow: 'visible',
+              }}
+            >
+              <div className="flex flex-col gap-6 items-center" style={{ overflow: 'visible' }}>
                 {navItems.map((item, index) => {
                   const isActive = activeSection === item.id;
                   const progress = getSectionProgress(index);
+                  const isHovered = hoveredIndex === index;
                   
                   return (
                     <motion.button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
+                      onMouseEnter={() => setHoveredIndex(index)}
+                      onMouseLeave={() => setHoveredIndex(null)}
                       className="relative group flex flex-col items-center"
-                      whileHover={{ scale: 1.08 }}
-                      whileTap={{ scale: 0.96 }}
-                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      {/* Chapter number indicator */}
+                      {/* Label tooltip - appears on hover */}
+                      <AnimatePresence>
+                        {isHovered && (
+                          <motion.div
+                            initial={{ opacity: 0, x: 15, scale: 0.85 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            exit={{ opacity: 0, x: 12, scale: 0.9 }}
+                            transition={{ 
+                              duration: 0.4, 
+                              ease: [0.16, 1, 0.3, 1],
+                              opacity: { duration: 0.25 }
+                            }}
+                            className="absolute right-full mr-4 whitespace-nowrap pointer-events-none"
+                            style={{ 
+                              zIndex: 1000,
+                              top: '50%',
+                              transform: 'translateY(-50%)',
+                              maxWidth: 'min(280px, calc(100vw - 200px))', // 화면 왼쪽 여백 확보
+                            }}
+                          >
+                            <div 
+                              className="relative px-5 py-3 rounded-xl overflow-visible"
+                              style={{
+                                background: 'linear-gradient(135deg, rgba(45, 45, 45, 0.95) 0%, rgba(30, 30, 30, 0.98) 100%)',
+                                backdropFilter: 'blur(16px)',
+                                WebkitBackdropFilter: 'blur(16px)',
+                                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+                                border: '1px solid rgba(255, 255, 255, 0.08)',
+                              }}
+                            >
+                              {/* Subtle glow effect */}
+                              <div 
+                                className="absolute inset-0 rounded-xl opacity-30 pointer-events-none"
+                                style={{
+                                  background: `radial-gradient(ellipse at center, ${item.color.replace('1)', '0.15)')}, transparent 70%)`,
+                                }}
+                              />
+                              
+                              {/* Number badge */}
+                              {item.number && (
+                                <div 
+                                  className="absolute -top-2 -left-2 w-6 h-6 rounded-full flex items-center justify-center"
+                                  style={{
+                                    background: item.color,
+                                    boxShadow: `0 2px 8px ${item.color.replace('1)', '0.4)')}`,
+                                  }}
+                                >
+                                  <span 
+                                    className="text-[9px] font-semibold text-white"
+                                    style={{ fontFamily: "'Inter', sans-serif" }}
+                                  >
+                                    {item.number}
+                                  </span>
+                                </div>
+                              )}
+                              
+                              {/* Content */}
+                              <div className="relative">
+                                <div 
+                                  className="text-sm tracking-[0.05em] text-white font-medium"
+                                  style={{ fontFamily: "'Noto Serif KR', serif" }}
+                                >
+                                  {item.title}
+                                </div>
+                                <div 
+                                  className="text-[11px] tracking-[0.03em] mt-1"
+                                  style={{ 
+                                    fontFamily: "'Noto Sans KR', sans-serif",
+                                    color: item.color,
+                                  }}
+                                >
+                                  {item.subtitle}
+                                </div>
+                              </div>
+                              
+                              {/* Arrow */}
+                              <div 
+                                className="absolute top-1/2 -translate-y-1/2"
+                                style={{
+                                  right: '-8px',
+                                  width: 0,
+                                  height: 0,
+                                  borderTop: '6px solid transparent',
+                                  borderBottom: '6px solid transparent',
+                                  borderLeft: '8px solid rgba(35, 35, 35, 0.95)',
+                                  filter: 'drop-shadow(2px 0 4px rgba(0, 0, 0, 0.2))',
+                                }}
+                              />
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                      
+                      {/* Chapter number - subtle (only show if number exists) */}
                       {item.number && (
                         <motion.div
                           animate={{
-                            opacity: isActive ? 0.6 : 0.2,
+                            opacity: isActive ? 0.4 : 0.15,
+                            scale: isActive ? 1 : 0.8,
                           }}
-                          transition={{ duration: 0.3 }}
-                          className="mb-1.5"
+                          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                          className="mb-2"
                           style={{
                             fontFamily: "'Noto Serif KR', serif",
-                            fontSize: '9px',
-                            fontWeight: 400,
-                            letterSpacing: '0.1em',
-                            color: isActive ? item.color.replace('1)', '0.9)') : '#A69780',
+                            fontSize: '10px',
+                            fontWeight: 300,
+                            letterSpacing: '0.15em',
+                            color: '#6B5C4F',
                           }}
                         >
                           {item.number}
                         </motion.div>
                       )}
                       
-                      {/* Dot container */}
-                      <div className="relative flex items-center justify-center w-6 h-6">
-                        {/* Active outer ring */}
-                        <motion.div
-                          animate={{
-                            scale: isActive ? 1 : 0,
-                            opacity: isActive ? 1 : 0,
-                          }}
-                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                          className="absolute inset-0 rounded-full"
-                          style={{
-                            border: `1.5px solid ${item.color.replace('1)', '0.4)')}`,
-                          }}
-                        />
-                        
-                        {/* Progress arc */}
-                        {isActive && progress > 0 && (
-                          <svg 
-                            className="absolute inset-0 w-full h-full -rotate-90"
-                            viewBox="0 0 24 24"
-                          >
-                            <motion.circle
-                              cx="12"
-                              cy="12"
-                              r="10"
-                              fill="none"
-                              stroke={item.color}
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                              initial={{ pathLength: 0 }}
-                              animate={{ pathLength: progress }}
-                              transition={{ duration: 0.3 }}
-                              style={{
-                                strokeDasharray: '63',
-                                strokeDashoffset: 0,
-                              }}
-                            />
-                          </svg>
+                      {/* Dot indicator */}
+                      <div className="relative flex items-center justify-center">
+                        {/* Progress ring - only for active section */}
+                        {isActive && (
+                          <motion.div
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            className="absolute w-8 h-8 rounded-full"
+                            style={{
+                              border: `1.5px solid ${item.color}`,
+                              opacity: 0.3,
+                            }}
+                          />
                         )}
                         
-                        {/* Main dot */}
+                        {/* Active indicator line */}
+                        {isActive && (
+                          <motion.div
+                            initial={{ scaleY: 0 }}
+                            animate={{ scaleY: progress }}
+                            className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 origin-top"
+                            style={{
+                              height: '24px',
+                              background: `linear-gradient(to bottom, ${item.color}, transparent)`,
+                            }}
+                          />
+                        )}
+                        
+                        {/* Dot */}
                         <motion.div
                           animate={{
-                            scale: isActive ? 1 : 0.65,
-                            backgroundColor: isActive ? item.color : 'rgba(166, 124, 82, 0.3)',
+                            scale: isActive ? 1.2 : isHovered ? 1.1 : 0.8,
+                            backgroundColor: isActive ? item.color : 'rgba(166, 124, 82, 0.4)',
                           }}
-                          whileHover={{
-                            scale: 0.9,
-                            backgroundColor: item.color.replace('1)', '0.5)'),
-                          }}
-                          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                          className="w-2.5 h-2.5 rounded-full relative z-10"
+                          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                          className="w-2 h-2 rounded-full relative z-10"
                           style={{
                             boxShadow: isActive 
-                              ? `0 0 10px ${item.color.replace('1)', '0.3)')}, 0 2px 4px rgba(0,0,0,0.08)`
-                              : '0 1px 3px rgba(0,0,0,0.06)',
+                              ? `0 0 12px ${item.color}40, 0 2px 8px rgba(0,0,0,0.1)`
+                              : '0 1px 4px rgba(0,0,0,0.08)',
                           }}
                         />
                       </div>
                       
-                      {/* Connecting line */}
+                      {/* Connecting line to next item */}
                       {index < navItems.length - 1 && (
                         <motion.div
                           animate={{
-                            opacity: isActive ? 0.25 : 0.1,
-                            background: isActive 
-                              ? `linear-gradient(to bottom, ${item.color.replace('1)', '0.4)')}, transparent)`
-                              : 'linear-gradient(to bottom, rgba(166, 124, 82, 0.2), transparent)',
+                            opacity: isActive ? 0.2 : 0.08,
                           }}
-                          className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-px h-4"
-                          transition={{ duration: 0.3 }}
+                          className="absolute top-8 left-1/2 -translate-x-1/2 w-px"
+                          style={{
+                            height: '20px',
+                            background: `linear-gradient(to bottom, ${item.color}, transparent)`,
+                          }}
                         />
                       )}
                     </motion.button>
@@ -278,9 +397,22 @@ export default function FloatingNav() {
                 })}
               </div>
             </div>
+            
+            {/* Vertical progress line - subtle */}
+            <motion.div
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-px origin-top pointer-events-none"
+              style={{
+                height: '100%',
+                background: 'linear-gradient(to bottom, rgba(166, 124, 82, 0.1), transparent)',
+              }}
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: 1 }}
+              transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            />
           </div>
         </motion.div>
       )}
     </AnimatePresence>
   );
 }
+

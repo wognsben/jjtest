@@ -176,7 +176,7 @@ export default function App() {
       menuTimelineRef.current?.kill();
       closeTimelineRef.current?.kill();
     };
-  }, [currentPage]);
+  }, [currentPage, isDesktop]);
 
   // Handle menu toggle with GSAP
   React.useEffect(() => {
@@ -221,17 +221,68 @@ export default function App() {
   // Header scroll state for mobile
   const isScrolled = scrollY > 30;
   
-  // PC Header scroll states (for mobile fallback)
+  // Premium Device Detection (Awwwards-grade)
+  // CSS breakpoint 대신 JS 기반으로 안정적인 디바이스 감지
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   
   useEffect(() => {
-    const checkDesktop = () => {
-      setIsDesktop(window.innerWidth >= 1024);
+    // Touch device 감지 (모바일/태블릿 터치스크린)
+    const checkTouchDevice = () => {
+      return (
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0 ||
+        // @ts-ignore - for older browsers
+        navigator.msMaxTouchPoints > 0
+      );
     };
-    checkDesktop();
-    window.addEventListener('resize', checkDesktop);
-    return () => window.removeEventListener('resize', checkDesktop);
+    
+    // 디바이스 타입 감지 (CSS breakpoint 의존 제거)
+    const checkDeviceType = () => {
+      const width = window.innerWidth;
+      const isTouch = checkTouchDevice();
+      
+      // 1024px 이상이고 터치 디바이스가 아닌 경우에만 데스크톱
+      // 또는 1280px 이상이면 터치 여부 관계없이 데스크톱 (대형 태블릿 가로모드)
+      const desktop = width >= 1280 || (width >= 1024 && !isTouch);
+      
+      setIsDesktop(desktop);
+      setIsTouchDevice(isTouch);
+    };
+    
+    // 초기 체크
+    checkDeviceType();
+    
+    // Debounced resize handler (성능 최적화)
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(checkDeviceType, 100);
+    };
+    
+    // Orientation change handler (모바일 회전 대응)
+    const handleOrientationChange = () => {
+      // orientation 변경 후 약간의 딜레이 후 체크 (안정성)
+      setTimeout(checkDeviceType, 150);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleOrientationChange);
+    
+    return () => {
+      clearTimeout(resizeTimer);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleOrientationChange);
+    };
   }, []);
+  
+  // 디바이스 타입 변경 시 모바일 메뉴 자동 닫기 (Premium UX)
+  useEffect(() => {
+    if (isDesktop && isMenuOpen) {
+      setIsMenuOpen(false);
+      document.body.classList.remove('menu-open');
+    }
+  }, [isDesktop, isMenuOpen]);
   
   // GSAP ScrollTrigger for PC Header (Hero 섹션과 연동)
   useEffect(() => {
@@ -450,106 +501,113 @@ export default function App() {
               Forêt des Crayons
             </button>
             
-            {/* Desktop Navigation - lg 이상에서만 표시 */}
-            <div className="hidden lg:flex gap-4 md:gap-6">
-              <BlobNavItem
-                isActive={currentPage === 'home'}
-                onClick={() => setCurrentPage('home')}
-                data-cursor-hover
-                data-cursor-text="View"
-              >
-                HOME
-              </BlobNavItem>
-              <BlobNavItem
-                isActive={currentPage === 'about'}
-                onClick={() => setCurrentPage('about')}
-                data-cursor-hover
-                data-cursor-text="Explore"
-              >
-                ABOUT
-              </BlobNavItem>
-              <BlobNavItem
-                isActive={currentPage === 'program'}
-                onClick={() => setCurrentPage('program')}
-                data-cursor-hover
-                data-cursor-text="Discover"
-              >
-                PROGRAM
-              </BlobNavItem>
-              <BlobNavItem
-                isActive={currentPage === 'contact'}
-                onClick={() => setCurrentPage('contact')}
-                data-cursor-hover
-                data-cursor-text="Connect"
-              >
-                CONTACT
-              </BlobNavItem>
-            </div>
+            {/* Desktop Navigation - JS 기반 디바이스 감지 (CSS breakpoint 의존 제거) */}
+            {isDesktop && (
+              <div className="flex gap-4 md:gap-6">
+                <BlobNavItem
+                  isActive={currentPage === 'home'}
+                  onClick={() => setCurrentPage('home')}
+                  data-cursor-hover
+                  data-cursor-text="View"
+                >
+                  HOME
+                </BlobNavItem>
+                <BlobNavItem
+                  isActive={currentPage === 'about'}
+                  onClick={() => setCurrentPage('about')}
+                  data-cursor-hover
+                  data-cursor-text="Explore"
+                >
+                  ABOUT
+                </BlobNavItem>
+                <BlobNavItem
+                  isActive={currentPage === 'program'}
+                  onClick={() => setCurrentPage('program')}
+                  data-cursor-hover
+                  data-cursor-text="Discover"
+                >
+                  PROGRAM
+                </BlobNavItem>
+                <BlobNavItem
+                  isActive={currentPage === 'contact'}
+                  onClick={() => setCurrentPage('contact')}
+                  data-cursor-hover
+                  data-cursor-text="Connect"
+                >
+                  CONTACT
+                </BlobNavItem>
+              </div>
+            )}
 
-            {/* Mobile Menu Button - lg 미만에서만 표시 */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden relative z-[100] flex flex-col items-center justify-center gap-1.5 p-2"
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isMenuOpen}
-              aria-controls="mobile-menu"
-              style={{ 
-                width: '40px',
-                height: '40px',
-                minWidth: '40px',
-                minHeight: '40px',
-                zIndex: 10000
-              }}
-            >
-              <motion.span
-                className="w-6 h-0.5 origin-center"
-                style={{ backgroundColor: isMenuOpen ? '#2d5016' : '#2d5016' }}
-                animate={{
-                  rotate: isMenuOpen ? 45 : 0,
-                  y: isMenuOpen ? 6 : 0,
+            {/* Mobile Menu Button - JS 기반 디바이스 감지 (줌 시에도 안정적) */}
+            {!isDesktop && (
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="relative z-[100] flex flex-col items-center justify-center gap-1.5 p-2"
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-menu"
+                style={{ 
+                  width: '44px',
+                  height: '44px',
+                  minWidth: '44px',
+                  minHeight: '44px',
+                  zIndex: 10000,
+                  // 터치 타겟 최소 44px (접근성 기준)
+                  touchAction: 'manipulation'
                 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              />
-              <motion.span
-                className="w-6 h-0.5"
-                style={{ backgroundColor: '#2d5016' }}
-                animate={{
-                  opacity: isMenuOpen ? 0 : 1,
-                  scaleX: isMenuOpen ? 0 : 1,
-                }}
-                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              />
-              <motion.span
-                className="w-6 h-0.5 origin-center"
-                style={{ backgroundColor: isMenuOpen ? '#2d5016' : '#2d5016' }}
-                animate={{
-                  rotate: isMenuOpen ? -45 : 0,
-                  y: isMenuOpen ? -6 : 0,
-                }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              />
-            </button>
+              >
+                <motion.span
+                  className="w-6 h-0.5 origin-center"
+                  style={{ backgroundColor: '#2d5016' }}
+                  animate={{
+                    rotate: isMenuOpen ? 45 : 0,
+                    y: isMenuOpen ? 6 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                />
+                <motion.span
+                  className="w-6 h-0.5"
+                  style={{ backgroundColor: '#2d5016' }}
+                  animate={{
+                    opacity: isMenuOpen ? 0 : 1,
+                    scaleX: isMenuOpen ? 0 : 1,
+                  }}
+                  transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                />
+                <motion.span
+                  className="w-6 h-0.5 origin-center"
+                  style={{ backgroundColor: '#2d5016' }}
+                  animate={{
+                    rotate: isMenuOpen ? -45 : 0,
+                    y: isMenuOpen ? -6 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                />
+              </button>
+            )}
           </div>
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay - lg 미만에서만 표시 */}
-      <div
-        ref={mobileMenuRef}
-        id="mobile-menu"
-        className="lg:hidden fixed inset-0 pointer-events-none"
-        onClick={() => setIsMenuOpen(false)}
-        style={{
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: 9999,
-          opacity: 0
-        }}
-      >
+      {/* Mobile Menu Overlay - JS 기반 디바이스 감지 (줌/회전 시에도 안정적) */}
+      {!isDesktop && (
+        <div
+          ref={mobileMenuRef}
+          id="mobile-menu"
+          className="fixed inset-0 pointer-events-none"
+          onClick={() => setIsMenuOpen(false)}
+          style={{
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 9999,
+            opacity: 0
+          }}
+        >
         {/* Background with blur */}
         <div 
           ref={backgroundLayerRef}
@@ -768,7 +826,8 @@ export default function App() {
             </button>
           </nav>
         </div>
-      </div>
+        </div>
+      )}
 
       {/* Mobile Menu Styles */}
       <style>{`
