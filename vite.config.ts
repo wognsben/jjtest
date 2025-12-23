@@ -6,6 +6,22 @@
   export default defineConfig({
     plugins: [react()],
     publicDir: 'assets',
+    // Edge/Safari 호환성을 위한 사전 번들링 설정
+    optimizeDeps: {
+      include: [
+        'motion/react',
+        'motion',
+        '@react-three/fiber',
+        '@react-three/drei',
+        'three',
+        'gsap',
+        'gsap/ScrollTrigger',
+      ],
+      // ESM 모듈 로딩 순서 문제 해결
+      esbuildOptions: {
+        target: 'es2020',
+      },
+    },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
@@ -51,7 +67,8 @@
       },
     },
     build: {
-      target: 'esnext',
+      // Edge/Safari 호환성을 위해 es2020으로 변경 (esnext → es2020)
+      target: ['es2020', 'edge88', 'chrome87', 'firefox78', 'safari14'],
       outDir: 'build',
       emptyOutDir: true, // 빌드 전에 이전 파일 삭제
       rollupOptions: {
@@ -60,6 +77,15 @@
           entryFileNames: 'assets/[name].[hash].js',
           chunkFileNames: 'assets/[name].[hash].js',
           assetFileNames: 'assets/[name].[hash].[ext]',
+          // Edge 호환성을 위한 모듈 포맷
+          format: 'es',
+          // 더 안전한 청크 분리
+          manualChunks: {
+            'vendor-react': ['react', 'react-dom'],
+            'vendor-three': ['three', '@react-three/fiber', '@react-three/drei'],
+            'vendor-motion': ['motion'],
+            'vendor-gsap': ['gsap'],
+          },
         },
       },
       // 소스맵 생성 (디버깅용, 필요시 false로 변경)
