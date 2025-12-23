@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface NavItem {
   id: string;
@@ -50,15 +50,7 @@ const navItems: NavItem[] = [
 export default function FloatingNav() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll();
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
   
   useEffect(() => {
     const handleScroll = () => {
@@ -208,112 +200,16 @@ export default function FloatingNav() {
                 {navItems.map((item, index) => {
                   const isActive = activeSection === item.id;
                   const progress = getSectionProgress(index);
-                  const isHovered = hoveredIndex === index;
                   
                   return (
                     <motion.button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      onMouseEnter={() => setHoveredIndex(index)}
-                      onMouseLeave={() => setHoveredIndex(null)}
                       className="relative group flex flex-col items-center"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      {/* Label tooltip - appears on hover */}
-                      <AnimatePresence>
-                        {isHovered && (
-                          <motion.div
-                            initial={{ opacity: 0, x: 15, scale: 0.85 }}
-                            animate={{ opacity: 1, x: 0, scale: 1 }}
-                            exit={{ opacity: 0, x: 12, scale: 0.9 }}
-                            transition={{ 
-                              duration: 0.4, 
-                              ease: [0.16, 1, 0.3, 1],
-                              opacity: { duration: 0.25 }
-                            }}
-                            className="absolute right-full mr-4 whitespace-nowrap pointer-events-none"
-                            style={{ 
-                              zIndex: 1000,
-                              top: '50%',
-                              transform: 'translateY(-50%)',
-                              maxWidth: 'min(280px, calc(100vw - 200px))', // 화면 왼쪽 여백 확보
-                            }}
-                          >
-                            <div 
-                              className="relative px-5 py-3 rounded-xl overflow-visible"
-                              style={{
-                                background: 'linear-gradient(135deg, rgba(45, 45, 45, 0.95) 0%, rgba(30, 30, 30, 0.98) 100%)',
-                                backdropFilter: 'blur(16px)',
-                                WebkitBackdropFilter: 'blur(16px)',
-                                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-                                border: '1px solid rgba(255, 255, 255, 0.08)',
-                              }}
-                            >
-                              {/* Subtle glow effect */}
-                              <div 
-                                className="absolute inset-0 rounded-xl opacity-30 pointer-events-none"
-                                style={{
-                                  background: `radial-gradient(ellipse at center, ${item.color.replace('1)', '0.15)')}, transparent 70%)`,
-                                }}
-                              />
-                              
-                              {/* Number badge */}
-                              {item.number && (
-                                <div 
-                                  className="absolute -top-2 -left-2 w-6 h-6 rounded-full flex items-center justify-center"
-                                  style={{
-                                    background: item.color,
-                                    boxShadow: `0 2px 8px ${item.color.replace('1)', '0.4)')}`,
-                                  }}
-                                >
-                                  <span 
-                                    className="text-[9px] font-semibold text-white"
-                                    style={{ fontFamily: "'Inter', sans-serif" }}
-                                  >
-                                    {item.number}
-                                  </span>
-                                </div>
-                              )}
-                              
-                              {/* Content */}
-                              <div className="relative">
-                                <div 
-                                  className="text-sm tracking-[0.05em] text-white font-medium"
-                                  style={{ fontFamily: "'Noto Serif KR', serif" }}
-                                >
-                                  {item.title}
-                                </div>
-                                <div 
-                                  className="text-[11px] tracking-[0.03em] mt-1"
-                                  style={{ 
-                                    fontFamily: "'Noto Sans KR', sans-serif",
-                                    color: item.color,
-                                  }}
-                                >
-                                  {item.subtitle}
-                                </div>
-                              </div>
-                              
-                              {/* Arrow */}
-                              <div 
-                                className="absolute top-1/2 -translate-y-1/2"
-                                style={{
-                                  right: '-8px',
-                                  width: 0,
-                                  height: 0,
-                                  borderTop: '6px solid transparent',
-                                  borderBottom: '6px solid transparent',
-                                  borderLeft: '8px solid rgba(35, 35, 35, 0.95)',
-                                  filter: 'drop-shadow(2px 0 4px rgba(0, 0, 0, 0.2))',
-                                }}
-                              />
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                      
                       {/* Chapter number - subtle (only show if number exists) */}
                       {item.number && (
                         <motion.div
@@ -366,9 +262,10 @@ export default function FloatingNav() {
                         {/* Dot */}
                         <motion.div
                           animate={{
-                            scale: isActive ? 1.2 : isHovered ? 1.1 : 0.8,
+                            scale: isActive ? 1.2 : 0.8,
                             backgroundColor: isActive ? item.color : 'rgba(166, 124, 82, 0.4)',
                           }}
+                          whileHover={{ scale: 1.1 }}
                           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                           className="w-2 h-2 rounded-full relative z-10"
                           style={{
