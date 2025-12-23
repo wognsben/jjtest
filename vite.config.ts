@@ -80,8 +80,10 @@
           assetFileNames: 'assets/[name].[hash].[ext]',
         },
       },
-      // 소스맵 생성 (디버깅용, 필요시 false로 변경)
-      sourcemap: false,
+      // 소스맵 생성 (디버깅용)
+      sourcemap: true,
+      // minify 끄기 (에러 디버깅용)
+      minify: false,
       // 청크 크기 경고 임계값 증가
       chunkSizeWarningLimit: 1000,
     },
