@@ -116,23 +116,21 @@ export default function PartnerInstitutions() {
             >
               {/* Background Image */}
               <motion.img
-                src={getImagePath("/assets/about/emotion and touch/emotion and touch.png")}
+                src={getImagePath("/assets/about/emotion and touch/emotion and touch.jpg")}
                 alt="크레용숲 철학 - 자연 속에서 자라는 아이들"
                 className="w-full h-full object-cover"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.6 }}
                 onError={(e) => {
                   console.error('Image load error:', e.currentTarget.src);
-                  // 확장자 시도 (.jpg, .PNG 등)
+                  // 확장자 시도 (.PNG, .png 등)
                   const src = e.currentTarget.src;
-                  if (src.endsWith('.png')) {
-                    e.currentTarget.src = getImagePath('/assets/about/emotion and touch/emotion and touch.jpg');
-                  } else if (src.endsWith('.jpg')) {
+                  if (src.endsWith('.jpg')) {
                     e.currentTarget.src = getImagePath('/assets/about/emotion and touch/emotion and touch.PNG');
                   } else if (src.endsWith('.PNG')) {
-                    e.currentTarget.src = getImagePath('/assets/about/emotion and touch/emotion and touch.JPG');
-                  } else {
                     e.currentTarget.src = getImagePath('/assets/about/emotion and touch/emotion and touch.png');
+                  } else {
+                    e.currentTarget.src = getImagePath('/assets/about/emotion and touch/emotion and touch.jpg');
                   }
                 }}
               />

@@ -156,14 +156,12 @@ function ChildArtSection() {
 
 // Program Card Component
 function ProgramCard({ 
-  number,
   title, 
   subtitle, 
   index,
   isOpen,
   onClick
 }: { 
-  number: string;
   title: string; 
   subtitle: string; 
   index: number;
@@ -178,13 +176,6 @@ function ProgramCard({
       transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
       className="relative group mb-16 md:mb-24"
     >
-      {/* Section number */}
-      <div className="absolute -top-12 md:-top-14 left-0">
-        <p className="text-xs md:text-sm tracking-[0.12em] text-tertiary/60 uppercase font-light">
-          {number}
-        </p>
-      </div>
-
       <div className="border-t border-gray-200 pt-12 md:pt-16 pb-20 md:pb-24 hover:border-[#8fbc88] transition-all duration-600 group-hover:shadow-[0_8px_30px_rgb(143,188,136,0.08)]">
         <div className="max-w-4xl">
           <h2 
@@ -251,14 +242,15 @@ export default function ProgramsPage() {
       {/* Programs List */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-24 md:py-32">
         {/* CHILD ART Card */}
-        <ProgramCard
-          number="01. CHILD ART )"
-          title="CHILD ART"
-          subtitle="감정, 감각, 표현이 처음 만나는 어린이 예술숲"
-          index={0}
-          isOpen={openProgram === 'childart'}
-          onClick={() => toggleProgram('childart')}
-        />
+        <div data-section="childart">
+          <ProgramCard
+            title="CHILD ART"
+            subtitle="감정, 감각, 표현이 처음 만나는 어린이 예술숲"
+            index={0}
+            isOpen={openProgram === 'childart'}
+            onClick={() => toggleProgram('childart')}
+          />
+        </div>
 
         {/* CHILD ART Sections (Accordion) */}
         <AnimatePresence>
@@ -281,14 +273,15 @@ export default function ProgramsPage() {
         </AnimatePresence>
 
         {/* YOUTH ART Card */}
-        <ProgramCard
-          number="02. YOUTH ART )"
-          title="YOUTH ART"
-          subtitle="나만의 철학 미술관을 완성하는 청소년 사유의 숲"
-          index={1}
-          isOpen={openProgram === 'youthart'}
-          onClick={() => toggleProgram('youthart')}
-        />
+        <div data-section="youthart">
+          <ProgramCard
+            title="YOUTH ART"
+            subtitle="나만의 철학 미술관을 완성하는 청소년 사유의 숲"
+            index={1}
+            isOpen={openProgram === 'youthart'}
+            onClick={() => toggleProgram('youthart')}
+          />
+        </div>
 
         {/* YOUTH ART Sections (Accordion) */}
         <AnimatePresence>
@@ -307,14 +300,15 @@ export default function ProgramsPage() {
         </AnimatePresence>
 
         {/* ADULT ART Card */}
-        <ProgramCard
-          number="03. ADULT ART )"
-          title="ADULT ART"
-          subtitle="감각을 회복하고, 삶의 결을 다시 짓는 어른의 감정의 숲"
-          index={2}
-          isOpen={openProgram === 'adultart'}
-          onClick={() => toggleProgram('adultart')}
-        />
+        <div data-section="adultart">
+          <ProgramCard
+            title="ADULT ART"
+            subtitle="감각을 회복하고, 삶의 결을 다시 짓는 어른의 감정의 숲"
+            index={2}
+            isOpen={openProgram === 'adultart'}
+            onClick={() => toggleProgram('adultart')}
+          />
+        </div>
 
         {/* ADULT ART Sections (Accordion) */}
         <AnimatePresence>
@@ -335,14 +329,16 @@ export default function ProgramsPage() {
         </AnimatePresence>
 
         {/* MOMENTS Card */}
-        <ProgramCard
-          number="04. MOMENTS )"
-          title="MOMENTS"
-          subtitle="엄마의 마음까지 함께 살피는 창조의 숲"
-          index={3}
-          isOpen={openProgram === 'moments'}
-          onClick={() => toggleProgram('moments')}
-        />
+        <div data-section="moments">
+          <ProgramCard
+            number="04. MOMENTS )"
+            title="MOMENTS"
+            subtitle="엄마의 마음까지 함께 살피는 창조의 숲"
+            index={3}
+            isOpen={openProgram === 'moments'}
+            onClick={() => toggleProgram('moments')}
+          />
+        </div>
 
         {/* MOMENTS Sections (Placeholder) */}
         <AnimatePresence>

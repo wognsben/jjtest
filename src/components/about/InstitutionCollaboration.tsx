@@ -138,19 +138,17 @@ export default function InstitutionCollaboration({ onShowPartners }: Institution
               className="mb-6"
             >
               <img 
-                src={getImagePath("/assets/about/cooperation/cooperation-1.png")}
+                src={getImagePath("/assets/about/cooperation/cooperation-1.PNG")}
                 alt="기관 협업 프로그램"
                 onError={(e) => {
                   console.error('Image load error:', e.currentTarget.src);
                   const src = e.currentTarget.src;
-                  if (src.endsWith('.png')) {
+                  if (src.endsWith('.PNG')) {
                     e.currentTarget.src = getImagePath('/assets/about/cooperation/cooperation-1.jpg');
                   } else if (src.endsWith('.jpg')) {
-                    e.currentTarget.src = getImagePath('/assets/about/cooperation/cooperation-1.PNG');
-                  } else if (src.endsWith('.PNG')) {
-                    e.currentTarget.src = getImagePath('/assets/about/cooperation/cooperation-1.JPG');
-                  } else {
                     e.currentTarget.src = getImagePath('/assets/about/cooperation/cooperation-1.png');
+                  } else {
+                    e.currentTarget.src = getImagePath('/assets/about/cooperation/cooperation-1.PNG');
                   }
                 }}
                 className="w-full rounded-lg"

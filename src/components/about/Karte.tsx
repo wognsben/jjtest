@@ -175,22 +175,19 @@ export default function Karte() {
               className="relative space-y-6"
             >
               <img 
-                src={getImagePath("/assets/about/6months carte/6months carte.png")}
+                src={getImagePath("/assets/about/6months carte/6months carte.PNG")}
                 alt="6개월 성장카르테"
                 onError={(e) => {
                   const target = e.currentTarget;
                   const src = target.src;
                   console.error('Image load error:', src);
                   // 확장자 자동 처리
-                  if (src.endsWith('.png')) {
+                  if (src.endsWith('.PNG')) {
                     target.src = getImagePath('/assets/about/6months carte/6months carte.jpg');
                   } else if (src.endsWith('.jpg')) {
-                    target.src = getImagePath('/assets/about/6months carte/6months carte.PNG');
-                  } else if (src.endsWith('.PNG')) {
-                    target.src = getImagePath('/assets/about/6months carte/6months carte.JPG');
-                  } else {
-                    // 확장자가 없는 경우 .png부터 시도
                     target.src = getImagePath('/assets/about/6months carte/6months carte.png');
+                  } else {
+                    target.src = getImagePath('/assets/about/6months carte/6months carte.PNG');
                   }
                 }}
                 className="w-full h-auto rounded-2xl shadow-2xl"

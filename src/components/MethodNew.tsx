@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'motion/react';
-// TODO: 이미지 파일 추가 후 아래 주석 해제 및 경로 수정
-// import methodImage from '/assets/mainpage/main2sec/method.PNG';
+import { getImagePath } from '../utils/imageUtils';
 
 function RebuildText({ text, delay = 0 }: { text: string; delay?: number }) {
   const words = text.split(' ');
@@ -315,15 +314,13 @@ export default function MethodNew() {
                     `
                   }}
                 >
-                  {/* TODO: 이미지 파일 추가 후 아래 주석 해제하고 placeholder div 제거 */}
-                  {/* <img 
-                    src={methodImage}
-                    alt="Heart & Color Method"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  /> */}
-                  <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-green-200 via-green-100 to-green-50 flex items-center justify-center">
-                    <p className="text-brown-600 text-lg">Heart & Color Method</p>
-                  </div>
+                  {/* Background image */}
+                  <div 
+                    className="absolute inset-0 w-full h-full bg-cover bg-center"
+                    style={{
+                      backgroundImage: `url(${getImagePath('/assets/main/heart and color.jpg')})`
+                    }}
+                  />
                   
                   {/* Overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-brown-900/20 via-transparent to-transparent" />

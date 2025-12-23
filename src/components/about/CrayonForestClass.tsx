@@ -265,20 +265,18 @@ export default function CrayonForestClass() {
               }}
             >
               <img 
-                src={getImagePath("/assets/about/crayon forest/crayon forest.png")}
+                src={getImagePath("/assets/about/crayon forest/crayon forest.PNG")}
                 alt="크레용숲 클래스"
                 className="w-full h-auto"
                 onError={(e) => {
                   console.error('Image load error:', e.currentTarget.src);
                   const src = e.currentTarget.src;
-                  if (src.endsWith('.png')) {
+                  if (src.endsWith('.PNG')) {
                     e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.jpg');
                   } else if (src.endsWith('.jpg')) {
-                    e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.PNG');
-                  } else if (src.endsWith('.PNG')) {
-                    e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.JPG');
-                  } else {
                     e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.png');
+                  } else {
+                    e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.PNG');
                   }
                 }}
               />

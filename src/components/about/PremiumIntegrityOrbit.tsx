@@ -55,15 +55,6 @@ export default function PremiumIntegrityOrbit() {
   return (
     <div className="w-full flex justify-center py-12 md:py-20">
       <svg viewBox="0 0 800 720" className="w-full max-w-5xl" style={{ filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.08))' }}>
-        {/* 배경 - 미세한 그라데이션 추가 */}
-        <defs>
-          <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FEFDFB" />
-            <stop offset="50%" stopColor="#FFFBF8" />
-            <stop offset="100%" stopColor="#FEFDFB" />
-          </linearGradient>
-        </defs>
-        <rect x="0" y="0" width="800" height="720" fill="url(#bgGradient)" />
 
         {/* 미세한 관계 암시 라인 (보이지만 읽히지 않게) */}
         <g opacity="0.15">

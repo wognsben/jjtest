@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { getImagePath } from '../../utils/imageUtils';
 
 export default function FirstRite() {
   // Removed all parallax scroll effects
@@ -365,18 +366,19 @@ export default function FirstRite() {
                   <div 
                     className="relative w-full aspect-[16/9] rounded-lg overflow-hidden"
                     style={{
-                      background: 'linear-gradient(135deg, rgba(250, 223, 222, 0.6) 0%, rgba(245, 230, 220, 0.4) 100%)',
+                      backgroundImage: `url(${getImagePath('/assets/about/wax/wax.jpg')})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
                       border: '2px dashed rgba(199, 106, 58, 0.3)',
                     }}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span 
-                        className="text-sm text-[#C76A3A]/50"
-                        style={{ fontFamily: "'Noto Serif KR', serif" }}
-                      >
-                        이미지 영역
-                      </span>
-                    </div>
+                    {/* Gradient overlay - optional, can be removed if not needed */}
+                    <div 
+                      className="absolute inset-0"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(250, 223, 222, 0.3) 0%, rgba(245, 230, 220, 0.2) 100%)',
+                      }}
+                    />
                   </div>
                 </motion.div>
               </div>

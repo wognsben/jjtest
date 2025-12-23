@@ -161,21 +161,19 @@ export default function Interview() {
                 }}
               >
                 <img
-                  src={getImagePath("/assets/about/interview/interview-1.png")}
+                  src={getImagePath("/assets/about/interview/interview-1.PNG")}
                   alt="꽃밭샘 김결 인터뷰"
                   onError={(e) => {
                     const target = e.currentTarget;
                     const src = target.src;
                     console.error('Image load error:', src);
                     // 확장자 자동 처리
-                    if (src.endsWith('.png')) {
+                    if (src.endsWith('.PNG')) {
                       target.src = getImagePath('/assets/about/interview/interview-1.jpg');
                     } else if (src.endsWith('.jpg')) {
-                      target.src = getImagePath('/assets/about/interview/interview-1.PNG');
-                    } else if (src.endsWith('.PNG')) {
-                      target.src = getImagePath('/assets/about/interview/interview-1.JPG');
-                    } else {
                       target.src = getImagePath('/assets/about/interview/interview-1.png');
+                    } else {
+                      target.src = getImagePath('/assets/about/interview/interview-1.PNG');
                     }
                   }}
                   className="w-full h-full object-contain"
@@ -400,21 +398,19 @@ export default function Interview() {
                 className="relative"
               >
                 <img
-                  src={getImagePath("/assets/about/interview/interview-2.png")}
+                  src={getImagePath("/assets/about/interview/interview-2.PNG")}
                   alt="인터뷰 2"
                   onError={(e) => {
                     const target = e.currentTarget;
                     const src = target.src;
                     console.error('Image load error:', src);
                     // 확장자 자동 처리
-                    if (src.endsWith('.png')) {
+                    if (src.endsWith('.PNG')) {
                       target.src = getImagePath('/assets/about/interview/interview-2.jpg');
                     } else if (src.endsWith('.jpg')) {
-                      target.src = getImagePath('/assets/about/interview/interview-2.PNG');
-                    } else if (src.endsWith('.PNG')) {
-                      target.src = getImagePath('/assets/about/interview/interview-2.JPG');
-                    } else {
                       target.src = getImagePath('/assets/about/interview/interview-2.png');
+                    } else {
+                      target.src = getImagePath('/assets/about/interview/interview-2.PNG');
                     }
                   }}
                   className="w-full h-auto rounded-2xl shadow-2xl"

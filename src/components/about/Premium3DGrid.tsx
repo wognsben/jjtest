@@ -115,13 +115,12 @@ function Card3D({ num, index, imageSrc }: Card3DProps) {
           <div className="absolute inset-0 z-0 flex items-center justify-center">
             <img
               ref={imageRef}
-              src={encodeURI(imageSrc)}
+              src={imageSrc}
               alt={`Chapter ${num}`}
               className="w-full h-full object-contain"
               style={{ display: 'block' }}
               onError={(e) => {
                 console.error('Image load error:', imageSrc);
-                console.error('Encoded path:', encodeURI(imageSrc));
                 (e.target as HTMLImageElement).style.display = 'none';
               }}
               onLoad={handleImageLoad}
