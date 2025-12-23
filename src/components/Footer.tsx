@@ -136,9 +136,9 @@ export default function Footer() {
               Follow
             </div>
             <div className="flex flex-wrap gap-4 md:gap-6">
-              {/* Instagram */}
+              {/* Instagram - 크레용숲 */}
               <a
-                href="https://www.instagram.com/art_and_for.rest"
+                href="https://www.instagram.com/crayonforest.art"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#4A4A4A] transition-colors duration-300"
@@ -151,7 +151,25 @@ export default function Footer() {
                   textDecoration: 'none',
                 }}
               >
-                Instagram
+                Instagram (크레용숲)
+              </a>
+
+              {/* Instagram - 아동미술 */}
+              <a
+                href="https://www.instagram.com/crayonforest_childart"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#4A4A4A] transition-colors duration-300"
+                style={{
+                  fontFamily: "'Noto Sans KR', sans-serif",
+                  fontSize: 'clamp(13px, 1.2vw, 14px)',
+                  fontWeight: 300,
+                  letterSpacing: '-0.01em',
+                  color: '#8B8B8B',
+                  textDecoration: 'none',
+                }}
+              >
+                Instagram (아동미술)
               </a>
 
               {/* Brunch */}

@@ -821,7 +821,7 @@ export default function Founder() {
                 {/* Social Links - Quiet text links */}
                 <div className="flex flex-wrap gap-6 md:gap-8 lg:gap-10 justify-center md:justify-start">
                   <a
-                    href="https://www.instagram.com/art_and_for.rest"
+                    href="https://www.instagram.com/crayonforest.art"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-[#4A4A4A] transition-colors duration-300"

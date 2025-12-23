@@ -161,7 +161,7 @@ function StepCard({ step, index, isLast, isMobile = false }: { step: typeof step
   const baseTransform = getCardTransform();
   
   return (
-    <div className={`flex items-center ${isMobile ? 'gap-6' : 'gap-4 md:gap-6 lg:gap-7'}`}>
+    <div className={`flex items-center ${isMobile ? 'gap-6' : 'gap-6 md:gap-10 lg:gap-14'}`}>
       <motion.div
         ref={cardRef}
         initial={{ opacity: 0, y: 30 }}

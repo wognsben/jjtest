@@ -48,10 +48,17 @@ export default function ContactInfo() {
     },
     {
       icon: Instagram,
-      label: '인스타그램',
-      value: 'crayonforestart',
-      link: 'https://instagram.com/crayonforestart',
+      label: '크레용숲 인스타',
+      value: 'crayonforest.art',
+      link: 'https://instagram.com/crayonforest.art',
       color: '#F48FB1',
+    },
+    {
+      icon: Instagram,
+      label: '아동미술 인스타',
+      value: 'crayonforest_childart',
+      link: 'https://instagram.com/crayonforest_childart',
+      color: '#E91E63',
     },
   ];
 
@@ -70,7 +77,7 @@ export default function ContactInfo() {
       />
 
       <div className="max-w-5xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
           {contactItems.map((item, index) => (
             <motion.div
               key={index}
