@@ -78,15 +78,6 @@
           entryFileNames: 'assets/[name].[hash].js',
           chunkFileNames: 'assets/[name].[hash].js',
           assetFileNames: 'assets/[name].[hash].[ext]',
-          // Edge 호환성을 위한 모듈 포맷
-          format: 'es',
-          // 더 안전한 청크 분리
-          manualChunks: {
-            'vendor-react': ['react', 'react-dom'],
-            'vendor-three': ['three', '@react-three/fiber', '@react-three/drei'],
-            'vendor-motion': ['motion'],
-            'vendor-gsap': ['gsap'],
-          },
         },
       },
       // 소스맵 생성 (디버깅용, 필요시 false로 변경)

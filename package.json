@@ -52,9 +52,13 @@
           "tailwind-merge": "*",
           "tailwindcss": "*",
           "three": "^0.169.0",
+        "three-mesh-bvh": "^0.8.0",
           "vaul": "^1.1.2"
       },
-      "devDependencies": {
+      "overrides": {
+        "three-mesh-bvh": "^0.8.0"
+    },
+    "devDependencies": {
           "@types/node": "^20.10.0",
           "@vitejs/plugin-react-swc": "^3.10.2",
           "vite": "6.3.5"
