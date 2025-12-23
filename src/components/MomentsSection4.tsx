@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { getImagePath } from '../utils/imageUtils';
 
 // MOMENTS Section 4: 크레용숲 선언서
 export function MomentsSection4() {
@@ -13,7 +14,7 @@ export function MomentsSection4() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-8 text-left"
           >
             {/* Header Label - Orange Circle */}
             <motion.div
@@ -23,29 +24,58 @@ export function MomentsSection4() {
               transition={{ duration: 0.6 }}
               className="inline-block mb-6"
             >
-              <svg width="180" height="50" viewBox="0 0 180 50">
-                {/* Imperfect ellipse */}
+              <svg width="280" height="60" viewBox="0 0 280 60">
+                {/* Left star decoration */}
+                <text
+                  x="15"
+                  y="38"
+                  style={{
+                    fontFamily: "sans-serif",
+                    fontSize: '20px',
+                    fill: '#D4A574',
+                  }}
+                >
+                  ✦
+                </text>
+                
+                {/* Ellipse border with gold color */}
                 <ellipse
-                  cx="90"
-                  cy="25"
-                  rx="85"
-                  ry="20"
+                  cx="140"
+                  cy="30"
+                  rx="100"
+                  ry="24"
                   fill="none"
-                  stroke="#FF8C42"
+                  stroke="#D4A574"
                   strokeWidth="2"
                 />
+                
+                {/* Text */}
                 <text
-                  x="90"
-                  y="30"
+                  x="140"
+                  y="36"
                   textAnchor="middle"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: '14px',
-                    fill: '#FF8C42',
+                    fontSize: '16px',
+                    fill: '#A66A5A',
                     fontWeight: 500,
+                    letterSpacing: '0.1em',
                   }}
                 >
                   크레용숲 선언서
+                </text>
+                
+                {/* Right star decoration */}
+                <text
+                  x="255"
+                  y="38"
+                  style={{
+                    fontFamily: "sans-serif",
+                    fontSize: '20px',
+                    fill: '#D4A574',
+                  }}
+                >
+                  ✦
                 </text>
               </svg>
             </motion.div>
@@ -161,7 +191,7 @@ export function MomentsSection4() {
                     lineHeight: 1.8,
                   }}
                 >
-                  우리는 완시 미술을 하지 않습니다.
+                  우리는 입시 미술을 하지 않습니다.
                 </p>
                 <p
                   style={{
@@ -286,7 +316,7 @@ export function MomentsSection4() {
             </div>
           </motion.div>
 
-          {/* Right: Image Placeholder */}
+          {/* Right: Image */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -294,20 +324,25 @@ export function MomentsSection4() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative"
           >
-            {/* Image placeholder - will be replaced with actual image */}
             <div 
-              className="aspect-[3/4] rounded-3xl bg-gradient-to-br from-green-50 via-yellow-50 to-pink-50 shadow-xl"
+              className="aspect-[3/4] rounded-3xl overflow-hidden shadow-xl"
               style={{
                 border: '1px solid rgba(157, 200, 141, 0.2)',
               }}
             >
-              {/* You can add the outdoor painting image here:
               <img 
-                src={outdoorPaintingImage}
-                alt="아이가 야외에서 그림을 그리는 모습"
-                className="w-full h-full object-cover rounded-3xl"
+                src={getImagePath('/assets/program/review/crayon annonce.png')}
+                alt="크레용숲 선언서"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const src = e.currentTarget.src;
+                  if (src.endsWith('.png')) {
+                    e.currentTarget.src = getImagePath('/assets/program/review/crayon annonce.PNG');
+                  } else if (src.endsWith('.PNG')) {
+                    e.currentTarget.src = getImagePath('/assets/program/review/crayon annonce.jpg');
+                  }
+                }}
               />
-              */}
             </div>
           </motion.div>
         </div>

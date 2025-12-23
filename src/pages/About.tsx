@@ -19,7 +19,6 @@ import InstitutionCollaboration from '../components/about/InstitutionCollaborati
 import EducationPartners from '../components/about/EducationPartners';
 import Interview from '../components/about/Interview';
 import Founder from '../components/about/Founder';
-import { SectionNav } from '../components/ScrollProgress';
 import { useSectionKeyboardNav } from '../hooks/useKeyboardNav';
 
 export default function About() {
@@ -39,9 +38,6 @@ export default function About() {
     <div className="bg-white">
       {/* Floating Navigation */}
       <FloatingNav />
-      
-      {/* Section navigation dots */}
-      <SectionNav sections={sections} />
       
       {/* Hero Section */}
       <div id="about-hero">

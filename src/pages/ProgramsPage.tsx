@@ -354,6 +354,19 @@ export default function ProgramsPage() {
     setOpenProgram(openProgram === programId ? null : programId);
   };
 
+  // 커스텀 이벤트 리스너: 네비게이션 버튼에서 섹션 열기
+  React.useEffect(() => {
+    const handleOpenProgram = (event: CustomEvent<string>) => {
+      setOpenProgram(event.detail);
+    };
+
+    window.addEventListener('openProgram', handleOpenProgram as EventListener);
+
+    return () => {
+      window.removeEventListener('openProgram', handleOpenProgram as EventListener);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       {/* 스에나 메소드 섹션 (최상단) */}

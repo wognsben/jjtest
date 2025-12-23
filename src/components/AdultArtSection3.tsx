@@ -1,12 +1,43 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { getImagePath } from '../utils/imageUtils';
 
 // ADULT ART Section 3: 마음을 그리다
 export function AdultArtSection3() {
   return (
-    <section className="relative bg-white py-24 md:py-32">
+    <>
+      <style>{`
+        .emotion-art-card {
+          position: relative;
+        }
+        .emotion-art-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 100px;
+          height: 100px;
+          border-top: 3px solid #d4a574;
+          border-right: 3px solid #d4a574;
+          border-top-right-radius: 24px;
+          pointer-events: none;
+        }
+        .emotion-art-card::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 120px;
+          height: 120px;
+          border-bottom: 3px solid #d4a574;
+          border-left: 3px solid #d4a574;
+          border-bottom-left-radius: 24px;
+          pointer-events: none;
+        }
+      `}</style>
+      <section className="relative bg-white py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        {/* Header: 마음을 그리다 with Pastel Background */}
+        {/* Header: 마음을 그리다 with Background Image */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -14,11 +45,28 @@ export function AdultArtSection3() {
           transition={{ duration: 0.8 }}
           className="relative mb-20 rounded-3xl overflow-hidden"
           style={{
-            background: 'linear-gradient(135deg, rgba(255,182,193,0.3) 0%, rgba(245,245,220,0.3) 33%, rgba(200,230,201,0.3) 66%, rgba(255,228,196,0.3) 100%)',
             padding: '4rem 3rem',
           }}
         >
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          {/* Background Image - Flipped horizontally and vertically */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${getImagePath('/assets/program/child/child sec.jpg')})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              transform: 'scale(-1, -1)',
+              opacity: 0.25,
+            }}
+          />
+          {/* Gradient Overlay */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255,182,193,0.5) 0%, rgba(245,245,220,0.5) 33%, rgba(200,230,201,0.5) 66%, rgba(255,228,196,0.5) 100%)',
+            }}
+          />
+          <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
             {/* Left: Title */}
             <div>
               <h2
@@ -51,7 +99,7 @@ export function AdultArtSection3() {
               <p
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                  fontSize: 'clamp(0.85rem, 1.1vw, 0.85rem)',
                   color: '#333',
                   fontWeight: 400,
                   lineHeight: 1.8,
@@ -59,7 +107,7 @@ export function AdultArtSection3() {
               >
                 일상에서 잃어버린 감각과 감정의 언어를 회복하고,
                 <br />
-                나만의 색·패턴·서사를 발견하는 창의성 회복{' '}
+                나만의 색·
                 <span
                   style={{
                     background: 'linear-gradient(120deg, rgba(180,230,140,0.6) 0%, rgba(144,238,144,0.6) 100%)',
@@ -67,8 +115,9 @@ export function AdultArtSection3() {
                     borderRadius: '4px',
                   }}
                 >
-                  프로그램입니다.
+                  패턴·서사를 발견하는 창의성
                 </span>
+                {' '}회복 프로그램입니다.
               </p>
             </div>
           </div>
@@ -117,16 +166,20 @@ export function AdultArtSection3() {
             className="relative"
           >
             {/* Image Area */}
-            <div className="relative aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden border-2 border-dashed border-gray-300 flex items-center justify-center">
-              <p
-                className="text-center text-gray-400"
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: '0.95rem',
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+              <img
+                src={getImagePath('/assets/program/adult.png')}
+                alt="어른의 예술리추얼 컬러링"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const src = e.currentTarget.src;
+                  if (src.endsWith('.png')) {
+                    e.currentTarget.src = getImagePath('/assets/program/adult.PNG');
+                  } else if (src.endsWith('.PNG')) {
+                    e.currentTarget.src = getImagePath('/assets/program/adult.jpg');
+                  }
                 }}
-              >
-                컬러링 이미지 영역
-              </p>
+              />
             </div>
           </motion.div>
 
@@ -138,12 +191,9 @@ export function AdultArtSection3() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="space-y-12"
           >
-            {/* Info Card with Border */}
+            {/* Info Card with Partial Border (Open Frame Style) */}
             <div
-              className="bg-white border-2 rounded-3xl p-8 md:p-10"
-              style={{
-                borderColor: '#d4a574',
-              }}
+              className="emotion-art-card bg-white rounded-3xl p-8 md:p-10 relative"
             >
               <h3
                 className="mb-8 text-center"
@@ -204,25 +254,16 @@ export function AdultArtSection3() {
                 className="mb-4"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.95rem, 1.2vw, 1.05rem)',
-                  color: '#ff6b9d',
+                  fontSize: 'clamp(0.85rem, 1.1vw, 0.85rem)',
+                  color: '#A66A5A',
                   fontWeight: 300,
                   lineHeight: 1.9,
                   letterSpacing: '0.01em',
                 }}
               >
-                분명한 일이 우리의 존재 이렇게 이마우는 보입니다.
-              </p>
-              <p
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.95rem, 1.2vw, 1.05rem)',
-                  color: '#ff6b9d',
-                  fontWeight: 400,
-                  lineHeight: 1.9,
-                }}
-              >
-                우리가 창조되기 위해 존재한다. 우리는 사랑하기 위해 존재한다.
+                루틴한 일이 우리의 존재 이유가 아님은 분명하다.
+                <br />
+                우리가 창조하기 위해 존재한다. 우리는 사랑하기 위해 존재한다.
               </p>
               <p
                 className="mt-3"
@@ -234,7 +275,7 @@ export function AdultArtSection3() {
                   fontStyle: 'italic',
                 }}
               >
-                - 이홀트 외 멕시 륨사-리카이우프(1961~)
+                - 책 &lt;이토록 멋진 휴식&gt; 리카이푸(1961~)
               </p>
             </motion.div>
           </motion.div>
@@ -244,5 +285,6 @@ export function AdultArtSection3() {
         <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-32" />
       </div>
     </section>
+    </>
   );
 }

@@ -91,7 +91,7 @@ export default function Footer() {
 
         {/* Contact & Social Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mb-12 md:mb-16">
-          {/* Contact Information - Quiet informational block */}
+          {/* Contact Information - Address only */}
           <div>
             <div 
               className="mb-6"
@@ -107,7 +107,6 @@ export default function Footer() {
               Contact
             </div>
             <div 
-              className="space-y-2"
               style={{
                 fontFamily: "'Noto Sans KR', sans-serif",
                 fontSize: 'clamp(14px, 1.2vw, 15px)',
@@ -117,24 +116,7 @@ export default function Footer() {
                 lineHeight: '1.8',
               }}
             >
-              <div>
-                <a 
-                  href="tel:02-1234-5678"
-                  className="hover:text-[#4A4A4A] transition-colors duration-300"
-                  style={{ textDecoration: 'none' }}
-                >
-                  02-1234-5678
-                </a>
-              </div>
-              <div>
-                <a 
-                  href="mailto:hello@crayonforest.com"
-                  className="hover:text-[#4A4A4A] transition-colors duration-300"
-                  style={{ textDecoration: 'none' }}
-                >
-                  hello@crayonforest.com
-                </a>
-              </div>
+              경기도 성남시 수정구 창곡동 563번지 위례역 푸르지오 6단지 107호
             </div>
           </div>
 
@@ -192,7 +174,7 @@ export default function Footer() {
 
               {/* Blog */}
               <a
-                href="https://blog.naver.com/art_and_forrest"
+                href="https://blog.naver.com/dreaming_art_play"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#4A4A4A] transition-colors duration-300"
@@ -210,7 +192,7 @@ export default function Footer() {
 
               {/* 베이비뉴스 */}
               <a
-                href="https://www.ibabynews.com"
+                href="https://www.ibabynews.com/news/articleView.html?idxno=114791"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#4A4A4A] transition-colors duration-300"

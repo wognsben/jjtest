@@ -59,15 +59,13 @@ export default function ContactHero() {
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <motion.h1
           ref={titleRef}
-          className="text-[clamp(2.5rem,8vw,7rem)] leading-[1.1] tracking-tight px-4"
+          className="text-[clamp(1.5rem,4vw,3.2rem)] leading-[1.2] tracking-tight px-4"
           style={{
             fontFamily: "'Pretendard Variable', sans-serif",
           }}
         >
-          우리 아이의
-          <br />
-          <span className="relative inline-block mt-4">
-            다음 이야기를 시작해보세요
+          <span className="relative inline-block">
+            우리 아이의 다음 이야기를 시작해보세요
             
             {/* Hand-drawn green brush underline */}
             <svg

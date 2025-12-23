@@ -339,12 +339,14 @@ export function YouthArtSection2() {
           {/* Blog Button - Inside Block, Right Bottom */}
           <div className="flex justify-end mt-8">
             <a
-              href="#"
-              className="px-8 py-3 border-2 rounded-full transition-all duration-300"
+              href="https://blog.naver.com/dreaming_art_play"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 border-2 rounded-full transition-all duration-300 hover:bg-[#F6D2CC]"
               style={{
                 background: '#FADFDE',
                 borderColor: '#A66A5A',
-                color: '#2F6B4F',
+                color: '#2d5016',
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: '0.95rem',
                 fontWeight: 500,

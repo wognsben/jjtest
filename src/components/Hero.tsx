@@ -152,7 +152,7 @@ export default function Hero() {
       >
         <div className="w-full max-w-[1800px] mx-auto relative">
           
-          {/* Top tagline with heart icon */}
+          {/* Top tagline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -161,22 +161,8 @@ export default function Hero() {
               delay: 0.2, 
               ease: [0.22, 1, 0.36, 1] 
             }}
-            className="flex items-center justify-center gap-4 mb-12 md:mb-16 relative z-30"
+            className="flex items-center justify-center mb-12 md:mb-16 relative z-30"
           >
-            <svg 
-              className="w-8 h-8 md:w-10 md:h-10" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeWidth="1.5"
-              style={{ opacity: 0.5 }}
-            >
-              <path 
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-                fill="none"
-              />
-            </svg>
             <p 
               className="text-secondary"
               style={{

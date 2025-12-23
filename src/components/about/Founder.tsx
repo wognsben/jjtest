@@ -855,7 +855,7 @@ export default function Founder() {
                   </a>
                   
                   <a
-                    href="https://www.ibabynews.com"
+                    href="https://www.ibabynews.com/news/articleView.html?idxno=114791"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-[#4A4A4A] transition-colors duration-300"

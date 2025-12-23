@@ -208,36 +208,25 @@ export function AdultArtSection2() {
   return (
     <section className="relative bg-white py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        {/* Top Questions */}
+        {/* Main Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-16 space-y-4"
+          className="mb-16"
         >
-          {[
-            '"언제부터 내 감정을 설명하는 게 이렇게 어려워졌을까?"',
-            '"내가 좋아하는 색, 좋아하는 감각이 뭐였더라?"',
-            '"삶에 쫓기다 보니 나를 돌보는 일이 사치처럼 느껴진다."'
-          ].map((question, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1.15rem, 2.2vw, 1.6rem)',
-                color: '#333',
-                fontWeight: 400,
-                lineHeight: 1.75,
-              }}
-            >
-              {question}
-            </motion.p>
-          ))}
+          <h2
+            style={{
+              fontFamily: "'Noto Serif KR', serif",
+              fontSize: 'clamp(1.5rem, 2.8vw, 2.2rem)',
+              color: '#333',
+              fontWeight: 500,
+              lineHeight: 1.6,
+            }}
+          >
+            감정은 생각보다 훨씬 예술적입니다.
+          </h2>
         </motion.div>
 
         {/* Description */}
@@ -257,13 +246,15 @@ export function AdultArtSection2() {
               lineHeight: 1.9,
             }}
           >
-            어른은 감정을 설명하기보다 적당히 묻어두는 기술이 먼저 늘죠.
+            어른은 감정을 설명하기보다 적당히 덮어두는 기술이 먼저 늘죠.
             <br />
-            그러다 어느 날, 삶의 결이 무뎌졌음을 문득 깨닫게 됩니다.
+            그러다 어느 날, 삶이 톡 건드리기만 해도 결이 우둘투둘 튀어 오릅니다.
             <br />
-            그때 필요한 건 "덜어냄"이 아니라,
+            그때 필요한 건 '참아라'가 아니라
             <br />
             내 마음의 결을 스케치해보는 용기입니다.
+            <br />
+            그림은 때로 마음보다 먼저 진실을 말하니까요.
           </p>
         </motion.div>
 
@@ -315,13 +306,11 @@ export function AdultArtSection2() {
           </span>
           <ul className="space-y-2 mt-4">
             {[
-              '오랜만에 나를 위한 시간을 찾고 싶은 분',
+              "오랜만에 '나를 위한 시간'을 갖고 싶은 분",
               '색과 드로잉을 통해 감정 언어를 배우고 싶은 분',
-              '완성된 작품보다 자기감각을 회복하고 싶은 분',
-              '화려한 작업이 아니라 자기서사를 탐색해보고 싶은 분',
-              '예술은 어려울까? 걱정보다 편안하게 그리는 경험을 원하시는 분',
-              '삶의 템포를 잠시 늦추고, 감각을 다시 깨우고 싶은 분',
-              '나만의 리추얼을 만들고 싶은 분'
+              '해온 역할을 잠시 내려놓고, 자기감각을 회복하고 싶은 여성',
+              '하나의 작업이 아니라 자기서사·패턴·결을 탐색해보고 싶은 분',
+              '"예술은 어려울까?" 걱정하지만, 마음으로 그리는 경험을 원하시는 분'
             ].map((item, i) => (
               <li
                 key={i}
@@ -338,12 +327,14 @@ export function AdultArtSection2() {
           </ul>
           <div className="flex justify-end mt-8">
             <a
-              href="#"
-              className="px-8 py-3 border-2 rounded-full transition-all duration-300"
+              href="https://blog.naver.com/dreaming_art_play"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 border-2 rounded-full transition-all duration-300 hover:bg-[#F6D2CC]"
               style={{
                 background: '#FADFDE',
                 borderColor: '#A66A5A',
-                color: '#2F6B4F',
+                color: '#2d5016',
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: '0.95rem',
                 fontWeight: 500,

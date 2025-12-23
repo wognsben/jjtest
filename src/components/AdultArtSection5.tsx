@@ -1,10 +1,41 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { getImagePath } from '../utils/imageUtils';
 
 // ADULT ART Section 5: 엄마는 크레용 정원사
 export function AdultArtSection5() {
   return (
-    <section className="relative bg-white py-24 md:py-32">
+    <>
+      <style>{`
+        .emotion-art-card {
+          position: relative;
+        }
+        .emotion-art-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 100px;
+          height: 100px;
+          border-top: 3px solid #d4a574;
+          border-right: 3px solid #d4a574;
+          border-top-right-radius: 24px;
+          pointer-events: none;
+        }
+        .emotion-art-card::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 120px;
+          height: 120px;
+          border-bottom: 3px solid #d4a574;
+          border-left: 3px solid #d4a574;
+          border-bottom-left-radius: 24px;
+          pointer-events: none;
+        }
+      `}</style>
+      <section className="relative bg-white py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         {/* Header: 엄마는 크레용 정원사 with Pastel Background */}
         <motion.div
@@ -14,17 +45,34 @@ export function AdultArtSection5() {
           transition={{ duration: 0.8 }}
           className="relative mb-20 rounded-3xl overflow-hidden"
           style={{
-            background: 'linear-gradient(135deg, rgba(255,182,193,0.25) 0%, rgba(200,230,201,0.25) 50%, rgba(255,228,196,0.25) 100%)',
             padding: '4rem 3rem',
           }}
         >
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          {/* Background Image - Flipped vertically */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${getImagePath('/assets/program/child/child sec.jpg')})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              transform: 'scaleY(-1)',
+              opacity: 0.25,
+            }}
+          />
+          {/* Gradient Overlay */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255,182,193,0.25) 0%, rgba(200,230,201,0.25) 50%, rgba(255,228,196,0.25) 100%)',
+            }}
+          />
+          <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
             {/* Left: Title */}
             <div>
               <h2
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
+                  fontSize: 'clamp(2rem, 3.5vw, 2.2rem)',
                   color: '#2d5016',
                   fontWeight: 600,
                   lineHeight: 1.3,
@@ -39,7 +87,7 @@ export function AdultArtSection5() {
               <p
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1rem, 1.25vw, 1.1rem)',
+                  fontSize: 'clamp(1rem, 1.25vw, 1rem)',
                   color: '#333',
                   fontWeight: 400,
                   lineHeight: 1.8,
@@ -80,7 +128,7 @@ export function AdultArtSection5() {
                 fontWeight: 300,
               }}
             >
-              일상 공지 후 상시 진행
+              일정 공지 후 상시 진행
             </p>
           </motion.div>
         </div>
@@ -96,17 +144,14 @@ export function AdultArtSection5() {
             className="relative"
           >
             {/* Image Area */}
-            <div className="relative aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden border-2 border-dashed border-gray-300 flex items-center justify-center">
-              <p
-                className="text-center text-gray-400"
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: '0.95rem',
-                }}
-              >
-                엄마와 아이 그림 이미지 영역
-              </p>
-            </div>
+            <div
+              className="relative aspect-[4/3] rounded-2xl overflow-hidden"
+              style={{
+                backgroundImage: `url(${getImagePath('/assets/program/mom drawing.png')})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
           </motion.div>
 
           {/* Right: Content */}
@@ -118,19 +163,15 @@ export function AdultArtSection5() {
             className="space-y-12"
           >
             {/* Info Card with Border */}
-            <div
-              className="bg-white border-2 rounded-3xl p-8 md:p-10"
-              style={{
-                borderColor: '#d4a574',
-              }}
-            >
+            <div className="emotion-art-card bg-white rounded-3xl p-8 md:p-10 relative">
               <h3
-                className="mb-6 text-center"
+                className="mb-8 text-center"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1.2rem, 1.8vw, 1.5rem)',
+                  fontSize: 'clamp(1.3rem, 2vw, 1.6rem)',
                   color: '#333',
                   fontWeight: 600,
+                  lineHeight: 1.5,
                 }}
               >
                 엄마는 크레용정원사
@@ -164,7 +205,7 @@ export function AdultArtSection5() {
                     lineHeight: 1.8,
                   }}
                 >
-                  아이의 변화는 초점입니다.
+                  이곳의 변화는 조용합니다.
                 </motion.p>
 
                 <motion.p
@@ -180,7 +221,7 @@ export function AdultArtSection5() {
                     lineHeight: 1.8,
                   }}
                 >
-                  감자기 인생이 바뀌진 않아도 괜찮고
+                  갑자기 인생이 바뀌지 않아도 괜찮고
                   <br />
                   눈에 띄는 성장이 없어도 괜찮습니다
                 </motion.p>
@@ -198,16 +239,16 @@ export function AdultArtSection5() {
                     lineHeight: 1.8,
                   }}
                 >
-                  다만 아는 날 문득,
+                  다만 어느 날 문득,
                   <br />
                   아이를 대하는 태도가 조금 부드러워지고
                   <br />
                   나를 바라보는 시선이 덜 날카로워지고
                   <br />
                   <span style={{ fontWeight: 500, color: '#2d5016' }}>
-                    "나는 괜찮은 사람이었지"
+                    "나도 괜찮은 사람이었지"
                   </span>
-                  라는 생각이 스며듭니다.
+                  라는 생각이 스칩니다
                 </motion.p>
 
                 <motion.p
@@ -223,7 +264,7 @@ export function AdultArtSection5() {
                     lineHeight: 1.8,
                   }}
                 >
-                  그 정도로 충분합니다.
+                  그 정도면 충분합니다.
                 </motion.p>
               </div>
             </div>
@@ -234,5 +275,6 @@ export function AdultArtSection5() {
         <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-32" />
       </div>
     </section>
+    </>
   );
 }

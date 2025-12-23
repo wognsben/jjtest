@@ -93,71 +93,144 @@ interface Section {
 
 export function SectionNav({ sections }: { sections: Section[] }) {
   const [activeSection, setActiveSection] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    const observers = sections.map((section, index) => {
-      const element = document.getElementById(section.id);
-      if (!element) return null;
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveSection(index);
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      // Show nav after scrolling past initial view
+      setIsVisible(scrollY > windowHeight * 0.3);
+      
+      // Find active section based on scroll position
+      const scrollPosition = scrollY + windowHeight * 0.4;
+      
+      let currentActive = 0;
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sections[i].id);
+        if (element) {
+          const sectionTop = element.offsetTop;
+          if (scrollPosition >= sectionTop) {
+            currentActive = i;
+            break;
           }
-        },
-        { threshold: 0.5 }
-      );
-
-      observer.observe(element);
-      return observer;
-    });
-
-    return () => {
-      observers.forEach(observer => observer?.disconnect());
+        }
+      }
+      
+      setActiveSection(currentActive);
     };
+
+    // Throttle scroll events
+    let ticking = false;
+    const throttledScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', throttledScroll, { passive: true });
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener('scroll', throttledScroll);
   }, [sections]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
+
+  if (!isVisible) return null;
 
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: 1.5 }}
-      className="fixed right-8 top-1/2 -translate-y-1/2 z-[200] hidden lg:flex flex-col gap-4"
+      exit={{ opacity: 0, x: 20 }}
+      transition={{ duration: 0.5 }}
+      className="fixed right-8 top-1/2 -translate-y-1/2 z-[200] hidden lg:block"
     >
-      {sections.map((section, index) => (
-        <motion.button
-          key={section.id}
-          onClick={() => scrollToSection(section.id)}
-          className="group relative"
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          {/* Dot */}
-          <div className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
-            activeSection === index
-              ? 'bg-accent-green border-accent-green scale-125'
-              : 'bg-transparent border-brown-300 hover:border-accent-green'
-          }`} />
-          
-          {/* Label tooltip */}
-          <motion.div
-            initial={{ opacity: 0, x: 10 }}
-            whileHover={{ opacity: 1, x: 0 }}
-            className="absolute right-6 top-1/2 -translate-y-1/2 px-4 py-2 bg-brown-800 text-white text-xs rounded-lg whitespace-nowrap pointer-events-none"
-            style={{ fontFamily: "'Noto Serif KR', serif" }}
-          >
-            {section.label}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-brown-800" />
-          </motion.div>
-        </motion.button>
-      ))}
+      {/* Container with subtle background */}
+      <div 
+        className="relative px-3 py-4 rounded-full"
+        style={{
+          background: 'rgba(255, 255, 255, 0.6)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
+          border: '1px solid rgba(166, 124, 82, 0.1)',
+        }}
+      >
+        <div className="flex flex-col gap-5 items-center">
+          {sections.map((section, index) => (
+            <motion.button
+              key={section.id}
+              onClick={() => scrollToSection(section.id)}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className="group relative flex items-center justify-center"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {/* Active ring */}
+              {activeSection === index && (
+                <motion.div
+                  layoutId="activeRing"
+                  className="absolute w-5 h-5 rounded-full"
+                  style={{
+                    border: '1.5px solid #8fbc88',
+                    opacity: 0.5,
+                  }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                />
+              )}
+              
+              {/* Dot */}
+              <motion.div 
+                className="w-2.5 h-2.5 rounded-full transition-all duration-300"
+                animate={{
+                  scale: activeSection === index ? 1.2 : 1,
+                  backgroundColor: activeSection === index ? '#8fbc88' : 'rgba(166, 124, 82, 0.4)',
+                }}
+                style={{
+                  boxShadow: activeSection === index 
+                    ? '0 0 8px rgba(143, 188, 136, 0.4)' 
+                    : 'none',
+                }}
+              />
+              
+              {/* Label tooltip */}
+              {hoveredIndex === index && (
+                <motion.div
+                  initial={{ opacity: 0, x: 10, scale: 0.9 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: 10, scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute right-8 top-1/2 -translate-y-1/2 px-4 py-2 bg-brown-800 text-white text-xs rounded-lg whitespace-nowrap pointer-events-none"
+                  style={{ fontFamily: "'Noto Serif KR', serif" }}
+                >
+                  {section.label}
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-brown-800" />
+                </motion.div>
+              )}
+            </motion.button>
+          ))}
+        </div>
+      </div>
     </motion.div>
   );
 }

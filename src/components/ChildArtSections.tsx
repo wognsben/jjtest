@@ -145,20 +145,23 @@ export function ChildArtSection2() {
         {/* BLOG BUTTON */}
         <div className="flex justify-end">
           <motion.a
-            href="#"
+            href="https://blog.naver.com/dreaming_art_play"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{
               y: -2,
-              backgroundColor: '#FADFDB',
+              backgroundColor: '#F6D2CC',
               transition: { duration: 0.3 },
             }}
             whileTap={{ scale: 0.98 }}
             style={{
               padding: '0.9rem 2.4rem',
-              border: '2px solid #E3A08C',
+              border: '2px solid #A66A5A',
               borderRadius: '9999px',
               fontFamily: "'Noto Serif KR', serif",
               fontSize: '0.95rem',
-              color: '#E3A08C',
+              color: '#2d5016',
+              background: '#FADFDE',
               textDecoration: 'none',
               transition: 'all 0.3s ease',
             }}

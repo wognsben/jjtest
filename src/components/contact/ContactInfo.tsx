@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Instagram, BookOpen, MapPin } from 'lucide-react';
+import { Instagram, BookOpen, PenLine } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,18 +40,18 @@ export default function ContactInfo() {
       color: '#7CB342',
     },
     {
+      icon: PenLine,
+      label: '브런치',
+      value: 'jsm925',
+      link: 'https://brunch.co.kr/@jsm925',
+      color: '#333333',
+    },
+    {
       icon: Instagram,
       label: '인스타그램',
       value: 'crayonforestart',
       link: 'https://instagram.com/crayonforestart',
       color: '#F48FB1',
-    },
-    {
-      icon: MapPin,
-      label: '주소',
-      value: '경기도 성남시 수정구 창곡동 563번지\n위례역 푸르지오 6단지 107호',
-      link: null,
-      color: '#6B4423',
     },
   ];
 
