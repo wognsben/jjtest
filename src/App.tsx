@@ -27,6 +27,10 @@ export default function App() {
   const [scrollY, setScrollY] = useState(0);
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
   
+  // Premium Device Detection (상단에 선언해야 TDZ 에러 방지)
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  
   // Refs for GSAP animations
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const menuItemsRef = useRef<HTMLDivElement>(null);
@@ -221,11 +225,8 @@ export default function App() {
   // Header scroll state for mobile
   const isScrolled = scrollY > 30;
   
-  // Premium Device Detection (Awwwards-grade)
+  // Premium Device Detection useEffect (Awwwards-grade)
   // CSS breakpoint 대신 JS 기반으로 안정적인 디바이스 감지
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-  
   useEffect(() => {
     // Touch device 감지 (모바일/태블릿 터치스크린)
     const checkTouchDevice = () => {
