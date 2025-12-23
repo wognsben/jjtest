@@ -1,279 +1,211 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import BlobMorph from './BlobMorph';
 import { getImagePath } from '../utils/imageUtils';
 
-// CHILD ART Section 2: Philosophy & Questions
+// CHILD ART Section 2: Philosophy & Questions (Premium Editorial Style)
 export function ChildArtSection2() {
-  const [morphProgress, setMorphProgress] = React.useState(0);
-
-  // Gradually increase morph progress as page loads
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      setMorphProgress(1);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <section className="relative min-h-screen bg-white py-48 md:py-64 lg:py-80">
-      {/* 3D Blob Background */}
-      <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
-        <div className="absolute top-10 left-10 w-96 h-96">
-          <BlobMorph morphProgress={morphProgress} />
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
-        <div className="grid md:grid-cols-2 gap-20 md:gap-28 lg:gap-32">
-          {/* Left Side: Three Questions */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-16 md:space-y-20"
+      <div className="max-w-4xl mx-auto px-6 md:px-12 lg:px-24">
+        {/* QUESTIONS - 최상단 */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="space-y-6 mb-20"
+        >
+          <p
+            style={{
+              fontFamily: "'Noto Serif KR', serif",
+              fontSize: 'clamp(1.15rem, 2.2vw, 1.6rem)',
+              color: '#333',
+              lineHeight: 1.75,
+              fontWeight: 400,
+            }}
           >
-            <div>
-              <p 
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1.15rem, 2.2vw, 1.6rem)',
-                  color: '#333',
-                  lineHeight: 1.75,
-                  fontWeight: 400,
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                "우리 아이는 지금 어떤 마음으로 세상을 보고 있을까?"
-              </p>
-            </div>
+            "우리 아이는 지금 어떤 마음으로 세상을 보고 있을까?"
+          </p>
 
-            <div>
-              <p 
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1.15rem, 2.2vw, 1.6rem)',
-                  color: '#333',
-                  lineHeight: 1.75,
-                  fontWeight: 400,
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                "말로 설명하지 못한 감정은 어디에 남아 있을까?"
-              </p>
-            </div>
-
-            <div>
-              <p 
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1.15rem, 2.2vw, 1.6rem)',
-                  color: '#333',
-                  lineHeight: 1.75,
-                  fontWeight: 400,
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                "이 아이만의 감각·성정·세계는 어떻게 싹을 틀울까?"
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Right Side: Description Text */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-10"
+          <p
+            style={{
+              fontFamily: "'Noto Serif KR', serif",
+              fontSize: 'clamp(1.15rem, 2.2vw, 1.6rem)',
+              color: '#333',
+              lineHeight: 1.75,
+              fontWeight: 400,
+            }}
           >
-            <p 
-              style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1rem, 1.5vw, 1.15rem)',
-                color: '#444',
-                lineHeight: 1.9,
-                fontWeight: 300,
-                letterSpacing: '0.01em',
-              }}
-            >
-              아이들은 감성을 먼저 느끼고, 그 마음을 몸·색·선으로 표현하며,<br />
-              그 다음에 비로소 언어입니다.
-            </p>
+            "말로 설명하지 못한 감정은 어디에 남아 있을까?"
+          </p>
 
-            <p 
-              style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1rem, 1.5vw, 1.15rem)',
-                color: '#444',
-                lineHeight: 1.9,
-                fontWeight: 300,
-                letterSpacing: '0.01em',
-              }}
-            >
-              하지만 현실은 너무 빠르게 정답·속도·비교를 요구하죠.<br />
-              그 순간, 아이의 감성은 말해지지 못한 채 소외되고,<br />
-              표현은 줄어들고, 세계관의 싹도 자리 잡을 자리를 잃어버립니다.
-            </p>
+          <p
+            style={{
+              fontFamily: "'Noto Serif KR', serif",
+              fontSize: 'clamp(1.15rem, 2.2vw, 1.6rem)',
+              color: '#333',
+              lineHeight: 1.75,
+              fontWeight: 400,
+            }}
+          >
+            "이 아이만의 감각·상징·세계는 어떻게 싹을 틔울까?"
+          </p>
+        </motion.div>
 
-            <p 
-              style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1rem, 1.5vw, 1.15rem)',
-                color: '#444',
-                lineHeight: 1.9,
-                fontWeight: 300,
-                letterSpacing: '0.01em',
-              }}
-            >
-              그래서 아이에게는 자기 마음을 먼저 알아차리고,<br />
-              자기 방식으로 표현하는 힘이 필요합니다.
-            </p>
+        {/* DESCRIPTION - 본문 */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="space-y-8 mb-16"
+        >
+          <p
+            style={{
+              fontFamily: "'Noto Serif KR', serif",
+              fontSize: 'clamp(1rem, 1.5vw, 1.15rem)',
+              color: '#444',
+              lineHeight: 2,
+              fontWeight: 300,
+            }}
+          >
+            아이들은 감정을 먼저 느끼고, 그 마음은 몸–색–선으로 표현되며,<br />
+            그 다음이 비로소 언어입니다.<br />
+            하지만 현실은 너무 빠르게 <span style={{ fontWeight: 500 }}>정답 · 속도 · 비교</span>를 요구하죠.<br />
+            그 순간, 아이의 감정은 말해지지 못한 채 조용히 접히고,<br />
+            표현은 줄어들고, 세계관의 씨앗도 자라날 자리를 잃어버립니다.<br />
+            그래서 아이에게는 <span style={{ fontWeight: 500 }}>자기 마음을 먼저 알아차리고,</span><br />
+            <span style={{ fontWeight: 500 }}>자기 방식으로 표현하는 힘</span>이 필요합니다.
+          </p>
+        </motion.div>
 
-            <div className="pt-10">
-              <p 
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
-                  color: '#8fbc88',
-                  lineHeight: 1.7,
-                  fontWeight: 500,
-                  letterSpacing: '-0.02em',
-                }}
-              >
-                "아이의 기질과 감정의 속도를 따라가며, 마음이 자라는 미술입니다."
-              </p>
-            </div>
+        {/* KEY MESSAGE */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          style={{
+            fontFamily: "'Noto Serif KR', serif",
+            fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
+            color: '#2F6B4F',
+            fontWeight: 500,
+            lineHeight: 1.7,
+            marginBottom: '3rem',
+          }}
+        >
+          "아이의 기질과 감정의 속도를 따라가며, 마음이 자라는 미술입니다."
+        </motion.p>
 
-            {/* Pink Box: 이런 친구에게 필요해요 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              whileHover={{ 
-                y: -4, 
-                boxShadow: '0 12px 40px rgba(255,107,157,0.15)',
-                transition: { duration: 0.3 }
-              }}
-              className="bg-pink-50 border-l-4 border-pink-300 rounded-2xl p-10 mt-16"
-              style={{
-                boxShadow: '0 4px 20px rgba(255,107,157,0.08)',
-              }}
-            >
-              <h4 
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1.05rem, 1.6vw, 1.25rem)',
-                  color: '#ff6b9d',
-                  fontWeight: 600,
-                  marginBottom: '1.5rem',
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                이런 친구에게 필요해요
-              </h4>
-              <p 
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.95rem, 1.35vw, 1.05rem)',
-                  color: '#666',
-                  lineHeight: 2,
-                  fontWeight: 300,
-                  letterSpacing: '0.005em',
-                }}
-              >
-                선·색, 형태에 즐거움이 많고 손으로 탐색하는 걸 좋아하는 아이<br />
-                감정표현이 서툴지만, 몸과 그림에서 마음이 잘 드러나는 아이<br />
-                '잘 그리기'보다 자기 속도로 탐색하는 경험이 필요한 아이<br />
-                감정 조절·관계 형성·표현력 성장을 균형 있게 경험하고 싶은 아이<br />
-                자기만의 비밀 세계를 만드는 걸 좋아하는 아이
-              </p>
-            </motion.div>
-
-            {/* Blog Button */}
-            <div className="pt-10 text-right">
-              <motion.button
-                whileHover={{ 
-                  scale: 1.02,
-                  y: -2,
-                  boxShadow: '0 8px 30px rgba(255,107,157,0.2)',
-                  transition: { duration: 0.3 }
-                }}
-                whileTap={{ scale: 0.98 }}
-                className="px-10 py-4 border-2 border-pink-300 text-pink-400 rounded-full hover:bg-pink-50 transition-all duration-300"
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.95rem, 1.15vw, 1.05rem)',
-                  fontWeight: 500,
-                  letterSpacing: '-0.01em',
-                  boxShadow: '0 4px 20px rgba(255,107,157,0.1)',
-                }}
-              >
-                BLOG 바로가기
-              </motion.button>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Bottom Text */}
+        {/* BLOB CAPSULE */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-right mt-28 md:mt-32"
+          transition={{ duration: 0.6, delay: 0.4 }}
+          style={{
+            background: '#FADFDB',
+            borderRadius: '24px',
+            padding: '2rem 2.5rem',
+            marginBottom: '3rem',
+          }}
         >
-          <p 
+          <span
             style={{
+              display: 'inline-block',
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 1.15vw, 0.95rem)',
-              color: '#aaa',
-              lineHeight: 1.6,
-              letterSpacing: '0.02em',
+              fontSize: '1rem',
+              fontWeight: 600,
+              color: '#2F6B4F',
+              marginBottom: '1rem',
             }}
           >
-            크레용숲 블로그에서 더 많은 이야기를 만나보세요
-          </p>
+            이런 친구에게 맞아요
+          </span>
+
+          <ul
+            style={{
+              fontFamily: "'Noto Serif KR', serif",
+              fontSize: '0.95rem',
+              lineHeight: 2,
+              color: '#2F6B4F',
+              listStyle: 'none',
+              padding: 0,
+              margin: 0,
+            }}
+          >
+            <li>선·색·형태에 호기심이 많고 손으로 탐색하는 걸 좋아하는 아이</li>
+            <li>감정표현이 서툴지만, 말 대신 그림에서 마음이 잘 드러나는 아이</li>
+            <li>'잘 그리기'보다 자기 속도로 탐색하는 경험이 필요한 아이</li>
+            <li>정서 조절·감각 자극·표현력 성장을 균형 있게 경험하고 싶은 아이</li>
+            <li>자기만의 비밀 세계를 만드는 걸 좋아하는 아이</li>
+          </ul>
         </motion.div>
+
+        {/* BLOG BUTTON */}
+        <div className="flex justify-end">
+          <motion.a
+            href="#"
+            whileHover={{
+              y: -2,
+              backgroundColor: '#FADFDB',
+              transition: { duration: 0.3 },
+            }}
+            whileTap={{ scale: 0.98 }}
+            style={{
+              padding: '0.9rem 2.4rem',
+              border: '2px solid #E3A08C',
+              borderRadius: '9999px',
+              fontFamily: "'Noto Serif KR', serif",
+              fontSize: '0.95rem',
+              color: '#E3A08C',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+            }}
+          >
+            BLOG 바로가기
+          </motion.a>
+        </div>
       </div>
     </section>
   );
 }
 
-// CHILD ART Section 3: 6 Questions from Parents
+// CHILD ART Section 3: 6 Questions from Parents (Premium Editorial Style)
 export function ChildArtSection3() {
-  const questions = [
+  const questionsLeft = [
     {
       number: '1',
       title: '우리 아이 같은 성향도 잘 적응할 수 있을까요?',
-      content: `보통 예민한 아이, 산만한 아이, 불안정한 감정을 표현하지 못한 경우가 많아요. 크레용숲에서는 그 감정을 알아차리는 연습을 하다 보니 오히려 집에서의 특별한 위축이 줄어드는 경향이 있습니다.`,
+      content: `보통 예민해 보이는 아이들은 감정이 많은 게 아니라 감정을 처리할 통로가 없는 경우가 많아요. 크레용숲에서는 그 감정을 꺼내 쓰는 연습을 하다 보니 오히려 집에서의 폭발이나 위축이 줄어드는 경우가 많습니다. 마음이 불안하면 선이 흔들리고, 색이 세지고, 움직임이 급해져요. 그래서 아이의 감정은 수업 시작 전 이미 드러나 있습니다. 크레용숲은 색·촉감·리듬을 이해 아이의 신경계를 먼저 안정시키는 방식을 사용합니다. 안정이 생기면 아이는 자연스럽게 표현을 시작해요. 아이 스스로 느끼는 문장은 이렇게 바뀝니다. "조심해야 해" → "괜찮아" → "표현해도 돼" 이 한 단계 변화만으로 아이의 집중력, 대화, 성향이 부드럽게 열리기 시작합니다.`,
     },
     {
       number: '2',
       title: '정답이 없는 미술이라면, 아이는 뭘 기준으로 자라고 있다고 보면 될까요?',
-      content: `정답이 없는 것처럼 보이지만, 아이의 변화는 분명한 기준이 있습니다. 결과물 대신 아이에게서 어떤 변화가 보이는가, 누구나 체감할 수 있도록 성장하고 있는 거예요.`,
+      content: `정답이 없는 것처럼 보이지만, 아이의 변화에는 분명한 기준이 있습니다. 결과물 대신 아이에게서 이런 변화가 보이면 수업은 제대로 작동하고 있는 거예요. 표현이 막히지 않는다/ 실패해도 다시 시도한다/ 설명을 피하지 않는다/ "내가 이런 느낌이었어"라고 말한다/ 이건 취향의 문제가 아니라 누가 봐도 알 수 있는 변화입니다. 자기다움은 가르쳐서 생기는 게 아니라 감정이 원활하게 작동할 때 자연스럽게 드러나는 결과이기 때문입니다. 그래서 크레용숲은 아이를 바꾸려 하지 않고, 아이 안에 이미 있는 자기다움이 막히지 않도록 감정의 흐름을 풀어줍니다.`,
     },
     {
       number: '3',
       title: '아이의 마음을 정말 읽어주나요?',
-      content: `그림은 말보다 먼저 나옵니다. 특히 아이들은 압력이 색·속도·패턴으로 마음을 표현해요. 빨간 선은 불안, 반복되는 패턴은 위로의 욕구, 어느 한 부분을 오래 칠하는 건 감정이 축적되어 있어요.`,
+      content: `그림은 말보다 먼저 나옵니다. 특히 아이들은 말하기 전에 색·속도·패턴으로 마음을 흘려보내죠. 빠른 선은 불안, 반복되는 패턴은 위로의 욕구, 어느 한 부분을 오래 칠하는 건 감정의 정착지예요. 우리는 이러한 단서를 통해 오늘 아이의 마음이 어떤 방향으로 흐르는지 읽습니다. 그리고 그 내용을 '기질요약·감정결 메모'로 정리해 부모님께 전달합니다. 아이에게 이 과정은 "내 마음을 알아주는 어른이 있다"는 경험으로 남고, 이 경험이 아이의 자기이해력을 차라게 합니다. 이 문장이 아이의 자기개념을 단단하게 만들고 그게 바로 정서적 성장 + 학습력의 기초가 됩니다`,
     },
+  ];
+
+  const questionsRight = [
     {
       number: '4',
-      title: '미술로 감정이 정말 풀어지나요?',
-      content: `미술이 감정을 '치유한다'고 말하기는 어렵습니다. 하지만 미술은 감정을 가장 안전하게 다룰 수 있는 통로입니다. 표현이 익숙해지면 자신감도 함께 자라납니다.`,
+      title: '미술로 감정이 정말 좋아지나?',
+      content: `미술이 감정을 '고쳐준다'고 말하지는 않습니다. 하지만 미술은 감정을 가장 안전하게 다룰 수 있는 통로입니다. 표현이 막히면 자신감도 함께 좁아지고, 선택도 느려지죠. 하지만 색으로 감정을 표현하고 손과 감각이 안정되기 시작하면 아이의 내면에서 작은 변화가 일어납니다. "하고 싶은데 못 하겠어…" → "이건 해볼 수 있을 것 같아." 표현은 곧 선택의 힘을 키우고, 선택의 힘은 관계 안에서 존재감을 만들어줍니다. 결국 변화는 이렇게 옵니다. 소극적이던 아이가 스스로 먼저 들고, 말이 없던 아이가 색을 고르는 기준을 설명하고, 친구 앞에서 작품을 소개하며 눈빛이 달라지는 순간으로요.`,
     },
     {
       number: '5',
       title: '다른 미술학원과 가장 크게 다른 점은 무엇인가요?',
-      content: `크레용숲은 결과물을 성장기록으로 남기는 미술 공간입니다. 단순히 그리기를 가르치는 것이 아니라 아이의 정서 리듬·기질·감정 흐름·표현 패턴을 읽어내기 위해 노력합니다.`,
+      content: `크레용숲의 중심에는 성장기록 기반 마음 코칭 시스템이 있습니다. 단순히 그림을 가르치는 것이 아니라 아이의 정서 리듬–기질–감정 흐름–표현 패턴을 함께 기록합니다. 그래서 아이는 비교당하지 않고, 정답을 강요받지 않으며, 자기 속도로 자기 세계를 만들어갑니다. . 여기서는 '잘 그리는 아이'가 되는 것이 목표가 아닙니다. '나를 이해하고 나답게 표현하는 아이'가 되는 것이 목표예요. 이 경험을 반복하면 아 마음속에 아주 중요한 문장이 생깁니다. "나는 이렇게 느끼는 사람이구나."`,
     },
   ];
 
   return (
-    <section className="relative min-h-screen bg-white py-32 md:py-40 lg:py-48">
+    <section className="relative bg-white py-32 md:py-40 lg:py-48">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         {/* Title */}
         <motion.div
@@ -281,14 +213,14 @@ export function ChildArtSection3() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-24 md:mb-32"
+          className="mb-16 md:mb-20"
         >
-          <h2 
+          <h2
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)',
-              color: '#d97878',
-              fontWeight: 400,
+              fontSize: 'clamp(1.6rem, 3vw, 2.4rem)',
+              color: '#2F6B4F',
+              fontWeight: 500,
               lineHeight: 1.5,
             }}
           >
@@ -296,117 +228,150 @@ export function ChildArtSection3() {
           </h2>
         </motion.div>
 
-        {/* Questions Grid */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 mb-24">
-          {questions.map((q, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white border-2 border-gray-100 rounded-3xl p-8 md:p-10 hover:shadow-xl hover:border-pink-200 transition-all duration-300"
-            >
-              <div className="flex items-start gap-5">
-                <div 
-                  className="flex-shrink-0 w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center"
+        {/* Two Column Layout */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* LEFT COLUMN: Questions 1, 2, 3 */}
+          <div className="space-y-10">
+            {questionsLeft.map((q, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                style={{
+                  borderLeft: '3px solid #2F6B4F',
+                  paddingLeft: '1.5rem',
+                }}
+              >
+                <h3
                   style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: '1rem',
-                    color: '#ff6b9d',
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(1rem, 1.4vw, 1.15rem)',
+                    color: '#2F6B4F',
                     fontWeight: 600,
+                    lineHeight: 1.6,
+                    marginBottom: '1rem',
                   }}
                 >
-                  {q.number}
-                </div>
-                
-                <div className="flex-1">
-                  <h3 
-                    className="mb-5"
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
-                      color: '#333',
-                      fontWeight: 600,
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {q.title}
-                  </h3>
-                  
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.9rem, 1.3vw, 1rem)',
-                      color: '#666',
-                      lineHeight: 1.9,
-                      fontWeight: 300,
-                    }}
-                  >
-                    {q.content}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                  {q.number}. {q.title}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.9rem, 1.2vw, 1rem)',
+                    color: '#444',
+                    lineHeight: 1.9,
+                    fontWeight: 300,
+                  }}
+                >
+                  {q.content}
+                </p>
+              </motion.div>
+            ))}
+          </div>
 
-        {/* Bottom Quote */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center pt-20 md:pt-24 border-t border-gray-200 space-y-4"
-        >
-          <p 
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.3rem, 2.2vw, 1.8rem)',
-              color: '#8fbc88',
-              fontWeight: 500,
-              lineHeight: 1.8,
-            }}
-          >
-            정답을 잘 고르는 아이보다
-          </p>
-          <p 
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.3rem, 2.2vw, 1.8rem)',
-              color: '#d97878',
-              fontWeight: 500,
-              lineHeight: 1.8,
-            }}
-          >
-            자기 마음을 잘 읽는 아이가 더 멀리 갑니다
-          </p>
-        </motion.div>
+          {/* RIGHT COLUMN: Questions 4, 5 + Quote Box */}
+          <div className="space-y-10">
+            {questionsRight.map((q, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: (index + 3) * 0.1 }}
+                style={{
+                  borderLeft: '3px solid #d97878',
+                  paddingLeft: '1.5rem',
+                }}
+              >
+                <h3
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(1rem, 1.4vw, 1.15rem)',
+                    color: '#d97878',
+                    fontWeight: 600,
+                    lineHeight: 1.6,
+                    marginBottom: '1rem',
+                  }}
+                >
+                  {q.number}. {q.title}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.9rem, 1.2vw, 1rem)',
+                    color: '#444',
+                    lineHeight: 1.9,
+                    fontWeight: 300,
+                  }}
+                >
+                  {q.content}
+                </p>
+              </motion.div>
+            ))}
+
+            {/* Quote Box */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              style={{
+                background: '#FAFAFA',
+                borderRadius: '16px',
+                padding: '2rem 2.5rem',
+                marginTop: '2rem',
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(1.1rem, 1.6vw, 1.3rem)',
+                  color: '#2F6B4F',
+                  fontWeight: 500,
+                  lineHeight: 1.8,
+                  marginBottom: '0.5rem',
+                }}
+              >
+                정답을 잘 고르는 아이보다
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(1.1rem, 1.6vw, 1.3rem)',
+                  color: '#d97878',
+                  fontWeight: 500,
+                  lineHeight: 1.8,
+                }}
+              >
+                자기 마음을 잘 읽는 아이가 더 멀리 갑니다
+              </p>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
-// CHILD ART Section 4: Final Message
+// CHILD ART Section 4: Final Message (Premium Editorial Style)
 export function ChildArtSection4() {
   return (
     <section className="relative bg-white py-20 md:py-24">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        {/* Image with Text Overlay */}
+        {/* Image with Text Overlay - Premium Style */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          whileHover={{ 
-            scale: 1.01,
-            transition: { duration: 0.4 }
-          }}
-          className="relative mb-24 md:mb-32 rounded-3xl overflow-hidden"
+          className="relative rounded-3xl overflow-hidden"
           style={{
-            boxShadow: '0 10px 50px rgba(0,0,0,0.08)',
+            boxShadow: '0 20px 80px rgba(47, 107, 79, 0.12)',
           }}
         >
+          {/* Background Image */}
           <img
             src={getImagePath("/assets/about/crayon forest/crayon forest.png")}
             alt="크레용숲 어린이 작품"
@@ -425,136 +390,189 @@ export function ChildArtSection4() {
               }
             }}
           />
-        </motion.div>
 
-        {/* Central Message - 극적인 여백 */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-center max-w-4xl mx-auto space-y-10 py-32 md:py-48"
-        >
-          <p 
+          {/* Gradient Overlay */}
+          <div
+            className="absolute inset-0"
             style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.2rem, 2.2vw, 1.6rem)',
-              color: '#555',
-              lineHeight: 1.8,
-              fontWeight: 400,
-              letterSpacing: '-0.01em',
+              background: 'linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 60%, rgba(255,255,255,0.98) 100%)',
             }}
-          >
-            이제 질문은 바뀝니다.
-          </p>
+          />
 
-          <p 
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.35rem, 2.5vw, 1.9rem)',
-              color: '#333',
-              lineHeight: 1.7,
-              fontWeight: 300,
-              letterSpacing: '-0.015em',
-            }}
+          {/* Text Content Overlay */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="absolute bottom-0 left-0 right-0 text-center px-8 pb-16 md:pb-24 lg:pb-32"
           >
-            "우리 아이가 잘 그리게 될까요?"가 아니라,
-          </p>
-
-          <p 
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.35rem, 2.5vw, 1.9rem)',
-              color: '#333',
-              lineHeight: 1.7,
-              fontWeight: 300,
-              letterSpacing: '-0.015em',
-            }}
-          >
-            "이 아이가 자기다운 세계를 만들 힘을 갖게 될까요?"
-          </p>
-
-          <div className="pt-16">
-            <p 
+            <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1.5rem, 2.8vw, 2.2rem)',
-                color: '#8fbc88',
+                fontSize: 'clamp(1rem, 1.8vw, 1.3rem)',
+                color: '#2F6B4F',
+                lineHeight: 1.8,
+                fontWeight: 400,
+                marginBottom: '1.5rem',
+              }}
+            >
+              이제 질문은 바뀝니다.
+            </p>
+
+            <p
+              style={{
+                fontFamily: "'Noto Serif KR', serif",
+                fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                color: '#2F6B4F',
+                lineHeight: 1.7,
+                fontWeight: 300,
+                marginBottom: '0.5rem',
+              }}
+            >
+              "우리 아이가 잘 그리게 될까요?"가 아니라,
+            </p>
+
+            <p
+              style={{
+                fontFamily: "'Noto Serif KR', serif",
+                fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                color: '#2F6B4F',
+                lineHeight: 1.7,
+                fontWeight: 300,
+                marginBottom: '2.5rem',
+              }}
+            >
+              "이 아이가 자기다운 세계를 만들 힘을 갖게 될까요?"
+            </p>
+
+            <p
+              style={{
+                fontFamily: "'Noto Serif KR', serif",
+                fontSize: 'clamp(1.3rem, 2.4vw, 1.9rem)',
+                color: '#2F6B4F',
                 lineHeight: 1.6,
-                fontWeight: 500,
-                letterSpacing: '-0.02em',
+                fontWeight: 600,
               }}
             >
               크레용숲은 그 질문에 대한 하나의 대답입니다.
             </p>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
   );
 }
 
-// CHILD ART Section 5: Program Details
+// CHILD ART Section 5: Program Details (Premium Editorial Style)
 export function ChildArtSection5() {
   return (
-    <section className="relative min-h-screen bg-white py-24 md:py-32 lg:py-40">
+    <section className="relative bg-white py-24 md:py-32 lg:py-40">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        {/* Top Image Banner */}
+        {/* Image Banner with Text Overlay */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-20"
+          className="relative mb-24 rounded-3xl overflow-hidden"
+          style={{
+            boxShadow: '0 20px 60px rgba(47, 107, 79, 0.1)',
+            height: '300px',
+          }}
         >
+          {/* Background Image */}
           <img
-            src={getImagePath("/assets/about/crayon forest/crayon forest.png")}
+            src={getImagePath("/assets/program/child/child sec.jpg")}
             alt="크레용숲 차일드아트 어린이 색채학교"
-            className="w-full h-auto rounded-3xl shadow-lg"
+            className="w-full h-full object-cover"
             onError={(e) => {
               console.error('Image load error:', e.currentTarget.src);
               const src = e.currentTarget.src;
-              if (src.endsWith('.png')) {
-                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.jpg');
-              } else if (src.endsWith('.jpg')) {
-                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.PNG');
-              } else if (src.endsWith('.PNG')) {
-                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.JPG');
-              } else {
-                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.png');
+              if (src.endsWith('.jpg')) {
+                e.currentTarget.src = getImagePath('/assets/program/child/child sec.JPG');
+              } else if (src.endsWith('.JPG')) {
+                e.currentTarget.src = getImagePath('/assets/program/child/child sec.png');
+              } else if (src.endsWith('.png')) {
+                e.currentTarget.src = getImagePath('/assets/program/child/child sec.PNG');
               }
             }}
           />
-        </motion.div>
 
-        {/* Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-16"
-        >
-          <h2 
+          {/* Gradient Overlay */}
+          <div
+            className="absolute inset-0"
             style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
-              color: '#8fbc88',
-              fontWeight: 400,
-              lineHeight: 1.5,
+              background: 'linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 35%, rgba(255,255,255,0) 70%)',
             }}
-          >
-            크레용숲 차일드아트<br />
-            어린이 색채학교
-          </h2>
+          />
+
+          {/* Text Content Overlay */}
+          <div className="absolute inset-0 flex items-center">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 px-8 md:px-12 lg:px-16 w-full">
+              {/* Left: Title */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <h2
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(1.4rem, 2.8vw, 2.2rem)',
+                    color: '#2F6B4F',
+                    fontWeight: 500,
+                    lineHeight: 1.5,
+                  }}
+                >
+                  크레용숲 차일드아트<br />
+                  어린이 색채학교
+                </h2>
+              </motion.div>
+
+              {/* Right: Description */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="flex flex-col justify-center"
+              >
+                <p
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
+                    color: '#444',
+                    lineHeight: 1.9,
+                    fontWeight: 300,
+                    marginBottom: '0.75rem',
+                  }}
+                >
+                  색·선·감각을 기반으로 아이의 감정 이해력, 감각 민감성, 자기결(고유 패턴)을 키우는 정서예술 프로그램입니다.
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
+                    color: '#2F6B4F',
+                    lineHeight: 1.9,
+                    fontWeight: 500,
+                  }}
+                >
+                  '나답게' 그리고 자기 마음을 아는 법을 배우는 <span style={{ color: '#d97878' }}>예술학교</span>입니다.
+                </p>
+              </motion.div>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Two Column Layout */}
-        <div className="grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-24 mb-20">
-          {/* Left Side: Two Circles Horizontal + Additional Info */}
-          <div className="flex flex-col gap-8">
-            {/* Two Circles - Horizontal Layout */}
-            <div className="flex flex-col md:flex-row gap-8 md:gap-6 items-start">
+        {/* Main Content: Two Column Layout */}
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+          {/* LEFT COLUMN: Circles + Info */}
+          <div className="space-y-12">
+            {/* Two Circles */}
+            <div className="flex flex-row gap-8 items-start">
               {/* Circle 1: 학기제 운영 */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -563,12 +581,18 @@ export function ChildArtSection5() {
                 transition={{ duration: 0.6 }}
                 className="flex flex-col items-center flex-1"
               >
-                <div className="w-40 h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 rounded-full bg-pink-50 border-4 border-green-200 flex items-center justify-center mb-6">
-                  <p 
+                <div
+                  className="w-36 h-36 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-full flex items-center justify-center mb-6"
+                  style={{
+                    background: '#FADFDB',
+                    border: '3px solid #2F6B4F',
+                  }}
+                >
+                  <p
                     className="text-center px-4"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(1rem, 1.6vw, 1.3rem)',
+                      fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
                       color: '#333',
                       fontWeight: 500,
                       lineHeight: 1.5,
@@ -576,66 +600,6 @@ export function ChildArtSection5() {
                   >
                     학기제 운영
                   </p>
-                </div>
-
-                <div className="text-center space-y-2">
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.7,
-                      fontWeight: 300,
-                    }}
-                  >
-                    어떻게 진행되나요?
-                  </p>
-                  <div className="space-y-1.5 text-center">
-                    <p 
-                      style={{
-                        fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.75rem, 1.1vw, 0.85rem)',
-                        color: '#666',
-                        lineHeight: 1.6,
-                        fontWeight: 300,
-                      }}
-                    >
-                      월별 감정술을 테마
-                    </p>
-                    <p 
-                      style={{
-                        fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.75rem, 1.1vw, 0.85rem)',
-                        color: '#666',
-                        lineHeight: 1.6,
-                        fontWeight: 300,
-                      }}
-                    >
-                      발달 단계별 4~12세
-                    </p>
-                    <p 
-                      style={{
-                        fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.75rem, 1.1vw, 0.85rem)',
-                        color: '#666',
-                        lineHeight: 1.6,
-                        fontWeight: 300,
-                      }}
-                    >
-                      월 2회~4회 수업
-                    </p>
-                    <p 
-                      style={{
-                        fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.75rem, 1.1vw, 0.85rem)',
-                        color: '#666',
-                        lineHeight: 1.6,
-                        fontWeight: 300,
-                      }}
-                    >
-                      재료비·가이드북 포함
-                    </p>
-                  </div>
                 </div>
               </motion.div>
 
@@ -647,12 +611,18 @@ export function ChildArtSection5() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="flex flex-col items-center flex-1"
               >
-                <div className="w-40 h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 rounded-full bg-pink-50 border-4 border-green-200 flex items-center justify-center mb-6">
-                  <p 
+                <div
+                  className="w-36 h-36 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-full flex items-center justify-center mb-6"
+                  style={{
+                    background: '#FADFDB',
+                    border: '3px solid #2F6B4F',
+                  }}
+                >
+                  <p
                     className="text-center px-4"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(1rem, 1.6vw, 1.3rem)',
+                      fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
                       color: '#333',
                       fontWeight: 500,
                       lineHeight: 1.5,
@@ -662,312 +632,219 @@ export function ChildArtSection5() {
                     연령별 수업
                   </p>
                 </div>
-
-                <div className="text-center space-y-2">
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.7,
-                      fontWeight: 300,
-                    }}
-                  >
-                    1학기: 3~8월 (5개월)<br />
-                    2학기: 9~12월 (5개월)<br />
-                    방학특강 (1~2월)
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.75rem, 1.1vw, 0.85rem)',
-                      color: '#666',
-                      lineHeight: 1.6,
-                      fontWeight: 300,
-                    }}
-                  >
-                    주1회 / 각 100분 수업
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.75rem, 1.1vw, 0.85rem)',
-                      color: '#666',
-                      lineHeight: 1.6,
-                      fontWeight: 300,
-                    }}
-                  >
-                    인원: 4명 (최대 5명)
-                  </p>
-                </div>
               </motion.div>
             </div>
 
-            {/* Additional Info Box - Balances with right side */}
+            {/* Info Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-pink-50/50 border-2 border-pink-200 rounded-3xl p-8"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              style={{
+                background: '#FAFAFA',
+                borderRadius: '20px',
+                padding: '1.5rem 2rem',
+                border: '1px solid #E8E8E8',
+              }}
             >
-              <h4 
+              {/* Card Header */}
+              <p
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
-                  color: '#ff6b9d',
+                  fontSize: 'clamp(0.95rem, 1.3vw, 1.05rem)',
+                  color: '#2F6B4F',
                   fontWeight: 600,
-                  marginBottom: '1rem',
+                  marginBottom: '1.25rem',
+                  paddingBottom: '0.75rem',
+                  borderBottom: '1px solid #E0E0E0',
                 }}
               >
-                수업 포인트
-              </h4>
-              <div className="space-y-3">
-                <p 
-                  style={{
-                    fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                    color: '#666',
-                    lineHeight: 1.8,
-                    fontWeight: 300,
-                  }}
-                >
-                  • 아이의 감정 리듬을 따라가는 개별 맞춤 수업
-                </p>
-                <p 
-                  style={{
-                    fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                    color: '#666',
-                    lineHeight: 1.8,
-                    fontWeight: 300,
-                  }}
-                >
-                  • 학기제 운영으로 아이의 성장 과정 관찰
-                </p>
-                <p 
-                  style={{
-                    fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                    color: '#666',
-                    lineHeight: 1.8,
-                    fontWeight: 300,
-                  }}
-                >
-                  • 소수정예로 깊이 있는 정서 케어
-                </p>
-                <p 
-                  style={{
-                    fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                    color: '#666',
-                    lineHeight: 1.8,
-                    fontWeight: 300,
-                  }}
-                >
-                  • 부모님과의 정기적인 피드백 공유
-                </p>
-              </div>
-
-              {/* Divider */}
-              <div className="h-px bg-pink-200 my-6" />
-
-              <p 
-                className="text-center"
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.9rem, 1.3vw, 1rem)',
-                  color: '#8fbc88',
-                  lineHeight: 1.8,
-                  fontWeight: 500,
-                }}
-              >
-                "아이의 속도로, 아이의 언어로"
+                어떻게 진행되나요?
               </p>
+
+              {/* Card Content - Two Columns */}
+              <div className="grid grid-cols-2 gap-8">
+                {/* Left Info - 로즈 브라운 */}
+                <div className="space-y-1.5">
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#A66A5A', lineHeight: 1.8 }}>
+                    월별 감정예술 테마
+                  </p>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#A66A5A', lineHeight: 1.8 }}>
+                    발달 단계에 맞춘 4~12세 연령별 수업
+                  </p>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#A66A5A', lineHeight: 1.8 }}>
+                    감정 기록·색 그림으로 글쓰기·자기표현 활동
+                  </p>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#A66A5A', lineHeight: 1.8 }}>
+                    학기제로 이어지는 연속적 성장 흐름
+                  </p>
+                </div>
+
+                {/* Right Info - 짙은 초록색 */}
+                <div className="space-y-1.5">
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#2F6B4F', lineHeight: 1.8 }}>
+                    1학기 : 3~8월 (5개월)
+                  </p>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#2F6B4F', lineHeight: 1.8 }}>
+                    2학기: 9~12월 (5개월)
+                  </p>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#2F6B4F', lineHeight: 1.8 }}>
+                    방학특강 (1~2월)
+                  </p>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#2F6B4F', lineHeight: 1.8, marginTop: '0.75rem' }}>
+                    주1/2회  각 100분수업 ( 10분전 부모 브리핑시간)
+                  </p>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#2F6B4F', lineHeight: 1.8 }}>
+                    인원 : 4명(최대 5명)
+                  </p>
+                </div>
+              </div>
             </motion.div>
           </div>
 
-          {/* Right Side: Description */}
+          {/* RIGHT COLUMN: Description */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="space-y-8"
+            className="space-y-10"
           >
             {/* 왜 학기제로 운영하나요? */}
-            <div className="bg-green-50 border-l-4 border-green-300 rounded-2xl p-6">
-              <h3 
+            <div
+              style={{
+                borderLeft: '3px solid #2F6B4F',
+                paddingLeft: '1.5rem',
+              }}
+            >
+              <h3
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1.1rem, 1.7vw, 1.4rem)',
-                  color: '#8fbc88',
+                  fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
+                  color: '#2F6B4F',
                   fontWeight: 600,
-                  marginBottom: '1rem',
+                  marginBottom: '0.75rem',
                 }}
               >
                 왜 학기제로 운영하나요?
               </h3>
-              <p 
+              <p
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.9rem, 1.3vw, 1rem)',
-                  color: '#666',
+                  fontSize: 'clamp(0.9rem, 1.2vw, 1rem)',
+                  color: '#444',
                   lineHeight: 1.9,
                   fontWeight: 300,
                 }}
               >
-                아이의 감정과 세계의 자리는 1년의 호흡을 생겨납니다.<br />
-                감성은 빠르게마도 구조가, 구조는 빠르게마 자기관계는 능니다.
+                아이의 감정과 세계관이 자라는 1년의 흐름을 설계합니다. 감정은 반복되어야 구조가 되고, 구조는 축적되어야 자기세계관이 됩니다.
               </p>
             </div>
 
-            {/* 감은 대주제로 아이의 나이에 따라 저온도를챕터 */}
+            {/* 같은 대주제라도... */}
             <div>
-              <h4 
+              <h4
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
                   fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
-                  color: '#ff6b9d',
+                  color: '#2F6B4F',
                   fontWeight: 600,
-                  marginBottom: '0.8rem',
+                  marginBottom: '1rem',
+                  background: '#FADFDE',
+                  padding: '0.75rem 1.25rem',
+                  borderRadius: '12px',
+                  display: 'inline-block',
                 }}
               >
-                감은 대주제로 아이의 나이에 따라 저온도를 '표현 갑기'를 달라집니다
+                같은 대주제라도 아이의 나이에 따라 자연스럽게 '표현 깊이'가 달라집니다
               </h4>
               <div className="space-y-2">
-                <p 
-                  style={{
-                    fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                    color: '#666',
-                    lineHeight: 1.8,
-                    fontWeight: 300,
-                  }}
-                >
-                  예: 3월 〈미술에 익숙산〉
+                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.9rem', color: '#A66A5A', lineHeight: 1.8 }}>
+                  예: 3월 &lt;마음의 의상실&gt;
                 </p>
-                <p 
-                  style={{
-                    fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                    color: '#666',
-                    lineHeight: 1.8,
-                    fontWeight: 300,
-                  }}
-                >
-                  4~5세: 큰갱 벅적, 표현, 단조로 색의 기본
+                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.9rem', color: '#A66A5A', lineHeight: 1.8 }}>
+                  4~5세: 감각 패턴, 표정, 단순한 색의 기분
                 </p>
-                <p 
-                  style={{
-                    fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                    color: '#666',
-                    lineHeight: 1.8,
-                    fontWeight: 300,
-                  }}
-                >
-                  6~7세: 어울림 '집고 칠은 색' 경기
+                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.9rem', color: '#A66A5A', lineHeight: 1.8 }}>
+                  6~7세: 마음의 '입고 싶은 색' 찾기
                 </p>
-                <p 
-                  style={{
-                    fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                    color: '#666',
-                    lineHeight: 1.8,
-                    fontWeight: 300,
-                  }}
-                >
-                  초등: 감싸를 촉길 갈호 역살으로 상성
+                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.9rem', color: '#A66A5A', lineHeight: 1.8 }}>
+                  초등: 감정의 층과 겹을 의상으로 상징화
+                </p>
+                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.9rem', color: '#A66A5A', lineHeight: 1.8 }}>
+                  고학년: 감정의 기원·기억을 연결한 스토리 디자인
                 </p>
               </div>
             </div>
 
-            {/* 교재감, 관찰일 기관 */}
-            <div>
-              <p 
+            {/* Key Statement */}
+            <div
+              style={{
+                paddingTop: '1.5rem',
+                borderTop: '1px solid #E5E7EB',
+              }}
+            >
+              <p
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.9rem, 1.3vw, 1rem)',
-                  color: '#666',
-                  lineHeight: 1.9,
-                  fontWeight: 300,
-                }}
-              >
-                교재감, 관찰을 기관 : 기술별 연감감 스토리 디자안
-              </p>
-            </div>
-
-            {/* Bottom Statement */}
-            <div className="pt-6 border-t border-gray-200">
-              <p 
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1rem, 1.6vw, 1.3rem)',
+                  fontSize: 'clamp(0.95rem, 1.4vw, 1.1rem)',
                   color: '#333',
                   lineHeight: 1.9,
                   fontWeight: 400,
                 }}
               >
-                단지 니나으뜬 아청이 아니라 아이의 심리 말긋도 엣이 핵김 능력이 저셜혈계는 것입니다.
-              </p>
-              <p 
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1rem, 1.6vw, 1.3rem)',
-                  color: '#333',
-                  lineHeight: 1.9,
-                  fontWeight: 400,
-                  marginTop: '0.5rem',
-                }}
-              >
-                스느리접인 기쁜오 아이 병석의 기벌은 성싱기, 셀리고 약칭 앉운 나를 속도로 만들어 지는 듣특민나 누치 욕이 등아링니다.
+                단지 난이도만 조정되는 것이 아니라 아이의 발달에 맞춰 해석 능력 자체가 달라지는 것입니다.<br />
+                스토리텔링 기반의 이 방식이 아이의 창조성과 자기이해를 가장 빠르게 성장시킵니다.
               </p>
             </div>
 
-            {/* Final Green Box */}
+            {/* Final Box */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="bg-green-50 border border-green-200 rounded-2xl p-6 text-center"
             >
-              <p 
+              <p
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
-                  color: '#8fbc88',
-                  fontWeight: 500,
+                  fontSize: 'clamp(1rem, 1.4vw, 1.15rem)',
+                  color: '#2F6B4F',
+                  fontWeight: 600,
                   lineHeight: 1.8,
+                  marginBottom: '0.75rem',
+                  background: '#FADFDE',
+                  padding: '0.75rem 1.25rem',
+                  borderRadius: '12px',
+                  display: 'inline-block',
                 }}
               >
-                형제·자매는 같은 주제를 배우되무터도 각각 다른 방식으로 표현합니다.
+                형제·자매는 같은 주제를 배우면서도 각자 다른 방식으로 표현합니다.
               </p>
-              <p 
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.95rem, 1.4vw, 1.1rem)',
-                  color: '#666',
-                  fontWeight: 400,
-                  lineHeight: 1.8,
-                  marginTop: '0.5rem',
-                }}
-              >
-                형제뛴는 저온드려편 예술 아이가지 오겠고, 셔으나 검섬을 어메넨는 시건이 줄어니너,<br />
-                둘 아이의 성장 거름이 한 곳으로 이어지니다.
-              </p>
-              <p 
+              <p
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
                   fontSize: 'clamp(0.9rem, 1.3vw, 1rem)',
+                  color: '#444',
+                  fontWeight: 300,
+                  lineHeight: 1.9,
+                }}
+              >
+                집에서는 자연스럽게 예술 이야기가 오가고, 서로의 감정을 이해하는 시간이 늘어나며,<br />
+                두 아이의 성장 기록이 한 흐름으로 이어집니다.
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
                   color: '#666',
                   fontWeight: 300,
                   lineHeight: 1.7,
-                  marginTop: '0.5rem',
+                  marginTop: '0.75rem',
                 }}
               >
-                이 가장 안의 월곰 드 거러어니는 만든 보니스니즘 가지 사하는 크뢰중념니다.
+                이 가정 안의 통합 예술 생태계는 많은 부모님이 가장 사랑하는 크레용숲의 특징입니다.
               </p>
             </motion.div>
           </motion.div>

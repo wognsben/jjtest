@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 
-// CHILD ART Section 7: Curriculum Details
+// CHILD ART Section 7: Curriculum Details - Premium Editorial Design
 export function ChildArtSection7() {
   const skills = [
     '상상과 구상',
@@ -12,394 +12,275 @@ export function ChildArtSection7() {
     '발견하기',
   ];
 
+  // 1학기 커리큘럼 데이터
+  const semester1 = [
+    {
+      month: '3월',
+      title: '마음의 의상실',
+      quote: '"마음에 오늘 어떤 옷을 입힐까?"',
+      desc: "감정 패턴 · 색의 기분 · 감정의 층을 '의상'으로 상징화",
+    },
+    {
+      month: '4월',
+      title: '마음 우체국',
+      quote: '"속마음을 편지 대신 색으로 보낸다면?"',
+      desc: '감정–색 연결 / 심리적 거리 표현 / 감정 카드를 주고받는 활동',
+    },
+    {
+      month: '5월',
+      title: '가족 감정 아카이브',
+      quote: '"우리 가족의 색은 어떤 빛일까?"',
+      desc: '가족 감정 지도 / 가족 상징 제작 / 부모 참여형 워크',
+    },
+    {
+      month: '6월',
+      title: '아트키친 – 마음을 조리하는 부엌',
+      quote: '"감정은 섞이고 끓고 식기도 해요."',
+      desc: '색 혼합 실험 / 감정의 온도 / 텍스처 레시피',
+    },
+    {
+      month: '7월',
+      title: '감정 테라리움',
+      quote: '"오늘의 기분을 유리병에 키워볼까?"',
+      desc: '감정을 생태·성장 개념으로 다룸',
+    },
+  ];
+
+  // 2학기 커리큘럼 데이터
+  const semester2 = [
+    {
+      month: '8월',
+      title: '감정 지도',
+      quote: '"내 마음은 지금 어디쯤일까?"',
+      desc: '감정역 / 감정 거리 / 마음 탐험·표현',
+    },
+    {
+      month: '9월',
+      title: '감정 직물 정원',
+      quote: '"감정은 반복될 때 결이 됩니다."',
+      desc: '선·결·패턴 작업 → 자기 성향과 감정 리듬 시각화',
+    },
+    {
+      month: '10월',
+      title: '감정 미술관',
+      quote: '"내 감정이 작품이 되는 순간"',
+      desc: '감정–색–형태의 고도화 / 자기만의 상징 제작',
+    },
+    {
+      month: '11월',
+      title: '감정 표본 박물관',
+      quote: '"1년의 감정을 보존하는 과학적 예술 실험"',
+      desc: '감정 포트폴리오 / 감정 표본 채집 / 기억의 색 기록',
+    },
+    {
+      month: '12월',
+      title: '마음 서랍',
+      quote: '"마음의 조각들을 한 서랍에 모아두는 시간"',
+      desc: '1년의 감정 기록 → 개인 아카이브북 완성',
+    },
+  ];
+
   return (
-    <section className="relative min-h-screen bg-white py-24 md:py-32 lg:py-40">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        {/* Top Text */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <p 
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
-              color: '#d97878',
-              lineHeight: 1.9,
-              fontWeight: 400,
-            }}
+    <>
+      <style>{`
+        .curriculum-card {
+          position: relative;
+          background: #FDF8F6;
+          border-radius: 48px;
+          padding: 48px 48px 48px 80px;
+        }
+        
+        .curriculum-card::before {
+          content: "";
+          position: absolute;
+          top: 16px;
+          right: 16px;
+          width: 100px;
+          height: 100px;
+          border-top: 3px solid #B98365;
+          border-right: 3px solid #B98365;
+          border-top-right-radius: 40px;
+          pointer-events: none;
+        }
+        
+        .curriculum-card::after {
+          content: "";
+          position: absolute;
+          bottom: 16px;
+          left: 16px;
+          width: 120px;
+          height: 120px;
+          border-bottom: 3px solid #B98365;
+          border-left: 3px solid #B98365;
+          border-bottom-left-radius: 40px;
+          pointer-events: none;
+        }
+        
+        .special-card {
+          position: relative;
+          background: #F5FAF7;
+          border-radius: 36px;
+          padding: 32px 32px 32px 72px;
+        }
+        
+        .special-card::before {
+          content: "";
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          width: 80px;
+          height: 80px;
+          border-top: 3px solid #6F8F7A;
+          border-right: 3px solid #6F8F7A;
+          border-top-right-radius: 28px;
+          pointer-events: none;
+        }
+        
+        .special-card::after {
+          content: "";
+          position: absolute;
+          bottom: 12px;
+          left: 12px;
+          width: 100px;
+          height: 100px;
+          border-bottom: 3px solid #6F8F7A;
+          border-left: 3px solid #6F8F7A;
+          border-bottom-left-radius: 28px;
+          pointer-events: none;
+        }
+        
+        .skill-card {
+          background: #FAFAFA;
+          border: 1.5px solid #E8E8E8;
+          border-radius: 24px;
+          padding: 1.5rem 1.25rem;
+          transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+          cursor: default;
+        }
+        
+        .skill-card:hover {
+          background: #FDF8F6;
+          border-color: #B98365;
+          transform: translateY(-2px);
+          box-shadow: 0 12px 24px rgba(185, 131, 101, 0.08);
+        }
+        
+        .month-line {
+          font-family: 'Noto Serif KR', serif;
+          font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+          color: #6F8F7A;
+          font-weight: 500;
+          line-height: 1.6;
+          margin-bottom: 0.35rem;
+        }
+        
+        .desc-line {
+          font-family: 'Noto Serif KR', serif;
+          font-size: clamp(0.85rem, 1.1vw, 0.9rem);
+          color: #888;
+          font-weight: 300;
+          line-height: 1.7;
+          margin-bottom: 1.75rem;
+        }
+        
+        .desc-line:last-child {
+          margin-bottom: 0;
+        }
+      `}</style>
+      
+      <section className="relative min-h-screen bg-white py-24 md:py-32 lg:py-40">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+          {/* Top Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-20"
           >
-            스토리텔링으로 그리고, 읽고, 쓰며
-          </p>
-          <p 
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
-              color: '#666',
-              lineHeight: 1.9,
-              fontWeight: 300,
-              marginTop: '0.5rem',
-            }}
-          >
-            자기 감정 언어를 배우고 자기 세계를 해석하는 눈을 확장합니다.
-          </p>
-        </motion.div>
-
-        {/* Main Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Left Side: Semester Boxes */}
-          <div className="space-y-12">
-            {/* 1학기 Box */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative"
+            <p 
+              style={{
+                fontFamily: "'Noto Serif KR', serif",
+                fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                color: '#d97878',
+                lineHeight: 1.9,
+                fontWeight: 400,
+              }}
             >
-              {/* Label Badge */}
-              <div className="absolute -left-4 top-6 z-10">
-                <div className="w-16 h-16 rounded-full bg-white border-4 border-brown-300 flex items-center justify-center shadow-lg">
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: '0.9rem',
-                      color: '#8b6f47',
-                      fontWeight: 600,
-                    }}
-                  >
-                    1학기
-                  </p>
-                </div>
-              </div>
-
-              {/* Content Box */}
-              <div className="bg-pink-50 border-4 border-brown-300 rounded-[3rem] p-8 md:p-10 pl-16 md:pl-20">
-                <div className="space-y-2">
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    <span style={{ color: '#ff6b9d', fontWeight: 500 }}>3월</span> · 마음의 여정상 "마음에 오솔 사는 내 친구가 알고?"
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    강정 패턴 · 색의 기본 · 감정의 움직 '타인'으로 상정하기
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    <span style={{ color: '#ff6b9d', fontWeight: 500 }}>4월</span> 마중 수업 : "속마음을 담아 대신 색으로 보내볼까?"
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    감정–색·연결 / 심리색 기법·표현 / 감정 카드로 수업하는 활동
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    <span style={{ color: '#ff6b9d', fontWeight: 500 }}>5월</span> 기후 감정 아카이브 "우리 가족의 색은 어떤 말일까?"
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    가족 관찰 서도 / 가족 상징 색기 / 무드 감3페 북감
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    <span style={{ color: '#ff6b9d', fontWeight: 500 }}>6월</span> 어토그기감 · 마음을 조ㄴ하는 부엌 "강심은 버이고 팔고 씨기도 해요."
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    색 혼합 성장 / 강정의 오드 / 패스처 레시피
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    <span style={{ color: '#ff6b9d', fontWeight: 500 }}>7월</span> 감정 테책화의블 "선페체 기발을 응련애에 커뻐내까?"
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    감정을 색에 쌓장 기법으로 다들
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* 2학기 Box */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
+              스토리텔링으로 그리고, 읽고, 쓰며
+            </p>
+            <p 
+              style={{
+                fontFamily: "'Noto Serif KR', serif",
+                fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                color: '#666',
+                lineHeight: 1.9,
+                fontWeight: 300,
+                marginTop: '0.5rem',
+              }}
             >
-              {/* Label Badge */}
-              <div className="absolute -left-4 top-6 z-10">
-                <div className="w-16 h-16 rounded-full bg-white border-4 border-brown-300 flex items-center justify-center shadow-lg">
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: '0.9rem',
-                      color: '#8b6f47',
-                      fontWeight: 600,
-                    }}
-                  >
-                    2학기
-                  </p>
-                </div>
-              </div>
+              자기 감정 언어를 배우고 자기 세계를 해석하는 눈을 확장합니다.
+            </p>
+          </motion.div>
 
-              {/* Content Box */}
-              <div className="bg-pink-50 border-4 border-brown-300 rounded-[3rem] p-8 md:p-10 pl-16 md:pl-20">
-                <div className="space-y-2">
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    <span style={{ color: '#8fbc88', fontWeight: 500 }}>8월</span> 감정 지도 "내 마음속 차곡 여디틀까?"
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    감정색 / 경겨 기억 / 마을 담화·포석
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    <span style={{ color: '#8fbc88', fontWeight: 500 }}>9월</span> 감정 밤을 어구멍 "너요은 믿메멀스 비느다"
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    안 될 내든 색에 → 자기 성격과 감싸 디뤄을 시각화
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    <span style={{ color: '#8fbc88', fontWeight: 500 }}>10월</span> 감정 마을촌 "내 감정이 마을에 산는 준ᄃᄋ"
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    감정–색–경험의 고도감 / 차거리의 상징 색기
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    <span style={{ color: '#8fbc88', fontWeight: 500 }}>11월</span> 감정 트스 맹류딴 "나년의 감정을 보관하는 과제적 예술 성방"
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    감싱 표독페미2 / 감정 표돈 외국 / 거에억 색 기록
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    <span style={{ color: '#8fbc88', fontWeight: 500 }}>12월</span> 미중 서뮤 "마음의 국자불을 만 시돈애로 모아가는 서2"
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    감싱 표독 박스 → 개인 아카이브북 완성
-                  </p>
-                  <p 
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
-                    }}
-                  >
-                    <span style={{ color: '#8fbc88', fontWeight: 500 }}>1년간</span> 감정 기능 → 개인 아카이브박 완성
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Side */}
-          <div className="space-y-12">
-            {/* Top: 6 Skill Buttons in Grid */}
+          {/* ============ TOP SECTION: Skills + Special ============ */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-20">
+            {/* Left: Skill Cards Grid */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="grid grid-cols-2 gap-4 md:gap-6"
+              transition={{ duration: 0.7 }}
+              className="grid grid-cols-2 gap-5"
             >
               {skills.map((skill, index) => (
-                <motion.button
+                <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white border-3 border-gray-300 rounded-[2rem] px-6 py-8 hover:border-pink-300 hover:bg-pink-50/30 transition-all duration-300"
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  className="skill-card"
                 >
                   <p 
                     className="text-center"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.9rem, 1.3vw, 1rem)',
-                      color: '#333',
+                      fontSize: 'clamp(0.9rem, 1.2vw, 1rem)',
+                      color: '#444',
                       fontWeight: 500,
-                      lineHeight: 1.6,
+                      lineHeight: 1.5,
                     }}
                   >
                     {skill}
                   </p>
-                </motion.button>
+                </motion.div>
               ))}
             </motion.div>
 
-            {/* Bottom: 방학스페셜 Box */}
+            {/* Right: 방학 스페셜 Card */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
               className="relative"
             >
               {/* Label Badge */}
               <div className="absolute -left-4 top-6 z-10">
-                <div className="w-20 h-20 rounded-full bg-white border-4 border-green-400 flex items-center justify-center shadow-lg">
+                <div 
+                  className="w-16 h-16 rounded-full bg-white flex items-center justify-center"
+                  style={{
+                    boxShadow: '0 8px 24px rgba(111, 143, 122, 0.15)',
+                    border: '3px solid #6F8F7A',
+                  }}
+                >
                   <p 
-                    className="text-center px-2"
+                    className="text-center px-1"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: '0.8rem',
-                      color: '#8fbc88',
+                      fontSize: '0.75rem',
+                      color: '#6F8F7A',
                       fontWeight: 600,
                       lineHeight: 1.3,
                     }}
@@ -409,37 +290,160 @@ export function ChildArtSection7() {
                 </div>
               </div>
 
-              {/* Content Box */}
-              <div className="bg-pink-50 border-4 border-brown-300 rounded-[3rem] p-8 md:p-10 pl-20 md:pl-24">
-                <div className="space-y-3">
+              {/* Content Card - Open Frame */}
+              <div className="special-card">
+                <div className="space-y-4">
                   <p 
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.9rem, 1.3vw, 1rem)',
-                      color: '#666',
-                      lineHeight: 1.8,
-                      fontWeight: 300,
+                      fontSize: 'clamp(0.95rem, 1.3vw, 1.05rem)',
+                      color: '#6F8F7A',
+                      fontWeight: 500,
+                      lineHeight: 1.7,
                     }}
                   >
-                    • 애니포토숍을 위한 마음드문일
+                    예비초등을 위한 마음드로잉
                   </p>
                   <p 
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.9rem, 1.3vw, 1rem)',
-                      color: '#666',
+                      fontSize: 'clamp(0.85rem, 1.1vw, 0.9rem)',
+                      color: '#888',
                       lineHeight: 1.8,
                       fontWeight: 300,
                     }}
                   >
-                    • 초등 마음일 성별뢰 : 어샀에도 되는 마을
+                    새 학년을 앞둔 아이들이 감정과 색을 통해 자기 표현의 첫걸음을 내딛는 시간
                   </p>
+                  <div className="pt-4" style={{ borderTop: '1px solid rgba(111, 143, 122, 0.2)' }}>
+                    <p 
+                      style={{
+                        fontFamily: "'Noto Serif KR', serif",
+                        fontSize: 'clamp(0.95rem, 1.3vw, 1.05rem)',
+                        color: '#6F8F7A',
+                        fontWeight: 500,
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      초등 마음의 실험실
+                    </p>
+                    <p 
+                      style={{
+                        fontFamily: "'Noto Serif KR', serif",
+                        fontSize: 'clamp(0.85rem, 1.1vw, 0.9rem)',
+                        color: '#888',
+                        lineHeight: 1.8,
+                        fontWeight: 300,
+                      }}
+                    >
+                      이상해도 되는 미술 — 정답 없이 탐색하고, 실수로 발견하는 예술 실험
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* ============ BOTTOM SECTION: 1학기 + 2학기 ============ */}
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
+            {/* 1학기 Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="relative"
+            >
+              {/* Label Badge */}
+              <div className="absolute -left-4 top-8 z-10">
+                <div 
+                  className="w-16 h-16 rounded-full bg-white flex items-center justify-center"
+                  style={{
+                    boxShadow: '0 8px 24px rgba(111, 143, 122, 0.15)',
+                    border: '3px solid #6F8F7A',
+                  }}
+                >
+                  <p 
+                    style={{
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: '0.9rem',
+                      color: '#6F8F7A',
+                      fontWeight: 600,
+                    }}
+                  >
+                    1학기
+                  </p>
+                </div>
+              </div>
+
+              {/* Content Card - Open Frame */}
+              <div className="curriculum-card">
+                <div className="space-y-0">
+                  {semester1.map((item, idx) => (
+                    <div key={idx}>
+                      <p className="month-line">
+                        {item.month} · {item.title}
+                      </p>
+                      <p className="desc-line">
+                        {item.quote}<br />
+                        {item.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 2학기 Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="relative"
+            >
+              {/* Label Badge */}
+              <div className="absolute -left-4 top-8 z-10">
+                <div 
+                  className="w-16 h-16 rounded-full bg-white flex items-center justify-center"
+                  style={{
+                    boxShadow: '0 8px 24px rgba(111, 143, 122, 0.15)',
+                    border: '3px solid #6F8F7A',
+                  }}
+                >
+                  <p 
+                    style={{
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: '0.9rem',
+                      color: '#6F8F7A',
+                      fontWeight: 600,
+                    }}
+                  >
+                    2학기
+                  </p>
+                </div>
+              </div>
+
+              {/* Content Card - Open Frame */}
+              <div className="curriculum-card">
+                <div className="space-y-0">
+                  {semester2.map((item, idx) => (
+                    <div key={idx}>
+                      <p className="month-line">
+                        {item.month} · {item.title}
+                      </p>
+                      <p className="desc-line">
+                        {item.quote}<br />
+                        {item.desc}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

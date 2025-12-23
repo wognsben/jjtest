@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { gsap } from 'gsap';
 import { ChildArtSection2, ChildArtSection3, ChildArtSection4, ChildArtSection5 } from '../components/ChildArtSections';
 import { getImagePath } from '../utils/imageUtils';
 import { ChildArtSection6 } from '../components/ChildArtSection6';
@@ -49,15 +50,70 @@ function RebuildText({
 
 // CHILD ART Section
 function ChildArtSection() {
-  return (
-    <section className="relative min-h-screen bg-white py-24 md:py-32 lg:py-40">
-      {/* Section label */}
-      <div className="absolute top-8 left-8 md:left-12 lg:left-24">
-        <p className="text-xs tracking-[0.15em] text-tertiary uppercase opacity-60">
-          CHILD ART
-        </p>
-      </div>
+  const sectionRef = React.useRef<HTMLElement>(null);
+  const outerRingRef = React.useRef<SVGCircleElement>(null);
+  const innerRingRef = React.useRef<SVGCircleElement>(null);
 
+  React.useEffect(() => {
+    const section = sectionRef.current;
+    const outerRing = outerRingRef.current;
+    const innerRing = innerRingRef.current;
+    if (!section || !outerRing || !innerRing) return;
+
+    const outerRadius = 138;
+    const innerRadius = 126;
+
+    const outerCircumference = 2 * Math.PI * outerRadius;
+    const innerCircumference = 2 * Math.PI * innerRadius;
+
+    outerRing.style.strokeDasharray = outerCircumference.toString();
+    innerRing.style.strokeDasharray = innerCircumference.toString();
+
+    // 초기 상태: 비활성 (안 보이게)
+    outerRing.style.strokeDashoffset = outerCircumference.toString();
+    innerRing.style.strokeDashoffset = innerCircumference.toString();
+
+    let hasAnimated = false;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          hasAnimated = true;
+
+          // GSAP을 사용한 프리미엄 애니메이션
+          // 바깥 링: 1.2초에 걸쳐 채워짐
+          gsap.to(outerRing, {
+            strokeDashoffset: 0,
+            duration: 1.2,
+            ease: 'power2.out',
+          });
+
+          // 안쪽 링: 1.5초에 걸쳐 채워짐 (92% 속도로 약간 느리게)
+          gsap.to(innerRing, {
+            strokeDashoffset: innerCircumference * 0.08, // 92% 채워짐
+            duration: 1.5,
+            ease: 'power2.out',
+          });
+        }
+      },
+      {
+        threshold: 0.2, // 섹션 20% 보이면 활성화
+      }
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <section 
+      ref={sectionRef}
+      id="child-art-section"
+      className="relative bg-white py-24 md:py-32 lg:py-40"
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         {/* Hero Image with Text Overlay */}
         <motion.div
@@ -73,76 +129,140 @@ function ChildArtSection() {
           {/* Main Image */}
           <div className="relative aspect-[16/9] md:aspect-[21/9]">
             <img 
-              src={getImagePath("/assets/about/crayon forest/crayon forest.png")}
+              src={getImagePath("/assets/program/child/child2.png")}
               alt="크레용숲 어린이색채학교"
               className="w-full h-full object-cover"
               onError={(e) => {
                 console.error('Image load error:', e.currentTarget.src);
                 const src = e.currentTarget.src;
                 if (src.endsWith('.png')) {
-                  e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.jpg');
-                } else if (src.endsWith('.jpg')) {
-                  e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.PNG');
+                  e.currentTarget.src = getImagePath('/assets/program/child/child2.PNG');
                 } else if (src.endsWith('.PNG')) {
-                  e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.JPG');
+                  e.currentTarget.src = getImagePath('/assets/program/child/child2.jpg');
+                } else if (src.endsWith('.jpg')) {
+                  e.currentTarget.src = getImagePath('/assets/program/child/child2.JPG');
                 } else {
-                  e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.png');
+                  e.currentTarget.src = getImagePath('/assets/program/child/child2.png');
                 }
               }}
             />
             
-            {/* Centered Pink Circle Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="relative"
-              >
-                {/* Pink Circle Background */}
-                <div className="bg-pink-100/90 backdrop-blur-sm rounded-full w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 flex items-center justify-center shadow-lg border-2 border-pink-200/50">
-                  <div className="text-center px-8">
-                    <p 
-                      className="mb-2"
-                      style={{
-                        fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.75rem, 1.2vw, 0.9rem)',
-                        color: '#ff6b9d',
-                        fontWeight: 300,
-                        lineHeight: 1.8,
-                        letterSpacing: '0.05em',
-                      }}
-                    >
-                      예술로 자기 세계를 만드는 아이들
-                    </p>
-                    <h2 
-                      className="mb-2"
-                      style={{
-                        fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.3rem)',
-                        color: '#333',
-                        fontWeight: 600,
-                        letterSpacing: '-0.01em',
-                      }}
-                    >
-                      크레용숲 어린이색채학교
-                    </h2>
-                    <p 
-                      style={{
-                        fontFamily: "'Inter', sans-serif",
-                        fontSize: 'clamp(1.5rem, 2.5vw, 2.2rem)',
-                        color: '#ff6b9d',
-                        fontWeight: 300,
-                        letterSpacing: '0.15em',
-                        fontStyle: 'italic',
-                      }}
-                    >
-                      CHILD ART
-                    </p>
-                  </div>
+            {/* Centered Text with Progress Rings */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="relative flex items-center justify-center w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+                {/* SVG RINGS + BLOB */}
+                <svg
+                  viewBox="0 0 300 300"
+                  className="absolute inset-0 w-full h-full"
+                  style={{
+                    opacity: 0.95,
+                  }}
+                >
+                  <defs>
+                    {/* Blob distortion - 애니메이션 제거 */}
+                    <filter id="blobGrain1">
+                      <feTurbulence
+                        type="fractalNoise"
+                        baseFrequency="0.012"
+                        numOctaves={2}
+                        seed={3}
+                        result="noise"
+                      />
+                      <feDisplacementMap
+                        in="SourceGraphic"
+                        scale="10"
+                      />
+                    </filter>
+                  </defs>
+
+                  {/* BLOB BACKGROUND - 중심(150, 150)에 배치, 크기 확대 */}
+                  <g transform="translate(150, 150) scale(1.15) translate(-140, -130)">
+                    <path
+                      d="M70,85 C40,115 35,195 105,215 C175,235 245,185 235,115 C225,55 155,25 95,45 C75,55 65,65 70,85 Z"
+                      fill="#FADFDB"
+                      filter="url(#blobGrain1)"
+                      stroke="#A66A5A"
+                      strokeWidth="1.5"
+                      strokeOpacity="0.25"
+                    />
+                  </g>
+
+                  {/* OUTER RING */}
+                  <circle
+                    ref={outerRingRef}
+                    cx="150"
+                    cy="150"
+                    r="138"
+                    fill="none"
+                    stroke="#A66A5A"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    style={{
+                      transform: 'rotate(180deg)',
+                      transformOrigin: '50% 50%',
+                    }}
+                  />
+
+                  {/* INNER RING */}
+                  <circle
+                    ref={innerRingRef}
+                    cx="150"
+                    cy="150"
+                    r="126"
+                    fill="none"
+                    stroke="#A66A5A"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    style={{
+                      transform: 'rotate(180deg)',
+                      transformOrigin: '50% 50%',
+                    }}
+                  />
+                </svg>
+
+                {/* TEXT CONTENT */}
+                <div className="relative z-10 text-center px-8">
+                  <p
+                    className="mb-2"
+                    style={{
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: 'clamp(0.75rem, 1.2vw, 0.9rem)',
+                      color: '#A66A5A',
+                      fontWeight: 300,
+                      lineHeight: 1.8,
+                      letterSpacing: '0.05em',
+                    }}
+                  >
+                    예술로 자기 세계를 만드는 아이들
+                  </p>
+
+                  <h2
+                    className="mb-2"
+                    style={{
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: 'clamp(1rem, 1.8vw, 1.3rem)',
+                      color: '#A66A5A',
+                      fontWeight: 600,
+                      letterSpacing: '-0.01em',
+                    }}
+                  >
+                    크레용숲 어린이색채학교
+                  </h2>
+
+                  <p
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: 'clamp(1.5rem, 2.5vw, 2.2rem)',
+                      color: '#A66A5A',
+                      fontWeight: 300,
+                      letterSpacing: '0.15em',
+                      fontStyle: 'italic',
+                    }}
+                  >
+                    CHILD ART
+                  </p>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </motion.div>
