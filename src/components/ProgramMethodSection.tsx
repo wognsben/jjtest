@@ -168,13 +168,8 @@ export default function ProgramMethodSection() {
                 <div className="flex flex-wrap gap-3">
                   <button
                     onClick={() => {
-                      // 커스텀 이벤트로 아코디언 열기
+                      // 커스텀 이벤트로 아코디언 열기 + 스크롤 (ProgramsPage에서 처리)
                       window.dispatchEvent(new CustomEvent('openProgram', { detail: 'childart' }));
-                      // 스크롤 이동
-                      setTimeout(() => {
-                        const element = document.querySelector('[data-section="childart"]');
-                        element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }, 100);
                     }}
                     className="program-pill"
                   >
@@ -183,10 +178,6 @@ export default function ProgramMethodSection() {
                   <button
                     onClick={() => {
                       window.dispatchEvent(new CustomEvent('openProgram', { detail: 'youthart' }));
-                      setTimeout(() => {
-                        const element = document.querySelector('[data-section="youthart"]');
-                        element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }, 100);
                     }}
                     className="program-pill"
                   >
@@ -195,10 +186,6 @@ export default function ProgramMethodSection() {
                   <button
                     onClick={() => {
                       window.dispatchEvent(new CustomEvent('openProgram', { detail: 'adultart' }));
-                      setTimeout(() => {
-                        const element = document.querySelector('[data-section="adultart"]');
-                        element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }, 100);
                     }}
                     className="program-pill"
                   >
@@ -207,10 +194,6 @@ export default function ProgramMethodSection() {
                   <button
                     onClick={() => {
                       window.dispatchEvent(new CustomEvent('openProgram', { detail: 'moments' }));
-                      setTimeout(() => {
-                        const element = document.querySelector('[data-section="moments"]');
-                        element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }, 100);
                     }}
                     className="program-pill"
                   >
