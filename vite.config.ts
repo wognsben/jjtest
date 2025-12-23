@@ -16,6 +16,7 @@
         'three',
         'gsap',
         'gsap/ScrollTrigger',
+        'lenis',
       ],
       // ESM 모듈 로딩 순서 문제 해결
       esbuildOptions: {

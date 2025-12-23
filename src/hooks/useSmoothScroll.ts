@@ -17,7 +17,7 @@ export function useSmoothScroll(enabled: boolean = true) {
     const initLenis = async () => {
       try {
         if (!Lenis) {
-          const LenisModule = await import('@studio-freight/lenis');
+          const LenisModule = await import('lenis');
           Lenis = LenisModule.default;
         }
 
