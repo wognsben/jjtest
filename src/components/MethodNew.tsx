@@ -219,7 +219,7 @@ export default function MethodNew() {
           </motion.div>
           
           {/* Two column layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             {/* Left - Text content */}
             <motion.div 
               initial={{ opacity: 0, x: -40 }}
@@ -316,8 +316,7 @@ export default function MethodNew() {
                   <img 
                     src={getImagePath('/assets/main/heart method.jpg')}
                     alt="크레용숲 메소드"
-                    className="w-full h-auto block"
-                    style={{ maxHeight: '600px', objectFit: 'contain' }}
+                    className="w-full h-auto block rounded-3xl"
                   />
                 </div>
               </motion.div>
