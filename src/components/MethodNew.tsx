@@ -300,10 +300,8 @@ export default function MethodNew() {
                 className="relative"
               >
                 <div 
-                  className="aspect-[3/4] relative overflow-hidden shadow-2xl rounded-3xl"
+                  className="relative overflow-hidden shadow-2xl rounded-3xl"
                   style={{
-                    minHeight: '400px',
-                    maxHeight: '500px',
                     transform: `perspective(1200px) rotateX(${-mousePos.y * 0.4}deg) rotateY(${mousePos.x * 0.4}deg)`,
                     transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     boxShadow: `
@@ -314,16 +312,13 @@ export default function MethodNew() {
                     `
                   }}
                 >
-                  {/* Background image */}
-                  <div 
-                    className="absolute inset-0 w-full h-full bg-cover bg-center"
-                    style={{
-                      backgroundImage: `url(${getImagePath('/assets/main/heart method.jpg')})`
-                    }}
+                  {/* Image */}
+                  <img 
+                    src={getImagePath('/assets/main/heart method.jpg')}
+                    alt="크레용숲 메소드"
+                    className="w-full h-auto block"
+                    style={{ maxHeight: '600px', objectFit: 'contain' }}
                   />
-                  
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-brown-900/20 via-transparent to-transparent" />
                 </div>
               </motion.div>
             </motion.div>
