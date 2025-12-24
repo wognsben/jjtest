@@ -686,36 +686,18 @@ export function YouthArtSection3() {
           <div className="hidden md:block relative min-h-[1000px] lg:min-h-[950px]">
             
             {/* Center Philosophy Art Circle - PC */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
-              <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80">
-                {/* Animated Circle Border */}
-                <svg
-                  className="absolute inset-0 w-full h-full"
-                  viewBox="0 0 200 200"
-                >
-                  <circle
-                    cx="100"
-                    cy="100"
-                    r="96"
-                    fill="none"
-                    stroke="#b98463"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                
-                {/* Circle Content */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="absolute inset-[3px] rounded-full flex items-center justify-center"
-                  style={{ 
-                    background: '#FADFDB',
-                    boxShadow: '0 10px 40px rgba(166, 106, 90, 0.2)'
-                  }}
-                >
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full flex items-center justify-center"
+                style={{ 
+                  background: '#FADFDB',
+                  border: '3px solid #b98463'
+                }}
+              >
                 <div className="text-center px-4">
                   <p
                     style={{
@@ -778,7 +760,6 @@ export function YouthArtSection3() {
                   </p>
                 </div>
               </motion.div>
-              </div>
             </div>
             
             {/* 4 Room Cards */}
