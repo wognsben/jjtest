@@ -133,7 +133,7 @@ export default function ProgramMethodSection() {
                 하도록 돕는 방법입니다.
               </p>
               <p style={{ marginTop: '1.5rem', color: '#2F6B4F', fontWeight: 500 }}>
-                스에나가 메소드는<br />
+                스에나가 메소드는<br className="lg:hidden" />{' '}
                 크레용숲이 지향하는 예술 기반 정서교육의 핵심 토대입니다.
               </p>
             </div>

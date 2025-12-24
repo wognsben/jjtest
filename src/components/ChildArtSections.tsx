@@ -713,10 +713,10 @@ export function ChildArtSection5() {
 
                 {/* Right Info - 짙은 초록색 */}
                 <div className="space-y-1.5">
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.75rem', color: '#2F6B4F', lineHeight: 1.8 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.72rem, 1vw, 0.75rem)', color: '#2F6B4F', lineHeight: 1.8 }}>
                     1학기 : 3~8월 (5개월)
                   </p>
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.75rem', color: '#2F6B4F', lineHeight: 1.8 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.72rem, 1vw, 0.75rem)', color: '#2F6B4F', lineHeight: 1.8 }}>
                     2학기: 9~12월 (5개월)
                   </p>
                   <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.75rem', color: '#2F6B4F', lineHeight: 1.8 }}>

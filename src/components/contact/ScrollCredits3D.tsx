@@ -84,6 +84,15 @@ function ImageCard({ position, imageUrl, scrollProgress, baseY, speed, index }: 
   const meshRef = useRef<THREE.Mesh>(null);
   const materialRef = useRef<THREE.MeshStandardMaterial>(null);
   const [texture, setTexture] = useState<THREE.Texture | null>(null);
+  const { viewport } = useThree();
+  
+  // 반응형 크기 및 위치 계산
+  const isMobile = viewport.width < 6;
+  const cardWidth = isMobile ? 1.5 : 2.5;
+  const cardHeight = isMobile ? 2.1 : 3.5;
+  
+  // 모바일에서는 X 위치를 중앙으로 좁게, PC에서는 더 넓게 조정
+  const adjustedPositionX = isMobile ? position[0] * 0.6 : position[0] * 1.2;
 
   useEffect(() => {
     const loader = new THREE.TextureLoader();
@@ -127,10 +136,11 @@ function ImageCard({ position, imageUrl, scrollProgress, baseY, speed, index }: 
     // Fade out as it rotates
     materialRef.current.opacity = 1 - rotationProgress * 0.6;
 
-    // Add subtle mouse parallax
+    // Add subtle mouse parallax (모바일에서 덜 적용)
     const mouse = state.mouse;
-    meshRef.current.position.x = position[0] + mouse.x * 0.2 * (index % 2 === 0 ? 1 : -1);
-    meshRef.current.position.z = position[2] + Math.abs(mouse.y) * 0.3;
+    const parallaxStrength = isMobile ? 0.05 : 0.2;
+    meshRef.current.position.x = adjustedPositionX + mouse.x * parallaxStrength * (index % 2 === 0 ? 1 : -1);
+    meshRef.current.position.z = position[2] + Math.abs(mouse.y) * (isMobile ? 0.1 : 0.3);
   });
 
   if (!texture) {
@@ -138,8 +148,8 @@ function ImageCard({ position, imageUrl, scrollProgress, baseY, speed, index }: 
   }
 
   return (
-    <mesh ref={meshRef} position={position}>
-      <planeGeometry args={[2.5, 3.5]} />
+    <mesh ref={meshRef} position={[adjustedPositionX, position[1], position[2]]}>
+      <planeGeometry args={[cardWidth, cardHeight]} />
       <meshStandardMaterial
         ref={materialRef}
         map={texture}
@@ -190,6 +200,17 @@ export default function ScrollCredits3D() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = React.useState(0);
   const [isVisible, setIsVisible] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  // 모바일 감지
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -234,7 +255,10 @@ export default function ScrollCredits3D() {
       <div className="sticky top-0 h-screen w-full">
         {isVisible ? (
           <Canvas
-            camera={{ position: [0, 0, 8], fov: 50 }}
+            camera={{ 
+              position: [0, 0, isMobile ? 10 : 8], 
+              fov: isMobile ? 60 : 50 
+            }}
             gl={{
               antialias: true,
               alpha: true,

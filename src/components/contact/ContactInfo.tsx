@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Instagram, BookOpen, PenLine } from 'lucide-react';
+import { getImagePath } from '../../utils/imageUtils';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,32 +33,26 @@ export default function ContactInfo() {
 
   const contactItems = [
     {
-      icon: BookOpen,
-      label: '블로그',
+      icon: getImagePath('/assets/1x/blog bl.png'),
+      label: '네이버 블로그',
       value: 'dreaming_art_play',
       link: 'https://blog.naver.com/dreaming_art_play',
-      color: '#7CB342',
+      color: '#03C75A',
     },
     {
-      icon: PenLine,
+      icon: getImagePath('/assets/1x/brunch.png'),
       label: '브런치',
       value: 'jsm925',
       link: 'https://brunch.co.kr/@jsm925',
-      color: '#333333',
+      color: '#00C896',
     },
     {
-      icon: Instagram,
-      label: '크레용숲 인스타',
-      value: 'crayonforest.art',
+      icon: getImagePath('/assets/1x/instagram.png'),
+      label: '인스타그램',
+      value: '@crayonforest.art',
       link: 'https://instagram.com/crayonforest.art',
-      color: '#F48FB1',
-    },
-    {
-      icon: Instagram,
-      label: '아동미술 인스타',
-      value: 'crayonforest_childart',
-      link: 'https://instagram.com/crayonforest_childart',
-      color: '#E91E63',
+      color: '#E4405F',
+      description: '@crayonforest_childart',
     },
   ];
 
@@ -77,7 +71,7 @@ export default function ContactInfo() {
       />
 
       <div className="max-w-5xl mx-auto">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
           {contactItems.map((item, index) => (
             <motion.div
               key={index}
@@ -87,7 +81,7 @@ export default function ContactInfo() {
               whileHover={{ y: -4 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="relative bg-white border border-black/5 rounded-2xl p-8 min-h-[280px] flex flex-col overflow-hidden">
+              <div className="relative bg-white border border-black/5 rounded-2xl p-8 min-h-[200px] flex flex-col overflow-hidden">
                 {/* Background glow */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-8 transition-opacity duration-600"
@@ -96,63 +90,78 @@ export default function ContactInfo() {
                   }}
                 />
 
-                <div className="relative z-10 flex-1 flex flex-col">
-                  {/* Icon */}
+                <div className="relative z-10 flex items-start gap-6">
+                  {/* Icon - PNG Image */}
                   <motion.div
-                    className="inline-flex items-center justify-center w-14 h-14 mb-6 rounded-xl"
-                    style={{ backgroundColor: `${item.color}15` }}
+                    className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-white flex-shrink-0"
                     whileHover={{ scale: 1.02, rotate: 2 }}
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <item.icon
-                      className="w-7 h-7"
-                      style={{ color: item.color }}
-                      strokeWidth={2}
+                    <img
+                      src={item.icon}
+                      alt={item.label}
+                      className="w-7 h-7 object-contain"
                     />
                   </motion.div>
 
-                  {/* Label */}
-                  <h3
-                    className="uppercase mb-4 text-[#6B4423]/50"
-                    style={{
-                      fontSize: '0.75rem',
-                      letterSpacing: '0.15em',
-                      fontWeight: 500,
-                    }}
-                  >
-                    {item.label}
-                  </h3>
+                  {/* Content - Label and Link */}
+                  <div className="flex-1 flex flex-col justify-center min-w-0">
+                    {/* Label */}
+                    <h3
+                      className="mb-3 text-[#6B4423]/50"
+                      style={{
+                        fontSize: '0.85rem',
+                        letterSpacing: '0.05em',
+                        fontWeight: 500,
+                      }}
+                    >
+                      {item.label}
+                    </h3>
 
-                  {/* Value */}
-                  <div className="mt-auto">
-                    {item.link ? (
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block text-[#6B4423] hover:text-[#7CB342] transition-colors duration-600 break-words"
-                        style={{
-                          fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
-                          lineHeight: 1.4,
-                          textDecoration: 'underline',
-                          textDecorationColor: item.color,
-                          textDecorationThickness: '2px',
-                          textUnderlineOffset: '4px',
-                        }}
-                      >
-                        {item.value}
-                      </a>
-                    ) : (
-                      <p
-                        className="text-[#6B4423] whitespace-pre-line"
-                        style={{
-                          fontSize: 'clamp(1.1rem, 1.8vw, 1.3rem)',
-                          lineHeight: 1.7,
-                        }}
-                      >
-                        {item.value}
-                      </p>
-                    )}
+                    {/* Value */}
+                    <div>
+                      {item.link ? (
+                        <>
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block text-[#6B4423] hover:text-[#7CB342] transition-colors duration-600 break-words"
+                            style={{
+                              fontSize: 'clamp(1rem, 1.8vw, 1.2rem)',
+                              lineHeight: 1.4,
+                              textDecoration: 'underline',
+                              textDecorationColor: item.color,
+                              textDecorationThickness: '2px',
+                              textUnderlineOffset: '4px',
+                            }}
+                          >
+                            {item.value}
+                          </a>
+                          {item.description && (
+                            <p
+                              className="mt-2 text-[#6B4423]/60"
+                              style={{
+                                fontSize: 'clamp(0.85rem, 1.4vw, 1rem)',
+                                lineHeight: 1.4,
+                              }}
+                            >
+                              {item.description}
+                            </p>
+                          )}
+                        </>
+                      ) : (
+                        <p
+                          className="text-[#6B4423] whitespace-pre-line"
+                          style={{
+                            fontSize: 'clamp(1rem, 1.6vw, 1.2rem)',
+                            lineHeight: 1.7,
+                          }}
+                        >
+                          {item.value}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

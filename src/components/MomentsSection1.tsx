@@ -124,25 +124,29 @@ export function MomentsSection1() {
     }
   }, [isHovered, isMobile]);
 
-  // 모바일 ScrollTrigger (Desktop 제외)
+  // 모바일 무한 스크롤 애니메이션
   useEffect(() => {
     if (!isMobile || !containerRef.current) return;
 
-    const cards = containerRef.current.querySelectorAll('.mobile-review-card');
+    const track = containerRef.current;
+    const cards = track.querySelectorAll('.mobile-review-card');
+    if (cards.length === 0) return;
+
+    // 초기 위치 설정
+    gsap.set(track, { x: 0 });
+
+    // 무한 루프 애니메이션
+    const totalWidth = track.scrollWidth / 2; // 이미지가 2번 반복되므로 절반
     
-    gsap.from(cards, {
-      opacity: 0,
-      y: 24,
-      stagger: 0.1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      },
+    const animation = gsap.to(track, {
+      x: `-${totalWidth}px`,
+      duration: 35, // 35초에 걸쳐 이동
+      ease: 'linear',
+      repeat: -1,
     });
 
     return () => {
+      animation.kill();
       ScrollTrigger.getAll().forEach(trigger => {
         if (trigger.vars.trigger === containerRef.current) {
           trigger.kill();
@@ -181,7 +185,7 @@ export function MomentsSection1() {
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)',
+                fontSize: 'clamp(0.94rem, 1.2vw, 1.1rem)',
                 color: '#8B7355',
                 fontWeight: 300,
                 lineHeight: 1.8,
@@ -277,7 +281,7 @@ export function MomentsSection1() {
                       <p
                         style={{
                           fontFamily: "'Noto Serif KR', serif",
-                          fontSize: 'clamp(0.8rem, 1vw, 0.95rem)',
+                          fontSize: 'clamp(0.77rem, 1vw, 0.95rem)',
                           color: '#555',
                           fontWeight: 300,
                           lineHeight: 1.6,
@@ -368,12 +372,64 @@ export function MomentsSection1() {
             </>
           )}
 
-          {/* Mobile: Static Vertical Grid */}
+          {/* Mobile: GSAP Infinite Horizontal Scroll */}
           {isMobile && (
-            <div className="grid grid-cols-2 gap-4">
-              {reviewImages.map((imageSrc, index) => (
-                <MobileReviewCard key={index} imageSrc={imageSrc} index={index} />
-              ))}
+            <div className="relative overflow-hidden rounded-2xl" style={{ height: '400px' }}>
+              {/* Scrolling Track */}
+              <div
+                ref={containerRef}
+                className="flex items-center absolute top-0 left-0 h-full"
+                style={{ gap: '1rem' }}
+              >
+                {/* 이미지 2번 반복 (무한 루프를 위해) */}
+                {[...reviewImages, ...reviewImages].map((imageSrc, idx) => (
+                  <div
+                    key={idx}
+                    className="mobile-review-card flex-shrink-0"
+                    style={{ width: '240px', height: '320px' }}
+                  >
+                    <div
+                      className="rounded-2xl overflow-hidden w-full h-full"
+                      style={{
+                        background: 'linear-gradient(180deg, #ffffff 0%, #fffafa 100%)',
+                        border: '1px solid rgba(255,182,193,0.18)',
+                        boxShadow: '0 0 0 0.5px rgba(255,182,193,0.06), 0 8px 20px rgba(0,0,0,0.04)',
+                      }}
+                    >
+                      <div className="w-full h-full flex items-center justify-center p-4">
+                        <img
+                          src={imageSrc}
+                          alt={`Review ${(idx % reviewImages.length) + 1}`}
+                          style={{
+                            maxWidth: '100%',
+                            maxHeight: '100%',
+                            width: 'auto',
+                            height: 'auto',
+                            objectFit: 'contain',
+                          }}
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Left Fade */}
+              <div 
+                className="absolute inset-y-0 left-0 w-16 pointer-events-none z-20" 
+                style={{
+                  background: 'linear-gradient(to right, rgba(255,248,248,1) 0%, rgba(255,248,248,0) 100%)',
+                }}
+              />
+              
+              {/* Right Fade */}
+              <div 
+                className="absolute inset-y-0 right-0 w-16 pointer-events-none z-20" 
+                style={{
+                  background: 'linear-gradient(to left, rgba(255,248,248,1) 0%, rgba(255,248,248,0) 100%)',
+                }}
+              />
             </div>
           )}
         </div>

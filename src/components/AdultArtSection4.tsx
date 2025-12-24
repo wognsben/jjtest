@@ -52,7 +52,7 @@ export function AdultArtSection4() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+              fontSize: 'clamp(0.9rem, 1.3vw, 1.15rem)',
               color: '#A66A5A',
               fontWeight: 500,
               lineHeight: 1.6,
@@ -73,7 +73,7 @@ export function AdultArtSection4() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.95rem, 1.15vw, 1.05rem)',
+              fontSize: 'clamp(0.87rem, 1.15vw, 1.05rem)',
               color: '#333',
               fontWeight: 300,
               lineHeight: 1.9,
@@ -154,7 +154,7 @@ export function AdultArtSection4() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.9rem, 1.1vw, 1rem)',
+              fontSize: 'clamp(0.8rem, 1.1vw, 1rem)',
               color: '#666',
               fontWeight: 300,
               lineHeight: 1.8,

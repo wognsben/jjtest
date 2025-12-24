@@ -267,8 +267,7 @@ export function YouthArtSection2() {
               lineHeight: 1.9,
             }}
           >
-            이 시기에는 감정을 '왜 그런지' 묻기 시작하는 시기이며,<br />
-            자기 생각과 세계관을 만들기 시작합니다.<br />
+            이 시기에는 감정을 '왜 그런지' 묻기 시작하는 시기이며, 자기 생각과 세계관을 만들기 시작합니다.<br />
             하지만 학교와 입시는 여전히 기술·결과만 요구하죠.<br />
             정작 중요한 정체성·사유력·자기서사는 자리를 잃기 쉽습니다.
           </p>
@@ -439,55 +438,11 @@ export function YouthArtSection3() {
         .philo-section .connect-line:nth-child(3) { transition-delay: 1s; }
         .philo-section .connect-line:nth-child(4) { transition-delay: 1.2s; }
         .philo-section .connect-line:nth-child(5) { transition-delay: 1.4s; }
-        
-        /* Room Card - Partial Border Effect */
-        .room-card {
-          position: relative;
-        }
-        .room-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 100px;
-          height: 100px;
-          border-top: 3px solid #b98463;
-          border-right: 3px solid #b98463;
-          border-top-right-radius: 40px;
-          pointer-events: none;
-          opacity: 0;
-          transition: opacity 0.8s ease-out;
-        }
-        .room-card::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 120px;
-          height: 120px;
-          border-bottom: 3px solid #b98463;
-          border-left: 3px solid #b98463;
-          border-bottom-left-radius: 40px;
-          pointer-events: none;
-          opacity: 0;
-          transition: opacity 0.8s ease-out;
-        }
-        .philo-section.animate-in .room-card::before,
-        .philo-section.animate-in .room-card::after {
-          opacity: 1;
-        }
-        .philo-section.animate-in .room-card-1::before,
-        .philo-section.animate-in .room-card-1::after { transition-delay: 1.6s; }
-        .philo-section.animate-in .room-card-2::before,
-        .philo-section.animate-in .room-card-2::after { transition-delay: 1.8s; }
-        .philo-section.animate-in .room-card-3::before,
-        .philo-section.animate-in .room-card-3::after { transition-delay: 2s; }
-        .philo-section.animate-in .room-card-4::before,
-        .philo-section.animate-in .room-card-4::after { transition-delay: 2.2s; }
       `}</style>
       
       <section ref={sectionRef} className="philo-section relative bg-white py-24 md:py-32 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative">
+
           {/* Title Banner with Background Image */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -727,156 +682,44 @@ export function YouthArtSection3() {
             </motion.div>
           </div>
 
-          {/* Main Diagram Area */}
-          <div className="relative min-h-[1000px] lg:min-h-[950px]">
-            {/* SVG Layer: Center Circle + Connection Lines + Card Borders */}
-            <svg
-              className="absolute inset-0 w-full h-full pointer-events-none"
-              viewBox="0 0 1200 1000"
-              preserveAspectRatio="xMidYMid meet"
-              fill="none"
-            >
-              {/* Center Circle */}
-              <circle
-                cx="600"
-                cy="500"
-                r="150"
-                fill="none"
-                stroke="#b98463"
-                strokeWidth="3"
-                strokeLinecap="round"
-                className="center-circle"
-              />
-              
-              {/* Connection Lines - Bezier Curves from center to cards */}
-              {/* Top Left (Origin Room) */}
-              <path
-                d="M 480 380 C 320 280, 200 160, 100 120"
-                stroke="#b98463"
-                strokeWidth="2.5"
-                fill="none"
-                strokeLinecap="round"
-                className="connect-line"
-              />
-              {/* Top Right (Surface Room) */}
-              <path
-                d="M 720 380 C 880 280, 1000 160, 1100 120"
-                stroke="#b98463"
-                strokeWidth="2.5"
-                fill="none"
-                strokeLinecap="round"
-                className="connect-line"
-              />
-              {/* Bottom Left (Memory Room) */}
-              <path
-                d="M 480 620 C 320 720, 200 840, 100 880"
-                stroke="#b98463"
-                strokeWidth="2.5"
-                fill="none"
-                strokeLinecap="round"
-                className="connect-line"
-              />
-              {/* Bottom Right (Self Room) */}
-              <path
-                d="M 720 620 C 880 720, 1000 840, 1100 880"
-                stroke="#b98463"
-                strokeWidth="2.5"
-                fill="none"
-                strokeLinecap="round"
-                className="connect-line"
-              />
-              
-              {/* Card 1 Border (Top Left) - Open frame style */}
-              <path
-                d="M 40 40 H 420 Q 440 40 440 60 V 220"
-                stroke="#b98463"
-                strokeWidth="3"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="card-border card-border-1"
-              />
-              <path
-                d="M 20 140 V 280 Q 20 300 40 300 H 180"
-                stroke="#b98463"
-                strokeWidth="3"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="card-border card-border-1"
-              />
-              
-              {/* Card 2 Border (Top Right) */}
-              <path
-                d="M 1160 40 H 780 Q 760 40 760 60 V 220"
-                stroke="#b98463"
-                strokeWidth="3"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="card-border card-border-2"
-              />
-              <path
-                d="M 1180 140 V 280 Q 1180 300 1160 300 H 1020"
-                stroke="#b98463"
-                strokeWidth="3"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="card-border card-border-2"
-              />
-              
-              {/* Card 3 Border (Bottom Left) */}
-              <path
-                d="M 40 960 H 420 Q 440 960 440 940 V 780"
-                stroke="#b98463"
-                strokeWidth="3"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="card-border card-border-3"
-              />
-              <path
-                d="M 20 860 V 720 Q 20 700 40 700 H 180"
-                stroke="#b98463"
-                strokeWidth="3"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="card-border card-border-3"
-              />
-              
-              {/* Card 4 Border (Bottom Right) */}
-              <path
-                d="M 1160 960 H 780 Q 760 960 760 940 V 780"
-                stroke="#b98463"
-                strokeWidth="3"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="card-border card-border-4"
-              />
-              <path
-                d="M 1180 860 V 720 Q 1180 700 1160 700 H 1020"
-                stroke="#b98463"
-                strokeWidth="3"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="card-border card-border-4"
-              />
-            </svg>
+          {/* Main Diagram Area - PC Only */}
+          <div className="hidden md:block relative min-h-[1000px] lg:min-h-[950px]">
             
-            {/* Center Philosophy Art Circle */}
+            {/* Center Philosophy Art Circle - PC */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full flex items-center justify-center"
-                style={{ background: '#FADFDB' }}
-              >
+              <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80">
+                {/* Animated Circle Border */}
+                <motion.svg
+                  className="absolute inset-0 w-full h-full"
+                  viewBox="0 0 200 200"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.circle
+                    cx="100"
+                    cy="100"
+                    r="98"
+                    fill="none"
+                    stroke="#b98463"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    whileInView={{ pathLength: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 2, delay: 0.3, ease: "easeInOut" }}
+                  />
+                </motion.svg>
+                
+                {/* Circle Content */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="absolute inset-0 rounded-full flex items-center justify-center"
+                  style={{ background: '#FADFDB' }}
+                >
                 <div className="text-center px-4">
                   <p
                     style={{
@@ -939,6 +782,7 @@ export function YouthArtSection3() {
                   </p>
                 </div>
               </motion.div>
+              </div>
             </div>
             
             {/* 4 Room Cards */}
@@ -952,18 +796,48 @@ export function YouthArtSection3() {
                   transition={{ duration: 0.6, delay: 0.4 + idx * 0.15 }}
                   className={`relative ${idx >= 2 ? 'md:mt-80' : ''}`}
                 >
-                  {/* Card Background with partial borders */}
                   <div 
-                    className={`room-card room-card-${idx + 1} rounded-[40px] p-8 min-h-[200px] relative`}
+                    className="room-card rounded-[40px] p-8 min-h-[200px] relative overflow-hidden"
                     style={{ background: '#FADFDB' }}
                   >
+                    {/* Animated Border SVG - Top Right + Bottom Left */}
+                    <motion.svg
+                      className="absolute inset-0 w-full h-full pointer-events-none"
+                      viewBox="0 0 400 300"
+                      preserveAspectRatio="none"
+                    >
+                      {/* Top Right Corner */}
+                      <motion.path
+                        d="M 320 20 H 380 Q 390 20 390 30 V 80"
+                        fill="none"
+                        stroke="#b98463"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.8 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.5, delay: 0.4 + idx * 0.15, ease: "easeInOut" }}
+                      />
+                      {/* Bottom Left Corner */}
+                      <motion.path
+                        d="M 10 240 V 270 Q 10 280 20 280 H 80"
+                        fill="none"
+                        stroke="#b98463"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.8 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.5, delay: 0.6 + idx * 0.15, ease: "easeInOut" }}
+                      />
+                    </motion.svg>
+                    
                     <div className="flex items-center gap-3 mb-3">
                       <span 
                         className="text-xs font-medium px-3 py-1 rounded-full"
-                        style={{ 
-                          background: '#A66A5A', 
-                          color: '#FFF',
-                        }}
+                        style={{ background: '#A66A5A', color: '#FFF' }}
                       >
                         {room.num} ROOM
                       </span>
@@ -1014,7 +888,230 @@ export function YouthArtSection3() {
             </div>
           </div>
 
-          {/* Bottom Note */}
+          {/* Mobile Layout - Vertical Stack */}
+          <div className="md:hidden space-y-12">
+            {/* Philosophy ART - Mobile */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="text-center"
+            >
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '0.75rem',
+                  color: '#A66A5A',
+                  fontWeight: 300,
+                  letterSpacing: '0.1em',
+                  fontStyle: 'italic',
+                  marginBottom: '0.25rem',
+                }}
+              >
+                Philosophy
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '1.1rem',
+                  color: '#A66A5A',
+                  fontWeight: 500,
+                  letterSpacing: '0.15em',
+                }}
+              >
+                ART
+              </p>
+            </motion.div>
+
+            {/* Center Circle - Mobile */}
+            <motion.div
+              className="flex justify-center relative"
+            >
+              <div className="relative w-64 h-64">
+                {/* Animated Circle Border */}
+                <motion.svg
+                  className="absolute inset-0 w-full h-full"
+                  viewBox="0 0 200 200"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.circle
+                    cx="100"
+                    cy="100"
+                    r="98"
+                    fill="none"
+                    stroke="#b98463"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 2, delay: 0.2, ease: "easeInOut" }}
+                  />
+                </motion.svg>
+                
+                {/* Circle Content */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: 0.4 }}
+                  className="absolute inset-0 rounded-full flex items-center justify-center"
+                  style={{ 
+                    background: '#FADFDB',
+                    boxShadow: '0 10px 40px rgba(166, 106, 90, 0.2)'
+                  }}
+                >
+                <div className="text-center px-6">
+                  <p
+                    style={{
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: '0.7rem',
+                      color: '#A66A5A',
+                      fontWeight: 400,
+                      lineHeight: 1.8,
+                      marginBottom: '0.3rem',
+                    }}
+                  >
+                    나는 누구인가 — <span style={{ color: '#2F6B4F', fontWeight: 500 }}>정체성</span>
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: '0.7rem',
+                      color: '#A66A5A',
+                      fontWeight: 400,
+                      lineHeight: 1.8,
+                      marginBottom: '0.3rem',
+                    }}
+                  >
+                    어떻게 바라볼 것인가 — <span style={{ color: '#2F6B4F', fontWeight: 500 }}>사유력</span>
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: '0.7rem',
+                      color: '#A66A5A',
+                      fontWeight: 400,
+                      lineHeight: 1.8,
+                    }}
+                  >
+                    무엇을 만들며 살아갈까 — <span style={{ color: '#2F6B4F', fontWeight: 500 }}>세계관</span>
+                  </p>
+                </div>
+              </motion.div>
+              </div>
+            </motion.div>
+
+            {/* 4 Room Cards - Mobile */}
+            <div className="space-y-8">
+              {rooms.map((room, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                >
+                  <div 
+                    className="rounded-[32px] p-6 relative overflow-hidden"
+                    style={{ background: '#FADFDB' }}
+                  >
+                    {/* Animated Border SVG - Mobile Cards */}
+                    <motion.svg
+                      className="absolute inset-0 w-full h-full pointer-events-none"
+                      viewBox="0 0 300 250"
+                      preserveAspectRatio="none"
+                    >
+                      {/* Top Right Corner */}
+                      <motion.path
+                        d="M 240 10 H 290 Q 295 10 295 15 V 50"
+                        fill="none"
+                        stroke="#b98463"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.8 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, delay: 0.3 + idx * 0.1, ease: "easeInOut" }}
+                      />
+                      {/* Bottom Left Corner */}
+                      <motion.path
+                        d="M 5 200 V 235 Q 5 240 10 240 H 60"
+                        fill="none"
+                        stroke="#b98463"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 0.8 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, delay: 0.5 + idx * 0.1, ease: "easeInOut" }}
+                      />
+                    </motion.svg>
+                    <div className="flex items-center gap-3 mb-3">
+                      <span 
+                        className="text-xs font-medium px-3 py-1 rounded-full"
+                        style={{ 
+                          background: '#A66A5A', 
+                          color: '#FFF',
+                        }}
+                      >
+                        {room.num} ROOM
+                      </span>
+                      <span className="text-xs" style={{ color: '#888' }}>• 3개월</span>
+                    </div>
+                    
+                    <h4 
+                      className="mb-2"
+                      style={{
+                        fontFamily: "'Noto Serif KR', serif",
+                        fontSize: '1.3rem',
+                        color: '#2F6B4F',
+                        fontWeight: 600,
+                      }}
+                    >
+                      {room.name}
+                    </h4>
+                    
+                    <p 
+                      className="mb-4"
+                      style={{
+                        fontFamily: "'Noto Serif KR', serif",
+                        fontSize: '0.85rem',
+                        color: '#888',
+                        fontWeight: 300,
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      {room.subtitle}
+                    </p>
+                    
+                    <ul className="space-y-1.5">
+                      {room.items.map((item, i) => (
+                        <li 
+                          key={i}
+                          style={{
+                            fontFamily: "'Noto Serif KR', serif",
+                            fontSize: '0.8rem',
+                            color: '#666',
+                            lineHeight: 1.7,
+                          }}
+                        >
+                          • {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Bottom Note - PC & Mobile 모두 표시 */}
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

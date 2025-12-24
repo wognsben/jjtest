@@ -351,7 +351,19 @@ export default function ProgramsPage() {
   const [openProgram, setOpenProgram] = React.useState<string | null>(null);
 
   const toggleProgram = (programId: string) => {
-    setOpenProgram(openProgram === programId ? null : programId);
+    const isClosing = openProgram === programId;
+    setOpenProgram(isClosing ? null : programId);
+    
+    // 섹션을 열 때 해당 섹션 상단으로 스크롤
+    if (!isClosing) {
+      // 약간의 딜레이 후 스크롤 (애니메이션과 동기화)
+      setTimeout(() => {
+        const element = document.querySelector(`[data-section="${programId}"]`);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
   };
 
 

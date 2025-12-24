@@ -219,7 +219,7 @@ export function AdultArtSection2() {
           <h2
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.5rem, 2.8vw, 2.2rem)',
+              fontSize: 'clamp(1.3rem, 2.8vw, 2.2rem)',
               color: '#333',
               fontWeight: 500,
               lineHeight: 1.6,

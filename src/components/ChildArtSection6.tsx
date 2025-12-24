@@ -521,7 +521,7 @@ export function ChildArtSection6() {
               textAlign: 'center',
             }}
           >
-            "아이의 기질과 감정의 속도를 따라가며, 마음이 자라는 미술입니다."
+            "아이의 기질과 감정의 속도를 따라가며,<br className="md:hidden" /> 마음이 자라는 미술입니다."
           </p>
         </motion.div>
 

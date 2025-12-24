@@ -1,7 +1,8 @@
-import React, { useRef, useState, Suspense } from 'react';
+import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { motion } from 'motion/react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
+import { gsap } from 'gsap';
 import { getImagePath } from '../utils/imageUtils';
 
 // Review image paths (6 images: review11~review16, repeated)
@@ -202,6 +203,49 @@ function ReviewCarousel3D() {
 
 // MOMENTS Section 3: Premium Review Gallery (Awwwards Style)
 export function MomentsSection3() {
+  const mobileTrackRef = useRef<HTMLDivElement>(null);
+  const mobileAnimationRef = useRef<gsap.core.Tween | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // 모바일 감지
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // GSAP 무한 스크롤 애니메이션 (Mobile only)
+  useEffect(() => {
+    if (!isMobile || !mobileTrackRef.current) return;
+
+    const track = mobileTrackRef.current;
+    const cards = track.querySelectorAll('.mobile-review-card');
+    if (cards.length === 0) return;
+
+    // 무한 루프 애니메이션
+    const totalWidth = track.scrollWidth / 2; // 이미지가 2번 반복되므로 절반
+    
+    // 초기 위치 설정 (오른쪽으로 이동하기 위해 왼쪽 끝에서 시작)
+    gsap.set(track, { x: `-${totalWidth}px` });
+    
+    mobileAnimationRef.current = gsap.to(track, {
+      x: '0px', // 오른쪽으로 이동
+      duration: 40, // 40초에 걸쳐 이동
+      ease: 'linear',
+      repeat: -1,
+    });
+
+    // Cleanup
+    return () => {
+      if (mobileAnimationRef.current) {
+        mobileAnimationRef.current.kill();
+      }
+    };
+  }, [isMobile]);
+
   return (
     <section className="relative bg-white py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
@@ -230,7 +274,7 @@ export function MomentsSection3() {
             className="mb-4"
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)',
+              fontSize: 'clamp(1.4rem, 3.5vw, 2.8rem)',
               color: '#2d5016',
               fontWeight: 500,
               lineHeight: 1.3,
@@ -251,13 +295,13 @@ export function MomentsSection3() {
           </p>
         </motion.div>
 
-        {/* 3D Carousel - White/Gray Premium Background */}
+        {/* 3D Carousel - Desktop Only (hidden on mobile) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative rounded-2xl overflow-hidden"
+          className="relative rounded-2xl overflow-hidden hidden lg:block"
           style={{
             background: 'linear-gradient(180deg, #f9fafb 0%, #f3f4f6 50%, #f9fafb 100%)',
             height: '600px',
@@ -314,6 +358,62 @@ export function MomentsSection3() {
             className="absolute inset-y-0 right-0 w-32 pointer-events-none z-20" 
             style={{
               background: 'linear-gradient(to left, rgba(249,250,251,0.9) 0%, rgba(249,250,251,0) 100%)',
+            }}
+          />
+        </motion.div>
+
+        {/* Mobile: GSAP Infinite Horizontal Scroll - Mobile Only */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="lg:hidden relative overflow-hidden rounded-2xl"
+          style={{
+            background: 'linear-gradient(180deg, #f9fafb 0%, #f3f4f6 50%, #f9fafb 100%)',
+            height: '400px',
+          }}
+        >
+          {/* Scrolling Track */}
+          <div
+            ref={mobileTrackRef}
+            className="flex items-center absolute top-0 left-0 h-full"
+            style={{ gap: '1rem' }}
+          >
+            {/* 이미지 2번 반복 (무한 루프를 위해) */}
+            {[...reviewImagePaths, ...reviewImagePaths].map((imagePath, idx) => (
+              <div
+                key={idx}
+                className="mobile-review-card flex-shrink-0 rounded-xl overflow-hidden"
+                style={{
+                  width: '240px',
+                  height: '320px',
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)',
+                }}
+              >
+                <img
+                  src={imagePath}
+                  alt={`크레용숲 후기 ${(idx % reviewImagePaths.length) + 1}`}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Left Fade */}
+          <div 
+            className="absolute inset-y-0 left-0 w-16 pointer-events-none z-20" 
+            style={{
+              background: 'linear-gradient(to right, rgba(249,250,251,1) 0%, rgba(249,250,251,0) 100%)',
+            }}
+          />
+          
+          {/* Right Fade */}
+          <div 
+            className="absolute inset-y-0 right-0 w-16 pointer-events-none z-20" 
+            style={{
+              background: 'linear-gradient(to left, rgba(249,250,251,1) 0%, rgba(249,250,251,0) 100%)',
             }}
           />
         </motion.div>

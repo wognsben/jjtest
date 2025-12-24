@@ -59,7 +59,7 @@ export default function ContactHero() {
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <motion.h1
           ref={titleRef}
-          className="text-[clamp(1.5rem,4vw,3.2rem)] leading-[1.2] tracking-tight px-4"
+          className="text-[clamp(1.3rem,4vw,2rem)] lg:text-[3.5rem] leading-[1.2] tracking-tight px-4"
           style={{
             fontFamily: "'Pretendard Variable', sans-serif",
           }}
@@ -120,7 +120,7 @@ export default function ContactHero() {
           }}
         >
           크레용숲과 함께 새로운 예술의 여정을 시작하세요.
-          <br className="hidden md:block" />
+          <br />
           언제든지 문의 주시면 성심껏 안내해드리겠습니다.
         </motion.p>
       </div>

@@ -86,7 +86,7 @@ export default function KakaoTalkCTA() {
               >
                 <p>
                   카카오톡 채널에서 <span className="text-[#6B4423] font-medium">'크레용숲'</span>을 검색하고
-                  <br className="hidden md:block" />
+                  <br />
                   채널 추가를 하시면
                 </p>
                 <p>
