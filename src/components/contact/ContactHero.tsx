@@ -59,7 +59,7 @@ export default function ContactHero() {
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <motion.h1
           ref={titleRef}
-          className="text-[clamp(1.3rem,4vw,2rem)] lg:text-[3.5rem] leading-[1.2] tracking-tight px-4"
+          className="text-[clamp(1rem,4vw,3rem)] lg:text-[clamp(3.5rem,3vw,8rem)] leading-[1.2] tracking-tight px-4"
           style={{
             fontFamily: "'Pretendard Variable', sans-serif",
           }}

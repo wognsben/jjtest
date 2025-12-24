@@ -272,7 +272,7 @@ export default function AboutHero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="hero-title max-w-6xl mx-auto"
+          className="hero-title max-w-6xl mx-auto lg:whitespace-nowrap"
           style={{ 
             fontFamily: "'Noto Serif KR', serif",
             fontSize: 'clamp(2.5rem, 8vw, 8rem)',

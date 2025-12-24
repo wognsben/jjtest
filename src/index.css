@@ -4258,6 +4258,12 @@
   }
 
   @media (width >= 48rem) {
+    .md\:flex {
+      display: flex;
+    }
+  }
+
+  @media (width >= 48rem) {
     .md\:hidden {
       display: none;
     }

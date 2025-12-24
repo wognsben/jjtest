@@ -352,17 +352,22 @@ export default function ProgramsPage() {
 
   const toggleProgram = (programId: string) => {
     const isClosing = openProgram === programId;
+    const wasOtherOpen = openProgram !== null && openProgram !== programId;
+    
     setOpenProgram(isClosing ? null : programId);
     
     // 섹션을 열 때 해당 섹션 상단으로 스크롤
     if (!isClosing) {
-      // 약간의 딜레이 후 스크롤 (애니메이션과 동기화)
+      // 다른 섹션이 열려있었으면 닫히는 애니메이션(600ms) 후에 스크롤
+      // 아니면 바로 스크롤
+      const scrollDelay = wasOtherOpen ? 650 : 100;
+      
       setTimeout(() => {
         const element = document.querySelector(`[data-section="${programId}"]`);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-      }, 100);
+      }, scrollDelay);
     }
   };
 
