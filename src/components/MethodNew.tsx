@@ -335,7 +335,7 @@ export default function MethodNew() {
               className="text-lg md:text-xl text-brown-800 leading-relaxed max-w-3xl mx-auto"
               style={{ fontFamily: "'Noto Serif KR', serif" }}
             >
-              크레용숲은 자신의 마음을 <HighlightText>섬세하게 느끼고, 자유롭게 표현하며</HighlightText>, 생생하게 성장할 수 있는 안전하고 열린 배움의 숲을 만들어갑니다.
+              크레용숲은 자신의 마음을 <HighlightText>섬세하게 느끼고, 자유롭게 표현하며</HighlightText>,<br className="hidden md:block" /> 생생하게 성장할 수 있는 안전하고 열린 배움의 숲을 만들어갑니다.
             </p>
           </motion.div>
         </div>
