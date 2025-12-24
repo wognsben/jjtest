@@ -277,34 +277,87 @@ export default function Programs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-6xl mx-auto space-y-6 text-center mb-16 md:mb-20"
+          className="max-w-6xl mx-auto space-y-6 text-center mb-24 md:mb-20"
+          style={{ marginBottom: 'clamp(4rem, 8vw, 5rem)' }}
         >
-          <h2 className="text-base md:text-3xl lg:text-4xl text-primary" style={{ fontFamily: "'Noto Serif KR', serif", lineHeight: 1.35, wordBreak: 'keep-all' }}>
-            <RebuildText text="크레용숲은" />
-            {' '}
-            <span style={{ color: 'rgba(168, 198, 143, 0.9)' }}>
-              <RebuildText text="감정과 감각," delay={0.1} />
+          <h2
+            className="text-primary programs-title md:text-center"
+            style={{
+              fontFamily: "'Noto Serif KR', serif",
+              fontSize: 'clamp(1rem, 4.2vw, 1.5rem)', // 모바일에서 조금 줄임
+              lineHeight: 1.35,
+              wordBreak: 'keep-all',
+              whiteSpace: 'normal',
+              maxWidth: '100%',
+              margin: '0 auto',
+            }}
+          >
+            <span className="inline md:inline-block mr-[0.3em] programs-title-first-line">
+              <RebuildText text="크레용숲은" />
             </span>
-            {' '}
-            <RebuildText text="그리고" delay={0.2} />
-            {' '}
-            <span style={{ color: 'rgba(168, 198, 143, 0.9)' }}>
-              <RebuildText text="창조적 표현을" delay={0.25} />
+            <span className="inline md:inline-block mr-[0.3em]" style={{ color: 'rgba(168, 198, 143, 0.9)' }}>
+              <RebuildText text="감정과" delay={0.1} />
             </span>
-            {' '}
-            <RebuildText text="통해" delay={0.3} />
-            <br />
-            <RebuildText text="모든 사람이" delay={0.4} />
-            {' '}
-            <span style={{ color: '#D4A574' }}>
-              <RebuildText text="자기다운 세계를 만들어가는 방식을 함께 탐구" delay={0.45} />
+            <span className="inline md:inline-block mr-[0.3em]" style={{ color: 'rgba(168, 198, 143, 0.9)' }}>
+              <RebuildText text="감각" delay={0.12} />
             </span>
-            <RebuildText text="합니다." delay={0.6} />
+            <br className="md:hidden" />
+            <span className="inline md:inline-block mr-[0.3em]">
+              <RebuildText text="그리고" delay={0.2} />
+            </span>
+            <span className="inline md:inline-block mr-[0.3em]" style={{ color: 'rgba(168, 198, 143, 0.9)' }}>
+              <RebuildText text="창조적" delay={0.23} />
+            </span>
+            <span className="inline md:inline-block mr-[0.3em]" style={{ color: 'rgba(168, 198, 143, 0.9)' }}>
+              <RebuildText text="표현을" delay={0.25} />
+            </span>
+            <span className="inline md:inline-block mr-[0.3em]">
+              <RebuildText text="통해" delay={0.3} />
+            </span>
+            <br className="md:hidden" />
+            <span className="inline md:inline-block mr-[0.3em]">
+              <RebuildText text="모든" delay={0.4} />
+            </span>
+            <span className="inline md:inline-block mr-[0.3em]">
+              <RebuildText text="사람이" delay={0.42} />
+            </span>
+            <span className="inline md:inline-block mr-[0.3em]" style={{ color: '#D4A574' }}>
+              <RebuildText text="자기다운" delay={0.45} />
+            </span>
+            <span className="inline md:inline-block mr-[0.3em]" style={{ color: '#D4A574' }}>
+              <RebuildText text="세계를" delay={0.47} />
+            </span>
+            <br className="md:hidden" />
+            <span className="inline md:inline-block mr-[0.3em]" style={{ color: '#D4A574' }}>
+              <RebuildText text="만들어가는" delay={0.5} />
+            </span>
+            <span className="inline md:inline-block mr-[0.3em]" style={{ color: '#D4A574' }}>
+              <RebuildText text="방식을" delay={0.53} />
+            </span>
+            <span className="inline md:inline-block mr-[0.3em]" style={{ color: '#D4A574' }}>
+              <RebuildText text="함께" delay={0.55} />
+            </span>
+            <span className="inline md:inline-block mr-[0.3em]" style={{ color: '#D4A574' }}>
+              <RebuildText text="탐구" delay={0.57} />
+            </span>
+            <span className="inline md:inline-block">
+              <RebuildText text="합니다." delay={0.6} />
+            </span>
           </h2>
+
+          {/* Mobile-only width constraint to keep exact 2 lines */}
+          <style>{`
+            @media (max-width: 767px) {
+              .programs-title {
+                max-width: 21em;
+                margin-inline: auto;
+              }
+            }
+          `}</style>
         </motion.div>
         
         {/* 3D Blob Morph Animation + Circle Cards Transition */}
-        <div ref={blobRef} className="relative mb-[30px]">
+        <div ref={blobRef} className="relative mb-[30px] mt-8 md:mt-0">
           {/* 3D Blobs Container - fades out as morph completes */}
           <motion.div 
             className="relative h-[400px] md:h-[480px] lg:h-[560px]"
@@ -489,6 +542,26 @@ export default function Programs() {
 
       {/* Enhanced styles */}
       <style>{`
+        /* 모바일 전용: 모든 span을 inline으로 강제해서 자연 줄바꿈 허용 */
+        @media (max-width: 767px) {
+          .programs-title span {
+            display: inline !important;
+          }
+
+          .programs-title {
+            max-width: 24em;
+            margin-inline: 0;
+            padding: 0 1rem;
+            box-sizing: border-box;
+            text-align: left;
+          }
+
+          /* 첫 번째 줄만 살짝 더 왼쪽으로 이동 (비대칭 효과) */
+          .programs-title-first-line {
+            margin-left: -0.5rem;
+          }
+        }
+        
         @media (min-width: 640px) {
           .program-circle {
             width: 224px !important;

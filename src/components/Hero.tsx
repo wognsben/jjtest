@@ -143,10 +143,10 @@ export default function Hero() {
       <div 
         className="relative min-h-screen flex items-center justify-center"
         style={{
-          paddingLeft: 'clamp(1.5rem, 4vw, 3rem)',
-          paddingRight: 'clamp(1.5rem, 4vw, 3rem)',
-          paddingTop: 'clamp(4rem, 10vw, 8rem)',
-          paddingBottom: 'clamp(4rem, 10vw, 8rem)',
+          paddingLeft: 'clamp(1.25rem, 4vw, 2.5rem)',
+          paddingRight: 'clamp(1.25rem, 4vw, 2.5rem)',
+          paddingTop: 'clamp(2.5rem, 8vw, 7rem)', // 모바일에서 상단 여백 축소해 배경 위로 올림
+          paddingBottom: 'clamp(3rem, 9vw, 7rem)',
           zIndex: 3,
         }}
       >
@@ -195,16 +195,17 @@ export default function Hero() {
                 className="relative inline-block title-with-mask"
                 style={{ 
                   fontFamily: "'IM Fell English', 'Noto Serif KR', serif",
-                  fontSize: 'clamp(3rem, 8vw, 7rem)',
+                  fontSize: 'clamp(2rem, 6vw, 4.8rem)', // iPhone 14 Pro 기준 한 줄 및 좌우 여백 확보
                   fontWeight: 400,
-                  letterSpacing: titleLetterSpacing,
+                  letterSpacing: titleLetterSpacing ?? '-0.02em',
                   fontStyle: 'italic',
                   color: '#2D5016',
-                  lineHeight: 1.1,
+                  lineHeight: 1.05,
                   textShadow: '0 0.5px 0 rgba(0,0,0,0.03)',
                   opacity: titleOpacity,
                   position: 'relative',
                   zIndex: 5,
+                  whiteSpace: 'nowrap',
                 }}
               >
                 FORÊT DES CRAYONS
@@ -221,17 +222,18 @@ export default function Hero() {
               delay: 0.8, 
               ease: [0.22, 1, 0.36, 1] 
             }}
-            className="flex flex-wrap items-center justify-center gap-8 md:gap-12 mt-16 md:mt-24 relative z-30"
+            className="flex flex-nowrap items-center justify-center gap-8 md:gap-12 mt-12 md:mt-24 relative z-30 overflow-hidden"
             style={{
-              gap: 'clamp(2rem, 5vw, 3rem)',
+              gap: 'clamp(0.5rem, 2.5vw, 1.25rem)', // 모바일에서 한 줄 유지 및 좌우 여백 확보
+              paddingInline: 'clamp(0.5rem, 3vw, 1rem)',
             }}
           >
             {['Emotional Art', 'Color Psychology + Child Art', 'Forêt des Crayons'].map((tag, i) => (
               <span 
                 key={i}
-                className="tracking-wide"
+                className="tracking-wide whitespace-nowrap"
                 style={{
-                  fontSize: 'clamp(0.875rem, 1.2vw, 1rem)',
+                  fontSize: 'clamp(0.7rem, 1.3vw, 0.92rem)', // iPhone 14 Pro 기준 한 줄
                   color: '#666',
                   fontFamily: "'Inter', sans-serif",
                 }}
