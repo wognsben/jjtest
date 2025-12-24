@@ -315,6 +315,7 @@ export default function Programs() {
               <RebuildText text="통해" delay={0.3} />
             </span>
             <br className="md:hidden" />
+            <br className="hidden md:block" />
             <span className="inline md:inline-block mr-[0.3em]">
               <RebuildText text="모든" delay={0.4} />
             </span>

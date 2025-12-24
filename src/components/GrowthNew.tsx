@@ -388,7 +388,9 @@ export default function GrowthNew() {
             className="text-sm md:text-xl text-brown-800 leading-relaxed"
             style={{ fontFamily: "'Noto Serif KR', serif" }}
           >
-            <span style={{ color: '#8B6F47' }}>크레용숲은 색과 감정의 5단계 구조로</span> <span style={{ color: '#2e7d32', fontWeight: 600 }}>예술적 성장을 만듭니다</span>
+            <span style={{ color: '#8B6F47' }}>크레용숲은</span>
+            <br className="md:hidden" />
+            <span style={{ color: '#8B6F47' }}> 색과 감정의 5단계 구조로</span> <span style={{ color: '#2e7d32', fontWeight: 600 }}>예술적 성장을 만듭니다</span>
           </p>
           
           <div className="pt-4 space-y-2">
@@ -441,7 +443,7 @@ export default function GrowthNew() {
           className="text-center"
         >
           <p 
-            className="text-2xl md:text-3xl lg:text-4xl leading-relaxed italic"
+            className="text-xl md:text-3xl lg:text-4xl leading-relaxed italic growth-art-title"
             style={{ 
               fontFamily: "'Noto Serif KR', serif",
               background: 'linear-gradient(135deg, #B88860 0%, #d4a89f 50%, #B88860 100%)',
@@ -499,6 +501,10 @@ export default function GrowthNew() {
             width: 240px;
             height: 140px;
             flex: 0 0 auto;
+          }
+          
+          .growth-art-title {
+            font-size: clamp(1.1rem, 3.5vw, 1.3rem) !important;
           }
         }
       `}</style>

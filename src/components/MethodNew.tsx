@@ -159,8 +159,8 @@ export default function MethodNew() {
             <HighlightText showUnderline={false}>
               <RebuildText text="스에나가 하트앤컬러 메소드" delay={0.15} />
             </HighlightText>
-            <br />
             <RebuildText text="에서 영감을 받아" delay={0.3} />
+            <br className="hidden md:block" />
           </motion.p>
           
           <motion.p

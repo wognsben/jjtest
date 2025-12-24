@@ -206,8 +206,14 @@ export default function Growth() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-brown-900 mb-6">
-            크레용숲의 예술적 성장 구조
+          <h2 
+            className="mb-8 growth-title"
+            style={{
+              fontFamily: "'Noto Serif KR', serif",
+            }}
+          >
+            <span style={{ color: 'rgb(139, 111, 71)', fontWeight: 600 }}>크레용숲의</span>{' '}
+            <span style={{ color: 'rgb(46, 125, 50)', fontWeight: 600 }}>예술적 성장 구조</span>
           </h2>
         </motion.div>
         
@@ -269,6 +275,19 @@ export default function Growth() {
           className="mt-16 md:mt-20 w-full h-px bg-gradient-to-r from-transparent via-brown-300 to-transparent"
         />
       </div>
+
+      {/* Font size - PC default, mobile override */}
+      <style>{`
+        .growth-title {
+          font-size: clamp(2rem, 4vw, 2.5rem);
+        }
+        
+        @media (max-width: 767px) {
+          .growth-title {
+            font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
