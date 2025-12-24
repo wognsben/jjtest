@@ -278,12 +278,12 @@ export default function Growth() {
 
       {/* Font size - PC default, mobile override */}
       <style>{`
-        .growth-title {
-          font-size: clamp(2rem, 4vw, 2.5rem);
+        section h2.growth-title.mb-8 {
+          font-size: clamp(2rem, 4vw, 2.5rem) !important;
         }
         
         @media (max-width: 767px) {
-          .growth-title {
+          section h2.growth-title.mb-8 {
             font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
           }
         }
