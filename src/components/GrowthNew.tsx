@@ -319,25 +319,6 @@ export default function GrowthNew() {
       ref={sectionRef}
       className="relative py-32 md:py-40 lg:py-48 px-6 md:px-12 lg:px-24 bg-gradient-to-br from-white via-beige/20 to-white"
     >
-      {/* Section label */}
-      <motion.div 
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-12 left-8 md:left-12 lg:left-24 z-20"
-      >
-        <p 
-          className="text-xs text-tertiary uppercase"
-          style={{
-            opacity: 0.45,
-            letterSpacing: '0.18em'
-          }}
-        >
-          04. GROWTH STRUCTURE
-        </p>
-      </motion.div>
-      
       {/* Subtle texture */}
       <div 
         className="absolute inset-0 opacity-[0.025] pointer-events-none"
