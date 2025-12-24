@@ -366,7 +366,10 @@ export default function GrowthNew() {
         >
           <h2 
             className="mb-8"
-            style={{ fontFamily: "'Noto Serif KR', serif" }}
+            style={{ 
+              fontFamily: "'Noto Serif KR', serif",
+              fontSize: 'clamp(2rem, 4vw, 2.5rem)'
+            }}
           >
             <span style={{ color: '#8B6F47', fontWeight: 600 }}>크레용숲의</span>{' '}
             <span style={{ color: '#2e7d32', fontWeight: 600 }}>예술적 성장 구조</span>
@@ -382,17 +385,17 @@ export default function GrowthNew() {
           className="text-center max-w-4xl mx-auto mb-20 md:mb-28 space-y-4"
         >
           <p 
-            className="text-lg md:text-xl text-brown-800 leading-relaxed"
+            className="text-sm md:text-xl text-brown-800 leading-relaxed"
             style={{ fontFamily: "'Noto Serif KR', serif" }}
           >
             <span style={{ color: '#8B6F47' }}>크레용숲은 색과 감정의 5단계 구조로</span> <span style={{ color: '#2e7d32', fontWeight: 600 }}>예술적 성장을 만듭니다</span>
           </p>
           
           <div className="pt-4 space-y-2">
-            <p className="text-base md:text-lg leading-relaxed" style={{ color: '#8B6F47' }}>
+            <p className="text-sm md:text-lg leading-relaxed" style={{ color: '#8B6F47' }}>
               마음이 먼저 안전해지는 순간,
             </p>
-            <p className="text-base md:text-lg leading-relaxed">
+            <p className="text-sm md:text-lg leading-relaxed">
               <span style={{ color: '#2e7d32', fontWeight: 600 }}>표현력·몰입력·창조성</span>
               <span className="text-brown-700">은 자연스럽게 자라납니다</span>
             </p>
@@ -485,23 +488,6 @@ export default function GrowthNew() {
         
         .horizontal-scroll::-webkit-scrollbar {
           display: none;                /* Chrome, Safari */
-        }
-        
-        /* Optional: 스크롤 인디케이터 (미세한 그림자 효과) */
-        .horizontal-scroll::after {
-          content: '';
-          position: absolute;
-          right: 0;
-          top: 0;
-          bottom: 32px;
-          width: 24px;
-          background: linear-gradient(
-            to left,
-            rgba(255, 255, 255, 0.9),
-            transparent
-          );
-          pointer-events: none;
-          z-index: 2;
         }
         
         @media (max-width: 768px) {

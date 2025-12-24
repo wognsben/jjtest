@@ -277,10 +277,9 @@ export default function Programs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-6xl mx-auto space-y-6 text-center"
-          style={{ marginBottom: '50px' }}
+          className="max-w-6xl mx-auto space-y-6 text-center mb-16 md:mb-20"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl text-primary" style={{ fontFamily: "'Noto Serif KR', serif", lineHeight: 1.35 }}>
+          <h2 className="text-base md:text-3xl lg:text-4xl text-primary" style={{ fontFamily: "'Noto Serif KR', serif", lineHeight: 1.35, wordBreak: 'keep-all' }}>
             <RebuildText text="크레용숲은" />
             {' '}
             <span style={{ color: 'rgba(168, 198, 143, 0.9)' }}>

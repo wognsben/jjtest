@@ -54,7 +54,14 @@ export default function PremiumIntegrityOrbit() {
 
   return (
     <div className="w-full flex justify-center py-12 md:py-20">
-      <svg viewBox="0 0 800 720" className="w-full max-w-5xl" style={{ filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.08))' }}>
+      <svg 
+        viewBox="0 0 800 720" 
+        className="w-full max-w-5xl" 
+        style={{ 
+          filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.08))',
+          minHeight: '400px' // 모바일에서 최소 높이 보장
+        }}
+      >
 
         {/* 미세한 관계 암시 라인 (보이지만 읽히지 않게) */}
         <g opacity="0.15">

@@ -80,7 +80,7 @@ export default function WhatIsEmotionalArt() {
                     <h2 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: '2rem',
+                        fontSize: 'clamp(1.3rem, 3vw, 2rem)',
                         lineHeight: 1.3,
                         fontWeight: 600,
                         color: '#8FBC88',
@@ -133,7 +133,7 @@ export default function WhatIsEmotionalArt() {
                     <h3 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.25rem, 2vw, 1.2rem)',
+                        fontSize: 'clamp(0.9rem, 2vw, 1.2rem)',
                         lineHeight: 1.4,
                         fontWeight: 500,
                         color: '#4A4A4A',

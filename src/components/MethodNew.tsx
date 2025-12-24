@@ -159,7 +159,7 @@ export default function MethodNew() {
             <HighlightText showUnderline={false}>
               <RebuildText text="스에나가 하트앤컬러 메소드" delay={0.15} />
             </HighlightText>
-            {' '}
+            <br />
             <RebuildText text="에서 영감을 받아" delay={0.3} />
           </motion.p>
           
@@ -211,7 +211,7 @@ export default function MethodNew() {
               className="text-brown-900 mb-4"
               style={{ 
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
+                fontSize: 'clamp(1.2rem, 3vw, 2.25rem)',
               }}
             >
               <span style={{ color: '#2e7d32' }}>스에나가 하트앤컬러 메소드</span>는 무엇인가요?

@@ -124,7 +124,7 @@ export default function SensoryArt() {
                     <h2 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.5rem, 3vw, 1.6rem)',
+                        fontSize: 'clamp(1.2rem, 3vw, 1.6rem)',
                         lineHeight: 1.3,
                         fontWeight: 600,
                         color: '#5a8c4a',
@@ -165,7 +165,7 @@ export default function SensoryArt() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
+                        fontSize: 'clamp(1.1rem, 2vw, 1.25rem)',
                         lineHeight: 1.8,
                         fontWeight: 500,
                         color: '#4A4A4A',
@@ -176,7 +176,7 @@ export default function SensoryArt() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
+                        fontSize: 'clamp(1.1rem, 2vw, 1.25rem)',
                         lineHeight: 1.8,
                         fontWeight: 600,
                         color: '#5a8c4a',
@@ -228,7 +228,7 @@ export default function SensoryArt() {
               className="relative"
               style={{ y: cardY }}
             >
-              <PremiumIntegrityOrbit pillars={integrityPillars} />
+              <PremiumIntegrityOrbit />
             </motion.div>
           </div>
         </div>

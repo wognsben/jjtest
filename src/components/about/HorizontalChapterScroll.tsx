@@ -56,7 +56,7 @@ function HorizontalChapterCard({ number, title, subtitle, description, color, gr
       ref={cardRef}
       initial={{ opacity: 0, x: 100, y: 0 }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
+      viewport={{ once: true, margin: '0px' }}
       transition={{ duration: 1.2, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
       style={{
         rotateX,

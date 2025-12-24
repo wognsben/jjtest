@@ -238,14 +238,15 @@ export default function App() {
       );
     };
     
-    // 디바이스 타입 감지 (CSS breakpoint 의존 제거)
+    // 디바이스 타입 감지 (Tailwind md: 768px와 일치)
     const checkDeviceType = () => {
       const width = window.innerWidth;
       const isTouch = checkTouchDevice();
       
-      // 1024px 이상이고 터치 디바이스가 아닌 경우에만 데스크톱
-      // 또는 1280px 이상이면 터치 여부 관계없이 데스크톱 (대형 태블릿 가로모드)
-      const desktop = width >= 1280 || (width >= 1024 && !isTouch);
+      // 768px 이상 = 데스크톱 레이아웃 (태블릿 포함)
+      // 터치 여부와 무관하게 화면 크기만으로 판단
+      // 크기 조정은 clamp()가 자동으로 처리
+      const desktop = width >= 768;
       
       setIsDesktop(desktop);
       setIsTouchDevice(isTouch);

@@ -135,7 +135,7 @@ export default function SelfTexture() {
               </p>
               
               <p 
-                className="text-brown-800 text-xl md:text-2xl leading-relaxed"
+                className="text-brown-800 text-base md:text-lg leading-relaxed"
                 style={{ fontFamily: "'Noto Serif KR', serif" }}
               >
                 <span 

@@ -89,8 +89,11 @@ export default function Karte() {
             >
               크레용숲은{' '}
               <span style={{ color: '#bb8162' }}>1년의 감정 흐름을 색과</span>
-              {' '}패턴으로 기록해{' '}
+              {' '}패턴으로 기록해
+              <br className="md:hidden" />
+              {' '}
               <span style={{ color: '#bb8162' }}>자기서사(Self-Narrative)</span>
+              <br className="md:hidden" />
               를 키웁니다.
             </p>
           </motion.div>
@@ -123,7 +126,7 @@ export default function Karte() {
                 <h3 
                   className="text-brown-700 mb-6"
                   style={{
-                    fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)',
+                    fontSize: 'clamp(0.95rem, 2.2vw, 1.75rem)',
                     fontWeight: 600,
                     letterSpacing: '-0.02em',
                   }}

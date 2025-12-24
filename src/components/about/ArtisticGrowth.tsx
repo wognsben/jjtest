@@ -1,33 +1,34 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
 
 const stages = [
   {
     id: 1,
     name: '감각의 숲',
     ageRange: '3–7세',
-    bgColor: '#FFEAE5',
-    strokeColor: '#FFB6A3',
+    bgColor: '#FADFDE',
+    strokeColor: '#E9B5B3',
   },
   {
     id: 2,
     name: '상징의 숲',
     ageRange: '8–12세',
-    bgColor: '#FFF1D6',
-    strokeColor: '#E8C8A8',
+    bgColor: '#FFE066',
+    strokeColor: '#E6C850',
   },
   {
     id: 3,
     name: '사유의 숲',
     ageRange: '13–19세',
-    bgColor: '#FFF6EC',
+    bgColor: '#C8A882',
     strokeColor: '#A67C52',
   },
   {
     id: 4,
     name: '회복의 숲',
     ageRange: '성인·엄마',
-    bgColor: '#EEF7F0',
-    strokeColor: '#8FBC88',
+    bgColor: '#2E7D32',
+    strokeColor: '#1B5E20',
   },
 ];
 
@@ -41,29 +42,29 @@ const blobPaths = [
 
 export default function ArtisticGrowth() {
   const containerRef = useRef<HTMLElement>(null);
-  const coreRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
+  const [animState, setAnimState] = useState<'idle' | 'merging' | 'merged'>('idle');
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    // 초기 상태 설정
-    container.setAttribute('data-state', 'idle');
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
         
-        // SCENE 1: 분화 애니메이션
+        // Merge 애니메이션 시작
         setTimeout(() => {
-          container.setAttribute('data-state', 'split');
-        }, 300);
+          setAnimState('merging');
+        }, 400);
+
+        // Merge 완료 → Core 나타남
+        setTimeout(() => {
+          setAnimState('merged');
+        }, 2000);
         
         observer.disconnect();
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     observer.observe(container);
@@ -73,123 +74,186 @@ export default function ArtisticGrowth() {
     };
   }, []);
 
+  // 2x2 그리드 초기 위치
+  const getInitialPosition = (index: number) => {
+    const spacing = 180;
+    const positions = [
+      { x: -spacing, y: -spacing }, // 좌상 (핑크)
+      { x: spacing, y: -spacing },  // 우상 (노랑)
+      { x: -spacing, y: spacing },  // 좌하 (브라운)
+      { x: spacing, y: spacing },   // 우하 (초록)
+    ];
+    return positions[index];
+  };
+
   return (
     <>
       <hr className="section-divider" />
-      <section ref={containerRef} className="growth-origin layout-split">
-        <div className="origin-wrap">
+      <section ref={containerRef} className="growth-origin" data-state={animState}>
+        <div className="merge-container">
           
-          {/* LEFT : AGE FLOW */}
-          <aside className="origin-age-flow">
-            <ul>
-              {stages.map((stage, index) => (
-                <li 
-                  key={stage.id}
-                  className={`age-item ${activeIndex === index ? 'active' : ''}`}
-                  onClick={() => setActiveIndex(index)}
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
-                >
-                  <div className="blob-media">
-                    <svg 
-                      viewBox="0 0 300 260" 
-                      className="blob-svg"
-                      style={{
-                        fill: stage.bgColor,
-                        stroke: stage.strokeColor,
-                      }}
-                    >
-                      <defs>
-                        <filter id={`blobGrain${stage.id}`} x="0%" y="0%" width="100%" height="100%">
-                          <feTurbulence
-                            type="fractalNoise"
-                            baseFrequency="3.5"
-                            numOctaves="4"
-                            seed={stage.id}
-                            stitchTiles="stitch"
-                          />
-                          <feDisplacementMap in="SourceGraphic" scale="1.5" />
-                        </filter>
-                      </defs>
-                      <path
-                        d={blobPaths[index]}
-                        filter={`url(#blobGrain${stage.id})`}
-                        strokeWidth="1.5"
-                        strokeOpacity="0.25"
-                      />
-                    </svg>
-                    <div className="blob-text-overlay">
-                      <span className="age">{stage.ageRange}</span>
-                      <span className="label">{stage.name}</span>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </aside>
-
-          {/* RIGHT : CORE AREA */}
-          <div className="origin-core-area">
+          {/* 4개의 Blob 카드 - 2x2에서 중앙으로 합쳐짐 */}
+          {stages.map((stage, index) => {
+            const initialPos = getInitialPosition(index);
             
-            {/* Core ↔ Blob 연결선 */}
-            <svg className="core-links" viewBox="0 0 600 400" preserveAspectRatio="none">
-              <path d="M120 80 C260 60, 340 120, 420 160" />
-              <path d="M120 160 C260 160, 340 180, 420 200" />
-              <path d="M120 240 C260 260, 340 240, 420 260" />
-              <path d="M120 320 C260 340, 340 300, 420 300" />
+            return (
+              <motion.div
+                key={stage.id}
+                className="merge-blob"
+                initial={{ 
+                  x: initialPos.x, 
+                  y: initialPos.y,
+                  scale: 1,
+                  opacity: 1,
+                  filter: 'blur(0px)'
+                }}
+                animate={
+                  animState === 'merging'
+                    ? {
+                        x: 0,
+                        y: 0,
+                        scale: 0.8,
+                        opacity: 0.85,
+                        filter: 'blur(2px)'
+                      }
+                    : animState === 'merged'
+                    ? {
+                        x: 0,
+                        y: 0,
+                        scale: 0,
+                        opacity: 0,
+                        filter: 'blur(8px)'
+                      }
+                    : {}
+                }
+                transition={{
+                  duration: 1.4,
+                  delay: index * 0.08,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                style={{
+                  position: 'absolute',
+                  mixBlendMode: animState === 'merging' ? 'multiply' : 'normal'
+                }}
+              >
+                <svg 
+                  viewBox="0 0 300 260" 
+                  className="blob-svg"
+                  style={{
+                    fill: stage.bgColor,
+                    stroke: stage.strokeColor,
+                    width: 'clamp(140px, 20vw, 200px)',
+                    height: 'clamp(100px, 14vw, 140px)',
+                  }}
+                >
+                  <defs>
+                    <filter id={`blobGrain${stage.id}`} x="0%" y="0%" width="100%" height="100%">
+                      <feTurbulence
+                        type="fractalNoise"
+                        baseFrequency="3.5"
+                        numOctaves="4"
+                        seed={stage.id}
+                        stitchTiles="stitch"
+                      />
+                      <feDisplacementMap in="SourceGraphic" scale="1.5" />
+                    </filter>
+                  </defs>
+                  <path
+                    d={blobPaths[index]}
+                    filter={`url(#blobGrain${stage.id})`}
+                    strokeWidth="1.5"
+                    strokeOpacity="0.25"
+                  />
+                </svg>
+                
+                <motion.div 
+                  className="blob-label"
+                  animate={{
+                    opacity: animState === 'idle' ? 1 : 0
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <span className="age">{stage.ageRange}</span>
+                  <span className="name">{stage.name}</span>
+                </motion.div>
+              </motion.div>
+            );
+          })}
+
+          {/* 통합된 Core - 4색 Fusion */}
+          <motion.div
+            className="fusion-core"
+            initial={{ scale: 0, opacity: 0, rotate: -20 }}
+            animate={
+              animState === 'merged'
+                ? { scale: 1, opacity: 1, rotate: 0 }
+                : {}
+            }
+            transition={{
+              duration: 1.2,
+              delay: 0.3,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+          >
+            {/* 4색 혼합 Blob */}
+            <svg viewBox="0 0 300 300" className="core-svg">
+              <defs>
+                {/* 4색 혼합 그라데이션 */}
+                <radialGradient id="fusionGradient" cx="50%" cy="50%">
+                  <stop offset="0%" stopColor="#FFE066" stopOpacity="0.95" />
+                  <stop offset="35%" stopColor="#FADFDE" stopOpacity="0.9" />
+                  <stop offset="65%" stopColor="#C8A882" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#2E7D32" stopOpacity="0.85" />
+                </radialGradient>
+                
+                {/* 글로우 효과 */}
+                <filter id="coreGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="12" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+
+                {/* Organic 텍스처 */}
+                <filter id="organicTexture">
+                  <feTurbulence
+                    type="fractalNoise"
+                    baseFrequency="3"
+                    numOctaves="4"
+                    seed="99"
+                    stitchTiles="stitch"
+                  />
+                  <feDisplacementMap in="SourceGraphic" scale="2" />
+                </filter>
+              </defs>
+              
+              {/* 배경 글로우 */}
+              <circle
+                cx="150"
+                cy="150"
+                r="130"
+                fill="url(#fusionGradient)"
+                opacity="0.3"
+                filter="url(#coreGlow)"
+              />
+              
+              {/* 메인 Blob */}
+              <path
+                d="M150,30 C190,35 240,70 255,120 C270,170 250,230 195,250 C140,270 85,250 55,200 C25,150 40,80 90,50 C115,35 135,28 150,30 Z"
+                fill="url(#fusionGradient)"
+                filter="url(#organicTexture)"
+                opacity="0.95"
+              />
             </svg>
             
-            {/* TOP IMAGE / TEXTURE - Low-Frequency Organic Field */}
-            <div className="core-visual">
-              <svg viewBox="0 0 400 400" className="core-field">
-                <defs>
-                  <filter id="coreField">
-                    <feTurbulence
-                      type="fractalNoise"
-                      baseFrequency="0.015"
-                      numOctaves="3"
-                      seed="9"
-                    >
-                      <animate
-                        attributeName="baseFrequency"
-                        dur="24s"
-                        values="0.014;0.018;0.014"
-                        repeatCount="indefinite"
-                      />
-                    </feTurbulence>
-                    <feDisplacementMap in="SourceGraphic" scale="26" />
-                  </filter>
-
-                  <radialGradient id="coreGradient">
-                    <stop offset="0%" stopColor="#EADFCF" stopOpacity="0.28" />
-                    <stop offset="60%" stopColor="#E8C8A8" stopOpacity="0.18" />
-                    <stop offset="100%" stopColor="#8FBC88" stopOpacity="0.1" />
-                  </radialGradient>
-                </defs>
-
-                <rect
-                  width="400"
-                  height="400"
-                  fill="url(#coreGradient)"
-                  filter="url(#coreField)"
-                />
-              </svg>
+            {/* Core 텍스트 */}
+            <div className="core-content">
+              <span className="core-title">INTEGRITY</span>
+              <span className="core-subtitle">CORE</span>
+              <span className="core-desc">4개의 숲이 하나로</span>
             </div>
-
-            {/* CORE */}
-            <div 
-              id="originCore" 
-              ref={coreRef}
-              className={`origin-core slab-core ${isHovering ? 'hover-reaction' : ''}`}
-            >
-              <span className="core-text">
-                INTEGRITY
-                <br />
-                CORE
-              </span>
-            </div>
-
-          </div>
+          </motion.div>
 
         </div>
       </section>
@@ -197,328 +261,175 @@ export default function ArtisticGrowth() {
       {/* 스타일 */}
       <style>{`
         .growth-origin {
-          padding: 160px 24px;
+          padding: clamp(100px, 15vw, 180px) clamp(24px, 4vw, 48px);
           background: #fff;
+          position: relative;
+          overflow: hidden;
         }
 
-        .origin-wrap {
-          max-width: 1400px;
+        .merge-container {
+          max-width: 1200px;
           margin: 0 auto;
-          display: grid;
-          grid-template-columns: minmax(260px, 32%) 1fr;
-          align-items: center;
-          gap: clamp(32px, 5vw, 72px);
-        }
-
-        /* LEFT : AGE FLOW */
-        .origin-age-flow ul {
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
-        .age-item {
-          opacity: 0.45;
-          transition: opacity 0.4s ease;
-          cursor: pointer;
+          min-height: clamp(500px, 60vh, 700px);
           position: relative;
-        }
-
-        .age-item:hover {
-          opacity: 0.7;
-        }
-
-        .age-item.active {
-          opacity: 1;
-        }
-
-        .blob-media {
-          width: 200px;
-          height: 120px;
-          position: relative;
-          overflow: visible;
-        }
-
-        .blob-media .blob-svg {
-          width: 100%;
-          height: 100%;
-          filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.06));
-          transition: transform 0.4s cubic-bezier(.22, 1, .36, 1), filter 0.4s ease;
-        }
-
-        .age-item:hover .blob-media .blob-svg {
-          transform: translateY(-4px) scale(1.02);
-          filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.12));
-        }
-
-        .age-item.active .blob-media .blob-svg {
-          transform: scale(1.05);
-        }
-
-        .blob-text-overlay {
-          position: absolute;
-          left: calc(100% - 12px);
-          top: 50%;
-          transform: translateY(-50%);
-          padding-left: 14px;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-          z-index: 2;
-          pointer-events: none;
-          font-family: "Noto Serif KR", serif;
-          color: #1a1a1a;
-          white-space: nowrap;
-        }
-
-        .blob-text-overlay .age {
-          font-size: 12px;
-          letter-spacing: 0.08em;
-          opacity: 0.7;
-          color: #9CA3AF;
-          font-family: "Inter", sans-serif;
-          font-weight: 500;
-        }
-
-        .age-item.active .blob-text-overlay .age {
-          color: #6B7280;
-          opacity: 0.9;
-        }
-
-        .blob-text-overlay .label {
-          font-family: "Noto Serif KR", serif;
-          font-size: 16px;
-          font-weight: 600;
-          letter-spacing: -0.01em;
-          color: #1a1a1a;
-        }
-
-        /* RIGHT : CORE AREA */
-        .origin-core-area {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        /* Core ↔ Blob 연결선 */
-        .core-links {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-          z-index: 1;
-          opacity: 0;
-          transition: opacity 0.6s ease;
-        }
-
-        .growth-origin[data-state="split"] .core-links {
-          opacity: 1;
-        }
-
-        .core-links path {
-          fill: none;
-          stroke: rgba(166, 124, 82, 0.35);
-          stroke-width: 1.2;
-          stroke-linecap: round;
-          stroke-dasharray: 600;
-          stroke-dashoffset: 600;
-          animation: draw-line 1.4s ease-out forwards;
-        }
-
-        .core-links path:nth-child(1) {
-          animation-delay: 0s;
-        }
-
-        .core-links path:nth-child(2) {
-          animation-delay: 0.1s;
-        }
-
-        .core-links path:nth-child(3) {
-          animation-delay: 0.2s;
-        }
-
-        .core-links path:nth-child(4) {
-          animation-delay: 0.3s;
-        }
-
-        @keyframes draw-line {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
-
-        /* Blob ↔ Core 시선 반응 (중력 효과) */
-        .slab-core.hover-reaction {
-          transform: scale(1.03) translateY(-4px);
-          box-shadow:
-            0 60px 120px rgba(0, 0, 0, 0.18),
-            0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .core-visual {
-          position: absolute;
-          inset: -25% -15%;
-          z-index: 0;
-          pointer-events: none;
-        }
-
-        .core-field {
-          width: 100%;
-          height: 100%;
-          opacity: 0.55;
-          mix-blend-mode: multiply;
-          filter: blur(2px);
-        }
-
-        /* CORE (상징적 존재) - Soft-edged Vertical Slab */
-        .slab-core {
-          position: relative;
-          width: clamp(200px, 18vw, 240px);
-          height: clamp(320px, 42vh, 380px);
-          background: linear-gradient(
-            180deg,
-            #FFFDF8 0%,
-            #FFF9EF 70%,
-            #FFF6E6 100%
-          );
-          border: 1px solid rgba(166, 124, 82, 0.28);
-          /* 완벽히 같지 않은 radius - 비대칭 */
-          border-radius: 52px 46px 58px 50px;
-          box-shadow:
-            0 40px 90px rgba(0, 0, 0, 0.12),
-            0 12px 30px rgba(0, 0, 0, 0.06);
           display: flex;
           align-items: center;
           justify-content: center;
-          z-index: 10;
-          transition:
-            transform 0.8s cubic-bezier(.22, .61, .36, 1),
-            box-shadow 0.8s cubic-bezier(.22, .61, .36, 1);
         }
 
-        /* 표면에 미세한 결 추가 */
-        .slab-core::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background-image:
-            radial-gradient(
-              rgba(0, 0, 0, 0.04) 1px,
-              transparent 1px
-            );
-          background-size: 4px 4px;
-          opacity: 0.25;
+        .merge-blob {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
           pointer-events: none;
-          border-radius: inherit;
         }
 
-        /* Hover 시 '깨어나는' 반응 */
-        .slab-core:hover {
-          transform: scale(1.03);
+        .blob-svg {
+          filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.12));
+          transition: filter 0.6s ease;
         }
 
-        /* Core ↔ Blob 연결선 (보이지 않게 이어진 축) */
-        .slab-core::before {
-          content: "";
-          position: absolute;
-          left: -60px;
-          top: 10%;
-          bottom: 10%;
-          width: 1px;
-          background: linear-gradient(
-            to bottom,
-            transparent,
-            rgba(166, 124, 82, 0.35),
-            transparent
-          );
-          opacity: 0.6;
+        .blob-label {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+          font-family: "Noto Serif KR", serif;
         }
 
-        .slab-core .core-text {
-          font-family: "Cormorant Garamond", serif;
-          font-size: clamp(20px, 2vw, 26px);
-          line-height: 1.15;
+        .blob-label .age {
+          font-size: clamp(11px, 1.2vw, 13px);
+          color: #9CA3AF;
+          font-weight: 500;
           letter-spacing: 0.08em;
-          text-align: center;
-          color: #6B5A3E;
-          opacity: 0.85;
+          font-family: "Inter", sans-serif;
+        }
+
+        .blob-label .name {
+          font-size: clamp(14px, 1.5vw, 17px);
+          color: #1a1a1a;
+          font-weight: 600;
+          letter-spacing: -0.01em;
+        }
+
+        /* Fusion Core */
+        .fusion-core {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: clamp(280px, 35vw, 380px);
+          height: clamp(280px, 35vw, 380px);
+        }
+
+        .core-svg {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          animation: coreRotate 30s linear infinite;
+        }
+
+        @keyframes coreRotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        .core-content {
           position: relative;
-          z-index: 3;
-          transform: translateY(-6px);
+          z-index: 10;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+          text-align: center;
         }
 
-        /* SCENE 0: Idle - CORE breathing (slab 버전) */
-        .growth-origin[data-state="idle"] .slab-core {
-          animation: slabBreathing 4s ease-in-out infinite;
+        .core-title {
+          font-family: "Cormorant Garamond", serif;
+          font-size: clamp(28px, 3.5vw, 38px);
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          color: #fff;
+          text-shadow: 
+            0 2px 8px rgba(0, 0, 0, 0.3),
+            0 4px 16px rgba(0, 0, 0, 0.2);
+          line-height: 1.1;
         }
 
-        @keyframes slabBreathing {
-          0%, 100% {
-            transform: scale(1) translateY(0);
-          }
-          50% {
-            transform: scale(1.01) translateY(-2px);
-          }
+        .core-subtitle {
+          font-family: "Cormorant Garamond", serif;
+          font-size: clamp(20px, 2.5vw, 26px);
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          color: rgba(255, 255, 255, 0.95);
+          text-shadow: 
+            0 2px 6px rgba(0, 0, 0, 0.25);
         }
 
-        /* SCENE 1: Split - 분화 애니메이션 */
-        .growth-origin[data-state="split"] .slab-core {
-          animation: none;
-          transform: scale(1) translateY(0);
+        .core-desc {
+          margin-top: 8px;
+          font-family: "Noto Serif KR", serif;
+          font-size: clamp(12px, 1.3vw, 15px);
+          color: rgba(255, 255, 255, 0.85);
+          font-weight: 500;
+          letter-spacing: 0.05em;
+          text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
 
         /* 모바일 */
-        @media (max-width: 1023px) {
+        @media (max-width: 768px) {
           .growth-origin {
-            padding: 80px 24px;
+            padding: 80px 20px;
           }
 
-          .origin-wrap {
-            grid-template-columns: 1fr;
-            gap: 48px;
+          .merge-container {
+            min-height: 600px;
           }
 
-          .origin-age-flow {
-            order: 2;
+          .merge-blob {
+            gap: 12px;
           }
 
-          .origin-core-area {
-            order: 1;
+          .blob-svg {
+            width: clamp(110px, 25vw, 140px) !important;
+            height: clamp(80px, 18vw, 100px) !important;
           }
 
-          .core-visual {
-            inset: -20% -10%;
+          .fusion-core {
+            width: clamp(240px, 70vw, 300px);
+            height: clamp(240px, 70vw, 300px);
           }
 
-          .slab-core {
-            order: -1;
-            margin-bottom: 48px;
-            height: 260px;
-            width: clamp(180px, 40vw, 220px);
+          .core-title {
+            font-size: clamp(24px, 6vw, 32px);
           }
 
-          .origin-age-flow ul {
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 16px;
+          .core-subtitle {
+            font-size: clamp(16px, 4vw, 20px);
           }
 
-          .age-item {
-            flex: 1;
-            min-width: 120px;
+          .core-desc {
+            font-size: clamp(11px, 3vw, 13px);
+          }
+        }
+
+        /* 태블릿 */
+        @media (min-width: 769px) and (max-width: 1023px) {
+          .growth-origin {
+            padding: 100px 32px;
           }
 
-          .blob-media {
-            height: 80px;
+          .merge-container {
+            min-height: 650px;
+          }
+
+          .fusion-core {
+            width: clamp(300px, 40vw, 350px);
+            height: clamp(300px, 40vw, 350px);
           }
         }
       `}</style>
     </>
   );
 }
-

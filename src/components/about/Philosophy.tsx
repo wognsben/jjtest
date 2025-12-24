@@ -115,10 +115,6 @@ export default function Philosophy() {
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="relative z-20 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[50%] xl:w-[45%]"
-              style={{
-                minHeight: 'clamp(500px, 75vw, 750px)',
-                maxHeight: 'clamp(600px, 90vw, 900px)',
-              }}
             >
             {/* Glass card background */}
             <div className="relative flex flex-col" style={{ minHeight: '100%' }}>
@@ -132,7 +128,7 @@ export default function Philosophy() {
               
               {/* Content */}
               <div 
-                className="relative flex-1 overflow-x-hidden"
+                className="relative flex-1"
                 style={{
                   padding: 'clamp(2.5rem, 6vw, 4rem)',
                 }}
