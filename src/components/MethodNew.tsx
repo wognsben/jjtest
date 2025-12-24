@@ -318,7 +318,7 @@ export default function MethodNew() {
                   <div 
                     className="absolute inset-0 w-full h-full bg-cover bg-center"
                     style={{
-                      backgroundImage: `url(${getImagePath('/assets/main/heart and color.jpg')})`
+                      backgroundImage: `url(${getImagePath('/assets/main/heart method.jpg')})`
                     }}
                   />
                   
