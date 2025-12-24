@@ -277,8 +277,7 @@ export default function Programs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-6xl mx-auto space-y-6 text-center mb-24 md:mb-20"
-          style={{ marginBottom: 'clamp(4rem, 8vw, 5rem)' }}
+          className="max-w-6xl mx-auto space-y-6 text-center mb-24 md:mb-20 programs-header"
         >
           <h2
             className="text-primary programs-title md:text-center"
@@ -560,6 +559,11 @@ export default function Programs() {
           /* 첫 번째 줄만 살짝 더 왼쪽으로 이동 (비대칭 효과) */
           .programs-title-first-line {
             margin-left: -0.5rem;
+          }
+
+          /* 모바일에서 하단 마진 120px */
+          .programs-header {
+            margin-bottom: 120px !important;
           }
         }
         
