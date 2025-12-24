@@ -109,7 +109,7 @@ export default function Footer() {
             <div 
               style={{
                 fontFamily: "'Noto Sans KR', sans-serif",
-                fontSize: 'clamp(14px, 1.2vw, 15px)',
+                fontSize: 'clamp(12px, 1.2vw, 15px)',
                 fontWeight: 300,
                 letterSpacing: '-0.01em',
                 color: '#6B6B6B',

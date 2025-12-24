@@ -70,6 +70,11 @@ export default function ProgramMethodSection() {
           color: #2F6B4F;
           letter-spacing: 0.01em;
           cursor: pointer;
+          width: 140px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
           transition:
             background 0.4s ease,
             transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),

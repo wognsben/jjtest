@@ -221,9 +221,9 @@ export function ChildArtSection3() {
           <h2
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.6rem, 3vw, 2.4rem)',
+              fontSize: 'clamp(1.2rem, 3vw, 2.4rem)',
               color: '#2F6B4F',
-              fontWeight: 500,
+              fontWeight: 600,
               lineHeight: 1.5,
             }}
           >
@@ -372,6 +372,7 @@ export function ChildArtSection4() {
           className="relative rounded-3xl overflow-hidden"
           style={{
             boxShadow: '0 20px 80px rgba(47, 107, 79, 0.12)',
+            minHeight: '600px',
           }}
         >
           {/* Background Image */}
@@ -379,6 +380,10 @@ export function ChildArtSection4() {
             src={getImagePath("/assets/about/crayon forest/crayon forest.png")}
             alt="크레용숲 어린이 작품"
             className="w-full h-auto"
+            style={{
+              minHeight: '600px',
+              objectFit: 'cover',
+            }}
             onError={(e) => {
               console.error('Image load error:', e.currentTarget.src);
               const src = e.currentTarget.src;
@@ -399,6 +404,7 @@ export function ChildArtSection4() {
             className="absolute inset-0"
             style={{
               background: 'linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 60%, rgba(255,255,255,0.98) 100%)',
+              zIndex: 1,
             }}
           />
 
@@ -409,6 +415,9 @@ export function ChildArtSection4() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="absolute bottom-0 left-0 right-0 text-center px-8 pb-16 md:pb-24 lg:pb-32"
+            style={{
+              zIndex: 2,
+            }}
           >
             <p
               style={{
@@ -418,6 +427,8 @@ export function ChildArtSection4() {
                 lineHeight: 1.8,
                 fontWeight: 400,
                 marginBottom: '1.5rem',
+                wordBreak: 'keep-all',
+                overflowWrap: 'break-word',
               }}
             >
               이제 질문은 바뀝니다.
@@ -426,11 +437,13 @@ export function ChildArtSection4() {
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                fontSize: 'clamp(0.95rem, 2vw, 1.5rem)',
                 color: '#2F6B4F',
-                lineHeight: 1.7,
+                lineHeight: 1.75,
                 fontWeight: 300,
                 marginBottom: '0.5rem',
+                wordBreak: 'keep-all',
+                overflowWrap: 'break-word',
               }}
             >
               "우리 아이가 잘 그리게 될까요?"가 아니라,
@@ -439,11 +452,13 @@ export function ChildArtSection4() {
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                fontSize: 'clamp(0.95rem, 2vw, 1.5rem)',
                 color: '#2F6B4F',
-                lineHeight: 1.7,
+                lineHeight: 1.75,
                 fontWeight: 300,
                 marginBottom: '2.5rem',
+                wordBreak: 'keep-all',
+                overflowWrap: 'break-word',
               }}
             >
               "이 아이가 자기다운 세계를 만들 힘을 갖게 될까요?"
@@ -452,10 +467,12 @@ export function ChildArtSection4() {
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1.3rem, 2.4vw, 1.9rem)',
+                fontSize: 'clamp(1.15rem, 2.4vw, 1.9rem)',
                 color: '#2F6B4F',
                 lineHeight: 1.6,
                 fontWeight: 600,
+                wordBreak: 'keep-all',
+                overflowWrap: 'break-word',
               }}
             >
               크레용숲은 그 질문에 대한 하나의 대답입니다.
@@ -585,20 +602,25 @@ export function ChildArtSection5() {
                 className="flex flex-col items-center flex-1"
               >
                 <div
-                  className="w-36 h-36 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-full flex items-center justify-center mb-6"
+                  className="rounded-full flex items-center justify-center mb-6"
                   style={{
+                    width: 'clamp(144px, 10vw, 176px)',
+                    height: 'clamp(144px, 10vw, 176px)',
                     background: '#FADFDB',
                     border: '3px solid #2F6B4F',
+                    flex: 'none',
+                    overflow: 'hidden',
+                    aspectRatio: '1 / 1',
                   }}
                 >
                   <p
-                    className="text-center px-4"
+                    className="text-center px-3"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
+                      fontSize: 'clamp(0.9rem, 1.3vw, 1.1rem)',
                       color: '#333',
                       fontWeight: 500,
-                      lineHeight: 1.5,
+                      lineHeight: 1.35,
                     }}
                   >
                     학기제 운영
@@ -615,20 +637,25 @@ export function ChildArtSection5() {
                 className="flex flex-col items-center flex-1"
               >
                 <div
-                  className="w-36 h-36 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-full flex items-center justify-center mb-6"
+                  className="rounded-full flex items-center justify-center mb-6"
                   style={{
+                    width: 'clamp(144px, 10vw, 176px)',
+                    height: 'clamp(144px, 10vw, 176px)',
                     background: '#FADFDB',
                     border: '3px solid #2F6B4F',
+                    flex: 'none',
+                    overflow: 'hidden',
+                    aspectRatio: '1 / 1',
                   }}
                 >
                   <p
-                    className="text-center px-4"
+                    className="text-center px-3"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
+                      fontSize: 'clamp(0.9rem, 1.3vw, 1.1rem)',
                       color: '#333',
                       fontWeight: 500,
-                      lineHeight: 1.5,
+                      lineHeight: 1.35,
                     }}
                   >
                     소수정예<br />
@@ -670,35 +697,35 @@ export function ChildArtSection5() {
               <div className="grid grid-cols-2 gap-8">
                 {/* Left Info - 로즈 브라운 */}
                 <div className="space-y-1.5">
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#A66A5A', lineHeight: 1.8 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.75rem', color: '#A66A5A', lineHeight: 1.8 }}>
                     월별 감정예술 테마
                   </p>
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#A66A5A', lineHeight: 1.8 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.75rem', color: '#A66A5A', lineHeight: 1.8 }}>
                     발달 단계에 맞춘 4~12세 연령별 수업
                   </p>
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#A66A5A', lineHeight: 1.8 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.75rem', color: '#A66A5A', lineHeight: 1.8 }}>
                     감정 기록·색 그림으로 글쓰기·자기표현 활동
                   </p>
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#A66A5A', lineHeight: 1.8 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.75rem', color: '#A66A5A', lineHeight: 1.8 }}>
                     학기제로 이어지는 연속적 성장 흐름
                   </p>
                 </div>
 
                 {/* Right Info - 짙은 초록색 */}
                 <div className="space-y-1.5">
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#2F6B4F', lineHeight: 1.8 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.75rem', color: '#2F6B4F', lineHeight: 1.8 }}>
                     1학기 : 3~8월 (5개월)
                   </p>
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#2F6B4F', lineHeight: 1.8 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.75rem', color: '#2F6B4F', lineHeight: 1.8 }}>
                     2학기: 9~12월 (5개월)
                   </p>
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#2F6B4F', lineHeight: 1.8 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.75rem', color: '#2F6B4F', lineHeight: 1.8 }}>
                     방학특강 (1~2월)
                   </p>
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#2F6B4F', lineHeight: 1.8, marginTop: '0.75rem' }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.75rem', color: '#2F6B4F', lineHeight: 1.8, marginTop: '0.75rem' }}>
                     주1/2회  각 100분수업 ( 10분전 부모 브리핑시간)
                   </p>
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.85rem', color: '#2F6B4F', lineHeight: 1.8 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: '0.75rem', color: '#2F6B4F', lineHeight: 1.8 }}>
                     인원 : 4명(최대 5명)
                   </p>
                 </div>

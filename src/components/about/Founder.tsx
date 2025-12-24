@@ -625,7 +625,7 @@ export default function Founder() {
             transition={{ duration: 0.8 }}
             className="space-y-16"
           >
-            {/* 6 Image Grid */}
+            {/* 6 Image Grid - Bento Style (Mobile) / Horizontal (Desktop) */}
             <div
               ref={galleryRef}
               className="mx-auto founder-gallery"
@@ -637,7 +637,8 @@ export default function Founder() {
                 boxSizing: 'border-box',
               }}
             >
-              <div className="flex flex-row gap-2 md:gap-3" style={{ width: '100%' }}>
+              {/* Desktop: Horizontal Layout */}
+              <div className="hidden md:flex flex-row gap-2 md:gap-3" style={{ width: '100%' }}>
               {[1, 2, 3, 4, 5, 6].map((item, index) => {
                 const extension = item === 6 ? 'png' : 'jpg';
                 return (
@@ -648,6 +649,34 @@ export default function Founder() {
                       flex: '1 1 0',
                       height: '240px',
                       minWidth: 0,
+                    }}
+                  >
+                    <ImageWithFallback
+                      src={getImagePath(`/assets/about/under of founder/under of founder-${item}.${extension}`)}
+                      alt={`크레용숲 활동 ${item}`}
+                      className="w-full h-full object-cover"
+                    />
+                    
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-brown-900/60 via-brown-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+                );
+              })}
+              </div>
+
+              {/* Mobile: Bento Grid Layout */}
+              <div className="md:hidden grid grid-cols-2 gap-2" style={{ width: '100%' }}>
+              {[1, 2, 3, 4, 5, 6].map((item, index) => {
+                const extension = item === 6 ? 'png' : 'jpg';
+                // 1, 2번은 큰 이미지 (높이 더 높게), 3-6번은 작은 이미지
+                const isLarge = item <= 2;
+                return (
+                  <div
+                    key={item}
+                    className="founder-gallery-item relative group overflow-hidden rounded-lg shadow-md"
+                    style={{ 
+                      height: isLarge ? '200px' : '140px',
+                      width: '100%',
                     }}
                   >
                     <ImageWithFallback

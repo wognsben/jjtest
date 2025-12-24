@@ -176,7 +176,7 @@ export function ChildArtSection7() {
         
         .desc-line {
           font-family: 'Noto Serif KR', serif;
-          font-size: clamp(0.85rem, 1.1vw, 0.9rem);
+          font-size: clamp(0.75rem, 1.1vw, 0.9rem);
           color: #888;
           font-weight: 300;
           line-height: 1.7;
@@ -246,7 +246,7 @@ export function ChildArtSection7() {
                     className="text-center"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.9rem, 1.2vw, 1rem)',
+                      fontSize: 'clamp(0.78rem, 1.2vw, 1rem)',
                       color: '#444',
                       fontWeight: 500,
                       lineHeight: 1.5,
@@ -307,7 +307,7 @@ export function ChildArtSection7() {
                   <p 
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.1vw, 0.9rem)',
+                      fontSize: 'clamp(0.75rem, 1.1vw, 0.9rem)',
                       color: '#888',
                       lineHeight: 1.8,
                       fontWeight: 300,
@@ -330,7 +330,7 @@ export function ChildArtSection7() {
                     <p 
                       style={{
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.1vw, 0.9rem)',
+                        fontSize: 'clamp(0.75rem, 1.1vw, 0.9rem)',
                         color: '#888',
                         lineHeight: 1.8,
                         fontWeight: 300,

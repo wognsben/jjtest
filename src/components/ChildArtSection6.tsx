@@ -19,7 +19,7 @@ export function ChildArtSection6() {
           <p 
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.2rem, 2.2vw, 1.6rem)',
+              fontSize: 'clamp(1rem, 2.2vw, 1.6rem)',
               color: '#2F6B4F',
               lineHeight: 1.8,
               fontWeight: 500,
@@ -30,7 +30,7 @@ export function ChildArtSection6() {
           <p 
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.2rem, 2.2vw, 1.6rem)',
+              fontSize: 'clamp(1rem, 2.2vw, 1.6rem)',
               color: '#A66A5A',
               lineHeight: 1.8,
               fontWeight: 500,

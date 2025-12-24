@@ -73,7 +73,7 @@ export default function Interview() {
                   className="mb-8 leading-tight"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+                    fontSize: 'clamp(1.8rem, 5vw, 4.5rem)',
                     fontWeight: 700,
                     letterSpacing: '-0.03em',
                   }}
@@ -297,7 +297,7 @@ export default function Interview() {
                   className="mb-6"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(18px, 2.5vw, 24px)',
+                    fontSize: 'clamp(17px, 2.5vw, 24px)',
                     color: '#bb8162',
                     fontWeight: 500,
                     lineHeight: '1.6',
