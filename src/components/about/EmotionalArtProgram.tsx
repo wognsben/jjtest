@@ -8,7 +8,7 @@ const stages = [
     number: '①',
     title: '클래스 전',
     subtitle: '감정·성향을 먼저 읽습니다',
-    description: '오늘의 감정 상태를 색으로 표현하는 감정카드 기록유형에 따라 필요한 안정 루틴 체크 또한 주제 인지를 돕는 짧은 오디오·이미지 프리세션 제공\n➡ 수업에 들어가기 전, 감정·주의력·안정도를 먼저 파악합니다',
+    description: '오늘의 감정 상태를 색으로 표현하는 감정카드 기록\n\n유형에 따라 필요한 안정 루틴 체크\n\n또한 주제 인지를 돕는 짧은 오디오·이미지 프리세션 제공\n\n➡ 수업에 들어가기 전, 감정·주의력·안정도를 먼저 파악합니다',
     color: '#FFB6C1',
   },
   {
@@ -16,7 +16,7 @@ const stages = [
     number: '②',
     title: '클래스 중',
     subtitle: '감정 표현과 물질 경험을 설계합니다',
-    description: '작품의 색 선택, 선의 변화, 몰입 흐름을 실시간 관찰 성향·정서 패턴 기록 또한 작품 속 감정·세계관을 발견해주는 스토리 코칭\n➡ 그림이 아니라 \'창조성\'이 수업의 중심이 됩니다.',
+    description: '작품의 색 선택, 선의 변화, 몰입 흐름을 실시간 관찰\n\n성향·정서 패턴 기록\n\n작품 속 감정·세계관을 발견해주는 스토리 코칭\n\n➡ 그림이 아니라 \'창조성\'이 수업의 중심이 됩니다.',
     color: '#8FBC88',
   },
   {
@@ -24,7 +24,7 @@ const stages = [
     number: '③',
     title: '클래스 후',
     subtitle: '매일 성장 기록으로 이어집니다',
-    description: '수업 종료 후, 작품과 감정의 연결을 한 줄로 남기는\n컬러 성장차트\n색–감정–행동 패턴을 누적 기록\n부모에게 전달되는 오늘의 마음 메모\n모아진 기록은 6개월 단위로 어린이 성장 리포트로 완성\n➡ 미술 시간이 끝나도, 아이의 감정 생태는 계속 성장합니다.',
+    description: '수업 종료 후, 작품과 감정의 연결을 한 줄로 남기는 \n\n컬러 성장차트\n\n색–감정–행동 패턴을 누적 기록, 부모에게 전달되는 오늘의 마음 메모\n\n모아진 기록은 6개월 단위로 어린이 성장 리포트로 완성\n\n➡ 미술 시간이 끝나도, 아이의 감정 생태는 계속 성장합니다.',
     color: '#A67C52',
   },
 ];
@@ -300,7 +300,7 @@ export default function EmotionalArtProgram() {
                       {/* Bottom */}
                       <div className="flex-1 flex items-end">
                         <p 
-                          className="text-sm md:text-base leading-relaxed w-full"
+                          className="text-xs md:text-sm leading-relaxed w-full"
                           style={{ 
                             color: '#555',
                             lineHeight: '1.65',
