@@ -145,7 +145,7 @@ export default function Hero() {
         style={{
           paddingLeft: 'clamp(1.25rem, 4vw, 2.5rem)',
           paddingRight: 'clamp(1.25rem, 4vw, 2.5rem)',
-          paddingTop: 'clamp(2.5rem, 8vw, 7rem)', // 모바일에서 상단 여백 축소해 배경 위로 올림
+          paddingTop: 'clamp(2.5rem, 8vw, 7rem)', // Reduce top padding on mobile to bring content above background
           paddingBottom: 'clamp(3rem, 9vw, 7rem)',
           zIndex: 3,
         }}
@@ -195,7 +195,7 @@ export default function Hero() {
                 className="relative inline-block title-with-mask"
                 style={{ 
                   fontFamily: "'IM Fell English', 'Noto Serif KR', serif",
-                  fontSize: 'clamp(2rem, 6vw, 4.8rem)', // iPhone 14 Pro 기준 한 줄 및 좌우 여백 확보
+                  fontSize: 'clamp(2rem, 6vw, 4.8rem)', // Single line on iPhone 14 Pro with side margins
                   fontWeight: 400,
                   letterSpacing: titleLetterSpacing ?? '-0.02em',
                   fontStyle: 'italic',
@@ -224,7 +224,7 @@ export default function Hero() {
             }}
             className="flex flex-nowrap items-center justify-center gap-8 md:gap-12 mt-12 md:mt-24 relative z-30 overflow-hidden"
             style={{
-              gap: 'clamp(0.5rem, 2.5vw, 1.25rem)', // 모바일에서 한 줄 유지 및 좌우 여백 확보
+              gap: 'clamp(0.5rem, 2.5vw, 1.25rem)', // Keep single line on mobile with side margins
               paddingInline: 'clamp(0.5rem, 3vw, 1rem)',
             }}
           >
@@ -233,7 +233,7 @@ export default function Hero() {
                 key={i}
                 className="tracking-wide whitespace-nowrap"
                 style={{
-                  fontSize: 'clamp(0.7rem, 1.3vw, 0.92rem)', // iPhone 14 Pro 기준 한 줄
+                  fontSize: 'clamp(0.7rem, 1.3vw, 0.92rem)', // Single line on iPhone 14 Pro
                   color: '#666',
                   fontFamily: "'Inter', sans-serif",
                 }}

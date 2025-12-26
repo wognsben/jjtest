@@ -283,7 +283,7 @@ export default function Programs() {
             className="text-primary programs-title md:text-center"
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1rem, 4.2vw, 1.5rem)', // 모바일에서 조금 줄임
+              fontSize: 'clamp(1rem, 4.2vw, 1.5rem)', // Slightly reduced on mobile
               lineHeight: 1.35,
               wordBreak: 'keep-all',
               whiteSpace: 'normal',
@@ -542,7 +542,7 @@ export default function Programs() {
 
       {/* Enhanced styles */}
       <style>{`
-        /* 모바일 전용: 모든 span을 inline으로 강제해서 자연 줄바꿈 허용 */
+        /* Mobile only: Force all spans to inline for natural line breaks */
         @media (max-width: 767px) {
           .programs-title span {
             display: inline !important;
@@ -556,12 +556,12 @@ export default function Programs() {
             text-align: left;
           }
 
-          /* 첫 번째 줄만 살짝 더 왼쪽으로 이동 (비대칭 효과) */
+          /* Move first line slightly left (asymmetric effect) */
           .programs-title-first-line {
             margin-left: -0.5rem;
           }
 
-          /* 모바일에서 하단 마진 120px */
+          /* Bottom margin 120px on mobile */
           .programs-header {
             margin-bottom: 120px !important;
           }
