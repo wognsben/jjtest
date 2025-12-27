@@ -5,16 +5,16 @@ import { getImagePath } from '../utils/imageUtils';
 // MOMENTS Section 4: 크레용숲 선언서
 export function MomentsSection4() {
   return (
-    <section className="relative bg-white py-24 md:py-32 lg:py-40">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    <section className="relative bg-white pt-[90px] pb-24">
+      <div className="max-w-[1180px] mx-auto px-0">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left: Philosophy Text */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="space-y-8 text-left"
+            className="space-y-8"
           >
             {/* Header Label - Orange Circle */}
             <motion.div
@@ -31,7 +31,7 @@ export function MomentsSection4() {
                   y="38"
                   style={{
                     fontFamily: "sans-serif",
-                    fontSize: '20px',
+                    fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
                     fill: '#D4A574',
                   }}
                 >
@@ -56,7 +56,7 @@ export function MomentsSection4() {
                   textAnchor="middle"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: '16px',
+                    fontSize: 'clamp(0.85rem, 1.5vw, 1.1rem)',
                     fill: '#A66A5A',
                     fontWeight: 500,
                     letterSpacing: '0.1em',
@@ -71,7 +71,7 @@ export function MomentsSection4() {
                   y="38"
                   style={{
                     fontFamily: "sans-serif",
-                    fontSize: '20px',
+                    fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
                     fill: '#D4A574',
                   }}
                 >
@@ -81,7 +81,7 @@ export function MomentsSection4() {
             </motion.div>
 
             {/* Declaration Text */}
-            <div className="space-y-6">
+            <div className="space-y-6 max-w-[34em]" style={{ borderLeft: '2px solid rgba(45, 80, 22, 0.15)', paddingLeft: '1.25rem' }}>
               {/* 1 */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -92,10 +92,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   우리는 어른의 잣대로 작품으로 만들지 않습니다.
@@ -103,10 +104,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   우리는 <span style={{ fontWeight: 500 }}>아이의 결을 발견</span>합니다.
@@ -123,10 +125,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   우리는 기술을 가르치기보다
@@ -134,10 +137,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   <span style={{ fontWeight: 500 }}>아이 안의 감정 언어를</span> 깨워줍니다.
@@ -154,10 +158,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   우리는 비교하지 않습니다.
@@ -165,10 +170,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   대신 <span style={{ fontWeight: 500 }}>아이가 가진 고유한 속도를</span> 지켜줍니다.
@@ -185,10 +191,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   우리는 입시 미술을 하지 않습니다.
@@ -196,10 +203,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   대신 <span style={{ fontWeight: 500 }}>아이가 평생 사용하는</span>
@@ -207,10 +215,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   <span style={{ fontWeight: 500 }}>정서력·표현력·몰입력을</span> 키웁니다.
@@ -227,10 +236,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   그림은 결과가 아니라
@@ -238,10 +248,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   <span style={{ fontWeight: 500 }}>아이 마음의 기록</span>이라고 믿습니다.
@@ -258,10 +269,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   크레용숲은
@@ -269,10 +281,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   <span style={{ fontWeight: 500 }}>아이의 색을 찾고, 마음을 읽고,</span>
@@ -280,10 +293,11 @@ export function MomentsSection4() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   <span style={{ fontWeight: 500 }}>자기다움이 자라는 시간을</span> 선물합니다.
@@ -302,10 +316,11 @@ export function MomentsSection4() {
                   className="inline-block"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1.05rem, 1.4vw, 1.25rem)',
+                    fontSize: 'clamp(0.85rem, 1.4vw, 1.25rem)',
                     color: '#2d5016',
                     fontWeight: 500,
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                     borderBottom: '2px solid #2d5016',
                     paddingBottom: '2px',
                   }}

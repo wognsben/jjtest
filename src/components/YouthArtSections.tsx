@@ -52,8 +52,8 @@ export function YouthArtSection1() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-white py-24 md:py-32 lg:py-40">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+    <section ref={sectionRef} className="relative bg-white pt-[90px] pb-24">
+      <div className="max-w-[1180px] mx-auto px-0">
         {/* Hero Image with Text Overlay */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -154,10 +154,11 @@ export function YouthArtSection1() {
                     className="mb-2"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.75rem, 1.2vw, 0.9rem)',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#A66A5A',
                       fontWeight: 300,
-                      lineHeight: 1.8,
+                      lineHeight: 1.65,
+                      letterSpacing: 0,
                       letterSpacing: '0.05em',
                     }}
                   >
@@ -168,7 +169,7 @@ export function YouthArtSection1() {
                     className="mb-2"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(1rem, 1.8vw, 1.3rem)',
+                      fontSize: 'clamp(0.85rem, 1.8vw, 1.3rem)',
                       color: '#A66A5A',
                       fontWeight: 600,
                       letterSpacing: '-0.01em',
@@ -220,8 +221,8 @@ export function YouthArtSection2() {
   ];
 
   return (
-    <section className="relative bg-white py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+    <section className="relative bg-white pt-[90px] pb-24">
+      <div className="max-w-[1180px] mx-auto px-0">
         {/* Top: Three Big Questions */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -239,10 +240,11 @@ export function YouthArtSection2() {
               transition={{ duration: 0.6, delay: 0.1 + i * 0.1 }}
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1.15rem, 2.2vw, 1.6rem)',
+                fontSize: 'clamp(0.85rem, 2.2vw, 1.6rem)',
                 color: '#333',
                 fontWeight: 400,
-                lineHeight: 1.75,
+                lineHeight: 1.65,
+                letterSpacing: 0,
               }}
             >
               {question}
@@ -261,14 +263,15 @@ export function YouthArtSection2() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.95rem, 1.3vw, 1.05rem)',
+              fontSize: 'clamp(0.85rem, 1.3vw, 1.05rem)',
               color: '#666',
               fontWeight: 300,
-              lineHeight: 1.9,
+              lineHeight: 1.65,
+              letterSpacing: 0,
             }}
           >
-            이 시기에는 감정을 '왜 그런지' 묻기 시작하는 시기이며, 자기 생각과 세계관을 만들기 시작합니다.<br />
-            하지만 학교와 입시는 여전히 기술·결과만 요구하죠.<br />
+            이 시기에는 감정을 '왜 그런지' 묻기 시작하는 시기이며, 자기 생각과 세계관을 만들기 시작합니다.<br /><br />
+            하지만 학교와 입시는 여전히 기술·결과만 요구하죠.<br /><br />
             정작 중요한 정체성·사유력·자기서사는 자리를 잃기 쉽습니다.
           </p>
         </motion.div>
@@ -287,7 +290,8 @@ export function YouthArtSection2() {
               fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
               color: '#2F6B4F',
               fontWeight: 500,
-              lineHeight: 1.7,
+              lineHeight: 1.65,
+              letterSpacing: 0,
             }}
           >
             "청소년의 세계관이 자라는 시간, 자기다움이 언어가 되는 수업입니다"
@@ -305,12 +309,13 @@ export function YouthArtSection2() {
             background: '#FADFDB',
             borderRadius: '32px',
             padding: '2.5rem 3rem',
+            minWidth: '200px',
           }}
         >
           <span
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: '1rem',
+              fontSize: '0.85rem',
               fontWeight: 600,
               color: '#2F6B4F',
               marginBottom: '1.5rem',
@@ -321,17 +326,20 @@ export function YouthArtSection2() {
           </span>
           <ul className="space-y-2 mt-4">
             {targetList.map((item, i) => (
-              <li 
-                key={i}
-                style={{ 
-                  fontFamily: "'Noto Serif KR', serif", 
-                  fontSize: '0.95rem', 
-                  lineHeight: 2, 
-                  color: '#A66A5A' 
-                }}
-              >
-                {item}
-              </li>
+              <React.Fragment key={i}>
+                <li 
+                  style={{ 
+                    fontFamily: "'Noto Serif KR', serif", 
+                    fontSize: '0.95rem', 
+                    lineHeight: 1.65,
+                    letterSpacing: 0, 
+                    color: '#A66A5A' 
+                  }}
+                >
+                  {item}
+                </li>
+                {i < targetList.length - 1 && <><br /><br /></>}
+              </React.Fragment>
             ))}
           </ul>
           
@@ -440,8 +448,8 @@ export function YouthArtSection3() {
         .philo-section .connect-line:nth-child(5) { transition-delay: 1.4s; }
       `}</style>
       
-      <section ref={sectionRef} className="philo-section relative bg-white py-24 md:py-32 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative">
+      <section ref={sectionRef} className="philo-section relative bg-white pt-[90px] pb-24 overflow-hidden">
+        <div className="max-w-[1180px] mx-auto px-0 relative">
 
           {/* Title Banner with Background Image */}
           <motion.div
@@ -475,32 +483,34 @@ export function YouthArtSection3() {
             {/* Content - Title on top, rest at bottom */}
             <div className="relative z-10 flex flex-col justify-between h-full py-10 px-8 md:px-12" style={{ minHeight: '280px' }}>
               {/* Top: Title (full width, single line) */}
-              <h2 
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1.6rem, 3vw, 2.4rem)',
-                  color: '#2F6B4F',
-                  fontWeight: 500,
-                  lineHeight: 1.3,
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                철학미술관 : 나를 이해하는 색채의 방
-              </h2>
-              
-              {/* Bottom: Subtitle + Description (two column) */}
-              <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-end mt-auto">
-                {/* Left: Subtitle */}
+              <div>
+                <h2 
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(1.6rem, 3vw, 2.4rem)',
+                    color: '#2F6B4F',
+                    fontWeight: 500,
+                    lineHeight: 1.3,
+                    whiteSpace: 'nowrap',
+                    marginBottom: '1rem',
+                  }}
+                >
+                  철학미술관 : 나를 이해하는 색채의 방
+                </h2>
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.95rem, 1.3vw, 1.1rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 1.1rem)',
                     color: '#A66A5A',
                     fontWeight: 400,
                   }}
                 >
                   청소년 사유예술 프로그램
                 </p>
+              </div>
+              
+              {/* Bottom: Description (two column) */}
+              <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-end mt-auto">
                 
                 {/* Right: Description */}
                 <div>
@@ -509,7 +519,8 @@ export function YouthArtSection3() {
                       fontFamily: "'Noto Serif KR', serif",
                       fontSize: 'clamp(0.85rem, 1.1vw, 0.95rem)',
                       color: '#444',
-                      lineHeight: 1.8,
+                      lineHeight: 1.65,
+                      letterSpacing: 0,
                       fontWeight: 300,
                       marginBottom: '0.5rem',
                     }}
@@ -521,17 +532,19 @@ export function YouthArtSection3() {
                       fontFamily: "'Noto Serif KR', serif",
                       fontSize: 'clamp(0.85rem, 1.1vw, 0.95rem)',
                       color: '#444',
-                      lineHeight: 1.8,
+                      lineHeight: 1.65,
+                      letterSpacing: 0,
                       fontWeight: 300,
                     }}
                   >
                     "생각하는 법, {' '}
                     <span 
                       style={{ 
-                        backgroundImage: 'linear-gradient(120deg, rgba(166,106,90,0.25) 0%, rgba(250,223,219,0.5) 100%)',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: '100% 40%',
-                        backgroundPosition: '0 85%',
+                        textDecoration: 'underline',
+                        textDecorationColor: '#8FBC88',
+                        textDecorationThickness: '2px',
+                        textUnderlineOffset: '3px',
+                        boxDecorationBreak: 'clone',
                       }}
                     >
                       해석하는 법, 나를 설명하는 법
@@ -557,7 +570,7 @@ export function YouthArtSection3() {
               <h3
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1rem, 1.4vw, 1.2rem)',
+                  fontSize: 'clamp(0.85rem, 1.4vw, 1.2rem)',
                   color: '#2F6B4F',
                   fontWeight: 600,
                   marginBottom: '1.25rem',
@@ -571,7 +584,8 @@ export function YouthArtSection3() {
                     fontFamily: "'Noto Serif KR', serif",
                     fontSize: 'clamp(0.8rem, 1vw, 0.9rem)',
                     color: '#666',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   • 4ROOM 사유 구조 (감각 → 감정 → 상징 → 해석)
@@ -581,7 +595,8 @@ export function YouthArtSection3() {
                     fontFamily: "'Noto Serif KR', serif",
                     fontSize: 'clamp(0.8rem, 1vw, 0.9rem)',
                     color: '#666',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   • 1년간 누적 작업으로 《나만의 철학미술관》 완성
@@ -591,7 +606,8 @@ export function YouthArtSection3() {
                     fontFamily: "'Noto Serif KR', serif",
                     fontSize: 'clamp(0.8rem, 1vw, 0.9rem)',
                     color: '#666',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   • 색·서사·기억을 조합한 개인 아카이브 제작
@@ -601,7 +617,8 @@ export function YouthArtSection3() {
                     fontFamily: "'Noto Serif KR', serif",
                     fontSize: 'clamp(0.8rem, 1vw, 0.9rem)',
                     color: '#666',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   • 주 1회 100분 / 그룹수업 (최대 6명)
@@ -702,10 +719,11 @@ export function YouthArtSection3() {
                   <p
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.7rem, 1vw, 0.85rem)',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#A66A5A',
                       fontWeight: 400,
-                      lineHeight: 1.9,
+                      lineHeight: 1.65,
+              letterSpacing: 0,
                       marginBottom: '0.25rem',
                     }}
                   >
@@ -714,10 +732,11 @@ export function YouthArtSection3() {
                   <p
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.7rem, 1vw, 0.85rem)',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#A66A5A',
                       fontWeight: 400,
-                      lineHeight: 1.9,
+                      lineHeight: 1.65,
+              letterSpacing: 0,
                       marginBottom: '0.25rem',
                     }}
                   >
@@ -726,10 +745,11 @@ export function YouthArtSection3() {
                   <p
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.7rem, 1vw, 0.85rem)',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#A66A5A',
                       fontWeight: 400,
-                      lineHeight: 1.9,
+                      lineHeight: 1.65,
+              letterSpacing: 0,
                       marginBottom: '1rem',
                     }}
                   >
@@ -738,7 +758,7 @@ export function YouthArtSection3() {
                   <p
                     style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: 'clamp(0.75rem, 1.2vw, 0.9rem)',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#A66A5A',
                       fontWeight: 300,
                       letterSpacing: '0.1em',
@@ -750,7 +770,7 @@ export function YouthArtSection3() {
                   <p
                     style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: 'clamp(1rem, 1.6vw, 1.3rem)',
+                      fontSize: 'clamp(0.85rem, 1.6vw, 1.3rem)',
                       color: '#A66A5A',
                       fontWeight: 500,
                       letterSpacing: '0.15em',
@@ -852,7 +872,8 @@ export function YouthArtSection3() {
                             fontFamily: "'Noto Serif KR', serif",
                             fontSize: '0.9rem',
                             color: '#666',
-                            lineHeight: 1.7,
+                            lineHeight: 1.65,
+              letterSpacing: 0,
                           }}
                         >
                           • {item}
@@ -878,7 +899,7 @@ export function YouthArtSection3() {
               <p
                 style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: '0.75rem',
+                  fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                   color: '#A66A5A',
                   fontWeight: 300,
                   letterSpacing: '0.1em',
@@ -945,10 +966,11 @@ export function YouthArtSection3() {
                   <p
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: '0.7rem',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#A66A5A',
                       fontWeight: 400,
-                      lineHeight: 1.8,
+                      lineHeight: 1.65,
+                      letterSpacing: 0,
                       marginBottom: '0.3rem',
                     }}
                   >
@@ -957,10 +979,11 @@ export function YouthArtSection3() {
                   <p
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: '0.7rem',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#A66A5A',
                       fontWeight: 400,
-                      lineHeight: 1.8,
+                      lineHeight: 1.65,
+                      letterSpacing: 0,
                       marginBottom: '0.3rem',
                     }}
                   >
@@ -969,10 +992,11 @@ export function YouthArtSection3() {
                   <p
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: '0.7rem',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#A66A5A',
                       fontWeight: 400,
-                      lineHeight: 1.8,
+                      lineHeight: 1.65,
+                      letterSpacing: 0,
                     }}
                   >
                     무엇을 만들며 살아갈까 — <span style={{ color: '#2F6B4F', fontWeight: 500 }}>세계관</span>
@@ -1061,7 +1085,8 @@ export function YouthArtSection3() {
                         fontSize: '0.85rem',
                         color: '#888',
                         fontWeight: 300,
-                        lineHeight: 1.7,
+                        lineHeight: 1.65,
+              letterSpacing: 0,
                       }}
                     >
                       {room.subtitle}
@@ -1075,7 +1100,8 @@ export function YouthArtSection3() {
                             fontFamily: "'Noto Serif KR', serif",
                             fontSize: '0.8rem',
                             color: '#666',
-                            lineHeight: 1.7,
+                            lineHeight: 1.65,
+              letterSpacing: 0,
                           }}
                         >
                           • {item}
@@ -1100,7 +1126,8 @@ export function YouthArtSection3() {
               fontSize: 'clamp(0.85rem, 1vw, 0.95rem)',
               color: '#888',
               fontWeight: 300,
-              lineHeight: 1.8,
+              lineHeight: 1.65,
+              letterSpacing: 0,
             }}
           >
             * 각 ROOM은 3개월 과정으로 진행되며,<br />

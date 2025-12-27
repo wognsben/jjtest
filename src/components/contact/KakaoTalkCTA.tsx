@@ -80,7 +80,8 @@ export default function KakaoTalkCTA() {
                 className="mt-10 space-y-6 max-w-2xl mx-auto"
                 style={{
                   fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-                  lineHeight: 1.9,
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                   color: 'rgba(107, 68, 35, 0.75)',
                 }}
               >
@@ -126,7 +127,7 @@ export default function KakaoTalkCTA() {
                 className="mt-8 text-[#6B4423]/50"
                 style={{
                   fontSize: '0.875rem',
-                  lineHeight: 1.6,
+                  lineHeight: 1.65,
                 }}
               >
                 또는 카카오톡에서 직접 검색해보세요

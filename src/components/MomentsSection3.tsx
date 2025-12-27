@@ -247,8 +247,8 @@ export function MomentsSection3() {
   }, [isMobile]);
 
   return (
-    <section className="relative bg-white py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+    <section className="relative bg-white pt-[90px] pb-24">
+      <div className="max-w-[1180px] mx-auto px-0">
         {/* Header - Minimal typography */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -261,7 +261,7 @@ export function MomentsSection3() {
             className="mb-4"
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: '0.75rem',
+              fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
               color: '#9ca3af',
               fontWeight: 500,
               letterSpacing: '0.2em',
@@ -285,10 +285,10 @@ export function MomentsSection3() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+              fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
               color: '#A66A5A',
               fontWeight: 300,
-              lineHeight: 1.6,
+              lineHeight: 1.65,
             }}
           >
             1000명의 아이들을 만나며
@@ -368,7 +368,7 @@ export function MomentsSection3() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="lg:hidden relative overflow-hidden rounded-2xl"
+          className="relative overflow-hidden rounded-2xl"
           style={{
             background: 'linear-gradient(180deg, #f9fafb 0%, #f3f4f6 50%, #f9fafb 100%)',
             height: '400px',
@@ -429,10 +429,11 @@ export function MomentsSection3() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.9rem, 1.1vw, 1rem)',
+              fontSize: 'clamp(0.85rem, 1.1vw, 1rem)',
               color: '#9ca3af',
               fontWeight: 300,
-              lineHeight: 1.8,
+              lineHeight: 1.65,
+              letterSpacing: 0,
               letterSpacing: '0.02em',
             }}
           >

@@ -173,7 +173,7 @@ function HorizontalChapterCard({ number, title, subtitle, description, color, gr
               className="mb-6 chapter-card-desc"
               style={{ 
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.75rem, 1.1vw, 0.85rem)',
+                fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                 fontWeight: 600,
                 lineHeight: 1.65,
                 color: '#666666',
@@ -199,7 +199,7 @@ function HorizontalChapterCard({ number, title, subtitle, description, color, gr
                 className="chapter-card-explore-text"
                 style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: '10px',
+                  fontSize: 'clamp(0.7rem, 1vw, 0.8rem)',
                   fontWeight: 700,
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
@@ -312,7 +312,8 @@ export default function HorizontalChapterScroll() {
                 fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
                 fontWeight: 300,
                 color: '#666666',
-                lineHeight: 1.85,
+                lineHeight: 1.65,
+                letterSpacing: 0,
               }}
             >
               크레용숲의 이야기를 세 개의 챕터로 펼쳐봅니다.
@@ -340,7 +341,7 @@ export default function HorizontalChapterScroll() {
             </motion.div>
             <span style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: '12px',
+              fontSize: 'clamp(0.8rem, 1.2vw, 0.9rem)',
               fontWeight: 600,
               letterSpacing: '0.15em',
               textTransform: 'uppercase',

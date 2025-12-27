@@ -8,12 +8,12 @@ import { ChildArtSection7 } from '../components/ChildArtSection7';
 import { YouthArtSection1, YouthArtSection2, YouthArtSection3 } from '../components/YouthArtSections';
 import { AdultArtSection1, AdultArtSection2 } from '../components/AdultArtSections';
 import { AdultArtSection3 } from '../components/AdultArtSection3';
-import { AdultArtSection4 } from '../components/AdultArtSection4';
-import { AdultArtSection5 } from '../components/AdultArtSection5';
 import { MomentsSection1 } from '../components/MomentsSection1';
 import { MomentsSection2 } from '../components/MomentsSection2';
 import { MomentsSection3 } from '../components/MomentsSection3';
 import { MomentsSection4 } from '../components/MomentsSection4';
+import { ForMomSection1 } from '../components/ForMomSection1';
+import { ForMomSection2 } from '../components/ForMomSection2';
 import ProgramMethodSection from '../components/ProgramMethodSection';
 
 // RebuildText component for word-by-word animation
@@ -112,9 +112,9 @@ function ChildArtSection() {
     <section 
       ref={sectionRef}
       id="child-art-section"
-      className="relative bg-white py-24 md:py-32 lg:py-40"
+      className="relative bg-white pt-[90px] pb-24 lg:py-40"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+      <div className="max-w-[1180px] mx-auto px-10">
         {/* Hero Image with Text Overlay */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -347,8 +347,15 @@ function ProgramCard({
   );
 }
 
-export default function ProgramsPage() {
-  const [openProgram, setOpenProgram] = React.useState<string | null>(null);
+export default function ProgramsPage({ initialOpenSection }: { initialOpenSection?: string | null } = {}) {
+  const [openProgram, setOpenProgram] = React.useState<string | null>(initialOpenSection || null);
+
+  // initialOpenSection이 변경되면 해당 섹션을 엽니다
+  React.useEffect(() => {
+    if (initialOpenSection) {
+      setOpenProgram(initialOpenSection);
+    }
+  }, [initialOpenSection]);
 
   const toggleProgram = (programId: string) => {
     const isClosing = openProgram === programId;
@@ -378,7 +385,7 @@ export default function ProgramsPage() {
       <ProgramMethodSection />
 
       {/* Programs List */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-24 md:py-32">
+      <section className="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-10 pt-[90px] pb-24">
         {/* CHILD ART Card */}
         <div data-section="childart">
           <ProgramCard
@@ -460,8 +467,32 @@ export default function ProgramsPage() {
               <AdultArtSection1 />
               <AdultArtSection2 />
               <AdultArtSection3 />
-              <AdultArtSection4 />
-              <AdultArtSection5 />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* FOR MOM Card */}
+        <div data-section="formom">
+          <ProgramCard
+            title="FOR MOM"
+            subtitle="엄마의 마음까지 함께 살피는 창조의 숲"
+            index={3}
+            isOpen={openProgram === 'formom'}
+            onClick={() => toggleProgram('formom')}
+          />
+        </div>
+
+        {/* FOR MOM Sections (Accordion) */}
+        <AnimatePresence>
+          {openProgram === 'formom' && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ForMomSection1 />
+              <ForMomSection2 />
             </motion.div>
           )}
         </AnimatePresence>
@@ -472,7 +503,7 @@ export default function ProgramsPage() {
             number="04. MOMENTS )"
             title="MOMENTS"
             subtitle="엄마의 마음까지 함께 살피는 창조의 숲"
-            index={3}
+            index={4}
             isOpen={openProgram === 'moments'}
             onClick={() => toggleProgram('moments')}
           />

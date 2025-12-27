@@ -69,7 +69,7 @@ export default function Karte() {
             <h2 
               className="text-accent-green"
               style={{
-                fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
+                fontSize: 'clamp(1.25rem, 3vw, 2.25rem)',
                 fontWeight: 600,
                 letterSpacing: '-0.02em',
                 lineHeight: 1.4,
@@ -80,8 +80,9 @@ export default function Karte() {
             <p 
               className="text-brown-600"
               style={{
-                fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
-                lineHeight: 1.7,
+                fontSize: 'clamp(0.85rem, 1.8vw, 1.25rem)',
+                lineHeight: 1.65,
+                letterSpacing: 0,
                 fontFamily: "'Noto Serif KR', serif",
                 maxWidth: '900px',
                 margin: '0 auto',
@@ -93,8 +94,7 @@ export default function Karte() {
               <br className="md:hidden" />
               {' '}
               <span style={{ color: '#bb8162' }}>자기서사(Self-Narrative)</span>
-              <br className="md:hidden" />
-              를 키웁니다.
+              {' '}를 키웁니다.
             </p>
           </motion.div>
           
@@ -134,7 +134,7 @@ export default function Karte() {
                   6개월 성장카르테(스에나가하트앤컬러 메소드)
                 </h3>
 
-                <div className="space-y-3 text-brown-600" style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.05rem)', lineHeight: 1.7 }}>
+                <div className="space-y-3 text-brown-600" style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.05rem)', lineHeight: 1.65, letterSpacing: 0 }}>
                   <p>색채표현의 변화 = 마음의 성장 기록</p>
                   <p>싹트기 시작한 능력 = 향후 발달 방향 예측</p>
                 </div>
@@ -149,21 +149,23 @@ export default function Karte() {
               <div className="mt-8 md:mt-10 space-y-6">
                 <p className="text-brown-600 leading-relaxed" style={{ 
                   fontSize: 'clamp(0.95rem, 1.6vw, 1.05rem)',
-                  lineHeight: 1.8,
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                   fontFamily: "'Noto Serif KR', serif",
                 }}>
-                  아이의 성장에는 '마음의 방향성'이 중요합니다<br />
-                  그래서 우리는 결과보다 마음의 흐름과 성장의 흔적을 기록합니다.<br />
-                  색과 선으로 드러난 감정은 스에나가 메소드 기반의 근거에 따라 섬세하게 해석되고,<br />
+                  아이의 성장에는 '마음의 방향성'이 중요합니다<br /><br />
+                  그래서 우리는 결과보다 마음의 흐름과 성장의 흔적을 기록합니다.<br /><br />
+                  색과 선으로 드러난 감정은 스에나가 메소드 기반의 근거에 따라 섬세하게 해석되고,<br /><br />
                   특히 유아·아동기에 아이가 '정보를 발신하는 경험'을 하는 것은 매우 중요합니다
                 </p>
 
                 <p className="text-brown-600 leading-relaxed" style={{ 
                   fontSize: 'clamp(0.95rem, 1.6vw, 1.05rem)',
-                  lineHeight: 1.8,
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                   fontFamily: "'Noto Serif KR', serif",
                 }}>
-                  크레용숲은 아이가 감정을 발신하고,<br />
+                  크레용숲은 아이가 감정을 발신하고,<br /><br />
                   어른은 그 신호를 읽고 반응하는 쌍방향 소통을 가장 소중하게 여깁니다
                 </p>
               </div>
@@ -202,7 +204,8 @@ export default function Karte() {
               {/* 색상-감정 설명 텍스트 */}
               <div className="space-y-2 text-brown-600" style={{ 
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                lineHeight: 1.7,
+                lineHeight: 1.65,
+                letterSpacing: 0,
                 fontFamily: "'Noto Serif KR', serif",
               }}>
                 <p>노랑: 기쁜 마음</p>

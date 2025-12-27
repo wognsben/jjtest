@@ -162,7 +162,7 @@ export default function Founder() {
                 borderColor: 'rgba(143, 188, 136, 0.3)',
                 color: '#8FBC88',
                 fontFamily: "'Inter', sans-serif",
-                fontSize: 'clamp(0.625rem, 1.5vw, 0.8125rem)',
+                fontSize: 'clamp(0.75rem, 1.5vw, 0.9rem)',
                 fontWeight: 500,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
@@ -302,7 +302,7 @@ export default function Founder() {
                   className="mt-4 text-center"
                   style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: '13px',
+                    fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
                     color: '#8FBC88',
                     letterSpacing: '0.05em',
                   }}
@@ -325,7 +325,7 @@ export default function Founder() {
                 className="mb-10"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)',
+                  fontSize: 'clamp(0.85rem, 3.5vw, 2.5rem)',
                   color: '#bb8162',
                   fontWeight: 600,
                   lineHeight: 1.4,
@@ -345,12 +345,14 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
-                  저는 아이들에게 <span style={{ color: '#8FBC88', fontWeight: 500 }}>마음이 새로워지는 예술 경험</span>을 선물하고 싶습니다. 그리고 그보다 더 중요한 것— <span style={{ color: '#8FBC88', fontWeight: 500 }}>좋은 어른의 마음을 옆에서 보여주는 시간</span>을 주고 싶습니다.
+                  저는 아이들에게 <span style={{ color: '#8FBC88', fontWeight: 500 }}>마음이 새로워지는 예술 경험</span>을 선물하고 싶습니다.<br /><br />
+                  그리고 그보다 더 중요한 것— <span style={{ color: '#8FBC88', fontWeight: 500 }}>좋은 어른의 마음을 옆에서 보여주는 시간</span>을 주고 싶습니다.
                 </motion.p>
 
                 <motion.p
@@ -361,12 +363,15 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
-                  수업이 끝난 후 아이들이 남기는 글을 보면 "마음이 열렸어요." "나 자신을 알게 된 것 같다." 이런 문장들이 있어요. 그 말 하나에 저는 언제나 멈춰 서게 됩니다. 아이들은 누구보다 빠르게 진심을 알아차립니다.
+                  수업이 끝난 후 아이들이 남기는 글을 보면 "마음이 열렸어요." "나 자신을 알게 된 것 같다." 이런 문장들이 있어요.<br /><br />
+                  그 말 하나에 저는 언제나 멈춰 서게 됩니다.<br /><br />
+                  아이들은 누구보다 빠르게 진심을 알아차립니다.
                 </motion.p>
 
                 <motion.p
@@ -377,9 +382,10 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   <span style={{ color: '#8FBC88', fontWeight: 500 }}>"마음을 그려보자"</span> 이 한마디만 들어도 <span style={{ color: '#8FBC88', fontWeight: 500 }}>자신의 영혼과 연결되는 길을 금방 찾아가요</span>.
@@ -393,12 +399,14 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
-                  저는 아이들이 꼭 예술가가 되지 않아도 된다고 생각합니다. 대신 <span style={{ color: '#8FBC88', fontWeight: 500 }}>일상을 예술처럼 보고, 느끼고, 반응할 수 있는 사람, 감정이 굳어버리지 않은 말랑한 어른</span>으로 자라길 바랄 뿐입니다.
+                  저는 아이들이 꼭 예술가가 되지 않아도 된다고 생각합니다.<br /><br />
+                  대신 <span style={{ color: '#8FBC88', fontWeight: 500 }}>일상을 예술처럼 보고, 느끼고, 반응할 수 있는 사람, 감정이 굳어버리지 않은 말랑한 어른</span>으로 자라길 바랄 뿐입니다.
                 </motion.p>
 
                 <motion.p
@@ -409,9 +417,10 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   그래서 크레용숲의 교육은 <span style={{ color: '#4A4A4A', fontWeight: 400 }}>'어떻게 잘 그릴까?'</span>보다 <span style={{ color: '#8FBC88', fontWeight: 500 }}>'어떻게 정서와 세계관을 키울까?'</span><span style={{ color: '#8FBC88', fontWeight: 500 }}>를 더 깊이 고민합니다</span>.
@@ -425,12 +434,15 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
-                  저는 아이들의 그림을 평가하지 않습니다. 대신 늘 이렇게 묻습니다. <span style={{ color: '#8FBC88', fontStyle: 'italic' }}>"오늘 이 아이는 어떤 감정을 색으로 말하고 있을까?"</span> 이 질문을 붙들기만 해도 감정 이해 → 자기서사 → 관계 → 회복력 모든 성장의 흐름이 자연스럽게 열립니다.
+                  저는 아이들의 그림을 평가하지 않습니다.<br /><br />
+                  대신 늘 이렇게 묻습니다. <span style={{ color: '#8FBC88', fontStyle: 'italic' }}>"오늘 이 아이는 어떤 감정을 색으로 말하고 있을까?"</span><br /><br />
+                  이 질문을 붙들기만 해도 감정 이해 → 자기서사 → 관계 → 회복력 모든 성장의 흐름이 자연스럽게 열립니다.
                 </motion.p>
 
                 <motion.p
@@ -441,12 +453,14 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
-                  시험도, 성적도, 문제집도 줄 수 없는 단 하나. 그림 속에만 숨겨진 힘— <span style={{ color: '#8FBC88', fontWeight: 500 }}>감정의 뿌리를 붙잡아 스스로 창조의 불을 붙이는 능력.</span>
+                  시험도, 성적도, 문제집도 줄 수 없는 단 하나.<br /><br />
+                  그림 속에만 숨겨진 힘— <span style={{ color: '#8FBC88', fontWeight: 500 }}>감정의 뿌리를 붙잡아 스스로 창조의 불을 붙이는 능력.</span>
                 </motion.p>
 
                 <motion.p
@@ -457,12 +471,15 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
-                  예술가는 이렇게 태어나고, 아이도 마찬가지입니다. 감정은 관리하는 것이 아니라 <span style={{ color: '#8FBC88', fontWeight: 500 }}>창조의 불쏘시개가</span> 되어야 합니다. 이걸 배운 아이는 평생 자기 삶을 스스로 데우고, 움직입니다.
+                  예술가는 이렇게 태어나고, 아이도 마찬가지입니다.<br /><br />
+                  감정은 관리하는 것이 아니라 <span style={{ color: '#8FBC88', fontWeight: 500 }}>창조의 불쏘시개가</span> 되어야 합니다.<br /><br />
+                  이걸 배운 아이는 평생 자기 삶을 스스로 데우고, 움직입니다.
                 </motion.p>
 
                 {/* Quote box */}
@@ -481,9 +498,10 @@ export default function Founder() {
                     <p
                       style={{
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(16px, 2vw, 20px)',
+                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
                         color: '#8FBC88',
-                        lineHeight: '1.8',
+                        lineHeight: '1.6',
+                        letterSpacing: '0',
                         fontWeight: 500,
                       }}
                     >
@@ -492,9 +510,10 @@ export default function Founder() {
                     <p
                       style={{
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(16px, 2vw, 20px)',
+                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
                         color: '#8FBC88',
-                        lineHeight: '1.8',
+                        lineHeight: '1.6',
+                        letterSpacing: '0',
                         fontWeight: 500,
                       }}
                     >
@@ -503,9 +522,10 @@ export default function Founder() {
                     <p
                       style={{
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(16px, 2vw, 20px)',
+                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
                         color: '#8FBC88',
-                        lineHeight: '1.8',
+                        lineHeight: '1.6',
+                        letterSpacing: '0',
                         fontWeight: 500,
                       }}
                     >
@@ -522,9 +542,10 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   아이의 색이 잊히지 않도록, 그 아이만의 숲이 자라는 장면을 옆에서 지켜보는 일— 그게 저에게는 가장 큰 기쁨입니다.
@@ -538,9 +559,10 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   그리고 이 여정은 아이만의 것이 아닙니다. <span style={{ color: '#4A4A4A', fontWeight: 500 }}>부모의 마음이 안정될 때 아이의 마음은 가장 자연스럽게 회복됩니다.</span>
@@ -554,12 +576,14 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
-                  그래서 크레용숲은 엄마리츄얼, 성인 워크숍을 함께 운영하며 부모가 먼저 자기 마음을 돌보는 시간을 마련합니다. <span style={{ color: '#8FBC88', fontWeight: 500 }}>부모의 여유와 따뜻함이 아이에게는 가장 안전한 세계</span>가 되기 때문입니다.
+                  그래서 크레용숲은 엄마리츄얼, 성인 워크숍을 함께 운영하며 부모가 먼저 자기 마음을 돌보는 시간을 마련합니다.<br /><br />
+                  <span style={{ color: '#8FBC88', fontWeight: 500 }}>부모의 여유와 따뜻함이 아이에게는 가장 안전한 세계</span>가 되기 때문입니다.
                 </motion.p>
 
                 <motion.p
@@ -570,9 +594,10 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   앞으로 크레용숲은 아이의 감정, 부모의 마음, 그리고 한 사람의 세계관이 자연스럽게 이어지는 <span style={{ color: '#8FBC88', fontWeight: 500 }}>'색채 기반 감정 생태계'</span>로 확장될 것입니다.
@@ -586,9 +611,10 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.8,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
                   여기서의 그림은 작품이 아니라 마음의 기록, 성장은 성적이 아니라 <span style={{ color: '#8FBC88', fontWeight: 500 }}>자기서사</span>의 탄생입니다.
@@ -602,9 +628,10 @@ export default function Founder() {
                   className="leading-loose pt-6"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(15px, 1.8vw, 18px)',
+                    fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)',
                     color: '#4A4A4A',
-                    lineHeight: '2',
+                    lineHeight: '1.6',
+                    letterSpacing: '0',
                     fontWeight: 400,
                   }}
                 >
@@ -718,7 +745,7 @@ export default function Founder() {
                   className="mb-3"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(24px, 3vw, 36px)',
+                    fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
                     color: '#A67C52',
                     fontWeight: 600,
                     letterSpacing: '-0.02em',
@@ -729,7 +756,7 @@ export default function Founder() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(16px, 2vw, 20px)',
+                    fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
                     color: '#8FBC88',
                     fontWeight: 500,
                     lineHeight: '1.6',
@@ -762,7 +789,7 @@ export default function Founder() {
                     className="mb-4"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(16px, 2vw, 20px)',
+                      fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
                       color: '#A67C52',
                       fontWeight: 600,
                     }}
@@ -785,9 +812,10 @@ export default function Founder() {
                         transition={{ duration: 0.4, delay: 1.0 + index * 0.05 }}
                         style={{
                           fontFamily: "'Noto Serif KR', serif",
-                          fontSize: 'clamp(14px, 1.6vw, 16px)',
+                          fontSize: 'clamp(0.9rem, 1.6vw, 1rem)',
                           color: '#6B5C4F',
-                          lineHeight: '1.8',
+                          lineHeight: '1.6',
+                        letterSpacing: '0',
                         }}
                       >
                         {book}
@@ -802,7 +830,7 @@ export default function Founder() {
                     className="mb-4"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(16px, 2vw, 20px)',
+                      fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
                       color: '#A67C52',
                       fontWeight: 600,
                     }}
@@ -822,9 +850,10 @@ export default function Founder() {
                         transition={{ duration: 0.5, delay: 1.1 + index * 0.05, ease: [0.16, 1, 0.3, 1] }}
                         style={{
                           fontFamily: "'Noto Sans KR', sans-serif",
-                          fontSize: 'clamp(14px, 1.6vw, 16px)',
+                          fontSize: 'clamp(0.9rem, 1.6vw, 1rem)',
                           color: '#6B5C4F',
-                          lineHeight: '1.8',
+                          lineHeight: '1.6',
+                        letterSpacing: '0',
                         }}
                       >
                         • {award}
@@ -856,7 +885,7 @@ export default function Founder() {
                     className="hover:text-[#4A4A4A] transition-colors duration-300"
                     style={{
                       fontFamily: "'Noto Sans KR', sans-serif",
-                      fontSize: 'clamp(13px, 1.2vw, 14px)',
+                      fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
                       fontWeight: 300,
                       letterSpacing: '-0.01em',
                       color: '#8B8B8B',
@@ -873,7 +902,7 @@ export default function Founder() {
                     className="hover:text-[#4A4A4A] transition-colors duration-300"
                     style={{
                       fontFamily: "'Noto Sans KR', sans-serif",
-                      fontSize: 'clamp(13px, 1.2vw, 14px)',
+                      fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
                       fontWeight: 300,
                       letterSpacing: '-0.01em',
                       color: '#8B8B8B',
@@ -890,7 +919,7 @@ export default function Founder() {
                     className="hover:text-[#4A4A4A] transition-colors duration-300"
                     style={{
                       fontFamily: "'Noto Sans KR', sans-serif",
-                      fontSize: 'clamp(13px, 1.2vw, 14px)',
+                      fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
                       fontWeight: 300,
                       letterSpacing: '-0.01em',
                       color: '#8B8B8B',
@@ -907,7 +936,7 @@ export default function Founder() {
                     className="hover:text-[#4A4A4A] transition-colors duration-300"
                     style={{
                       fontFamily: "'Noto Sans KR', sans-serif",
-                      fontSize: 'clamp(13px, 1.2vw, 14px)',
+                      fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
                       fontWeight: 300,
                       letterSpacing: '-0.01em',
                       color: '#8B8B8B',
@@ -1026,7 +1055,7 @@ function CareerTextItem({ credential, index }: { credential: string; index: numb
         className="hidden md:inline-block"
         style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: '9px',
+          fontSize: 'clamp(0.6rem, 1vw, 0.7rem)',
           fontWeight: 500,
           color: 'rgba(166, 124, 82, 0.35)',
           letterSpacing: '0.12em',
@@ -1057,7 +1086,7 @@ function CareerTextItem({ credential, index }: { credential: string; index: numb
       <motion.p
         style={{
           fontFamily: "'Noto Sans KR', sans-serif",
-          fontSize: 'clamp(11px, 1.1vw, 13px)',
+          fontSize: 'clamp(0.75rem, 1.1vw, 0.85rem)',
           color: '#6B5C4F',
           fontWeight: 400,
           lineHeight: '1.5',

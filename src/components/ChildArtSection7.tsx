@@ -90,6 +90,13 @@ export function ChildArtSection7() {
           padding: 48px 48px 48px 80px;
         }
         
+        @media (max-width: 640px) {
+          .curriculum-card {
+            padding: 28px 20px 28px 32px;
+            border-radius: 32px;
+          }
+        }
+        
         .curriculum-card::before {
           content: "";
           position: absolute;
@@ -101,6 +108,15 @@ export function ChildArtSection7() {
           border-right: 3px solid #B98365;
           border-top-right-radius: 40px;
           pointer-events: none;
+        }
+        
+        @media (max-width: 640px) {
+          .curriculum-card::before {
+            width: 60px;
+            height: 60px;
+            top: 12px;
+            right: 12px;
+          }
         }
         
         .curriculum-card::after {
@@ -116,11 +132,27 @@ export function ChildArtSection7() {
           pointer-events: none;
         }
         
+        @media (max-width: 640px) {
+          .curriculum-card::after {
+            width: 70px;
+            height: 70px;
+            bottom: 12px;
+            left: 12px;
+          }
+        }
+        
         .special-card {
           position: relative;
           background: #F5FAF7;
           border-radius: 36px;
           padding: 32px 32px 32px 72px;
+        }
+        
+        @media (max-width: 640px) {
+          .special-card {
+            padding: 24px 20px 24px 32px;
+            border-radius: 24px;
+          }
         }
         
         .special-card::before {
@@ -136,6 +168,15 @@ export function ChildArtSection7() {
           pointer-events: none;
         }
         
+        @media (max-width: 640px) {
+          .special-card::before {
+            width: 50px;
+            height: 50px;
+            top: 8px;
+            right: 8px;
+          }
+        }
+        
         .special-card::after {
           content: "";
           position: absolute;
@@ -149,6 +190,15 @@ export function ChildArtSection7() {
           pointer-events: none;
         }
         
+        @media (max-width: 640px) {
+          .special-card::after {
+            width: 60px;
+            height: 60px;
+            bottom: 8px;
+            left: 8px;
+          }
+        }
+        
         .skill-card {
           background: #FAFAFA;
           border: 1.5px solid #E8E8E8;
@@ -156,6 +206,13 @@ export function ChildArtSection7() {
           padding: 1.5rem 1.25rem;
           transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
           cursor: default;
+        }
+        
+        @media (max-width: 640px) {
+          .skill-card {
+            padding: 1rem 0.75rem;
+            border-radius: 16px;
+          }
         }
         
         .skill-card:hover {
@@ -176,11 +233,20 @@ export function ChildArtSection7() {
         
         .desc-line {
           font-family: 'Noto Serif KR', serif;
-          font-size: clamp(0.75rem, 1.1vw, 0.9rem);
+          font-size: clamp(0.85rem, 1.1vw, 0.9rem);
           color: #888;
           font-weight: 300;
           line-height: 1.7;
           margin-bottom: 1.75rem;
+        }
+        
+        @media (max-width: 640px) {
+          .desc-line {
+            font-size: 0.85rem;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.01em;
+          }
         }
         
         .desc-line:last-child {
@@ -188,8 +254,8 @@ export function ChildArtSection7() {
         }
       `}</style>
       
-      <section className="relative min-h-screen bg-white py-24 md:py-32 lg:py-40">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+      <section className="relative min-h-screen bg-white pt-[90px] pb-24">
+        <div className="max-w-[1180px] mx-auto px-0">
           {/* Top Text */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -203,7 +269,8 @@ export function ChildArtSection7() {
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
                 color: '#d97878',
-                lineHeight: 1.9,
+                lineHeight: 1.65,
+                letterSpacing: 0,
                 fontWeight: 400,
               }}
             >
@@ -214,7 +281,8 @@ export function ChildArtSection7() {
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
                 color: '#666',
-                lineHeight: 1.9,
+                lineHeight: 1.65,
+                letterSpacing: 0,
                 fontWeight: 300,
                 marginTop: '0.5rem',
               }}
@@ -231,7 +299,7 @@ export function ChildArtSection7() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="grid grid-cols-2 gap-5"
+              className="grid grid-cols-2 gap-3 sm:gap-5"
             >
               {skills.map((skill, index) => (
                 <motion.div
@@ -246,7 +314,7 @@ export function ChildArtSection7() {
                     className="text-center"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.78rem, 1.2vw, 1rem)',
+                      fontSize: 'clamp(0.7rem, 1.2vw, 1rem)',
                       color: '#444',
                       fontWeight: 500,
                       lineHeight: 1.5,
@@ -267,7 +335,7 @@ export function ChildArtSection7() {
               className="relative"
             >
               {/* Label Badge */}
-              <div className="absolute -left-4 top-6 z-10">
+              <div className="absolute -left-2 sm:-left-4 top-6 z-10">
                 <div 
                   className="w-16 h-16 rounded-full bg-white flex items-center justify-center"
                   style={{
@@ -279,7 +347,7 @@ export function ChildArtSection7() {
                     className="text-center px-1"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: '0.75rem',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#6F8F7A',
                       fontWeight: 600,
                       lineHeight: 1.3,
@@ -299,7 +367,8 @@ export function ChildArtSection7() {
                       fontSize: 'clamp(0.95rem, 1.3vw, 1.05rem)',
                       color: '#6F8F7A',
                       fontWeight: 500,
-                      lineHeight: 1.7,
+                      lineHeight: 1.65,
+                      letterSpacing: 0,
                     }}
                   >
                     예비초등을 위한 마음드로잉
@@ -307,9 +376,10 @@ export function ChildArtSection7() {
                   <p 
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.75rem, 1.1vw, 0.9rem)',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#888',
-                      lineHeight: 1.8,
+                      lineHeight: 1.65,
+                      letterSpacing: 0,
                       fontWeight: 300,
                     }}
                   >
@@ -322,21 +392,23 @@ export function ChildArtSection7() {
                         fontSize: 'clamp(0.95rem, 1.3vw, 1.05rem)',
                         color: '#6F8F7A',
                         fontWeight: 500,
-                        lineHeight: 1.7,
+                        lineHeight: 1.65,
+                      letterSpacing: 0,
                       }}
                     >
-                      초등 마음의 실험실
+                      초등 마음의 실험실  : 이상해도 되는 미술
                     </p>
                     <p 
                       style={{
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.75rem, 1.1vw, 0.9rem)',
+                        fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                         color: '#888',
-                        lineHeight: 1.8,
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 300,
                       }}
                     >
-                      이상해도 되는 미술 — 정답 없이 탐색하고, 실수로 발견하는 예술 실험
+                      정답 없이 탐색하고, 실수로 발견하는 예술 실험
                     </p>
                   </div>
                 </div>
@@ -345,7 +417,7 @@ export function ChildArtSection7() {
           </div>
 
           {/* ============ BOTTOM SECTION: 1학기 + 2학기 ============ */}
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-20">
             {/* 1학기 Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -355,7 +427,7 @@ export function ChildArtSection7() {
               className="relative"
             >
               {/* Label Badge */}
-              <div className="absolute -left-4 top-8 z-10">
+              <div className="absolute -left-2 sm:-left-4 top-8 z-10">
                 <div 
                   className="w-16 h-16 rounded-full bg-white flex items-center justify-center"
                   style={{
@@ -403,7 +475,7 @@ export function ChildArtSection7() {
               className="relative"
             >
               {/* Label Badge */}
-              <div className="absolute -left-4 top-8 z-10">
+              <div className="absolute -left-2 sm:-left-4 top-8 z-10">
                 <div 
                   className="w-16 h-16 rounded-full bg-white flex items-center justify-center"
                   style={{

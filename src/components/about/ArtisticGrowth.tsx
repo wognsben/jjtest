@@ -1,338 +1,493 @@
-import { motion } from 'motion/react';
-import { useEffect, useRef, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, useInView } from 'motion/react';
+import { useRef } from 'react';
 
-const stages = [
+const forests = [
   {
-    id: 1,
+    id: 'sense',
     name: '감각의 숲',
-    ageRange: '3–7세',
-    bgColor: '#FADFDE',
-    strokeColor: '#E9B5B3',
+    age: '3–7세',
+    color: '#FADFDE',
   },
   {
-    id: 2,
+    id: 'symbol',
     name: '상징의 숲',
-    ageRange: '8–12세',
-    bgColor: '#FFE066',
-    strokeColor: '#E6C850',
+    age: '8–12세',
+    color: '#FFE066',
   },
   {
-    id: 3,
+    id: 'thought',
     name: '사유의 숲',
-    ageRange: '13–19세',
-    bgColor: '#C8A882',
-    strokeColor: '#A67C52',
+    age: '13–19세',
+    color: '#C8A882',
   },
-  {
-    id: 4,
-    name: '회복의 숲',
-    ageRange: '성인·엄마',
-    bgColor: '#2E7D32',
-    strokeColor: '#1B5E20',
-  },
-];
-
-// 유기적 blob SVG 경로들
-const blobPaths = [
-  "M70,85 C40,115 35,195 105,215 C175,235 245,185 235,115 C225,55 155,25 95,45 C75,55 65,65 70,85 Z",
-  "M60,90 C30,130 50,210 140,230 C230,250 280,180 270,110 C260,50 190,30 120,50 C90,60 75,70 60,90 Z",
-  "M54,78 C20,120 40,200 120,220 C200,240 260,190 250,120 C240,60 170,20 110,40 C80,50 70,60 54,78 Z",
-  "M50,95 C15,135 25,215 105,235 C185,255 255,195 245,125 C235,65 165,35 105,55 C75,65 60,75 50,95 Z",
 ];
 
 export default function ArtisticGrowth() {
-  const containerRef = useRef<HTMLElement>(null);
-  const [animState, setAnimState] = useState<'idle' | 'merging' | 'merged'>('idle');
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+  
+  const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    if (!isInView) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        
-        // Merge 애니메이션 시작
-        setTimeout(() => {
-          setAnimState('merging');
-        }, 400);
-
-        // Merge 완료 → Core 나타남
-        setTimeout(() => {
-          setAnimState('merged');
-        }, 2000);
-        
-        observer.disconnect();
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(container);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  // 2x2 그리드 초기 위치
-  const getInitialPosition = (index: number) => {
-    const spacing = 180;
-    const positions = [
-      { x: -spacing, y: -spacing }, // 좌상 (핑크)
-      { x: spacing, y: -spacing },  // 우상 (노랑)
-      { x: -spacing, y: spacing },  // 좌하 (브라운)
-      { x: spacing, y: spacing },   // 우하 (초록)
+    const timers = [
+      setTimeout(() => setPhase(1), 0),        // 숲 등장
+      setTimeout(() => setPhase(2), 1000),     // 숲 fade out
+      setTimeout(() => setPhase(3), 1800),     // 코어 등장
     ];
-    return positions[index];
-  };
+
+    return () => timers.forEach(clearTimeout);
+  }, [isInView]);
 
   return (
     <>
       <hr className="section-divider" />
-      <section ref={containerRef} className="growth-origin" data-state={animState}>
-        <div className="merge-container">
+      
+      <section ref={sectionRef} className="artistic-growth">
+        
+        {/* 왼쪽: 비주얼 영역 */}
+        <div className="growth-visual">
           
-          {/* 4개의 Blob 카드 - 2x2에서 중앙으로 합쳐짐 */}
-          {stages.map((stage, index) => {
-            const initialPos = getInitialPosition(index);
-            
-            return (
+          {/* 상단 숲 블롭들 - 연령 단계별 타이밍 */}
+          <div className="forest-row">
+            {forests.map((forest, index) => (
               <motion.div
-                key={stage.id}
-                className="merge-blob"
-                initial={{ 
-                  x: initialPos.x, 
-                  y: initialPos.y,
-                  scale: 1,
-                  opacity: 1,
-                  filter: 'blur(0px)'
+                key={forest.id}
+                className={`forest-blob ${forest.id}`}
+                style={{ backgroundColor: forest.color }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{
+                  opacity: phase >= 2 ? 0 : phase >= 1 ? 1 : 0,
+                  y: phase >= 1 ? 0 : 20,
+                  scale: phase >= 2 ? 0.95 : 1,
                 }}
-                animate={
-                  animState === 'merging'
-                    ? {
-                        x: 0,
-                        y: 0,
-                        scale: 0.8,
-                        opacity: 0.85,
-                        filter: 'blur(2px)'
-                      }
-                    : animState === 'merged'
-                    ? {
-                        x: 0,
-                        y: 0,
-                        scale: 0,
-                        opacity: 0,
-                        filter: 'blur(8px)'
-                      }
-                    : {}
-                }
                 transition={{
-                  duration: 1.4,
-                  delay: index * 0.08,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-                style={{
-                  position: 'absolute',
-                  mixBlendMode: animState === 'merging' ? 'multiply' : 'normal'
+                  duration: phase === 1 ? 0.6 : 0.8,
+                  delay: phase === 1 ? index * 0.15 : 0,
+                  ease: [0.16, 1, 0.3, 1]
                 }}
               >
-                <svg 
-                  viewBox="0 0 300 260" 
-                  className="blob-svg"
-                  style={{
-                    fill: stage.bgColor,
-                    stroke: stage.strokeColor,
-                    width: 'clamp(140px, 20vw, 200px)',
-                    height: 'clamp(100px, 14vw, 140px)',
-                  }}
-                >
-                  <defs>
-                    <filter id={`blobGrain${stage.id}`} x="0%" y="0%" width="100%" height="100%">
-                      <feTurbulence
-                        type="fractalNoise"
-                        baseFrequency="3.5"
-                        numOctaves="4"
-                        seed={stage.id}
-                        stitchTiles="stitch"
-                      />
-                      <feDisplacementMap in="SourceGraphic" scale="1.5" />
-                    </filter>
-                  </defs>
-                  <path
-                    d={blobPaths[index]}
-                    filter={`url(#blobGrain${stage.id})`}
-                    strokeWidth="1.5"
-                    strokeOpacity="0.25"
-                  />
-                </svg>
-                
-                <motion.div 
-                  className="blob-label"
-                  animate={{
-                    opacity: animState === 'idle' ? 1 : 0
-                  }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <span className="age">{stage.ageRange}</span>
-                  <span className="name">{stage.name}</span>
-                </motion.div>
+                <span className="forest-age">{forest.age}</span>
+                <strong className="forest-name">{forest.name}</strong>
               </motion.div>
-            );
-          })}
+            ))}
+          </div>
 
-          {/* 통합된 Core - 4색 Fusion */}
+          {/* 회복의 숲 */}
           <motion.div
-            className="fusion-core"
-            initial={{ scale: 0, opacity: 0, rotate: -20 }}
-            animate={
-              animState === 'merged'
-                ? { scale: 1, opacity: 1, rotate: 0 }
-                : {}
-            }
+            className="forest-blob recovery"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{
+              opacity: phase >= 2 ? 0 : phase >= 1 ? 1 : 0,
+              y: phase >= 1 ? 0 : 20,
+              scale: phase >= 2 ? 0.95 : 1,
+            }}
             transition={{
-              duration: 1.2,
-              delay: 0.3,
-              ease: [0.22, 1, 0.36, 1]
+              duration: phase === 1 ? 0.6 : 0.8,
+              delay: phase === 1 ? 0.3 : 0,
+              ease: [0.16, 1, 0.3, 1]
             }}
           >
-            {/* 4색 혼합 Blob */}
-            <svg viewBox="0 0 300 300" className="core-svg">
-              <defs>
-                {/* 4색 혼합 그라데이션 */}
-                <radialGradient id="fusionGradient" cx="50%" cy="50%">
-                  <stop offset="0%" stopColor="#FFE066" stopOpacity="0.95" />
-                  <stop offset="35%" stopColor="#FADFDE" stopOpacity="0.9" />
-                  <stop offset="65%" stopColor="#C8A882" stopOpacity="0.9" />
-                  <stop offset="100%" stopColor="#2E7D32" stopOpacity="0.85" />
-                </radialGradient>
-                
-                {/* 글로우 효과 */}
-                <filter id="coreGlow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="12" result="blur"/>
-                  <feMerge>
-                    <feMergeNode in="blur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
+            <span className="forest-age">성인 · 엄마</span>
+            <strong className="forest-name">회복의 숲</strong>
+          </motion.div>
 
-                {/* Organic 텍스처 */}
-                <filter id="organicTexture">
-                  <feTurbulence
-                    type="fractalNoise"
-                    baseFrequency="3"
-                    numOctaves="4"
-                    seed="99"
-                    stitchTiles="stitch"
-                  />
-                  <feDisplacementMap in="SourceGraphic" scale="2" />
-                </filter>
-              </defs>
+          {/* INTEGRITY CORE - 계단식 레이어 */}
+          {phase >= 3 && (
+            <div className="integrity-core-container">
               
-              {/* 배경 글로우 */}
-              <circle
-                cx="150"
-                cy="150"
-                r="130"
-                fill="url(#fusionGradient)"
-                opacity="0.3"
-                filter="url(#coreGlow)"
-              />
-              
-              {/* 메인 Blob */}
-              <path
-                d="M150,30 C190,35 240,70 255,120 C270,170 250,230 195,250 C140,270 85,250 55,200 C25,150 40,80 90,50 C115,35 135,28 150,30 Z"
-                fill="url(#fusionGradient)"
-                filter="url(#organicTexture)"
-                opacity="0.95"
-              />
+              {/* Layer 4 (맨 뒤): 회복의 숲 (초록) */}
+              <motion.div
+                className="core-layer-stair layer-4"
+                initial={{ opacity: 0, x: -30, y: 30 }}
+                animate={{ opacity: 0.55, x: 0, y: 0 }}
+                transition={{ duration: 0.5, delay: 0 }}
+              >
+                <svg viewBox="0 0 200 150" preserveAspectRatio="none">
+                  <defs>
+                    <radialGradient id="grad4">
+                      <stop offset="0%" stopColor="#2E7D32" stopOpacity="0.9"/>
+                      <stop offset="100%" stopColor="#2E7D32" stopOpacity="0.3"/>
+                    </radialGradient>
+                    <filter id="noise4">
+                      <feTurbulence baseFrequency="0.012" numOctaves="3" seed="40"/>
+                      <feDisplacementMap in="SourceGraphic" scale="2"/>
+                    </filter>
+                  </defs>
+                  <ellipse cx="100" cy="68" rx="90" ry="62" fill="url(#grad4)" filter="url(#noise4)"/>
+                </svg>
+              </motion.div>
+
+              {/* Layer 3: 사유의 숲 (브라운) */}
+              <motion.div
+                className="core-layer-stair layer-3"
+                initial={{ opacity: 0, x: -20, y: 20 }}
+                animate={{ opacity: 0.7, x: 0, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+              >
+                <svg viewBox="0 0 200 150" preserveAspectRatio="none">
+                  <defs>
+                    <radialGradient id="grad3">
+                      <stop offset="0%" stopColor="#C8A882" stopOpacity="0.9"/>
+                      <stop offset="100%" stopColor="#C8A882" stopOpacity="0.3"/>
+                    </radialGradient>
+                    <filter id="noise3">
+                      <feTurbulence baseFrequency="0.015" numOctaves="3" seed="30"/>
+                      <feDisplacementMap in="SourceGraphic" scale="2"/>
+                    </filter>
+                  </defs>
+                  <ellipse cx="100" cy="68" rx="88" ry="61" fill="url(#grad3)" filter="url(#noise3)"/>
+                </svg>
+              </motion.div>
+
+              {/* Layer 2: 상징의 숲 (노랑) */}
+              <motion.div
+                className="core-layer-stair layer-2"
+                initial={{ opacity: 0, x: -10, y: 10 }}
+                animate={{ opacity: 0.85, x: 0, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                <svg viewBox="0 0 200 150" preserveAspectRatio="none">
+                  <defs>
+                    <radialGradient id="grad2">
+                      <stop offset="0%" stopColor="#FFE066" stopOpacity="0.9"/>
+                      <stop offset="100%" stopColor="#FFE066" stopOpacity="0.3"/>
+                    </radialGradient>
+                    <filter id="noise2">
+                      <feTurbulence baseFrequency="0.018" numOctaves="3" seed="20"/>
+                      <feDisplacementMap in="SourceGraphic" scale="2"/>
+                    </filter>
+                  </defs>
+                  <ellipse cx="100" cy="68" rx="86" ry="60" fill="url(#grad2)" filter="url(#noise2)"/>
+                </svg>
+              </motion.div>
+                
+              {/* Layer 1 (맨 앞): 감각의 숲 (핑크) */}
+                <motion.div 
+                className="core-layer-stair layer-1"
+                initial={{ opacity: 0, x: 0, y: 0 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.45 }}
+                >
+                <svg viewBox="0 0 200 150" preserveAspectRatio="none">
+                  <defs>
+                    <radialGradient id="grad1">
+                      <stop offset="0%" stopColor="#FADFDE" stopOpacity="0.95"/>
+                      <stop offset="100%" stopColor="#FADFDE" stopOpacity="0.3"/>
+                    </radialGradient>
+                    <filter id="noise1">
+                      <feTurbulence baseFrequency="0.02" numOctaves="3" seed="10"/>
+                      <feDisplacementMap in="SourceGraphic" scale="2"/>
+                    </filter>
+                  </defs>
+                  <ellipse cx="100" cy="68" rx="84" ry="59" fill="url(#grad1)" filter="url(#noise1)"/>
+                </svg>
+                </motion.div>
+
+              {/* 하이라이트 - 숨처럼 */}
+              <div className="core-highlight">
+                <svg viewBox="0 0 200 150" preserveAspectRatio="none">
+                  <defs>
+                    <radialGradient id="highlight">
+                      <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.2"/>
+                      <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0"/>
+                    </radialGradient>
+                  </defs>
+                  <ellipse cx="85" cy="60" rx="50" ry="30" fill="url(#highlight)"/>
+                </svg>
+              </div>
+
+              {/* 텍스트 - shape보다 200ms 늦게 */}
+              <motion.div
+                className="core-content"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.65 }}
+              >
+                <span className="core-title">INTEGRITY</span>
+                <span className="core-subtitle">CORE</span>
+              </motion.div>
+            </div>
+          )}
+
+        </div>
+
+        {/* 오른쪽: 설명 영역 */}
+        <div className="growth-description">
+          
+          {/* 사유의 숲 */}
+          <motion.div
+            className="desc-item"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <svg className="desc-line" width="12" height="100" preserveAspectRatio="none">
+              <circle cx="6" cy="6" r="4" fill="rgba(200,168,130,0.6)" />
+              <line x1="6" y1="12" x2="6" y2="100" stroke="rgba(200,168,130,0.3)" strokeWidth="1.5" />
             </svg>
-            
-            {/* Core 텍스트 */}
-            <div className="core-content">
-              <span className="core-title">INTEGRITY</span>
-              <span className="core-subtitle">CORE</span>
-              <span className="core-desc">4개의 숲이 하나로</span>
+            <div className="desc-text">
+              <h4>사유의 숲 <span className="desc-age">(13–19세)</span></h4>
+              <p>
+                예술을 매개로 '나만의 관점' 구축,<br />
+                <span className="self-texture">자기결(Self Texture)</span>
+                <span className="neon-underline">의 본격 형성</span>
+              </p>
+            </div>
+          </motion.div>
+                
+          {/* 상징의 숲 */}
+          <motion.div
+            className="desc-item"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <svg className="desc-line" width="12" height="100" preserveAspectRatio="none">
+              <circle cx="6" cy="6" r="4" fill="rgba(200,168,130,0.6)" />
+              <line x1="6" y1="12" x2="6" y2="100" stroke="rgba(200,168,130,0.3)" strokeWidth="1.5" />
+            </svg>
+            <div className="desc-text">
+              <h4>상징의 숲 <span className="desc-age">(8–12세)</span></h4>
+              <p>감정·기억·경험이 상징으로 조직되는 단계</p>
+            </div>
+          </motion.div>
+
+          {/* 감각의 숲 */}
+          <motion.div
+            className="desc-item"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <svg className="desc-line" width="12" height="100" preserveAspectRatio="none">
+              <circle cx="6" cy="6" r="4" fill="rgba(200,168,130,0.6)" />
+              <line x1="6" y1="12" x2="6" y2="100" stroke="rgba(200,168,130,0.3)" strokeWidth="1.5" />
+            </svg>
+            <div className="desc-text">
+              <h4>감각의 숲 <span className="desc-age">(3–7세)</span></h4>
+              <p>표현 = 놀이, 놀이는 곧 자기이해</p>
+            </div>
+          </motion.div>
+              
+          {/* 회복의 숲 */}
+          <motion.div
+            className="desc-item"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <svg className="desc-line" width="12" height="100" preserveAspectRatio="none">
+              <circle cx="6" cy="6" r="4" fill="rgba(200,168,130,0.6)" />
+              <line x1="6" y1="12" x2="6" y2="100" stroke="rgba(200,168,130,0.3)" strokeWidth="1.5" />
+            </svg>
+            <div className="desc-text">
+              <h4>회복의 숲 <span className="desc-age">(성인·엄마)</span></h4>
+              <p>부모가 회복될 때, 아이의 숲도 함께 자란다</p>
+            </div>
+          </motion.div>
+
+          {/* INTEGRITY CORE */}
+          <motion.div
+            className="desc-item core-desc"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <svg className="desc-line" width="12" height="100" preserveAspectRatio="none">
+              <circle cx="6" cy="6" r="4" fill="rgba(212,168,159,0.7)" />
+              <line x1="6" y1="12" x2="6" y2="100" stroke="rgba(212,168,159,0.4)" strokeWidth="1.5" />
+            </svg>
+            <div className="desc-text">
+              <h4>INTEGRITY CORE</h4>
+              <p>기술보다 먼저, 존재의 중심</p>
             </div>
           </motion.div>
 
         </div>
+
       </section>
 
       {/* 스타일 */}
       <style>{`
-        .growth-origin {
-          padding: clamp(100px, 15vw, 180px) clamp(24px, 4vw, 48px);
-          background: #fff;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .merge-container {
-          max-width: 1200px;
+        .artistic-growth {
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: clamp(60px, 8vw, 100px);
+          max-width: 1400px;
           margin: 0 auto;
-          min-height: clamp(500px, 60vh, 700px);
+          padding: clamp(100px, 12vw, 160px) clamp(24px, 4vw, 60px);
+          background: #fff;
+        }
+
+        /* ================= 왼쪽: 비주얼 ================= */
+
+        .growth-visual {
           position: relative;
+          min-height: 650px;
           display: flex;
-          align-items: center;
+          flex-direction: column;
           justify-content: center;
+          align-items: center;
         }
 
-        .merge-blob {
+        .forest-row {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          gap: clamp(20px, 3vw, 40px);
+          position: relative;
+          z-index: 3;
+          margin-bottom: clamp(40px, 5vw, 60px);
+        }
+
+        /* 블롭 공통 - 시각적 무게 조정 */
+        .forest-blob {
+          width: clamp(140px, 16vw, 200px);
+          height: clamp(110px, 13vw, 150px);
+          border-radius: 58% 42% 53% 47% / 52% 58% 42% 48%;
           display: flex;
           flex-direction: column;
+          justify-content: center;
           align-items: center;
-          gap: 16px;
+          gap: 6px;
+          color: #2b2b2b;
+          box-shadow:
+            inset 0 -4px 12px rgba(0,0,0,0.08),
+            inset 0 4px 16px rgba(255,255,255,0.5),
+            0 12px 40px rgba(0,0,0,0.12),
+            0 4px 12px rgba(0,0,0,0.08);
+          filter: saturate(1.08);
+          position: relative;
+          opacity: 0.95;
+        }
+
+        .forest-blob::before {
+          content: '';
+          position: absolute;
+          top: 8%;
+          left: 15%;
+          width: 50%;
+          height: 35%;
+          background: radial-gradient(ellipse at center, rgba(255,255,255,0.4), transparent);
+          border-radius: 50%;
           pointer-events: none;
+          z-index: 1;
         }
 
-        .blob-svg {
-          filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.12));
-          transition: filter 0.6s ease;
-        }
-
-        .blob-label {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 4px;
-          font-family: "Noto Serif KR", serif;
-        }
-
-        .blob-label .age {
-          font-size: clamp(11px, 1.2vw, 13px);
-          color: #9CA3AF;
+        .forest-age {
+          font-size: clamp(11px, 1.1vw, 13px);
+          opacity: 0.7;
           font-weight: 500;
           letter-spacing: 0.08em;
-          font-family: "Inter", sans-serif;
+          font-family: 'Inter', sans-serif;
+          position: relative;
+          z-index: 5;
         }
 
-        .blob-label .name {
-          font-size: clamp(14px, 1.5vw, 17px);
-          color: #1a1a1a;
+        .forest-name {
+          font-size: clamp(14px, 1.5vw, 18px);
           font-weight: 600;
           letter-spacing: -0.01em;
+          font-family: 'Noto Serif KR', serif;
+          position: relative;
+          z-index: 5;
         }
 
-        /* Fusion Core */
-        .fusion-core {
-          position: absolute;
+        /* 각 숲 색상 */
+        .sense { background: #FADFDE; }
+        .symbol { background: #FFE066; }
+        .thought { background: #C8A882; }
+
+        /* 회복의 숲 */
+        .recovery {
+          width: clamp(240px, 30vw, 320px);
+          height: clamp(60px, 7vw, 75px);
+          border-radius: 999px;
+          background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+          color: #fff;
+          box-shadow:
+            inset 0 -2px 8px rgba(0,0,0,0.15),
+            inset 0 2px 10px rgba(255,255,255,0.15),
+            0 10px 30px rgba(46,125,50,0.18),
+            0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .recovery .forest-age {
+          color: rgba(255,255,255,0.8);
+        }
+
+        .recovery .forest-name {
+          color: #fff;
+        }
+
+        /* INTEGRITY CORE 컨테이너 - 시각적 중앙 보정 */
+        .integrity-core-container {
+          position: relative;
+          width: clamp(280px, 32vw, 360px);
+          height: clamp(200px, 23vw, 250px);
           display: flex;
-          align-items: center;
           justify-content: center;
-          width: clamp(280px, 35vw, 380px);
-          height: clamp(280px, 35vw, 380px);
+          align-items: center;
+          transform: translateY(-7%);
         }
 
-        .core-svg {
+        .core-layer-stair {
           position: absolute;
           width: 100%;
           height: 100%;
-          animation: coreRotate 30s linear infinite;
+          pointer-events: none;
+          transform: translateY(-6px);
         }
 
-        @keyframes coreRotate {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+        /* 계단식 배치 (오른쪽에서 왼쪽으로) */
+        .layer-4 {
+          right: -15%;
+          top: 15%;
+          z-index: 1;
+        }
+
+        .layer-3 {
+          right: -10%;
+          top: 10%;
+          z-index: 2;
+        }
+
+        .layer-2 {
+          right: -5%;
+          top: 5%;
+          z-index: 3;
+        }
+
+        .layer-1 {
+          right: 0;
+          top: 0;
+          z-index: 4;
+        }
+
+        .core-layer-stair svg {
+          width: 100%;
+          height: 100%;
+        }
+
+        .core-highlight {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          z-index: 5;
+          pointer-events: none;
+        }
+
+        .core-highlight svg {
+          width: 100%;
+          height: 100%;
         }
 
         .core-content {
@@ -340,93 +495,184 @@ export default function ArtisticGrowth() {
           z-index: 10;
           display: flex;
           flex-direction: column;
-          align-items: center;
           gap: 4px;
-          text-align: center;
+          color: #fff;
+          text-shadow: 0 2px 12px rgba(0,0,0,0.4);
         }
 
         .core-title {
-          font-family: "Cormorant Garamond", serif;
-          font-size: clamp(28px, 3.5vw, 38px);
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(22px, 3vw, 36px);
           font-weight: 700;
-          letter-spacing: 0.08em;
-          color: #fff;
-          text-shadow: 
-            0 2px 8px rgba(0, 0, 0, 0.3),
-            0 4px 16px rgba(0, 0, 0, 0.2);
+          letter-spacing: 0.1em;
           line-height: 1.1;
         }
 
         .core-subtitle {
-          font-family: "Cormorant Garamond", serif;
-          font-size: clamp(20px, 2.5vw, 26px);
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(16px, 2.2vw, 24px);
           font-weight: 600;
           letter-spacing: 0.12em;
-          color: rgba(255, 255, 255, 0.95);
-          text-shadow: 
-            0 2px 6px rgba(0, 0, 0, 0.25);
+          opacity: 0.95;
+        }
+
+        /* ================= 오른쪽: 설명 ================= */
+
+        .growth-description {
+          display: flex;
+          flex-direction: column;
+          gap: clamp(28px, 3.5vw, 40px);
+          padding-top: clamp(20px, 3vw, 40px);
+        }
+
+        .desc-item {
+          display: flex;
+          gap: 16px;
+          align-items: flex-start;
+        }
+
+        .desc-line {
+          flex-shrink: 0;
+          height: 100%;
+          min-height: 80px;
+        }
+
+        .desc-text {
+          flex: 1;
+        }
+
+        .desc-text h4 {
+          font-family: 'Noto Serif KR', serif;
+          font-size: clamp(15px, 1.6vw, 18px);
+          font-weight: 600;
+          margin-bottom: 8px;
+          color: #6B5B4F;
+        }
+
+        .desc-age {
+          font-size: clamp(12px, 1.3vw, 14px);
+          font-weight: 400;
+          opacity: 0.65;
+          font-family: 'Inter', sans-serif;
+        }
+
+        .desc-item p {
+          font-family: 'Noto Serif KR', serif;
+          font-size: clamp(13px, 1.4vw, 15px);
+          line-height: 1.7;
+          opacity: 0.85;
+          color: #4A4A4A;
+          word-break: keep-all;
+        }
+
+        /* 사유의 숲 강조 */
+        .self-texture {
+          background: #FADFDE;
+          padding: 0.15em 0.45em;
+          border-radius: 6px;
+          font-weight: 500;
+          position: relative;
+          display: inline-block;
+        }
+
+        .self-texture::after {
+          content: '';
+          position: absolute;
+          left: -2px;
+          right: -2px;
+          bottom: -5px;
+          height: 8px;
+          background: linear-gradient(90deg, 
+            rgba(155, 255, 206, 0.7) 0%, 
+            rgba(155, 255, 206, 0.9) 50%, 
+            rgba(155, 255, 206, 0.7) 100%
+          );
+          border-radius: 4px;
+          filter: blur(1.5px);
+        }
+
+        .neon-underline {
+          position: relative;
+          display: inline-block;
+        }
+
+        .neon-underline::after {
+          content: '';
+          position: absolute;
+          left: -2px;
+          right: -2px;
+          bottom: -5px;
+          height: 8px;
+          background: linear-gradient(90deg, 
+            rgba(155, 255, 206, 0.7) 0%, 
+            rgba(155, 255, 206, 0.9) 50%, 
+            rgba(155, 255, 206, 0.7) 100%
+          );
+          border-radius: 4px;
+          filter: blur(1.5px);
         }
 
         .core-desc {
-          margin-top: 8px;
-          font-family: "Noto Serif KR", serif;
-          font-size: clamp(12px, 1.3vw, 15px);
-          color: rgba(255, 255, 255, 0.85);
-          font-weight: 500;
-          letter-spacing: 0.05em;
-          text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+          background: rgba(250, 223, 222, 0.08);
+          border-radius: 8px;
+        }
+
+        .core-desc .desc-text {
+          padding: 16px 0;
+        }
+
+        .core-desc .desc-line circle {
+          fill: rgba(212,168,159,0.7);
+        }
+
+        .core-desc .desc-line line {
+          stroke: rgba(212,168,159,0.4);
         }
 
         /* 모바일 */
-        @media (max-width: 768px) {
-          .growth-origin {
+        @media (max-width: 1024px) {
+          .artistic-growth {
+            grid-template-columns: 1fr;
+            gap: 60px;
             padding: 80px 20px;
           }
 
-          .merge-container {
-            min-height: 600px;
+          .growth-visual {
+            min-height: 450px;
           }
 
-          .merge-blob {
-            gap: 12px;
+          .forest-row {
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
           }
 
-          .blob-svg {
-            width: clamp(110px, 25vw, 140px) !important;
-            height: clamp(80px, 18vw, 100px) !important;
+          .forest-blob {
+            width: clamp(180px, 55vw, 240px);
+            height: clamp(140px, 42vw, 180px);
           }
 
-          .fusion-core {
-            width: clamp(240px, 70vw, 300px);
-            height: clamp(240px, 70vw, 300px);
+          .integrity-core-container {
+            width: 280px;
+            height: 200px;
           }
 
-          .core-title {
-            font-size: clamp(24px, 6vw, 32px);
-          }
-
-          .core-subtitle {
-            font-size: clamp(16px, 4vw, 20px);
-          }
-
-          .core-desc {
-            font-size: clamp(11px, 3vw, 13px);
+          .recovery {
+            width: 260px;
+            height: 70px;
           }
         }
 
         /* 태블릿 */
-        @media (min-width: 769px) and (max-width: 1023px) {
-          .growth-origin {
-            padding: 100px 32px;
+        @media (min-width: 1025px) and (max-width: 1280px) {
+          .artistic-growth {
+            grid-template-columns: 1fr 0.85fr;
+            gap: 60px;
           }
 
-          .merge-container {
-            min-height: 650px;
-          }
-
-          .fusion-core {
-            width: clamp(300px, 40vw, 350px);
-            height: clamp(300px, 40vw, 350px);
+          .growth-visual {
+            min-height: 550px;
           }
         }
       `}</style>

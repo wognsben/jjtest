@@ -28,13 +28,6 @@ export default function InstitutionCollaboration({ onShowPartners }: Institution
     }
   };
 
-  const images = [
-    'https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=800&q=80',
-    'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800&q=80',
-    'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80',
-    'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&q=80',
-  ];
-
   return (
     <section id="section-collaboration" className="relative py-24 md:py-32 lg:py-40 overflow-hidden bg-white">
       {/* Paper texture noise */}
@@ -91,7 +84,8 @@ export default function InstitutionCollaboration({ onShowPartners }: Institution
               style={{ 
                 color: '#333333',
                 fontSize: 'clamp(1rem, 1.25vw, 1.125rem)',
-                lineHeight: 1.9,
+                lineHeight: 1.65,
+                letterSpacing: 0,
                 fontWeight: 400,
                 maxWidth: '580px'
               }}
@@ -121,7 +115,7 @@ export default function InstitutionCollaboration({ onShowPartners }: Institution
                   transform: 'translateX(-100%)'
                 }}
               />
-              <span className="relative z-10 flex items-center gap-2 transition-colors duration-600 group-hover:text-white" style={{ fontSize: '1rem' }}>
+              <span className="relative z-10 flex items-center gap-2 transition-colors duration-600 group-hover:text-white" style={{ fontSize: '0.85rem' }}>
                 함께해온 기관 더보기
               </span>
             </motion.button>
@@ -157,44 +151,6 @@ export default function InstitutionCollaboration({ onShowPartners }: Institution
                 }}
               />
             </motion.div>
-
-            <div className="grid grid-cols-3 gap-3 md:gap-4" style={{ gridAutoRows: 'minmax(120px, auto)' }}>
-              {images.map((image, index) => {
-                // 세로 사선 형식: 각 이미지에 다른 회전 각도와 위치 오프셋
-                const rotations = [-2, 1.5, -1, 2.5]; // 각 이미지별 회전 각도
-                const offsets = [
-                  { x: 0, y: 0 },
-                  { x: 8, y: -5 },
-                  { x: -6, y: 8 },
-                  { x: 5, y: -10 }
-                ]; // 각 이미지별 위치 오프셋
-                
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20, rotate: 0 }}
-                    whileInView={{ opacity: 1, y: 0, rotate: rotations[index] }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className={`
-                      group relative rounded-lg overflow-hidden cursor-pointer
-                      ${index === 0 || index === 3 ? 'row-span-2' : ''}
-                    `}
-                    style={{ 
-                      aspectRatio: (index === 0 || index === 3) ? '1/1.2' : '1/1',
-                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
-                      transform: `translate(${offsets[index].x}px, ${offsets[index].y}px)`,
-                    }}
-                  >
-                    <img 
-                      src={image}
-                      alt={`협업 프로젝트 ${index + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.02]"
-                    />
-                  </motion.div>
-                );
-              })}
-            </div>
           </div>
         </div>
       </div>

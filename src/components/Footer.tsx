@@ -43,7 +43,7 @@ export default function Footer() {
             className="mb-4"
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(32px, 4vw, 48px)',
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
               fontWeight: 400,
               letterSpacing: '-0.02em',
               color: '#4A4A4A',
@@ -56,7 +56,7 @@ export default function Footer() {
             className="mb-8"
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(13px, 1.2vw, 14px)',
+              fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
               fontWeight: 300,
               letterSpacing: '0.08em',
               color: '#8B8B8B',
@@ -68,11 +68,12 @@ export default function Footer() {
           <div 
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(14px, 1.3vw, 15px)',
+              fontSize: 'clamp(0.9rem, 1.3vw, 0.95rem)',
               fontWeight: 300,
               letterSpacing: '-0.01em',
               color: '#6B6B6B',
-              lineHeight: '1.8',
+              lineHeight: '1.6',
+              letterSpacing: '0',
               maxWidth: '500px',
             }}
           >
@@ -97,7 +98,7 @@ export default function Footer() {
               className="mb-6"
               style={{
                 fontFamily: "'Noto Sans KR', sans-serif",
-                fontSize: 'clamp(12px, 1.1vw, 13px)',
+                fontSize: 'clamp(0.8rem, 1.1vw, 0.85rem)',
                 fontWeight: 400,
                 letterSpacing: '0.05em',
                 color: '#999',
@@ -109,11 +110,12 @@ export default function Footer() {
             <div 
               style={{
                 fontFamily: "'Noto Sans KR', sans-serif",
-                fontSize: 'clamp(12px, 1.2vw, 15px)',
+                fontSize: 'clamp(0.8rem, 1.2vw, 0.95rem)',
                 fontWeight: 300,
                 letterSpacing: '-0.01em',
                 color: '#6B6B6B',
-                lineHeight: '1.8',
+                lineHeight: '1.6',
+              letterSpacing: '0',
               }}
             >
               경기도 성남시 수정구 창곡동 563번지 위례역 푸르지오 6단지 107호
@@ -126,7 +128,7 @@ export default function Footer() {
               className="mb-6"
               style={{
                 fontFamily: "'Noto Sans KR', sans-serif",
-                fontSize: 'clamp(12px, 1.1vw, 13px)',
+                fontSize: 'clamp(0.8rem, 1.1vw, 0.85rem)',
                 fontWeight: 400,
                 letterSpacing: '0.05em',
                 color: '#999',
@@ -144,7 +146,7 @@ export default function Footer() {
                 className="hover:text-[#4A4A4A] transition-colors duration-300"
                 style={{
                   fontFamily: "'Noto Sans KR', sans-serif",
-                  fontSize: 'clamp(13px, 1.2vw, 14px)',
+                  fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
                   fontWeight: 300,
                   letterSpacing: '-0.01em',
                   color: '#8B8B8B',
@@ -154,7 +156,7 @@ export default function Footer() {
                 Instagram (크레용숲)
               </a>
 
-              {/* Instagram - 아동미술 */}
+              {/* Instagram - 어린이색채학교 */}
               <a
                 href="https://www.instagram.com/crayonforest_childart"
                 target="_blank"
@@ -162,14 +164,14 @@ export default function Footer() {
                 className="hover:text-[#4A4A4A] transition-colors duration-300"
                 style={{
                   fontFamily: "'Noto Sans KR', sans-serif",
-                  fontSize: 'clamp(13px, 1.2vw, 14px)',
+                  fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
                   fontWeight: 300,
                   letterSpacing: '-0.01em',
                   color: '#8B8B8B',
                   textDecoration: 'none',
                 }}
               >
-                Instagram (아동미술)
+                Instagram 어린이색채학교
               </a>
 
               {/* Brunch */}
@@ -180,7 +182,7 @@ export default function Footer() {
                 className="hover:text-[#4A4A4A] transition-colors duration-300"
                 style={{
                   fontFamily: "'Noto Sans KR', sans-serif",
-                  fontSize: 'clamp(13px, 1.2vw, 14px)',
+                  fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
                   fontWeight: 300,
                   letterSpacing: '-0.01em',
                   color: '#8B8B8B',
@@ -198,7 +200,7 @@ export default function Footer() {
                 className="hover:text-[#4A4A4A] transition-colors duration-300"
                 style={{
                   fontFamily: "'Noto Sans KR', sans-serif",
-                  fontSize: 'clamp(13px, 1.2vw, 14px)',
+                  fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
                   fontWeight: 300,
                   letterSpacing: '-0.01em',
                   color: '#8B8B8B',
@@ -216,7 +218,7 @@ export default function Footer() {
                 className="hover:text-[#4A4A4A] transition-colors duration-300"
                 style={{
                   fontFamily: "'Noto Sans KR', sans-serif",
-                  fontSize: 'clamp(13px, 1.2vw, 14px)',
+                  fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
                   fontWeight: 300,
                   letterSpacing: '-0.01em',
                   color: '#8B8B8B',
@@ -243,7 +245,7 @@ export default function Footer() {
           <div 
             style={{
               fontFamily: "'Noto Sans KR', sans-serif",
-              fontSize: 'clamp(11px, 1vw, 12px)',
+              fontSize: 'clamp(0.75rem, 1vw, 0.8rem)',
               fontWeight: 300,
               letterSpacing: '-0.01em',
               color: '#999',
@@ -259,7 +261,7 @@ export default function Footer() {
               className="hover:text-[#8B8B8B] transition-colors duration-300"
               style={{
                 fontFamily: "'Noto Sans KR', sans-serif",
-                fontSize: 'clamp(11px, 1vw, 12px)',
+                fontSize: 'clamp(0.75rem, 1vw, 0.8rem)',
                 fontWeight: 300,
                 letterSpacing: '-0.01em',
                 color: '#B0B0B0',
@@ -273,7 +275,7 @@ export default function Footer() {
               className="hover:text-[#8B8B8B] transition-colors duration-300"
               style={{
                 fontFamily: "'Noto Sans KR', sans-serif",
-                fontSize: 'clamp(11px, 1vw, 12px)',
+                fontSize: 'clamp(0.75rem, 1vw, 0.8rem)',
                 fontWeight: 300,
                 letterSpacing: '-0.01em',
                 color: '#B0B0B0',

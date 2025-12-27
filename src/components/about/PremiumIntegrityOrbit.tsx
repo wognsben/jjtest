@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'motion/react';
 
 export default function PremiumIntegrityOrbit() {
@@ -15,40 +16,40 @@ export default function PremiumIntegrityOrbit() {
       x: centerX + radius * Math.cos((angles[0] * Math.PI) / 180),
       y: centerY + radius * Math.sin((angles[0] * Math.PI) / 180),
       titleKr: "1. 감정 이해력",
-      titleEn: "Affective Literacy",
-      body: ["감정을 정확히 인식하고", "언어로 표현하는 능력", "", "CASEL, 2020"],
+      titleEn: "(Affective Literacy)",
+      description: "CASEL(2020): 감정 인식능력은 전두엽 발달과 직접적으로 연결됨."
     },
     {
       id: "n2",
       x: centerX + radius * Math.cos((angles[1] * Math.PI) / 180),
       y: centerY + radius * Math.sin((angles[1] * Math.PI) / 180),
       titleKr: "2. 감각 기반 자기조절",
-      titleEn: "Sensory Self-Regulation",
-      body: ["촉각적 경험을 통해", "마음을 안정시키는 힘", "", "Art Therapy Outcomes, 2019"],
+      titleEn: "(Sensory Self-Regulation)",
+      description: "Art Therapy Outcomes Study(2019): 촉감 기반 드로잉은 스트레스 호르몬을 감소시킴."
     },
     {
       id: "n3",
       x: centerX + radius * Math.cos((angles[2] * Math.PI) / 180),
       y: centerY + radius * Math.sin((angles[2] * Math.PI) / 180),
       titleKr: "3. 표현력 확장",
-      titleEn: "Expressive Agency",
-      body: ["자유로운 표현이", "자기주도성으로 연결됨", "", "Lowenfeld Theory"],
+      titleEn: "(Expressive Agency)",
+      description: "Lowenfeld의 창의성 발달 단계 이론: 자유로운 표현 경험이 자기주도성을 강화함."
     },
     {
       id: "n4",
       x: centerX + radius * Math.cos((angles[3] * Math.PI) / 180),
       y: centerY + radius * Math.sin((angles[3] * Math.PI) / 180),
       titleKr: "4. 관계 감각",
-      titleEn: "Relational Sensitivity",
-      body: ["타인의 감정을 이해하고", "공감하는 능력", "", "Mirror Neuron Theory"],
+      titleEn: "(Relational Sensitivity)",
+      description: "Mirror Neuron Theory: 타인의 표현을 보며 감정 모방·이해가 촉진됨."
     },
     {
       id: "n5",
       x: centerX + radius * Math.cos((angles[4] * Math.PI) / 180),
       y: centerY + radius * Math.sin((angles[4] * Math.PI) / 180),
-      titleKr: "5. 세계관·자기서사",
-      titleEn: "Narrative Identity",
-      body: ["예술과 서사로", "자기이해를 깊게 함", "", "H. Gardner"],
+      titleKr: "5. 세계관·자기서사 형성",
+      titleEn: "(Narrative Identity)",
+      description: "H. Gardner(다중지능): 예술·서사 경험은 '자기이해지능'을 강화함."
     },
   ];
 
@@ -63,22 +64,19 @@ export default function PremiumIntegrityOrbit() {
         }}
       >
 
-        {/* 미세한 관계 암시 라인 (보이지만 읽히지 않게) */}
-        <g opacity="0.15">
+        {/* 관계 암시 라인 (느껴지는 수준) */}
+        <g opacity="0.05">
           {nodes.map((n) => (
-            <motion.line
+            <line
               key={n.id}
               x1="400"
               y1="360"
               x2={n.x}
               y2={n.y}
               stroke="#D4B896"
-              strokeWidth="1.5"
-              strokeDasharray="3 12"
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, delay: 0.5 }}
+              strokeWidth="0.5"
+              strokeDasharray="1 6"
+              strokeLinecap="round"
             />
           ))}
         </g>
@@ -98,90 +96,85 @@ export default function PremiumIntegrityOrbit() {
 function CenterNode() {
   return (
     <g>
-      {/* 외부 글로우 효과 */}
+      {/* 외부 글로우 효과 - 최소화 */}
       <defs>
-        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-          <feMerge>
-            <feMergeNode in="coloredBlur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
         <filter id="centerShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
-          <feOffset dx="0" dy="4" result="offsetblur"/>
+          <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+          <feOffset dx="0" dy="3" result="offsetblur"/>
           <feComponentTransfer>
-            <feFuncA type="linear" slope="0.3"/>
+            <feFuncA type="linear" slope="0.15"/>
           </feComponentTransfer>
           <feMerge>
             <feMergeNode/>
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
         </filter>
+        
+        {/* 노이즈 텍스처 */}
+        <filter id="organicTexture">
+          <feTurbulence type="fractalNoise" baseFrequency="3.5" numOctaves="4" seed="99" stitchTiles="stitch"/>
+          <feDisplacementMap in="SourceGraphic" scale="2"/>
+        </filter>
+
+        {/* 링 gradient (위/아래 얇아짐) */}
+        <linearGradient id="ringGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="rgba(255,255,255,0.1)" stopOpacity="0.3"/>
+          <stop offset="25%" stopColor="rgba(255,255,255,0.35)" stopOpacity="0.8"/>
+          <stop offset="50%" stopColor="rgba(255,255,255,0.25)" stopOpacity="0.8"/>
+          <stop offset="75%" stopColor="rgba(255,255,255,0.35)" stopOpacity="0.8"/>
+          <stop offset="100%" stopColor="rgba(255,255,255,0.1)" stopOpacity="0.3"/>
+        </linearGradient>
       </defs>
 
-      {/* 여운 링 1 */}
-      <motion.circle
-        cx="400"
-        cy="360"
-        r="115"
+      {/* 하단 그림자 blob */}
+      <path
+        d="M310,415 C340,445 380,465 420,465 C460,465 500,445 520,415 C540,385 540,345 520,315 C500,285 460,265 420,265 C380,265 340,285 310,315 C290,345 290,385 310,415 Z"
+        fill="rgba(0,0,0,0.06)"
+        opacity="0.5"
+        style={{ filter: 'blur(8px)' }}
+      />
+
+      {/* 외곽 두께 링 (3D 층감) - gradient stroke */}
+      <path
+        d="M305,365 C305,315 345,270 395,260 C445,250 495,275 520,315 C545,355 545,405 520,445 C495,485 445,510 395,500 C345,490 305,445 305,395 Z"
         fill="none"
-        stroke="#8FBC88"
+        stroke="url(#ringGradient)"
+        strokeWidth="2.5"
+        opacity="0.6"
+      />
+
+      {/* 중심 blob wrapper with filter */}
+      <g filter="url(#centerShadow) url(#organicTexture)">
+        <motion.path
+          d="M310,360 C310,320 340,285 380,275 C420,265 465,280 490,315 C515,350 520,395 495,430 C470,465 425,480 385,475 C345,470 310,435 310,395 Z"
+          fill="url(#blobGradient)"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ 
+            duration: 0.8,
+            ease: [0.16, 1, 0.3, 1]
+          }}
+        />
+      </g>
+
+      {/* 내측 하이라이트 링 (볼륨감 강화) - gradient stroke */}
+      <path
+        d="M315,360 C315,325 345,292 385,282 C425,272 465,287 490,320 C515,353 515,398 490,428 C465,458 425,473 385,468 C345,463 315,428 315,393 Z"
+        fill="none"
+        stroke="url(#ringGradient)"
         strokeWidth="1.5"
-        opacity="0.35"
-        initial={{ scale: 0.8, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 0.35 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, delay: 0.2 }}
-        style={{ transformOrigin: '50% 50%', transformBox: 'fill-box', filter: 'url(#glow)' }}
+        opacity="0.7"
       />
 
-      {/* 여운 링 2 */}
-      <motion.circle
-        cx="400"
-        cy="360"
-        r="125"
+      {/* 상단 하이라이트 아크 (빛 받는 부분) */}
+      <path
+        d="M 340,310 A 80,80 0 0,1 460,310"
         fill="none"
-        stroke="#FFB6C1"
-        strokeWidth="1"
-        opacity="0.25"
-        initial={{ scale: 0.8, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 0.25 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, delay: 0.4 }}
-        style={{ transformOrigin: '50% 50%', transformBox: 'fill-box', filter: 'url(#glow)' }}
-      />
-
-      {/* 중심 원 - 그림자 효과 추가 */}
-      <motion.circle
-        cx="400"
-        cy="360"
-        r="100"
-        fill="url(#centerGradient)"
-        initial={{ scale: 0 }}
-        whileInView={{ scale: 1 }}
-        viewport={{ once: true }}
-        whileHover={{ scale: 1.02 }}
-        transition={{ 
-          scale: { duration: 0.3, ease: 'easeOut' },
-          default: { duration: 0.8, type: 'spring', bounce: 0.3 }
-        }}
-        style={{ 
-          transformOrigin: '50% 50%', 
-          transformBox: 'fill-box',
-          filter: 'url(#centerShadow)',
-          cursor: 'pointer'
-        }}
-      />
-
-      {/* 내부 하이라이트 */}
-      <circle
-        cx="380"
-        cy="340"
-        r="35"
-        fill="white"
-        opacity="0.3"
-        style={{ filter: 'blur(15px)' }}
+        stroke="rgba(255,255,255,0.4)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        opacity="0.8"
       />
 
       {/* 타이틀 */}
@@ -192,11 +185,8 @@ function CenterNode() {
         fontSize="26"
         fontWeight="700"
         fill="white"
-        style={{ 
-          fontFamily: "'Cormorant Garamond', serif",
-          letterSpacing: '0.03em',
-          textShadow: '0 2px 8px rgba(0,0,0,0.15)'
-        }}
+        fontFamily="'Cormorant Garamond', serif"
+        letterSpacing="0.03em"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -213,10 +203,8 @@ function CenterNode() {
         fontSize="13"
         fill="white"
         opacity="0.95"
-        style={{ 
-          fontFamily: "'Noto Serif KR', serif",
-          letterSpacing: '0.01em'
-        }}
+        fontFamily="'Noto Serif KR', serif"
+        letterSpacing="0.01em"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0.95 }}
         viewport={{ once: true }}
@@ -230,13 +218,13 @@ function CenterNode() {
         </tspan>
       </motion.text>
 
-      {/* 그라데이션 정의 */}
+      {/* blob 그라데이션 정의 - 머스타드 */}
       <defs>
-        <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FFD54F" />
-          <stop offset="50%" stopColor="#FFC107" />
-          <stop offset="100%" stopColor="#FFB300" />
-        </linearGradient>
+        <radialGradient id="blobGradient" cx="40%" cy="30%">
+          <stop offset="0%" stopColor="#F5D366" />
+          <stop offset="50%" stopColor="#E8B449" />
+          <stop offset="100%" stopColor="#D9A43A" />
+        </radialGradient>
       </defs>
     </g>
   );
@@ -245,218 +233,194 @@ function CenterNode() {
 function PremiumNode({ 
   x, 
   y, 
-  titleKr, 
-  titleEn, 
-  body,
+  titleKr,
+  titleEn,
+  description,
   index 
 }: { 
   x: number;
   y: number;
   titleKr: string;
   titleEn: string;
-  body: string[];
+  description: string;
   index: number;
 }) {
-  // 프리미엄 기준: 완전 대칭 금지(살짝 흔들어 생동감)
   const jitterX = (x * 13) % 2 ? 0.8 : -0.8;
   const jitterY = (y * 17) % 2 ? 1 : -1;
 
-  const W = 240;
-  const pillH = 38;
-  const boxH = 115;
-  const rPill = 19;
-  const rBox = 18;
+  const W = 210;
+  const pillH = 46;
+  const textAreaH = 90;
+  const gap = 12;
 
-  // 노드 기준 좌상단
   const left = x - W / 2 + jitterX;
-  const top = y - (pillH + boxH) / 2 + jitterY;
+  const top = y - (pillH + gap + textAreaH) / 2 + jitterY;
 
   return (
     <motion.g
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ 
-        duration: 0.8, 
-        delay: 1.2 + index * 0.2,
-        type: 'spring',
-        stiffness: 100
+        duration: 0.9, 
+        delay: 1.2 + index * 0.12,
+        ease: [0.16, 1, 0.3, 1]
       }}
-      whileHover={{ scale: 1.03, y: -2 }}
-      style={{ 
-        cursor: 'pointer',
-        filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.1))'
-      }}
+      filter="drop-shadow(0 2px 6px rgba(0,0,0,0.04))"
     >
       <g transform={`translate(${left}, ${top})`}>
-      {/* 카드 배경 그림자 */}
-      <defs>
-        <filter id={`cardShadow${index}`} x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
-          <feOffset dx="0" dy="4" result="offsetblur"/>
-          <feComponentTransfer>
-            <feFuncA type="linear" slope="0.25"/>
-          </feComponentTransfer>
-          <feMerge>
-            <feMergeNode/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      </defs>
-
-      {/* 타이틀 pill 배경 - 그라데이션 추가 */}
-      <defs>
-        <linearGradient id={`pillGradient${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
-          <stop offset="100%" stopColor="rgba(255,255,255,0.7)" />
-        </linearGradient>
-      </defs>
+      
+      {/* pill 헤더 - 오브제 라벨 느낌 */}
       <rect
         x="0"
         y="0"
         width={W}
         height={pillH}
-        rx={rPill}
-        fill={`url(#pillGradient${index})`}
-        opacity="1"
-        style={{ filter: `url(#cardShadow${index})` }}
+        rx="999"
+        fill="#F7F3EE"
+        stroke="rgba(212,184,150,0.35)"
+        strokeWidth="0.8"
+        strokeDasharray="1 1.2"
+        strokeLinecap="round"
+        opacity="0.98"
       />
       
-      {/* 타이틀 pill 테두리 - 더 부드러운 선 */}
+      {/* blur 효과는 별도 rect로 */}
       <rect
-        x="0"
-        y="0"
-        width={W}
-        height={pillH}
-        rx={rPill}
+        x="-1"
+        y="-1"
+        width={W + 2}
+        height={pillH + 2}
+        rx="999"
         fill="none"
-        stroke="#E38B63"
-        strokeWidth="2"
-        opacity="0.8"
+        stroke="rgba(212,184,150,0.15)"
+        strokeWidth="0.4"
+        filter="blur(0.2px)"
       />
 
-      {/* 타이틀 (한글) */}
+      {/* 번호 - 작고 얌전하게 */}
+      <text
+        x="20"
+        y={pillH / 2 - 2}
+        textAnchor="start"
+        fontSize="11"
+        fontWeight="500"
+        fill="#A89883"
+        opacity="0.7"
+        style={{ 
+          fontFamily: "'Noto Serif KR', serif"
+        }}
+      >
+        {titleKr.split('.')[0]}.
+      </text>
+
+      {/* 한글 제목 - 가장 또렷 */}
       <text
         x={W / 2}
-        y="18"
+        y={pillH / 2 - 2}
         textAnchor="middle"
-        fontSize="14"
-        fontWeight="700"
-        fill="#D06F45"
+        fontSize="13"
+        fontWeight="600"
+        fill="#6B5B4F"
         style={{ 
           fontFamily: "'Noto Serif KR', serif",
           letterSpacing: '-0.01em'
         }}
       >
-        {titleKr}
+        {titleKr.split('.')[1]?.trim() || titleKr}
       </text>
 
-      {/* 타이틀 (영문) - 위계 낮게, 자간 + */}
+      {/* 영문 부제 - 보조 정보 */}
       <text
         x={W / 2}
-        y="32"
+        y={pillH / 2 + 14}
         textAnchor="middle"
-        fontSize="9.5"
-        fill="#8FBC88"
-        opacity="0.8"
+        fontSize="9"
+        fontWeight="400"
+        fill="#8B7B6F"
+        opacity="0.75"
         style={{ 
           fontFamily: "'Inter', sans-serif",
-          letterSpacing: '0.05em',
-          textTransform: 'uppercase'
+          letterSpacing: '0.02em'
         }}
       >
         {titleEn}
       </text>
 
-      {/* 바디 박스 - 그라데이션 배경 */}
-      <defs>
-        <linearGradient id={`boxGradient${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#FBE6DD" stopOpacity="0.98" />
-          <stop offset="100%" stopColor="#F9DDD3" stopOpacity="0.92" />
-        </linearGradient>
-      </defs>
+      {/* 설명 영역 - 종이 위 메모 느낌 (테두리 없음) */}
       <rect
-        x="12"
-        y={pillH + 8}
-        width={W - 24}
-        height={boxH}
-        rx={rBox}
-        fill={`url(#boxGradient${index})`}
-        opacity="1"
+        x="0"
+        y={pillH + gap}
+        width={W}
+        height={textAreaH}
+        rx="10"
+        fill="#F5EEE6"
+        stroke="none"
+        opacity="0.92"
       />
 
-      {/* 바디 박스 미세한 테두리 - 더 정교하게 */}
-      <rect
-        x="12"
-        y={pillH + 8}
-        width={W - 24}
-        height={boxH}
-        rx={rBox}
-        fill="none"
-        stroke="#E38B63"
-        strokeWidth="0.5"
-        opacity="0.4"
-      />
-
-      {/* 바디 텍스트 */}
-      <text
-        x={W / 2}
-        y={pillH + 36}
-        textAnchor="middle"
-        fontSize="12"
-        fill="#6B4A38"
-        opacity="0.95"
-        style={{ 
-          fontFamily: "'Noto Serif KR', serif",
-          letterSpacing: '0em',
-          lineHeight: '1.7'
-        }}
-      >
-        {body.slice(0, 4).map((line, i) => (
-          <tspan 
-            key={i} 
-            x={W / 2} 
-            dy={i === 0 ? 0 : 20}
-            fontWeight={i === 3 ? "400" : "500"}
-            fontSize={i === 3 ? "10" : "12"}
-            opacity={i === 3 ? 0.65 : 0.95}
-            fontStyle={i === 3 ? "italic" : "normal"}
-            style={{
-              fontFamily: i === 3 ? "'Inter', sans-serif" : "'Noto Serif KR', serif"
-            }}
-          >
-            {line}
-          </tspan>
-        ))}
-      </text>
-
-      {/* 미세한 언더라인 장식 */}
+      {/* 오른쪽 상단 코너 테두리 */}
       <line
-        x1={W / 2 - 38}
-        y1={pillH + boxH + 18}
-        x2={W / 2 + 38}
-        y2={pillH + boxH + 18}
-        stroke="#E38B63"
-        strokeWidth="2"
-        opacity="0.4"
+        x1={W - 20}
+        y1={pillH + gap}
+        x2={W}
+        y2={pillH + gap}
+        stroke="rgba(212,184,150,0.4)"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+      />
+      <line
+        x1={W}
+        y1={pillH + gap}
+        x2={W}
+        y2={pillH + gap + 20}
+        stroke="rgba(212,184,150,0.4)"
+        strokeWidth="0.8"
         strokeLinecap="round"
       />
 
-      {/* 코너 포인트 장식 */}
-      <circle
-        cx="20"
-        cy={pillH + 16}
-        r="2.5"
-        fill="#E38B63"
-        opacity="0.5"
+      {/* 왼쪽 하단 코너 테두리 */}
+      <line
+        x1="0"
+        y1={pillH + gap + textAreaH - 20}
+        x2="0"
+        y2={pillH + gap + textAreaH}
+        stroke="rgba(212,184,150,0.4)"
+        strokeWidth="0.8"
+        strokeLinecap="round"
       />
-      <circle
-        cx={W - 20}
-        cy={pillH + boxH}
-        r="2"
-        fill="#8FBC88"
-        opacity="0.4"
+      <line
+        x1="0"
+        y1={pillH + gap + textAreaH}
+        x2="20"
+        y2={pillH + gap + textAreaH}
+        stroke="rgba(212,184,150,0.4)"
+        strokeWidth="0.8"
+        strokeLinecap="round"
       />
+
+      {/* 설명 텍스트 - 종이 위 연필 글씨 같은 톤 */}
+      <foreignObject
+        x="12"
+        y={pillH + gap + 14}
+        width={W - 24}
+        height={textAreaH - 28}
+      >
+        <div
+          style={{
+            fontFamily: "'Noto Serif KR', serif",
+            fontSize: '10px',
+            lineHeight: '1.6',
+            color: '#6B5B4F',
+            opacity: 0.85,
+            textAlign: 'left',
+            wordBreak: 'keep-all'
+          }}
+        >
+          {description}
+        </div>
+      </foreignObject>
+
       </g>
     </motion.g>
   );

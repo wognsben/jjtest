@@ -124,7 +124,7 @@ export default function SensoryArt() {
                     <h2 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.2rem, 3vw, 1.6rem)',
+                        fontSize: 'clamp(1rem, 3vw, 1.6rem)',
                         lineHeight: 1.3,
                         fontWeight: 600,
                         color: '#5a8c4a',
@@ -154,8 +154,9 @@ export default function SensoryArt() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
                       }}
@@ -165,8 +166,9 @@ export default function SensoryArt() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.1rem, 2vw, 1.25rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 500,
                         color: '#4A4A4A',
                       }}
@@ -176,8 +178,9 @@ export default function SensoryArt() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.1rem, 2vw, 1.25rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 600,
                         color: '#5a8c4a',
                       }}
@@ -195,24 +198,16 @@ export default function SensoryArt() {
                     className="pt-4 border-t border-brown-200/30"
                   >
                     <p 
-                      className="text-lg md:text-xl leading-relaxed"
+                      className="md:text-xl leading-relaxed"
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
+                        fontSize: 'clamp(0.65rem, 1.8vw, 1.25rem)',
                         color: '#5a8c4a',
                         fontWeight: 600
                       }}
                     >
-                      예술을 기반으로{' '}
-                      <span 
-                        className="inline-block relative"
-                        style={{
-                          borderBottom: '2px solid #5a8c4a',
-                          paddingBottom: '2px'
-                        }}
-                      >
-                        내적 구조(INTEGRITY)가 단단한 사람
-                      </span>
-                      은 어떤 시대에도 '자기 방식으로 살아가는 힘'을 갖습니다.
+                      예술을 기반으로 내적 구조(INTEGRITY)가 단단한 사람은<br />
+                      어떤 시대에도 '자기 방식으로 살아가는 힘'을 갖게 됩니다.
                     </p>
                   </motion.div>
                 </div>

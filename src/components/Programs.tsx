@@ -7,33 +7,37 @@ const programs = [
     id: 1,
     title: 'CHILD ART',
     subtitle: ['감정·감각·표현이 처음 만나는', '어린이 마음숲'],
-    color: '#FFE066',
-    darkColor: '#E6C850',
-    textColor: '#ffffff' // White text
+    color: 'hsl(48, 85%, 72%)', // Reduced saturation from ~95% to 85%
+    darkColor: 'hsl(48, 75%, 65%)',
+    textColor: '#ffffff',
+    sectionId: 'childart'
   },
   {
     id: 2,
     title: 'YOUTH ART',
     subtitle: ['\'나만의 철학 미술관\'을 완성하는', '청소년 사유의 숲'],
-    color: '#FFB3BA',
-    darkColor: '#E69BA1',
-    textColor: '#ffffff' // White text
+    color: 'hsl(350, 75%, 78%)', // Reduced saturation from ~85% to 75%
+    darkColor: 'hsl(350, 65%, 70%)',
+    textColor: '#ffffff',
+    sectionId: 'youthart'
   },
   {
     id: 3,
     title: 'ADULT ART',
     subtitle: ['감각을 회복하고, 삶의 결을', '다시 짓는 어른의 감정의 숲'],
-    color: '#D4A574',
-    darkColor: '#BB8E5E',
-    textColor: '#ffffff' // White text
+    color: 'hsl(28, 45%, 62%)', // Reduced saturation from ~55% to 45%
+    darkColor: 'hsl(28, 40%, 55%)',
+    textColor: '#ffffff',
+    sectionId: 'adultart'
   },
   {
     id: 4,
     title: 'FOR MOM',
     subtitle: ['엄마의 마음까지 함께 살피는', '창조의 숲'],
-    color: '#B8E6B8',
-    darkColor: '#9FCC9F',
-    textColor: '#ffffff' // White text
+    color: 'hsl(120, 35%, 78%)', // Reduced saturation from ~45% to 35%
+    darkColor: 'hsl(120, 30%, 70%)',
+    textColor: '#ffffff',
+    sectionId: 'moments'
   }
 ];
 
@@ -58,7 +62,7 @@ function RebuildText({ text, delay = 0 }: { text: string; delay?: number }) {
   );
 }
 
-function ProgramCircle({ program, index }: { program: typeof programs[0]; index: number }) {
+function ProgramCircle({ program, index, onNavigate }: { program: typeof programs[0]; index: number; onNavigate: (sectionId: string) => void }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const circleRef = useRef<HTMLDivElement>(null);
@@ -81,6 +85,11 @@ function ProgramCircle({ program, index }: { program: typeof programs[0]; index:
     setIsHovered(false);
   };
   
+  const handleClick = () => {
+    // Navigate to programs page with section
+    onNavigate(program.sectionId);
+  };
+  
   return (
     <motion.div
       ref={circleRef}
@@ -91,6 +100,7 @@ function ProgramCircle({ program, index }: { program: typeof programs[0]; index:
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
       className="relative group cursor-pointer"
       style={{
         transform: `translate(${mousePos.x}px, ${mousePos.y}px)`,
@@ -161,7 +171,7 @@ function ProgramCircle({ program, index }: { program: typeof programs[0]; index:
   );
 }
 
-export default function Programs() {
+export default function Programs({ onNavigateToProgram }: { onNavigateToProgram?: (sectionId: string) => void }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const blobRef = useRef<HTMLDivElement>(null);
   const animationStarted = useRef(false);
@@ -169,6 +179,12 @@ export default function Programs() {
   const isInView = useInView(sectionRef, { once: false, amount: 0.2 });
   const isBlobInView = useInView(blobRef, { once: false, amount: 0.5 });
   const [morphValue, setMorphValue] = useState(0);
+  
+  const handleNavigate = (sectionId: string) => {
+    if (onNavigateToProgram) {
+      onNavigateToProgram(sectionId);
+    }
+  };
   
   // Auto-animate morph when blob comes into view
   useEffect(() => {
@@ -238,6 +254,34 @@ export default function Programs() {
       }
     };
   }, []);
+
+  // Intersection Observer for premium scroll animation (circle → label sequence)
+  // Only activate after morph animation completes
+  useEffect(() => {
+    if (morphValue < 0.9) return; // Wait for morph to complete
+    
+    const items = document.querySelectorAll('.program-item');
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target); // One-time execution
+          }
+        });
+      },
+      {
+        threshold: 0.35
+      }
+    );
+
+    items.forEach((item) => observer.observe(item));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [morphValue]); // Re-run when morph completes
   
   return (
     <section 
@@ -283,13 +327,14 @@ export default function Programs() {
             className="text-primary programs-title md:text-center"
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1rem, 4.2vw, 1.5rem)', // Slightly reduced on mobile
-              lineHeight: 1.35,
+              fontSize: 'clamp(0.85rem, 4.2vw, 1.5rem)', // Slightly reduced on mobile
+              lineHeight: 1.3,
+              letterSpacing: 0,
               wordBreak: 'keep-all',
               whiteSpace: 'normal',
               maxWidth: '100%',
               margin: '0 auto',
-            }}
+            } as React.CSSProperties}
           >
             <span className="inline md:inline-block mr-[0.3em] programs-title-first-line">
               <RebuildText text="크레용숲은" />
@@ -298,7 +343,7 @@ export default function Programs() {
               <RebuildText text="감정과" delay={0.1} />
             </span>
             <span className="inline md:inline-block mr-[0.3em]" style={{ color: 'rgba(168, 198, 143, 0.9)' }}>
-              <RebuildText text="감각" delay={0.12} />
+              <RebuildText text="감각," delay={0.12} />
             </span>
             <br className="md:hidden" />
             <span className="inline md:inline-block mr-[0.3em]">
@@ -344,16 +389,6 @@ export default function Programs() {
               <RebuildText text="합니다." delay={0.6} />
             </span>
           </h2>
-
-          {/* Mobile-only width constraint to keep exact 2 lines */}
-          <style>{`
-            @media (max-width: 767px) {
-              .programs-title {
-                max-width: 21em;
-                margin-inline: auto;
-              }
-            }
-          `}</style>
         </motion.div>
         
         {/* 3D Blob Morph Animation + Circle Cards Transition */}
@@ -372,26 +407,24 @@ export default function Programs() {
             className="absolute top-0 left-0 w-full h-[400px] md:h-[480px] lg:h-[560px] flex items-center justify-center"
             animate={{ opacity: morphValue >= 0.9 ? 1 : 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            style={{ pointerEvents: morphValue >= 0.9 ? 'auto' : 'none' }}
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 lg:gap-16 px-4 md:px-8 w-full max-w-7xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-24 lg:gap-32 px-4 md:px-8 w-full max-w-7xl">
               {programs.map((program, index) => (
-                <motion.div
+                <div
                   key={program.id}
-                  initial={{ scale: 0.8 }}
-                  animate={{ 
-                    scale: morphValue >= 0.9 ? 1 : 0.8,
-                  }}
-                  transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col items-center"
+                  className="program-item flex flex-col items-center"
+                  onClick={() => handleNavigate(program.sectionId)}
+                  style={{ cursor: 'pointer' }}
                 >
                   {/* Circle with content inside - CONSISTENT SIZE for all circles */}
                   <div 
-                    className="relative rounded-full flex items-center justify-center p-6 md:p-10 lg:p-12 overflow-hidden transition-shadow duration-600 program-circle"
+                    className="program-circle relative rounded-full flex items-center justify-center p-6 md:p-10 lg:p-12 overflow-hidden transition-shadow duration-600"
                     style={{ 
-                      width: '42vw',
-                      height: '42vw',
-                      maxWidth: '180px',
-                      maxHeight: '180px',
+                      width: '38vw',
+                      height: '38vw',
+                      maxWidth: '160px',
+                      maxHeight: '160px',
                       backgroundColor: program.color,
                       boxShadow: `0 8px 24px ${program.color}30, 0 4px 12px ${program.color}20`,
                       aspectRatio: '1 / 1'
@@ -457,7 +490,7 @@ export default function Programs() {
                           opacity: 0.95,
                           lineHeight: '1.5',
                           wordBreak: 'keep-all',
-                          fontSize: 'clamp(9px, 2vw, 14px)',
+                          fontSize: 'clamp(0.75rem, 2vw, 0.9rem)',
                           textShadow: '0 0.5px 0 rgba(0,0,0,0.06)'
                         }}
                       >
@@ -472,23 +505,15 @@ export default function Programs() {
                   </div>
                   
                   {/* English label box below circle - hand-drawn style */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ 
-                      opacity: morphValue >= 0.9 ? 1 : 0,
-                      y: morphValue >= 0.9 ? 0 : 10
-                    }}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: 1.2 + index * 0.12,
-                      ease: [0.16, 1, 0.3, 1]
-                    }}
-                    className="mt-4 relative"
-                  >
+                  <div className="program-label mt-4 relative">
                     <div 
-                      className="relative px-8 py-2.5 inline-block"
+                      className="relative px-8 py-2.5 inline-block program-label-box cursor-pointer transition-transform hover:scale-105"
                       style={{
                         backgroundColor: program.color,
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent double trigger from parent click
+                        handleNavigate(program.sectionId);
                       }}
                     >
                       {/* Irregular border */}
@@ -522,7 +547,7 @@ export default function Programs() {
                       </svg>
                       
                       <span
-                        className="relative z-10 tracking-[0.15em] text-xs md:text-sm"
+                        className="relative z-10 text-xs md:text-sm program-label-text"
                         style={{
                           color: program.textColor,
                           fontWeight: 700,
@@ -532,28 +557,138 @@ export default function Programs() {
                         {program.title}
                       </span>
                     </div>
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
               ))}
             </div>
           </motion.div>
         </div>
+        
+        {/* Bottom text paragraph */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mt-16 md:mt-20"
+        >
+          <p
+            style={{
+              fontFamily: "'Noto Serif KR', serif",
+              fontSize: 'clamp(0.8rem, 1.6vw, 1.1rem)',
+              lineHeight: 1.65,
+              letterSpacing: 0,
+              fontWeight: 400,
+              color: '#333',
+              maxWidth: '34em',
+              margin: '0 auto',
+              wordBreak: 'keep-all'
+            } as React.CSSProperties}
+          >
+            <span style={{ color: '#A66A5A' }}>아이들은 예술의 씨앗을 심고,</span>{' '}
+            <span style={{ color: '#2F6B4F' }}>어른들은 감정의 숲을 거니는 곳</span>
+          </p>
+        </motion.div>
       </div>
 
       {/* Enhanced styles */}
       <style>{`
-        /* Mobile only: Force all spans to inline for natural line breaks */
+        /* Premium Scroll Animation - Circle first, then label */
+        /* Initial state - hidden until intersection */
+        .program-item .program-circle {
+          opacity: 0;
+          transform: scale(0.96);
+          transition:
+            opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+            transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .program-item .program-label {
+          opacity: 0;
+          transform: translateY(4px);
+          transition:
+            opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+            transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Active state when visible (after intersection) */
+        .program-item.is-visible .program-circle {
+          opacity: 1 !important;
+          transform: scale(1);
+        }
+
+        .program-item.is-visible .program-label {
+          opacity: 1 !important;
+          transform: translateY(0);
+        }
+
+        /* Label delay - Professional rhythm */
+        @media (min-width: 1024px) {
+          .program-item.is-visible .program-label {
+            transition-delay: 160ms;
+          }
+        }
+
+        @media (max-width: 1023px) {
+          .program-item.is-visible .program-label {
+            transition-delay: 120ms;
+          }
+        }
+
+        /* Mobile Label Box - Fixed Size (Critical) */
+        @media (max-width: 768px) {
+          .program-label-box {
+            width: 144px !important;
+            height: 44px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            white-space: nowrap !important;
+            padding: 0 !important;
+          }
+        }
+
+        /* Typography Refinement - Optical Centering */
+        .program-label-text {
+          letter-spacing: 0.18em;
+          text-indent: 0.18em;
+        }
+
+        /* Component-Level Styling - Premium Finish */
+        .program-label-box {
+          box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.25),
+            0 4px 12px rgba(0, 0, 0, 0.08);
+          border-radius: 6px;
+        }
+
+        /* Consistent vertical spacing on mobile */
+        @media (max-width: 768px) {
+          .program-item {
+            gap: 16px;
+          }
+          
+          .program-label {
+            margin-top: 16px !important;
+          }
+        }
+
+        /* Mobile Typography - iPhone 14 Pro (393px) 기준 가독성 최적화 */
         @media (max-width: 767px) {
           .programs-title span {
             display: inline !important;
           }
 
           .programs-title {
-            max-width: 24em;
+            max-width: 100% !important;
+            width: 100% !important;
             margin-inline: 0;
-            padding: 0 1rem;
+            padding: 0 1.5rem !important;
             box-sizing: border-box;
             text-align: left;
+            font-size: clamp(0.85rem, 4.5vw, 1.9rem) !important;
+            line-height: 1.3 !important;
+            letter-spacing: 0 !important;
           }
 
           /* Move first line slightly left (asymmetric effect) */
@@ -565,12 +700,19 @@ export default function Programs() {
           .programs-header {
             margin-bottom: 120px !important;
           }
+
+          /* Circle content text - 가독성 최적화 */
+          .circle-content {
+            font-size: clamp(0.75rem, 2.8vw, 0.9rem) !important;
+            line-height: 1.5 !important;
+            letter-spacing: 0 !important;
+          }
         }
         
         @media (min-width: 640px) {
           .program-circle {
-            width: 224px !important;
-            height: 224px !important;
+            width: 200px !important;
+            height: 200px !important;
             max-width: none !important;
             max-height: none !important;
           }
@@ -578,15 +720,15 @@ export default function Programs() {
         
         @media (min-width: 768px) {
           .program-circle {
-            width: 288px !important;
-            height: 288px !important;
+            width: 240px !important;
+            height: 240px !important;
           }
         }
         
         @media (min-width: 1024px) {
           .program-circle {
-            width: 320px !important;
-            height: 320px !important;
+            width: 260px !important;
+            height: 260px !important;
           }
         }
       `}</style>

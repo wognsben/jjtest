@@ -212,7 +212,7 @@ export default function MethodNew() {
               style={{ 
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(1.2rem, 3vw, 2.25rem)',
-              }}
+              } as React.CSSProperties}
             >
               <span style={{ color: '#2e7d32' }}>스에나가 하트앤컬러 메소드</span>는 무엇인가요?
             </h2>
@@ -229,7 +229,17 @@ export default function MethodNew() {
               className="space-y-10"
             >
               <div className="space-y-5">
-                <p className="text-lg md:text-xl text-brown-800 leading-relaxed">
+                <p 
+                  className="text-lg md:text-xl text-brown-800 leading-relaxed"
+                  style={{
+                    fontSize: 'clamp(0.85rem, 3.2vw, 1.05rem)',
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
+                    maxWidth: '34em',
+                    textAlign: 'left',
+                    wordBreak: 'keep-all'
+                  } as React.CSSProperties}
+                >
                   <span style={{ color: '#8B6F47', fontWeight: 600 }}>'색은 마음의 언어'</span>라는 철학을 바탕으로 색을 통해 마음을 읽고, 감정을 안전하게 표현하도록 돕는 정서예술 교육법입니다.
                 </p>
                 
@@ -241,11 +251,31 @@ export default function MethodNew() {
                   className="w-16 h-1 bg-accent-green/40 origin-left"
                 />
                 
-                <p className="text-base md:text-lg text-brown-700 leading-relaxed">
+                <p 
+                  className="text-base md:text-lg text-brown-700 leading-relaxed"
+                  style={{
+                    fontSize: 'clamp(0.85rem, 3.2vw, 1.05rem)',
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
+                    maxWidth: '34em',
+                    textAlign: 'left',
+                    wordBreak: 'keep-all'
+                  } as React.CSSProperties}
+                >
                   우리가 선택하는 색, 선의 흐름, 채도의 변화 속에 담긴 <span style={{ color: '#8B6F47', fontWeight: 600 }}>마음의 신호를 섬세하게 해석</span>합니다.
                 </p>
                 
-                <p className="text-base md:text-lg text-brown-700 leading-relaxed">
+                <p 
+                  className="text-base md:text-lg text-brown-700 leading-relaxed"
+                  style={{
+                    fontSize: 'clamp(0.85rem, 3.2vw, 1.05rem)',
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
+                    maxWidth: '34em',
+                    textAlign: 'left',
+                    wordBreak: 'keep-all'
+                  } as React.CSSProperties}
+                >
                   색은 감정을 안정시키고 회복시키는 힘이 있어, 자연스럽게 <span style={{ color: '#8B6F47', fontWeight: 600 }}>정서 건강과 자기이해</span>가 자랍니다.
                 </p>
               </div>
@@ -333,7 +363,15 @@ export default function MethodNew() {
           >
             <p 
               className="text-lg md:text-xl text-brown-800 leading-relaxed max-w-3xl mx-auto"
-              style={{ fontFamily: "'Noto Serif KR', serif" }}
+              style={{ 
+                fontFamily: "'Noto Serif KR', serif",
+fontSize: 'clamp(0.85rem, 3.2vw, 1.05rem)',
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
+                    maxWidth: '34em',
+                    wordBreak: 'keep-all',
+                textAlign: 'left'
+              } as React.CSSProperties}
             >
               크레용숲은 자신의 마음을 <HighlightText>섬세하게 느끼고, 자유롭게 표현하며</HighlightText>,<br className="hidden md:block" /> 생생하게 성장할 수 있는 안전하고 열린 배움의 숲을 만들어갑니다.
             </p>

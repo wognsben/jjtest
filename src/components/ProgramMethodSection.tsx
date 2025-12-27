@@ -95,9 +95,9 @@ export default function ProgramMethodSection() {
 
       <section 
         ref={sectionRef}
-        className="relative bg-white py-28 md:py-36 lg:py-44 overflow-hidden"
+        className="relative bg-white pt-[90px] pb-24 overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+        <div className="max-w-[1180px] mx-auto px-0">
           <div className="flex flex-col gap-20 lg:gap-28">
             {/* METHOD 1 IMAGE - TOP */}
             <div data-animate="fade-up">
@@ -116,7 +116,8 @@ export default function ProgramMethodSection() {
               style={{
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: '1.05rem',
-                lineHeight: 1.95,
+                lineHeight: 1.65,
+                letterSpacing: 0,
                 color: '#444',
                 fontWeight: 300,
               }}
@@ -125,7 +126,7 @@ export default function ProgramMethodSection() {
                 <span style={{ color: '#A66A5A', fontWeight: 500 }}>
                   스에나가메소드 색채심리
                 </span>
-                는 일본의 스에나가타미오 박사에 의해 체계화되고 검증된 멘탈케어 시스템으로,
+                는 일본의 스에나가타미오 박사에 의해 체계화되고 검증된 멘탈케어 시스템으로,<br /><br />
                 색채를 매개로 무의식의 심리적 에너지를 밖으로
                 <span style={{ color: '#2F6B4F', fontWeight: 500 }}>
                   자유롭게 표출하며 마음의 건강을 유지
@@ -201,6 +202,15 @@ export default function ProgramMethodSection() {
                   </button>
                   <button
                     onClick={() => {
+                      const element = document.querySelector('[data-section="formom"]');
+                      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }}
+                    className="program-pill"
+                  >
+                    FOR MOM
+                  </button>
+                  <button
+                    onClick={() => {
                       const element = document.querySelector('[data-section="moments"]');
                       element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }}
@@ -212,24 +222,24 @@ export default function ProgramMethodSection() {
               </div>
 
               {/* RIGHT IMAGE AND BUTTON */}
-              <div className="flex items-center gap-6">
+              <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start">
                 <img
                   src={getImagePath("/assets/program/method/co.png")}
                   alt="색채심리연구소"
                   className="h-auto"
-                  style={{ maxHeight: '60px' }}
+                  style={{ maxHeight: '45px' }}
                 />
                 <a
                   href="https://www.healingcolor.co.kr/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-9 py-3 rounded-full method-button"
+                  className="px-6 py-2 rounded-full method-button whitespace-nowrap"
                   style={{
                     background: '#FADFDB',
                     border: '2px solid #A66A5A',
                     color: '#2F6B4F',
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: '0.95rem',
+                    fontSize: '0.85rem',
                     fontWeight: 500,
                     letterSpacing: '-0.01em',
                   }}

@@ -85,7 +85,7 @@ export default function Philosophy() {
               className="tracking-[0.2em] text-brown-700 italic"
               style={{ 
                 fontFamily: "'Noto Serif KR', 'Noto Serif', serif",
-                fontSize: 'clamp(0.625rem, 1.2vw, 0.75rem)',
+                fontSize: 'clamp(0.75rem, 1.2vw, 0.85rem)',
               }}
             >
               PHILOSOPHY
@@ -186,8 +186,9 @@ export default function Philosophy() {
                     transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     style={{ 
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                      lineHeight: 1.85,
+                      fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                      lineHeight: 1.65,
+                      letterSpacing: 0,
                       color: '#666666',
                       fontWeight: 300,
                       marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
@@ -203,8 +204,9 @@ export default function Philosophy() {
                     transition={{ duration: 0.7, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
                     style={{ 
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                      lineHeight: 1.85,
+                      fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                      lineHeight: 1.65,
+                      letterSpacing: 0,
                       color: '#666666',
                       fontWeight: 300,
                       marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
@@ -220,8 +222,9 @@ export default function Philosophy() {
                     transition={{ duration: 0.7, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     style={{ 
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
-                      lineHeight: 1.85,
+                      fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+                      lineHeight: 1.65,
+                      letterSpacing: 0,
                       color: '#333333',
                       fontWeight: 400,
                       marginBottom: 0,
@@ -243,7 +246,7 @@ export default function Philosophy() {
                   <blockquote
                     style={{ 
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
+                      fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
                       lineHeight: 1.5,
                       color: '#333333',
                       fontWeight: 400,

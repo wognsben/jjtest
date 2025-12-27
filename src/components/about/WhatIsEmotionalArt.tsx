@@ -13,9 +13,10 @@ export default function WhatIsEmotionalArt() {
   const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   const images = [
-    getImagePath('/assets/about/meaning of emotional art/meaning of emotional art-1.jpg'),
-    getImagePath('/assets/about/meaning of emotional art/meaning of emotional art-2.jpg'),
-    getImagePath('/assets/about/meaning of emotional art/meaning of emotional art-3.jpg'),
+    getImagePath('/assets/about/meaning of emotional art/emotional art-1.png'),
+    getImagePath('/assets/about/meaning of emotional art/emotional art-2.png'),
+    getImagePath('/assets/about/meaning of emotional art/emotional art-3.png'),
+    getImagePath('/assets/about/meaning of emotional art/emotional art-4.png'),
   ];
 
   return (
@@ -80,7 +81,7 @@ export default function WhatIsEmotionalArt() {
                     <h2 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.3rem, 3vw, 2rem)',
+                        fontSize: 'clamp(1.1rem, 3vw, 2rem)',
                         lineHeight: 1.3,
                         fontWeight: 600,
                         color: '#8FBC88',
@@ -101,8 +102,9 @@ export default function WhatIsEmotionalArt() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
                       }}
@@ -133,7 +135,7 @@ export default function WhatIsEmotionalArt() {
                     <h3 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.9rem, 2vw, 1.2rem)',
+                        fontSize: 'clamp(0.8rem, 2vw, 1.2rem)',
                         lineHeight: 1.4,
                         fontWeight: 500,
                         color: '#4A4A4A',
@@ -162,8 +164,9 @@ export default function WhatIsEmotionalArt() {
                       <p 
                         style={{ 
                           fontFamily: "'Noto Serif KR', serif",
-                          fontSize: 'clamp(0.95rem, 1.6vw, 1.05rem)',
-                          lineHeight: 1.7,
+                          fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
+                          lineHeight: 1.65,
+                          letterSpacing: 0,
                           fontWeight: 400,
                           color: '#4A4A4A',
                           marginBottom: '12px',
@@ -175,8 +178,8 @@ export default function WhatIsEmotionalArt() {
                         <p 
                           style={{ 
                             fontFamily: "'Noto Serif KR', serif",
-                            fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
-                            lineHeight: 1.6,
+                            fontSize: 'clamp(0.75rem, 1.5vw, 1rem)',
+                            lineHeight: 1.65,
                             color: '#666',
                           }}
                         >
@@ -185,8 +188,8 @@ export default function WhatIsEmotionalArt() {
                         <p 
                           style={{ 
                             fontFamily: "'Noto Serif KR', serif",
-                            fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
-                            lineHeight: 1.6,
+                            fontSize: 'clamp(0.75rem, 1.5vw, 1rem)',
+                            lineHeight: 1.65,
                             color: '#666',
                           }}
                         >
@@ -195,8 +198,8 @@ export default function WhatIsEmotionalArt() {
                         <p 
                           style={{ 
                             fontFamily: "'Noto Serif KR', serif",
-                            fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
-                            lineHeight: 1.6,
+                            fontSize: 'clamp(0.75rem, 1.5vw, 1rem)',
+                            lineHeight: 1.65,
                             color: '#666',
                           }}
                         >
@@ -358,9 +361,37 @@ export default function WhatIsEmotionalArt() {
                 />
               </svg>
 
-              {/* 이미지 그룹 (프레임 위에 떠 있는 전시물, 아이 작품 기록) */}
-              <div className="relative z-10 grid grid-cols-2 gap-4 md:gap-6">
-                {images.map((imageSrc, index) => (
+              {/* 이미지 그룹 (프레임 위에 떠 있는 전시물, 아이 작품 기록) - 2x2 그리드 */}
+              <div className="relative z-10 grid grid-cols-2 grid-rows-2 gap-4 md:gap-6">
+                {/* SVG clipPath 정의 - 둥근 느낌 */}
+                <svg width="0" height="0" style={{ position: 'absolute' }}>
+                  <defs>
+                    {/* Image 1: 왼쪽 상단 - 더 둥글고 부드러운 형태 */}
+                    <clipPath id="clip-blob-1" clipPathUnits="objectBoundingBox">
+                      <path d="M0.08,0.12 C0.15,0.05 0.30,0.02 0.50,0.03 C0.70,0.04 0.85,0.08 0.92,0.18 C0.97,0.28 0.98,0.42 0.96,0.58 C0.94,0.74 0.88,0.88 0.78,0.92 C0.68,0.96 0.52,0.98 0.35,0.96 C0.18,0.94 0.08,0.88 0.04,0.78 C0.01,0.68 0.01,0.52 0.04,0.35 C0.05,0.22 0.06,0.16 0.08,0.12 Z"/>
+                    </clipPath>
+                    
+                    {/* Image 2: 오른쪽 상단 - 더 둥글고 부드러운 형태 */}
+                    <clipPath id="clip-blob-2" clipPathUnits="objectBoundingBox">
+                      <path d="M0.10,0.08 C0.18,0.03 0.32,0.01 0.52,0.02 C0.72,0.03 0.87,0.07 0.93,0.15 C0.98,0.25 0.99,0.40 0.97,0.56 C0.95,0.72 0.90,0.85 0.82,0.91 C0.72,0.96 0.58,0.98 0.40,0.96 C0.22,0.94 0.10,0.89 0.05,0.80 C0.02,0.70 0.02,0.55 0.04,0.38 C0.06,0.24 0.07,0.13 0.10,0.08 Z"/>
+                    </clipPath>
+                    
+                    {/* Image 3: 왼쪽 하단 - 더 둥글고 부드러운 형태 */}
+                    <clipPath id="clip-blob-3" clipPathUnits="objectBoundingBox">
+                      <path d="M0.09,0.10 C0.16,0.04 0.31,0.02 0.51,0.03 C0.71,0.04 0.86,0.08 0.93,0.17 C0.97,0.27 0.98,0.43 0.96,0.59 C0.94,0.75 0.89,0.87 0.80,0.93 C0.70,0.97 0.54,0.99 0.37,0.97 C0.20,0.95 0.09,0.90 0.05,0.81 C0.02,0.71 0.01,0.56 0.03,0.39 C0.05,0.25 0.06,0.15 0.09,0.10 Z"/>
+                    </clipPath>
+                    
+                    {/* Image 4: 오른쪽 하단 - 더 둥글고 부드러운 형태 */}
+                    <clipPath id="clip-blob-4" clipPathUnits="objectBoundingBox">
+                      <path d="M0.07,0.11 C0.14,0.05 0.28,0.02 0.48,0.03 C0.68,0.04 0.84,0.07 0.91,0.16 C0.96,0.26 0.98,0.41 0.96,0.57 C0.94,0.73 0.88,0.86 0.79,0.92 C0.69,0.97 0.53,0.99 0.36,0.97 C0.19,0.95 0.08,0.89 0.04,0.79 C0.01,0.69 0.01,0.53 0.03,0.36 C0.04,0.23 0.05,0.15 0.07,0.11 Z"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+
+                {images.map((imageSrc, index) => {
+                  const clipPathId = `clip-blob-${index + 1}`;
+
+                  return (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0 }}
@@ -371,31 +402,21 @@ export default function WhatIsEmotionalArt() {
                       delay: 0.2 + index * 0.15,
                       ease: [0.16, 1, 0.3, 1],
                     }}
-                    className={`relative ${
-                      index === 2 ? 'col-span-2' : ''
-                    }`}
+                      className="relative"
                     style={{
-                      borderRadius: '80px',
-                      aspectRatio: index === 2 ? '16/9' : '16/9',
-                      overflow: 'hidden',
-                      background: 'transparent',
-                      boxShadow: `
-                        inset 8px 8px 20px rgba(0, 0, 0, 0.25),
-                        inset -8px -8px 20px rgba(0, 0, 0, 0.25),
-                        inset 8px -8px 20px rgba(0, 0, 0, 0.2),
-                        inset -8px 8px 20px rgba(0, 0, 0, 0.2),
-                        0 20px 48px rgba(0, 0, 0, 0.2),
-                        0 8px 16px rgba(0, 0, 0, 0.15)
-                      `,
+                        aspectRatio: '16/9',
+                        overflow: 'visible',
+                        filter: 'drop-shadow(0 20px 48px rgba(0, 0, 0, 0.2)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15))',
                     }}
                   >
                     <div
                       style={{
                         width: '100%',
                         height: '100%',
-                        borderRadius: '80px',
+                          clipPath: `url(#${clipPathId})`,
                         overflow: 'hidden',
                         position: 'relative',
+                          background: 'transparent',
                       }}
                     >
                       <img
@@ -404,7 +425,6 @@ export default function WhatIsEmotionalArt() {
                         className="w-full h-full"
                         style={{
                           objectFit: 'cover',
-                          borderRadius: '80px',
                           display: 'block',
                           width: '100%',
                           height: '100%',
@@ -416,7 +436,8 @@ export default function WhatIsEmotionalArt() {
                       />
                     </div>
                   </motion.div>
-                ))}
+                  );
+                })}
               </div>
             </motion.div>
           </div>

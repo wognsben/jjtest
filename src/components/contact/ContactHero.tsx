@@ -114,8 +114,8 @@ export default function ContactHero() {
           transition={{ duration: 0.8, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="mt-12 text-[clamp(1rem,2vw,1.5rem)] text-[#6B4423]/70 max-w-2xl mx-auto px-4"
           style={{
-            lineHeight: 1.8,
-            letterSpacing: '-0.01em',
+            lineHeight: 1.65,
+            letterSpacing: 0,
             fontFamily: "'Pretendard Variable', sans-serif",
           }}
         >

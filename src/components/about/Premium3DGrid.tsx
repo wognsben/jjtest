@@ -235,10 +235,10 @@ function Card3D({ num, index, imageSrc }: Card3DProps) {
 
 export default function Premium3DGrid() {
   const images = [
-    getImagePath('/assets/about/stressful child/4x4-1.PNG'),
-    getImagePath('/assets/about/stressful child/4x4-2.PNG'),
-    getImagePath('/assets/about/stressful child/4x4-3.PNG'),
-    getImagePath('/assets/about/stressful child/4x4-4.PNG'),
+    getImagePath('/assets/about/stressful child/4-2x2-1.png'),
+    getImagePath('/assets/about/stressful child/4-2x2-2.png'),
+    getImagePath('/assets/about/stressful child/4-2x2-3.png'),
+    getImagePath('/assets/about/stressful child/4-2x2-4.png'),
   ];
 
   return (

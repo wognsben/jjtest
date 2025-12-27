@@ -48,7 +48,7 @@ export default function Interview() {
                 borderColor: 'rgba(255, 182, 193, 0.3)',
                 color: '#D97757',
                 fontFamily: "'Inter', sans-serif",
-                fontSize: '13px',
+                fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
                 fontWeight: 500,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
@@ -95,9 +95,10 @@ export default function Interview() {
                   className="max-w-2xl leading-relaxed"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
+                    fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
                     color: '#333333',
-                    lineHeight: 1.85,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                     fontWeight: 400,
                   }}
                 >
@@ -107,9 +108,10 @@ export default function Interview() {
                   className="max-w-2xl leading-relaxed mt-4"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
                     color: '#000000',
-                    lineHeight: 1.85,
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                     fontWeight: 300,
                   }}
                 >
@@ -126,9 +128,9 @@ export default function Interview() {
                 className="text-right lg:text-right"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.9rem, 1.4vw, 1rem)',
+                  fontSize: 'clamp(0.85rem, 1.4vw, 1rem)',
                   color: '#666666',
-                  lineHeight: 1.6,
+                  lineHeight: 1.65,
                   fontWeight: 400,
                   letterSpacing: '0.02em',
                 }}
@@ -197,7 +199,7 @@ export default function Interview() {
                   className="mb-6"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(18px, 2.5vw, 24px)',
+                    fontSize: 'clamp(0.85rem, 2.5vw, 1.5rem)',
                     color: '#bb8162',
                     fontWeight: 500,
                   }}
@@ -210,15 +212,17 @@ export default function Interview() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(15px, 1.8vw, 18px)',
+                    fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
                     color: '#4A4A4A',
-                    lineHeight: '2',
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
-                  미술수업을 할 때 5살 아이가 지어준 별명인데요, 너무 마음에 들었어요. 아이들이 예술씨앗을 심고 마음의 꽃을 피우는 순간을 돕고 싶다는 마음입니다. 저는 그림을 지도하는 사람이 아니라, 아이의 세계가 자라는 과정을 옆에서 지켜보며 가장 자연스러운 방식으로 피어날 수 있도록 돕는 <span style={{ color: '#8FBC88', fontWeight: 500 }}>정서적 동반자</span>라고 생각합니다.
+                  미술수업을 할 때 5살 아이가 지어준 별명인데요, 너무 마음에 들었어요.<br /><br />
+                  아이들이 예술씨앗을 심고 마음의 꽃을 피우는 순간을 돕고 싶다는 마음입니다.<br /><br />
+                  저는 그림을 지도하는 사람이 아니라, 아이의 세계가 자라는 과정을 옆에서 지켜보며 가장 자연스러운 방식으로 피어날 수 있도록 돕는 <span style={{ color: '#8FBC88', fontWeight: 500 }}>정서적 동반자</span>라고 생각합니다.
                 </motion.p>
               </div>
 
@@ -232,7 +236,7 @@ export default function Interview() {
                   className="mb-6"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(18px, 2.5vw, 24px)',
+                    fontSize: 'clamp(0.85rem, 2.5vw, 1.5rem)',
                     color: '#bb8162',
                     fontWeight: 500,
                   }}
@@ -245,15 +249,21 @@ export default function Interview() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="leading-loose mb-6"
+                  className="mb-6"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(15px, 1.8vw, 18px)',
+                    fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
                     color: '#4A4A4A',
-                    lineHeight: '2',
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
-                  패션 소재 디자이너로 일한 20년 동안 저는 늘 <span style={{ color: '#8FBC88', fontWeight: 500 }}>'색은 마음보다 먼저 반응한다'</span>는 사실을 느꼈습니다. 옷의 재질과 색은 그 사람의 감정과 이야기를 그대로 품고 있었어요. 퇴사 후 중학생이었던 딸과 남한산성숲에서 미술을 함께 하게 되었는데, 제가 오랫동안 찾아 헤매던 '감정과 색의 연결'이 그곳에서 또렷하게 보였습니다. 아이들은 설명보다 색으로 먼저 감정을 말하더군요. 붉은색 하나에도 분노·열정·사랑·안전함이 겹겹이 담겨 있고, 푸른색 한 줄기로도 두려움·평온함·생각의 깊이가 함께 드러났죠. 그때 깨달았습니다. <span style={{ color: '#bb8162', fontWeight: 500 }}>'예술은 잘 그리는 기술이 아니라, 잘 느끼는 능력을 키우는 일'</span>이라는 것을요.
+                  패션 소재 디자이너로 일한 20년 동안 저는 늘 <span style={{ color: '#8FBC88', fontWeight: 500 }}>'색은 마음보다 먼저 반응한다'</span>는 사실을 느꼈습니다.<br /><br />
+                  옷의 재질과 색은 그 사람의 감정과 이야기를 그대로 품고 있었어요.<br /><br />
+                  퇴사 후 중학생이었던 딸과 남한산성숲에서 미술을 함께 하게 되었는데, 제가 오랫동안 찾아 헤매던 '감정과 색의 연결'이 그곳에서 또렷하게 보였습니다.<br /><br />
+                  아이들은 설명보다 색으로 먼저 감정을 말하더군요.<br /><br />
+                  붉은색 하나에도 분노·열정·사랑·안전함이 겹겹이 담겨 있고, 푸른색 한 줄기로도 두려움·평온함·생각의 깊이가 함께 드러났죠.<br /><br />
+                  그때 깨달았습니다. <span style={{ color: '#bb8162', fontWeight: 500 }}>'예술은 잘 그리는 기술이 아니라, 잘 느끼는 능력을 키우는 일'</span>이라는 것을요.
                 </motion.p>
 
                 <motion.p
@@ -261,15 +271,16 @@ export default function Interview() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(15px, 1.8vw, 18px)',
+                    fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
                     color: '#4A4A4A',
-                    lineHeight: '2',
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
                   }}
                 >
-                  그래서 저는 색채심리 연구를 다시 공부했고, 스에나가타미오박사님의 Heart&Color 메소드를 만나 <span style={{ color: '#8FBC88', fontWeight: 500 }}>'마음의 결을 읽는 예술교육자'</span>라는 새로운 길을 걷기 시작했습니다. 현재는 한국지부 스에나가메소드 색채심리연구소 선임연구원으로 색채심리 프로그램을 공동 연구기획하고 있습니다.
+                  그래서 저는 색채심리 연구를 다시 공부했고, 스에나가타미오박사님의 Heart&Color 메소드를 만나 <span style={{ color: '#8FBC88', fontWeight: 500 }}>'마음의 결을 읽는 예술교육자'</span>라는 새로운 길을 걷기 시작했습니다.<br /><br />
+                  현재는 한국지부 스에나가메소드 색채심리연구소 선임연구원으로 색채심리 프로그램을 공동 연구기획하고 있습니다.
                 </motion.p>
               </div>
             </motion.div>
@@ -297,10 +308,10 @@ export default function Interview() {
                   className="mb-6"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(17px, 2.5vw, 24px)',
+                    fontSize: 'clamp(0.85rem, 2.5vw, 1.5rem)',
                     color: '#bb8162',
                     fontWeight: 500,
-                    lineHeight: '1.6',
+                    lineHeight: 1.65,
                   }}
                 >
                   Q. 우리 아이들에게 미술, 그림이 어떠한 의미가 있나요?
@@ -312,12 +323,12 @@ export default function Interview() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="leading-loose"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(15px, 1.8vw, 18px)',
+                      fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
                       color: '#4A4A4A',
-                      lineHeight: '2',
+                      lineHeight: 1.65,
+                    letterSpacing: 0,
                     }}
                   >
                     파울 클레는 <span style={{ color: '#A67C52', fontStyle: 'italic' }}>'예술은 보이는 것을 재현하는 것이 아니라, 보이게 하는 것이다'</span>라고 말했어요.
@@ -328,15 +339,16 @@ export default function Interview() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.3 }}
-                    className="leading-loose"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(15px, 1.8vw, 18px)',
+                      fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
                       color: '#4A4A4A',
-                      lineHeight: '2',
+                      lineHeight: 1.65,
+                    letterSpacing: 0,
                     }}
                   >
-                    아이들은 은행 잎을 보며 호랑이를 떠올리고, 검은 종이 위에서 마음의 소리를 터뜨리고, 좋아하는 색으로 마음의 열쇠를 만들기도 하죠. 그림은 아이들에게 자기를 잃지 않고 <span style={{ color: '#8FBC88', fontWeight: 500 }}>감정을 표현할 수 있는 가장 안전한 통로</span>입니다.
+                    아이들은 은행 잎을 보며 호랑이를 떠올리고, 검은 종이 위에서 마음의 소리를 터뜨리고, 좋아하는 색으로 마음의 열쇠를 만들기도 하죠.<br /><br />
+                    그림은 아이들에게 자기를 잃지 않고 <span style={{ color: '#8FBC88', fontWeight: 500 }}>감정을 표현할 수 있는 가장 안전한 통로</span>입니다.
                   </motion.p>
 
                   <motion.p
@@ -344,12 +356,12 @@ export default function Interview() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="leading-loose"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(15px, 1.8vw, 18px)',
+                      fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
                       color: '#4A4A4A',
-                      lineHeight: '2',
+                      lineHeight: 1.65,
+                    letterSpacing: 0,
                     }}
                   >
                     상처를 남기지 않으면서도 감정을 밖으로 내보내고, 그 감정이 어떤 의미인지 스스로 이해할 수 있게 만드는 힘—— 저는 이것을 <span style={{ color: '#8FBC88', fontWeight: 500 }}>'마음의 자가 회복력'</span>이라고 부릅니다.
@@ -360,12 +372,12 @@ export default function Interview() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.5 }}
-                    className="leading-loose"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(15px, 1.8vw, 18px)',
+                      fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
                       color: '#4A4A4A',
-                      lineHeight: '2',
+                      lineHeight: 1.65,
+                    letterSpacing: 0,
                     }}
                   >
                     그리고 <span style={{ color: '#8FBC88', fontWeight: 500 }}>자유롭고 창조적인 그림 경험이 충분히 쌓이면</span> 아이의 세계관은 자연스럽게 <span style={{ color: '#8FBC88', fontWeight: 500 }}>'나는 괜찮은 존재구나'라는 방향으로 단단</span>해집니다.
@@ -376,15 +388,18 @@ export default function Interview() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.6 }}
-                    className="leading-loose pt-4"
+                    className="pt-4"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(15px, 1.8vw, 18px)',
+                      fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
                       color: '#4A4A4A',
-                      lineHeight: '2',
+                      lineHeight: 1.65,
+                    letterSpacing: 0,
                     }}
                   >
-                    파울 클레의 또 다른 말처럼, <span style={{ color: '#8FBC88', fontStyle: 'italic' }}>"아이의 그림은 꿈꾸는 방식으로 세계를 표현하는 또 하나의 언어"</span>입니다. 그래서 저는 낙서처럼 보이는 그림 속에서도 마음의 흐름, 성장의 리듬, 세계를 바라보는 시선을 읽습니다. 아이에게 그림은 기술이 아니라, 자신을 알아차리고 세상과 연결되는 첫 번째 예술 언어입니다.
+                    파울 클레의 또 다른 말처럼, <span style={{ color: '#8FBC88', fontStyle: 'italic' }}>"아이의 그림은 꿈꾸는 방식으로 세계를 표현하는 또 하나의 언어"</span>입니다.<br /><br />
+                    그래서 저는 낙서처럼 보이는 그림 속에서도 마음의 흐름, 성장의 리듬, 세계를 바라보는 시선을 읽습니다.<br /><br />
+                    아이에게 그림은 기술이 아니라, 자신을 알아차리고 세상과 연결되는 첫 번째 예술 언어입니다.
                   </motion.p>
                 </div>
               </div>
@@ -432,7 +447,10 @@ export default function Interview() {
             style={{
               background: 'linear-gradient(135deg, rgba(255, 182, 193, 0.1) 0%, rgba(143, 188, 136, 0.08) 100%)',
               borderRadius: '32px',
-              padding: 'clamp(40px, 6vw, 80px)',
+              paddingTop: 'clamp(40px, 6vw, 80px)',
+              paddingBottom: 'clamp(40px, 6vw, 80px)',
+              paddingLeft: '40px',
+              paddingRight: '40px',
               border: '1px solid rgba(255, 182, 193, 0.2)',
               maxWidth: '100%',
             }}
@@ -445,7 +463,7 @@ export default function Interview() {
               className="mb-10"
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(20px, 3vw, 28px)',
+                fontSize: 'clamp(0.85rem, 3vw, 1.75rem)',
                 color: '#bb8162',
                 fontWeight: 500,
                 lineHeight: '1.5',
@@ -460,15 +478,17 @@ export default function Interview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="leading-loose"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(15px, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
                   color: '#4A4A4A',
-                  lineHeight: '2',
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                 }}
               >
-                크레용의 어원은 <span style={{ color: '#D97757', fontWeight: 500 }}>creta, 흰 점토</span>에서 시작됩니다. 아주 작은 흙이 선이 되고, 선이 이야기가 되고, 그 이야기가 마음의 숲으로 자라나는 과정— 저는 그 흐름이 아이의 성장과 너무 닮아 있다고 느꼈습니다.
+                크레용의 어원은 <span style={{ color: '#D97757', fontWeight: 500 }}>creta, 흰 점토</span>에서 시작됩니다.<br /><br />
+                아주 작은 흙이 선이 되고, 선이 이야기가 되고, 그 이야기가 마음의 숲으로 자라나는 과정—<br /><br />
+                저는 그 흐름이 아이의 성장과 너무 닮아 있다고 느꼈습니다.<br className="md:hidden" />
               </motion.p>
 
               <motion.p
@@ -476,15 +496,16 @@ export default function Interview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="leading-loose"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(15px, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
                   color: '#4A4A4A',
-                  lineHeight: '2',
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                 }}
               >
-                숲은 누구도 억지로 꽃을 피우지 않습니다. 물과 빛을 허락하면, <span style={{ color: '#8FBC88', fontWeight: 500 }}>제 속도로 스스로 피어납니다</span>. 아이의 마음도 똑같습니다. 그래서 저는 <span style={{ color: '#8FBC88', fontWeight: 500 }}>'크레용'을 아이의 첫 예술 언어로, '숲'을 성장의 은유로</span> 삼아 크레용숲을 만들었습니다.
+                숲은 누구도 억지로 꽃을 피우지 않습니다. 물과 빛을 허락하면, <span style={{ color: '#8FBC88', fontWeight: 500 }}>제 속도로 스스로 피어납니다</span>.<br /><br />
+                아이의 마음도 똑같습니다. 그래서 저는 <span style={{ color: '#8FBC88', fontWeight: 500 }}>'크레용'을 아이의 첫 예술 언어로, '숲'을 성장의 은유로</span> 삼아 크레용숲을 만들었습니다.<br className="md:hidden" />
               </motion.p>
 
               <motion.p
@@ -492,15 +513,15 @@ export default function Interview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="leading-loose"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(15px, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
                   color: '#4A4A4A',
-                  lineHeight: '2',
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                 }}
               >
-                이우학교 김철원 교장선생님께서는 <span style={{ color: '#A67C52', fontStyle: 'italic' }}>"교육의 본질은 개개인성, 고유성, 자기다움이라는 살아있는 질문을 갖게 하는 일"</span>이라고 말씀하셨어요.
+                이우학교 김철원 교장선생님께서는 <span style={{ color: '#A67C52', fontStyle: 'italic' }}>"교육의 본질은 개개인성, 고유성, 자기다움이라는 살아있는 질문을 갖게 하는 일"</span>이라고 말씀하셨어요.<br className="md:hidden" />
               </motion.p>
 
               <motion.p
@@ -508,15 +529,16 @@ export default function Interview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="leading-loose"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(15px, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
                   color: '#4A4A4A',
-                  lineHeight: '2',
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                 }}
               >
-                그동안 1000명이 넘는 아이들과 어른을 만나며 저는 한 가지를 보았습니다. 사람은 누구나 마음을 표현하기 전에 이미 너무 바쁘고, 비교 속에서 자신을 잃고, 자기 감정의 속도를 잃어버린다는 사실을요. 그때 색, 선, 촉감 같은 <span style={{ color: '#8FBC88', fontWeight: 500 }}>가장 원초적인 감각이 어떻게 사람을 다시 회복</span>시키는지, 다시 자기 세계로 돌아오게 하는지를 반복해서 목격했습니다.
+                그동안 1000명이 넘는 아이들과 어른을 만나며 저는 한 가지를 보았습니다.<br className="md:hidden" /><br className="md:hidden" /> 사람은 누구나 마음을 표현하기 전에 이미 너무 바쁘고, 비교 속에서 자신을 잃고, 자기 감정의 속도를 잃어버린다는 사실을요.<br /><br />
+                그때 색, 선, 촉감 같은 <span style={{ color: '#8FBC88', fontWeight: 500 }}>가장 원초적인 감각이 어떻게 사람을 다시 회복</span>시키는지, 다시 자기 세계로 돌아오게 하는지를 반복해서 목격했습니다.<br className="md:hidden" />
               </motion.p>
 
               <motion.p
@@ -524,15 +546,17 @@ export default function Interview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="leading-loose"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(15px, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
                   color: '#4A4A4A',
-                  lineHeight: '2',
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                 }}
               >
-                그리고 제 마음속에는 오래전부터 한 단어가 자리하고 있었습니다. 그리스어 <span style={{ color: '#D97757', fontWeight: 500 }}>초로스(Choros)</span>. <span style={{ color: '#8FBC88', fontStyle: 'italic' }}>"자기 자신을 찾기 위해 돌아가는 정든 곳."</span> 마리야 이바시키나의 그림책에서 만난 이 단어는 저에게 언젠가 꼭 만들고 싶은 '마음의 공간'을 향한 신호 같았습니다. 그 공간이 바로 지금의 크레용숲이 되었습니다.
+                그리고 제 마음속에는 오래전부터 한 단어가 자리하고 있었습니다.<br className="md:hidden" /><br className="md:hidden" /> 그리스어 <span style={{ color: '#D97757', fontWeight: 500 }}>초로스(Choros)</span>.<br /><br />
+                <span style={{ color: '#8FBC88', fontStyle: 'italic' }}>"자기 자신을 찾기 위해 돌아가는 정든 곳."</span> 마리야 이바시키나의 그림책에서 만난 이 단어는 저에게 언젠가 꼭 만들고 싶은 '마음의 공간'을 향한 신호 같았습니다.<br /><br />
+                그 공간이 바로 지금의 크레용숲이 되었습니다.<br className="md:hidden" />
               </motion.p>
 
               <motion.p
@@ -540,15 +564,15 @@ export default function Interview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="leading-loose"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(15px, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
                   color: '#4A4A4A',
-                  lineHeight: '2',
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                 }}
               >
-                저에게 <span style={{ color: '#8FBC88', fontWeight: 500 }}>창조·쓰임·성장</span>은 삶을 움직이는 가장 근본적인 가치입니다. 그리고 그 가치는 결국 한 사람의 내면이 자라는 숲을 돌보는 일로 이어졌습니다.
+                저에게 <span style={{ color: '#8FBC88', fontWeight: 500 }}>창조·쓰임·성장</span>은 삶을 움직이는 가장 근본적인 가치입니다.<br className="md:hidden" /><br className="md:hidden" /> 그리고 그 가치는 결국 한 사람의 내면이 자라는 숲을 돌보는 일로 이어졌습니다.<br className="md:hidden" />
               </motion.p>
 
               <motion.p
@@ -556,15 +580,15 @@ export default function Interview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.7 }}
-                className="leading-loose"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(15px, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
                   color: '#4A4A4A',
-                  lineHeight: '2',
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                 }}
               >
-                그래서 저는 결심했습니다. <span style={{ color: '#8FBC88', fontWeight: 500 }}>"아이의 마음이 닫히기 전에, 자기 세계를 스스로 만들어갈 힘을 회복시키는 숲을 열어야 한다."</span> 크레용숲은 그 믿음에서 시작된 공간입니다.
+                그래서 저는 결심했습니다.<br className="md:hidden" /><br className="md:hidden" /> <span style={{ color: '#8FBC88', fontWeight: 500 }}>"아이의 마음이 닫히기 전에, 자기 세계를 스스로 만들어갈 힘을 회복시키는 숲을 열어야 한다."</span><br className="md:hidden" /><br className="md:hidden" /> 크레용숲은 그 믿음에서 시작된 공간입니다.<br className="md:hidden" />
               </motion.p>
 
               <motion.p
@@ -572,15 +596,15 @@ export default function Interview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.8 }}
-                className="leading-loose"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(15px, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
                   color: '#4A4A4A',
-                  lineHeight: '2',
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                 }}
               >
-                누군가의 정답을 따라 그리는 곳이 아니라, <span style={{ color: '#8FBC88', fontWeight: 500 }}>아이 스스로 자기 마음을 느끼고, 고르고, 표현하며 자기다움의 뿌리를 단단히 내리는 곳.</span>
+                누군가의 정답을 따라 그리는 곳이 아니라, <span style={{ color: '#8FBC88', fontWeight: 500 }}>아이 스스로 자기 마음을 느끼고, 고르고, 표현하며 자기다움의 뿌리를 단단히 내리는 곳.</span><br className="md:hidden" />
               </motion.p>
 
               <motion.p
@@ -588,17 +612,17 @@ export default function Interview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.9 }}
-                className="leading-loose pt-6"
+                className="pt-6"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(15px, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
                   color: '#A67C52',
-                  lineHeight: '2',
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                   fontWeight: 500,
                 }}
               >
-                그리고 이렇게 말할 수 있어서 참 고맙습니다.<br />
-                색의 언어가 나를 데리고 여기까지 와준 것처럼, 그 마법을 다른 이에게 건넬 수 있음에 마음 깊이 감사드립니다.
+                그리고 이렇게 말할 수 있어서 참 고맙습니다.<br className="md:hidden" /><br className="md:hidden" /> 색의 언어가 나를 데리고 여기까지 와준 것처럼, 그 마법을 다른 이에게 건넬 수 있음에 마음 깊이 감사드립니다.<br className="md:hidden" />
               </motion.p>
             </div>
           </motion.div>

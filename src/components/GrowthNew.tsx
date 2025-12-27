@@ -111,9 +111,7 @@ function FloatingBlob({ delay = 0, className = "" }: { delay?: number; className
         ease: [0.16, 1, 0.3, 1]
       }}
       className={`absolute pointer-events-none floating-blob ${className}`}
-      style={{
-        margin: '-25px',
-      }}
+      data-margin="-25px"
     >
       <motion.svg
         animate={{ 
@@ -145,7 +143,67 @@ function FloatingBlob({ delay = 0, className = "" }: { delay?: number; className
   );
 }
 
-function StepCard({ step, index, isLast, isMobile = false }: { step: typeof steps[0]; index: number; isLast: boolean; isMobile?: boolean }) {
+// Premium Arrow Component - Professional separation
+function ArrowConnector({ index, delay = 0, isMobile = false }: { index: number; delay?: number; isMobile?: boolean }) {
+  return (
+    <div
+      className={`relative flex-shrink-0 flex items-center arrow-flow-container ${isMobile ? 'lg:hidden' : 'hidden lg:flex'}`}
+      style={{ 
+        animation: `arrowFadeIn 0.6s ease-out ${delay}s forwards`
+      }}
+    >
+      <svg 
+        viewBox="0 0 44 24" 
+        fill="none"
+        className="arrow-flow arrow-svg-responsive"
+      >
+            {/* Dashed line with flow animation */}
+            <motion.path
+              d="M 2 12 H 36"
+              stroke="#c99a8f"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              pathLength="1"
+              strokeDasharray="0.25 0.15"
+              initial={{ strokeDashoffset: 0, opacity: 0.5 }}
+              animate={{ 
+                strokeDashoffset: [0, -0.8],
+                opacity: [0.5, 0.9, 0.5]
+              }}
+              transition={{ 
+                duration: 2.2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            
+            {/* Arrow head with subtle pulse */}
+            <motion.g
+              initial={{ opacity: 0.6 }}
+              animate={{ 
+                opacity: [0.6, 0.95, 0.6],
+                x: [0, 1, 0]
+              }}
+              transition={{ 
+                duration: 2.2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <path
+                d="M 36 6 L 42 12 L 36 18"
+                stroke="#c99a8f"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </motion.g>
+      </svg>
+    </div>
+  );
+}
+
+function StepCard({ step, index, isMobile = false }: { step: typeof steps[0]; index: number; isMobile?: boolean }) {
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   
@@ -161,26 +219,29 @@ function StepCard({ step, index, isLast, isMobile = false }: { step: typeof step
   const baseTransform = getCardTransform();
   
   return (
-    <div className={`flex items-center ${isMobile ? 'gap-6' : 'gap-6 md:gap-10 lg:gap-14'}`}>
-      <motion.div
-        ref={cardRef}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className="relative cursor-pointer group flex-shrink-0"
-      >
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative cursor-pointer group flex-shrink-0"
+    >
         <motion.div 
-          className={isMobile ? "growth-card-mobile relative rounded-3xl transition-all duration-500" : "w-44 h-32 md:w-52 md:h-36 lg:w-56 lg:h-36 relative rounded-3xl transition-all duration-500"}
+          className={isMobile ? "growth-card-mobile relative rounded-3xl transition-all duration-500" : "relative rounded-3xl transition-all duration-500 growth-card-desktop"}
           style={{
+            transform: `translateY(${baseTransform.y}px) scale(${baseTransform.scale})`,
+            '--bg-color': step.color,
+            '--box-shadow': isHovered 
+              ? `0 12px 40px ${step.color}60, 0 6px 20px ${step.color}40`
+              : `0 4px 16px ${step.color}30, 0 2px 8px ${step.color}20`,
             backgroundColor: step.color,
             boxShadow: isHovered 
               ? `0 12px 40px ${step.color}60, 0 6px 20px ${step.color}40`
-              : `0 4px 16px ${step.color}30, 0 2px 8px ${step.color}20`,
-            transform: `translateY(${baseTransform.y}px) scale(${baseTransform.scale})`
-          }}
+              : `0 4px 16px ${step.color}30, 0 2px 8px ${step.color}20`
+          } as React.CSSProperties}
           animate={{
             scale: isHovered ? (baseTransform.scale * 1.02) : baseTransform.scale,
             y: isHovered ? (baseTransform.y - 4) : baseTransform.y
@@ -194,10 +255,11 @@ function StepCard({ step, index, isLast, isMobile = false }: { step: typeof step
             <motion.h4 
               className="uppercase tracking-[0.2em] text-xs md:text-sm transition-all duration-300"
               style={{ 
-                color: step.darkColor,
                 fontWeight: 600,
-                letterSpacing: '0.15em'
-              }}
+                letterSpacing: '0.15em',
+                '--text-color': step.darkColor,
+                color: step.darkColor
+              } as React.CSSProperties}
               animate={{ 
                 scale: isHovered ? 1.02 : 1,
                 y: isHovered ? -2 : 0
@@ -209,7 +271,10 @@ function StepCard({ step, index, isLast, isMobile = false }: { step: typeof step
             
             <motion.div
               className="w-8 h-px bg-current opacity-30"
-              style={{ color: step.darkColor }}
+              style={{
+                '--text-color': step.darkColor,
+                color: step.darkColor
+              } as React.CSSProperties}
               animate={{
                 scaleX: isHovered ? 1.3 : 1,
                 opacity: isHovered ? 0.5 : 0.3
@@ -220,10 +285,11 @@ function StepCard({ step, index, isLast, isMobile = false }: { step: typeof step
             <motion.p 
               className="text-2xl md:text-3xl lg:text-3xl transition-all duration-300"
               style={{ 
-                color: step.darkColor,
                 fontFamily: "'Noto Serif KR', serif",
-                fontWeight: 600
-              }}
+                fontWeight: 600,
+                '--text-color': step.darkColor,
+                color: step.darkColor
+              } as React.CSSProperties}
               animate={{ 
                 scale: isHovered ? 1.02 : 1,
                 y: isHovered ? 2 : 0
@@ -242,64 +308,7 @@ function StepCard({ step, index, isLast, isMobile = false }: { step: typeof step
             }}
           />
         </motion.div>
-      </motion.div>
-      
-      {/* Arrow connector - Desktop only */}
-      {!isLast && !isMobile && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: index * 0.12 + 0.3 }}
-          className="relative flex-shrink-0 hidden lg:block"
-        >
-          <svg 
-            width="40" 
-            height="40" 
-            viewBox="0 0 40 40" 
-            fill="none"
-          >
-            {/* Organic arrow line */}
-            <motion.path
-              d="M 6 20 Q 20 18, 30 20"
-              stroke="#d4a89f"
-              strokeWidth="2.5"
-              fill="none"
-              opacity="0.4"
-              strokeLinecap="round"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ 
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            
-            {/* Arrow head */}
-            <motion.g
-              animate={{ 
-                x: [0, 3, 0],
-                opacity: [0.4, 0.7, 0.4]
-              }}
-              transition={{ 
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <path
-                d="M 30 20 L 25 16 M 30 20 L 25 24"
-                stroke="#d4a89f"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </motion.g>
-          </svg>
-        </motion.div>
-      )}
-    </div>
+    </motion.div>
   );
 }
 
@@ -349,7 +358,7 @@ export default function GrowthNew() {
             className="mb-8"
             style={{ 
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(2rem, 4vw, 2.5rem)'
+              fontSize: 'clamp(1.5rem, 4vw, 2.5rem)'
             }}
           >
             <span style={{ color: '#8B6F47', fontWeight: 600 }}>크레용숲의</span>{' '}
@@ -367,7 +376,14 @@ export default function GrowthNew() {
         >
           <p 
             className="text-sm md:text-xl text-brown-800 leading-relaxed"
-            style={{ fontFamily: "'Noto Serif KR', serif" }}
+            style={{ 
+              fontFamily: "'Noto Serif KR', serif",
+              fontSize: 'clamp(0.85rem, 3.4vw, 1.05rem)',
+lineHeight: 1.65,
+                letterSpacing: 0,
+              maxWidth: '32em',
+              textAlign: 'left'
+            } as React.CSSProperties}
           >
             <span style={{ color: '#8B6F47' }}>크레용숲은</span>
             <br className="md:hidden" />
@@ -375,11 +391,30 @@ export default function GrowthNew() {
           </p>
           
           <div className="pt-4 space-y-2">
-            <p className="text-sm md:text-lg leading-relaxed" style={{ color: '#8B6F47' }}>
+            <p 
+              className="text-sm md:text-lg leading-relaxed" 
+              style={{ 
+                color: '#8B6F47',
+                fontSize: 'clamp(0.85rem, 3.4vw, 1.05rem)',
+                lineHeight: 1.65,
+                letterSpacing: 0,
+                maxWidth: '34em',
+                textAlign: 'left'
+              } as React.CSSProperties}
+            >
               마음이 먼저 안전해지는 순간,
             </p>
-            <p className="text-sm md:text-lg leading-relaxed">
-              <span style={{ color: '#2e7d32', fontWeight: 600 }}>표현력·몰입력·창조성</span>
+            <p 
+              className="text-sm md:text-lg leading-relaxed"
+              style={{
+                fontSize: 'clamp(0.85rem, 3.4vw, 1.05rem)',
+                lineHeight: 1.65,
+                letterSpacing: 0,
+                maxWidth: '34em',
+                textAlign: 'left'
+              } as React.CSSProperties}
+            >
+              <span style={{ color: '#1b5e20', fontWeight: 600 }}>표현력·몰입력·창조성</span>
               <span className="text-brown-700">은 자연스럽게 자라납니다</span>
             </p>
           </div>
@@ -388,29 +423,88 @@ export default function GrowthNew() {
         {/* Steps flow */}
         <div className="mb-24 md:mb-32">
           {/* Desktop view - no scroll, fits in one screen */}
-          <div className="hidden lg:flex items-center justify-center">
+          <div className="hidden lg:flex items-center justify-center growth-cards-container">
             {steps.map((step, index) => (
-              <StepCard 
-                key={step.id} 
-                step={step} 
-                index={index}
-                isLast={index === steps.length - 1}
-              />
+              <React.Fragment key={step.id}>
+                <StepCard 
+                  step={step} 
+                  index={index}
+                />
+                {/* Arrow between cards - Professional pattern */}
+                {index < steps.length - 1 && (
+                  <ArrowConnector 
+                    index={index} 
+                    delay={index * 0.12 + 0.4}
+                  />
+                )}
+              </React.Fragment>
             ))}
           </div>
           
           {/* Tablet/Mobile view - scrollable */}
           <div className="lg:hidden horizontal-scroll pb-8 -mx-6 px-6">
-            <div className="flex items-center gap-6 min-w-max">
+            <div className="flex items-center gap-4 min-w-max growth-cards-mobile-container">
               {steps.map((step, index) => (
-                <StepCard 
-                  key={step.id} 
-                  step={step} 
-                  index={index}
-                  isLast={index === steps.length - 1}
-                  isMobile={true}
-                />
+                <React.Fragment key={step.id}>
+                  <StepCard 
+                    step={step} 
+                    index={index}
+                    isMobile={true}
+                  />
+                  {/* Arrow between cards - Mobile */}
+                  {index < steps.length - 1 && (
+                    <ArrowConnector 
+                      index={index} 
+                      delay={index * 0.1 + 0.3}
+                      isMobile={true}
+                    />
+                  )}
+                </React.Fragment>
               ))}
+            </div>
+            
+            {/* Mobile scroll hint arrow - fixed right */}
+            <div className="lg:hidden fixed right-4 bottom-24 pointer-events-none z-10">
+              <motion.svg 
+                width="28" 
+                height="28" 
+                viewBox="0 0 40 40" 
+                fill="none"
+                className="scroll-hint"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0.3, 0.8, 0.3] }}
+                transition={{ 
+                  duration: 1.8,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <motion.g
+                  animate={{ 
+                    x: [0, 6, 0],
+                    opacity: [0.3, 0.8, 0.3]
+                  }}
+                  transition={{ 
+                    duration: 1.8,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <path
+                    d="M 10 20 H 26"
+                    stroke="#d4a89f"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M 26 14 L 32 20 L 26 26"
+                    stroke="#d4a89f"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </motion.g>
+              </motion.svg>
             </div>
           </div>
         </div>
@@ -444,7 +538,7 @@ export default function GrowthNew() {
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="mt-20 md:mt-28 mx-auto"
-          style={{ maxWidth: '600px' }}
+          style={{ maxWidth: '600px' } as React.CSSProperties}
         >
           <div 
             className="h-1 rounded-full"
@@ -455,10 +549,29 @@ export default function GrowthNew() {
         </motion.div>
       </div>
 
-      {/* FloatingBlob overflow fix styles + Mobile card styles + Horizontal scrollbar hide */}
+      {/* FloatingBlob overflow fix styles + Mobile card styles + Horizontal scrollbar hide + Premium Arrow animations */}
       <style>{`
         .floating-blob {
           z-index: 1;
+        }
+        
+        .floating-blob[data-margin] {
+          margin: -25px;
+        }
+        
+        /* Card background colors */
+        [data-bg-color] {
+          background-color: var(--bg-color);
+        }
+        
+        /* Text colors */
+        [data-text-color] {
+          color: var(--text-color);
+        }
+        
+        /* Max width */
+        [data-max-width] {
+          max-width: 600px;
         }
         
         /* Horizontal scrollbar hide - 프리미엄 모바일 UX */
@@ -473,21 +586,114 @@ export default function GrowthNew() {
           display: none;                /* Chrome, Safari */
         }
         
-        @media (max-width: 768px) {
-          .floating-blob {
-            margin: -20px !important;
+        /* Premium Arrow Flow Animation - Desktop */
+        @keyframes arrowFadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.8);
           }
-          
-          .growth-card-mobile {
-            width: 240px;
-            height: 140px;
-            flex: 0 0 auto;
-          }
-          
-          .growth-art-title {
-            font-size: clamp(1.1rem, 3.5vw, 1.3rem) !important;
+          to {
+            opacity: 0.65;
+            transform: scale(1);
           }
         }
+        
+        .arrow-flow-container {
+          opacity: 0.65 !important;
+          transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        /* Card hover - adjacent arrow reacts */
+        .group:hover ~ .arrow-flow-container,
+        .group:hover + .arrow-flow-container,
+        .arrow-flow-container:hover {
+          opacity: 1 !important;
+          transform: translateX(4px) scale(1.05);
+        }
+        
+        /* Subtle glow on hover */
+        .group:hover ~ .arrow-flow-container .arrow-flow,
+        .group:hover + .arrow-flow-container .arrow-flow,
+        .arrow-flow-container:hover .arrow-flow {
+          filter: drop-shadow(0 2px 4px rgba(212, 168, 159, 0.3));
+        }
+        
+        .arrow-flow {
+          filter: drop-shadow(0 1px 2px rgba(212, 168, 159, 0.15));
+        }
+        
+        /* Responsive cards and arrows - Professional scaling */
+        .growth-cards-container {
+          gap: clamp(1rem, 2vw, 3.5rem);
+          padding: 0 clamp(1rem, 3vw, 2rem);
+        }
+        
+        .growth-card-desktop {
+          width: clamp(140px, 12vw, 224px);
+          height: clamp(100px, 9vw, 144px);
+        }
+        
+        .arrow-svg-responsive {
+          width: clamp(28px, 2.5vw, 44px);
+          height: clamp(16px, 1.5vw, 24px);
+        }
+        
+        /* Mobile cards container with arrows */
+        .growth-cards-mobile-container {
+          gap: clamp(0.75rem, 3vw, 1.5rem);
+        }
+        
+        /* Mobile arrow sizing - slightly larger for better visibility */
+        @media (max-width: 1023px) {
+          .arrow-flow-container.lg\\:hidden .arrow-svg-responsive {
+            width: clamp(24px, 4.5vw, 36px);
+            height: clamp(14px, 2.8vw, 20px);
+          }
+          
+          .arrow-flow-container.lg\\:hidden {
+            opacity: 0.6 !important;
+          }
+          
+          .scroll-hint {
+            display: block;
+          }
+        }
+        
+        /* Mobile scroll hint - subtle and elegant */
+        .scroll-hint {
+          filter: drop-shadow(0 2px 4px rgba(212, 168, 159, 0.2));
+        }
+        
+        @media (min-width: 1024px) {
+          .scroll-hint {
+            display: none;
+          }
+        }
+        
+               @media (max-width: 768px) {
+                 .floating-blob {
+                   margin: -20px !important;
+                 }
+                 
+                 .growth-card-mobile {
+                   width: 220px;
+                   height: 130px;
+                   flex: 0 0 auto;
+                 }
+                 
+                 .growth-art-title {
+                   font-size: clamp(1.1rem, 3.5vw, 1.3rem) !important;
+                   line-height: 1.6 !important;
+                   letter-spacing: 0 !important;
+                 }
+
+                 /* iPhone 14 Pro (393px) 기준 본문 텍스트 가독성 최적화 */
+                 .text-sm {
+                   font-size: clamp(0.95rem, 3.4vw, 1.05rem) !important;
+                   line-height: 1.6 !important;
+                   letter-spacing: 0 !important;
+                 }
+               }
       `}</style>
     </section>
   );

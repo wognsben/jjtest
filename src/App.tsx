@@ -23,6 +23,7 @@ import { getImagePath } from './utils/imageUtils';
 
 export default function App() {
   const [currentPage, setCurrentPage] = React.useState<'home' | 'about' | 'program' | 'contact'>('home');
+  const [programSection, setProgramSection] = React.useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
@@ -543,33 +544,38 @@ export default function App() {
 
             {/* Mobile Menu Button - JS 기반 디바이스 감지 (줌 시에도 안정적) */}
             {!isDesktop && (
-              <button
+              <motion.button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="relative z-[100] flex flex-col items-center justify-center gap-1.5 p-2"
+                className="relative z-[100] flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg"
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-menu"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 style={{ 
-                  width: '44px',
-                  height: '44px',
-                  minWidth: '44px',
-                  minHeight: '44px',
+                  width: '48px',
+                  height: '48px',
+                  minWidth: '48px',
+                  minHeight: '48px',
                   zIndex: 10000,
-                  // 터치 타겟 최소 44px (접근성 기준)
+                  background: 'rgba(250, 249, 247, 0.95)',
+                  border: '1.5px solid rgba(45, 80, 22, 0.15)',
+                  boxShadow: '0 4px 12px rgba(45, 80, 22, 0.08)',
+                  backdropFilter: 'blur(10px)',
                   touchAction: 'manipulation'
                 }}
               >
                 <motion.span
-                  className="w-6 h-0.5 origin-center"
+                  className="w-7 h-0.5 origin-center rounded-full"
                   style={{ backgroundColor: '#2d5016' }}
                   animate={{
                     rotate: isMenuOpen ? 45 : 0,
-                    y: isMenuOpen ? 6 : 0,
+                    y: isMenuOpen ? 7 : 0,
                   }}
                   transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 />
                 <motion.span
-                  className="w-6 h-0.5"
+                  className="w-7 h-0.5 rounded-full"
                   style={{ backgroundColor: '#2d5016' }}
                   animate={{
                     opacity: isMenuOpen ? 0 : 1,
@@ -578,15 +584,15 @@ export default function App() {
                   transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 />
                 <motion.span
-                  className="w-6 h-0.5 origin-center"
+                  className="w-7 h-0.5 origin-center rounded-full"
                   style={{ backgroundColor: '#2d5016' }}
                   animate={{
                     rotate: isMenuOpen ? -45 : 0,
-                    y: isMenuOpen ? -6 : 0,
+                    y: isMenuOpen ? -7 : 0,
                   }}
                   transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 />
-              </button>
+              </motion.button>
             )}
           </div>
         </div>
@@ -875,7 +881,17 @@ export default function App() {
             <>
               <Hero />
               <SectionDivider />
-              <Programs />
+              <Programs onNavigateToProgram={(sectionId) => {
+                setProgramSection(sectionId);
+                setCurrentPage('program');
+                // Wait for page transition to complete before scrolling
+                setTimeout(() => {
+                  const element = document.querySelector(`[data-section="${sectionId}"]`);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }, 800); // Increased delay to ensure page transition completes
+              }} />
               <SectionDivider />
               <MethodNew />
               <SectionDivider />
@@ -884,7 +900,7 @@ export default function App() {
           ) : currentPage === 'about' ? (
             <About />
           ) : currentPage === 'program' ? (
-            <ProgramsPage />
+            <ProgramsPage initialOpenSection={programSection} />
           ) : currentPage === 'contact' ? (
             <Contact />
           ) : null}

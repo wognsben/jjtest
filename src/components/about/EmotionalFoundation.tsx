@@ -82,7 +82,7 @@ export default function EmotionalFoundation() {
                     <h2 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.3rem, 3vw, 2rem)',
+                        fontSize: 'clamp(1rem, 3vw, 2rem)',
                         lineHeight: 1.3,
                         fontWeight: 600,
                         color: '#8fbc88',
@@ -114,8 +114,9 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
                         marginBottom: '20px',
@@ -126,8 +127,9 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
                         marginBottom: '20px',
                       }}
@@ -146,8 +148,9 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
                         marginBottom: '20px',
@@ -158,8 +161,9 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
                         marginBottom: '20px',
@@ -170,8 +174,9 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 500,
                         color: '#4A4A4A',
                         marginBottom: '20px',
@@ -193,8 +198,9 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
                         marginBottom: '20px',
@@ -205,8 +211,9 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
                         marginBottom: '20px',
                       }}
@@ -223,18 +230,20 @@ export default function EmotionalFoundation() {
                       <span className="text-brown-900 font-semibold"> 없습니다.</span>
                     </p>
                     <p 
-                      className="text-base md:text-lg text-brown-700 leading-relaxed"
+                      className="md:text-lg text-brown-700 leading-relaxed"
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
+                        fontSize: 'clamp(0.85rem, 1.6vw, 1.125rem)',
                         marginBottom: '20px',
                       }}
                     >
                       이는 특정 연령의 문제가 아니라 모든 세대가 동시에 경험하는 변화입니다.
                     </p>
                     <p 
-                      className="text-base md:text-lg leading-relaxed"
+                      className="md:text-lg leading-relaxed"
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
+                        fontSize: 'clamp(0.85rem, 1.6vw, 1.125rem)',
                         marginBottom: '0',
                       }}
                     >
@@ -246,9 +255,24 @@ export default function EmotionalFoundation() {
                           paintOrder: 'stroke fill'
                         }}
                       >
-                        가장 어린 존재
+                        가장 어린 존재들이
                       </span>
-                      <span className="text-brown-900 font-semibold">가 가장 먼저, 그리고 가장 크게 영향을 받습니다.</span>
+                      <span className="text-brown-900 font-semibold"> 가장 많은 영향을 받는다는 사실이 우리를 멈추게 합니다.</span>
+                    </p>
+                    <p 
+                      style={{ 
+                        fontFamily: "'Noto Serif KR', serif",
+                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
+                        fontWeight: 400,
+                        color: '#A66A5A',
+                        marginBottom: '0',
+                        marginTop: '20px'
+                      }}
+                    >
+                      정서 영역을 다루는 교육은<br />
+                      공교육이 충분히 감당하기 어렵습니다.
                     </p>
                   </motion.div>
                 </div>

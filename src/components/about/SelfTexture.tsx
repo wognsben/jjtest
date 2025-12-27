@@ -83,6 +83,7 @@ export default function SelfTexture() {
   };
 
   return (
+    <>
     <section className="relative py-24 md:py-32 lg:py-40 px-6 md:px-12 lg:px-24 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* 2 Column Layout: Text LEFT, Illustration RIGHT */}
@@ -99,12 +100,13 @@ export default function SelfTexture() {
                 className="text-accent-green"
                 style={{ 
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+                  fontSize: 'clamp(1.4rem, 3vw, 2.5rem)',
                   fontWeight: 600,
                   lineHeight: 1.2,
                 }}
               >
-                자기결(自己結)
+                자기결을 세우는 아이는,<br />
+                자신을 믿는 힘으로 자랍니다
               </motion.h2>
               
               <motion.p
@@ -128,43 +130,36 @@ export default function SelfTexture() {
               className="space-y-6"
             >
               <p 
-                className="text-brown-800 text-lg md:text-xl leading-relaxed"
-                style={{ fontFamily: "'Noto Serif KR', serif" }}
+                className="text-brown-800 md:text-xl leading-relaxed"
+                style={{ 
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.8vw, 1.25rem)'
+                }}
               >
-                크레용숲은 아이들이 단지 실력이 좋은 사람이 아니라,
+                결을 아는 아이는
               </p>
               
               <p 
-                className="text-brown-800 text-base md:text-lg leading-relaxed"
-                style={{ fontFamily: "'Noto Serif KR', serif" }}
+                className="text-brown-800 md:text-xl leading-relaxed"
+                style={{ 
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.8vw, 1.25rem)'
+                }}
               >
-                <span 
-                  className="px-2 py-1 rounded"
-                  style={{ 
-                    backgroundColor: '#fadfde',
-                    color: '#5a8c4a',
-                    textDecoration: 'underline',
-                    textDecorationColor: '#8fbc88',
-                    textDecorationThickness: '2px',
-                    textUnderlineOffset: '3px',
-                    boxDecorationBreak: 'clone',
-                    WebkitBoxDecorationBreak: 'clone'
-                  }}
-                >
-                  자기가 원하는 삶을 선택할 수 있는 아이입니다.
-                </span>
+                자기가 누구인지 알고,
               </p>
               
-              <div className="pt-4">
-                <p 
-                  className="text-brown-700 text-base md:text-lg leading-relaxed mb-4"
-                  style={{ fontFamily: "'Noto Serif KR', serif" }}
-                >
-                  아이들은 이곳에서…
-                </p>
-              </div>
+              <p 
+                className="text-brown-800 md:text-xl leading-relaxed"
+                style={{ 
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.8vw, 1.25rem)'
+                }}
+              >
+                <span className="self-texture-highlight">자기가 원하는 삶을 선택할 수 있는 아이입니다.</span>
+              </p>
               
-              <div className="space-y-4">
+              <div className="space-y-4 pt-4">
                 <p 
                   className="text-brown-800 text-lg md:text-xl leading-relaxed"
                   style={{ fontFamily: "'Noto Serif KR', serif" }}
@@ -178,7 +173,7 @@ export default function SelfTexture() {
                   style={{ fontFamily: "'Noto Serif KR', serif" }}
                 >
                   자연과 타인을 배려하는{' '}
-                  <span className="text-accent-green font-semibold">감각 인권감</span>,
+                  <span className="text-accent-green font-semibold">감각 민감성</span>,
                 </p>
                 
                 <p 
@@ -192,7 +187,7 @@ export default function SelfTexture() {
                   className="text-brown-800 text-lg md:text-xl leading-relaxed"
                   style={{ fontFamily: "'Noto Serif KR', serif" }}
                 >
-                  <span className="text-accent-green font-semibold">자기결(自己結)</span>을 기릅니다.
+                  <span className="text-accent-green font-semibold">자기결(自己結)</span>을 기릅니다
                 </p>
               </div>
             </motion.div>
@@ -332,5 +327,31 @@ export default function SelfTexture() {
         </div>
       </div>
     </section>
+    <style>{`
+      .self-texture-highlight {
+        background-color: #FADFDE;
+        padding: 0.15em 0.45em;
+        border-radius: 6px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .self-texture-highlight::after {
+        content: '';
+        position: absolute;
+        left: -2px;
+        right: -2px;
+        bottom: -5px;
+        height: 8px;
+        background: linear-gradient(90deg, 
+          rgba(46, 125, 50, 0.7) 0%, 
+          rgba(46, 125, 50, 0.9) 50%, 
+          rgba(46, 125, 50, 0.7) 100%
+        );
+        border-radius: 4px;
+        filter: blur(1.5px);
+      }
+    `}</style>
+    </>
   );
 }

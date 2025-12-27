@@ -129,7 +129,8 @@ export default function ContactInfo() {
                             className="block text-[#6B4423] hover:text-[#7CB342] transition-colors duration-600 break-words"
                             style={{
                               fontSize: 'clamp(1rem, 1.8vw, 1.2rem)',
-                              lineHeight: 1.4,
+                              lineHeight: 1.65,
+                              letterSpacing: 0,
                               textDecoration: 'underline',
                               textDecorationColor: item.color,
                               textDecorationThickness: '2px',
@@ -143,7 +144,8 @@ export default function ContactInfo() {
                               className="mt-2 text-[#6B4423]/60"
                               style={{
                                 fontSize: 'clamp(0.85rem, 1.4vw, 1rem)',
-                                lineHeight: 1.4,
+                                lineHeight: 1.65,
+                              letterSpacing: 0,
                               }}
                             >
                               {item.description}
@@ -155,7 +157,8 @@ export default function ContactInfo() {
                           className="text-[#6B4423] whitespace-pre-line"
                           style={{
                             fontSize: 'clamp(1rem, 1.6vw, 1.2rem)',
-                            lineHeight: 1.7,
+                            lineHeight: 1.65,
+                            letterSpacing: 0,
                           }}
                         >
                           {item.value}

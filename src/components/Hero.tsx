@@ -24,12 +24,13 @@ export default function Hero() {
   
   // Title remains slightly visible when paint fades
   const titleOpacity = useTransform(scrollYProgress, [0.6, 0.9], [1, 0.95]);
-  const titleLetterSpacing = useTransform(scrollYProgress, [0.6, 0.9], ['-0.025em', '-0.015em']);
   
   // Track blur value for animation
   const [currentBlur, setCurrentBlur] = useState(6);
+  const [currentPaintOpacity, setCurrentPaintOpacity] = useState(0.18);
+  const [currentTitleOpacity, setCurrentTitleOpacity] = useState(1);
   
-  // Update blur on scroll
+  // Update values on scroll
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     if (isPaintVisible) {
       if (latest < 0.5) {
@@ -40,6 +41,24 @@ export default function Hero() {
         setCurrentBlur(10);
       }
     }
+    
+    // Update paint opacity
+    if (latest < 0.5) {
+      setCurrentPaintOpacity(0.65 - latest * 0.8); // 0.65 to 0.25
+    } else if (latest < 0.8) {
+      setCurrentPaintOpacity(0.25 - (latest - 0.5) * 0.57); // 0.25 to 0.08
+    } else {
+      setCurrentPaintOpacity(0.08);
+    }
+    
+    // Update title opacity
+    if (latest >= 0.6) {
+      setCurrentTitleOpacity(1 - (latest - 0.6) * 0.17); // 1 to 0.95
+    } else {
+      setCurrentTitleOpacity(1);
+    }
+    
+    // Letter-spacing 스크롤 반응성 제거 - 프리미엄 정적 타이포그래피
   });
   
   // Paint reveal on page load
@@ -77,67 +96,54 @@ export default function Hero() {
       />
 
       {/* PAINT LAYER - Full viewport, behind all content */}
-      <motion.div 
-        className={`absolute inset-0 pointer-events-none paint-layer ${isPaintVisible ? 'is-visible' : ''}`}
-        style={{
-          zIndex: 2,
-          opacity: isPaintVisible ? scrollPaintOpacity : 0.18,
-        }}
-        transition={{
-          opacity: {
-            duration: 0.9,
-            ease: [0.16, 1, 0.3, 1],
-          },
-        }}
-      >
-        <motion.img 
-          src={getImagePath("/assets/main/hero.jpg")}
-          alt="Paint texture"
-          className="paint-image"
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            width: '100%',
-            height: '100%',
-            minWidth: '100vw',
-            minHeight: '100vh',
-            transform: 'translate(-50%, -50%)',
-            mixBlendMode: 'multiply',
-            opacity: 1,
-            objectFit: 'cover',
-            objectPosition: '46% 58%',
-          }}
+      <div className={`absolute inset-0 pointer-events-none paint-layer ${isPaintVisible ? 'is-visible' : ''}`}>
+        <motion.div
+          className="absolute inset-0"
           animate={{
-            filter: `blur(${currentBlur}px)`,
+            opacity: isPaintVisible ? currentPaintOpacity : 0.18,
           }}
           transition={{
-            filter: {
+            opacity: {
               duration: 0.9,
               ease: [0.16, 1, 0.3, 1],
             },
           }}
-        />
+        >
+          <motion.img 
+            src={getImagePath("/assets/main/hero.jpg")}
+            alt="Paint texture"
+            className="paint-image"
+            animate={{
+              filter: `blur(${currentBlur}px)`,
+            }}
+            transition={{
+              filter: {
+                duration: 0.9,
+                ease: [0.16, 1, 0.3, 1],
+              },
+            }}
+          />
         
-        {/* Paint light overlay - thickness feeling, not digital light */}
-        <div 
-          className="absolute inset-0 paint-light"
-          style={{
-            background: 'radial-gradient(at 40% 35%, rgba(255,255,255,0.22), rgba(255,255,255,0.05) 45%, transparent 65%)',
-            mixBlendMode: 'overlay',
-          }}
-        />
-        
-        {/* Paint layer depth gradient - brightness variation */}
-        <div 
-          className="absolute inset-0 paint-depth"
-          style={{
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.25) 100%)',
-            mixBlendMode: 'overlay',
-            pointerEvents: 'none',
-          }}
-        />
-      </motion.div>
+          {/* Paint light overlay - thickness feeling, not digital light */}
+          <div 
+            className="absolute inset-0 paint-light"
+            style={{
+              background: 'radial-gradient(at 40% 35%, rgba(255,255,255,0.22), rgba(255,255,255,0.05) 45%, transparent 65%)',
+              mixBlendMode: 'overlay',
+            }}
+          />
+          
+          {/* Paint layer depth gradient - brightness variation */}
+          <div 
+            className="absolute inset-0 paint-depth"
+            style={{
+              background: 'linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.25) 100%)',
+              mixBlendMode: 'overlay',
+              pointerEvents: 'none',
+            }}
+          />
+        </motion.div>
+      </div>
 
       {/* Content Container */}
       <div 
@@ -186,27 +192,16 @@ export default function Hero() {
             >
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={{ 
+                  opacity: currentTitleOpacity,
+                  y: 0,
+                }}
                 transition={{ 
                   duration: 1.2, 
                   delay: 0.4, 
                   ease: [0.22, 1, 0.36, 1] 
                 }}
                 className="relative inline-block title-with-mask"
-                style={{ 
-                  fontFamily: "'IM Fell English', 'Noto Serif KR', serif",
-                  fontSize: 'clamp(2rem, 6vw, 4.8rem)', // Single line on iPhone 14 Pro with side margins
-                  fontWeight: 400,
-                  letterSpacing: titleLetterSpacing ?? '-0.02em',
-                  fontStyle: 'italic',
-                  color: '#2D5016',
-                  lineHeight: 1.05,
-                  textShadow: '0 0.5px 0 rgba(0,0,0,0.03)',
-                  opacity: titleOpacity,
-                  position: 'relative',
-                  zIndex: 5,
-                  whiteSpace: 'nowrap',
-                }}
               >
                 FORÊT DES CRAYONS
               </motion.h1>
@@ -222,11 +217,7 @@ export default function Hero() {
               delay: 0.8, 
               ease: [0.22, 1, 0.36, 1] 
             }}
-            className="flex flex-nowrap items-center justify-center gap-8 md:gap-12 mt-12 md:mt-24 relative z-30 overflow-hidden"
-            style={{
-              gap: 'clamp(0.5rem, 2.5vw, 1.25rem)', // Keep single line on mobile with side margins
-              paddingInline: 'clamp(0.5rem, 3vw, 1rem)',
-            }}
+            className="flex flex-nowrap items-center justify-center gap-8 md:gap-12 mt-12 md:mt-24 relative z-30 overflow-hidden bottom-tags"
           >
             {['Emotional Art', 'Color Psychology + Child Art', 'Forêt des Crayons'].map((tag, i) => (
               <span 
@@ -247,6 +238,57 @@ export default function Hero() {
 
       {/* Enhanced styles */}
       <style>{`
+        /* Paint layer z-index */
+        .paint-layer {
+          z-index: 2;
+        }
+        
+        /* Paint image positioning */
+        .paint-image {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 100%;
+          height: 100%;
+          min-width: 100vw;
+          min-height: 100vh;
+          transform: translate(-50%, -50%);
+          mix-blend-mode: multiply;
+          opacity: 1;
+          object-fit: cover;
+          object-position: 46% 58%;
+        }
+        
+        /* Title font family and positioning */
+        .title-with-mask {
+          font-family: 'IM Fell English', 'Noto Serif KR', serif;
+          position: relative;
+          z-index: 5;
+          font-size: clamp(2rem, 6vw, 4.8rem);
+          font-weight: 400;
+          font-style: italic;
+          color: #2D5016;
+          line-height: 1.05;
+          text-shadow: 0 0.5px 0 rgba(0,0,0,0.03);
+          white-space: nowrap;
+          letter-spacing: -0.02em; /* 고정값 - 프리미엄 정적 타이포그래피 */
+        }
+
+        /* Mobile Typography - iPhone 14 Pro (393px) 기준 가독성 최적화 */
+        @media (max-width: 768px) {
+          .title-with-mask {
+            font-size: clamp(2.2rem, 7vw, 3.2rem);
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+          }
+        }
+        
+        /* Bottom tags gap and padding */
+        .bottom-tags {
+          gap: clamp(0.5rem, 2.5vw, 1.25rem);
+          padding-inline: clamp(0.5rem, 3vw, 1rem);
+        }
+        
         /* Title mask for clearer relationship with paint */
         .title-with-mask::after {
           content: '';

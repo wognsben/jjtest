@@ -41,7 +41,7 @@ export default function ColorCartePanel({ dots, selected, onSelect }: ColorCarte
             fontSize: 'clamp(0.95rem, 1.4vw, 1.1rem)',
             fontWeight: 400, // L6: No bold emphasis
             letterSpacing: '0.01em',
-            lineHeight: 1.6,
+            lineHeight: 1.65,
             fontFamily: "'Noto Serif KR', serif",
           }}
         >
@@ -57,7 +57,8 @@ export default function ColorCartePanel({ dots, selected, onSelect }: ColorCarte
           className="text-brown-600"
           style={{
             fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-            lineHeight: 1.7, // L6: Generous line height (1.55-1.7)
+            lineHeight: 1.65,
+            letterSpacing: 0,
             fontFamily: "'Noto Serif KR', serif",
             fontWeight: 300,
           }}

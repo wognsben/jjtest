@@ -148,8 +148,7 @@ export default function PartnerInstitutions() {
                   className="mb-8 drop-shadow-lg leading-tight"
                   style={{
                     textShadow: '0 4px 20px rgba(0,0,0,0.4)',
-                    fontSize: 'clamp(1.25rem, 3vw, 2rem)',
-                    whiteSpace: 'nowrap',
+                    fontSize: 'clamp(0.85rem, 3vw, 2rem)',
                   }}
                 >
                   <span style={{ color: '#bb8162' }}>감정과 감각, 창조성과 진정성이 만나</span>{' '}
@@ -316,10 +315,11 @@ export default function PartnerInstitutions() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl md:text-2xl lg:text-3xl leading-relaxed mb-6"
+              className="leading-relaxed mb-6"
               style={{
                 color: '#D97B8F',
                 fontStyle: 'italic',
+                fontSize: 'clamp(0.85rem, 2vw, 1.5rem)',
               }}
             >
               "인간에게 가장 중요보다 더 조용하고 평온한 존재는 없다."

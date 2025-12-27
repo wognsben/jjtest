@@ -35,8 +35,8 @@ export function AdultArtSection3() {
           pointer-events: none;
         }
       `}</style>
-      <section className="relative bg-white py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+      <section className="relative bg-white pt-[90px] pb-24">
+      <div className="max-w-[1180px] mx-auto px-0">
         {/* Header: 마음을 그리다 with Background Image */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -85,7 +85,7 @@ export function AdultArtSection3() {
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
                   fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)',
-                  color: '#8fbc88',
+                  color: '#A66A5A',
                   fontWeight: 400,
                   letterSpacing: '0.02em',
                 }}
@@ -102,7 +102,8 @@ export function AdultArtSection3() {
                   fontSize: 'clamp(0.85rem, 1.1vw, 0.85rem)',
                   color: '#333',
                   fontWeight: 400,
-                  lineHeight: 1.8,
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                 }}
               >
                 일상에서 잃어버린 감각과 감정의 언어를 회복하고,
@@ -205,7 +206,7 @@ export function AdultArtSection3() {
                   lineHeight: 1.5,
                 }}
               >
-                마음을 그리다 예술
+                마음을 그리는 예술
                 <br />
                 <span style={{ fontSize: '0.9em', color: '#666' }}>(Emotion Art)</span>
               </h3>
@@ -232,7 +233,8 @@ export function AdultArtSection3() {
                         fontSize: 'clamp(0.95rem, 1.2vw, 1.05rem)',
                         color: '#555',
                         fontWeight: 300,
-                        lineHeight: 1.7,
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                       }}
                     >
                       {item}
@@ -257,7 +259,8 @@ export function AdultArtSection3() {
                   fontSize: 'clamp(0.85rem, 1.1vw, 0.85rem)',
                   color: '#A66A5A',
                   fontWeight: 300,
-                  lineHeight: 1.9,
+                  lineHeight: 1.65,
+                  letterSpacing: 0,
                   letterSpacing: '0.01em',
                 }}
               >

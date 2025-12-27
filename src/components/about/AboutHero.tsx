@@ -25,22 +25,8 @@ export default function AboutHero() {
   useEffect(() => {
     if (!sectionRef.current || !titleRef.current) return;
 
-    // 1. 타이틀 letter-spacing 스크롤 반응성 (확대/축소 제외, letter-spacing만 유지)
-    // scale 효과는 제거하고 letter-spacing만 유지
-    gsap.fromTo(
-      titleRef.current,
-      { letterSpacing: '0.02em', scale: 1 }, // scale 고정
-      {
-        letterSpacing: '-0.02em',
-        scale: 1, // scale 고정 - 확대/축소 방지
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top center',
-          end: 'bottom top',
-          scrub: 0.5,
-        },
-      }
-    );
+    // Letter-spacing 스크롤 반응성 제거 - 프리미엄 정적 타이포그래피
+    // 고정된 letter-spacing 사용 (스크롤 반응 없음)
 
     // 2. 장식 요소들 미세한 스크롤 반응성 (0.5~1% 정도)
     const floatingDots = floatingElementsRef.current?.querySelectorAll('.floating-dot');
@@ -255,7 +241,7 @@ export default function AboutHero() {
                   className="tracking-[0.3em] text-accent-green uppercase"
                   style={{ 
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: 'clamp(0.625rem, 1.5vw, 0.8125rem)',
+                    fontSize: 'clamp(0.75rem, 1.5vw, 0.9rem)',
                     fontWeight: 600,
                   }}
                 >
@@ -278,9 +264,9 @@ export default function AboutHero() {
             fontSize: 'clamp(2.5rem, 8vw, 8rem)',
             fontWeight: 700,
             lineHeight: 1.1,
-            letterSpacing: '0.02em', // GSAP가 스크롤에 따라 조절
+            letterSpacing: '0.02em', // 고정값 - 프리미엄 정적 타이포그래피
             color: '#1a1a1a',
-          }}
+          } as React.CSSProperties}
         >
           <span className="inline-block">크레용숲</span>
           {' '}
@@ -298,7 +284,7 @@ export default function AboutHero() {
         </motion.h1>
       </div>
 
-      {/* 모바일에서 Canvas 약화 */}
+      {/* 모바일에서 Canvas 약화 + 타이포그래피 가독성 최적화 */}
       <style>{`
         @media (max-width: 768px) {
           .canvas-wrapper canvas {
@@ -306,6 +292,12 @@ export default function AboutHero() {
           }
           .hero-focus-bg {
             background: radial-gradient(ellipse at center, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 40%, transparent 70%) !important;
+          }
+          /* iPhone 14 Pro (393px) 기준 Hero 타이틀 가독성 최적화 */
+          .hero-title {
+            font-size: clamp(2.2rem, 7vw, 3.2rem) !important;
+            line-height: 1.15 !important;
+            letter-spacing: -0.01em !important;
           }
         }
       `}</style>

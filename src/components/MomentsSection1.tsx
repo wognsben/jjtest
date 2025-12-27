@@ -10,10 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 export function MomentsSection1() {
   const trackRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<gsap.core.Tween | null>(null);
-  const depthAnimationsRef = useRef<gsap.core.Tween[]>([]);
   const [isMobile, setIsMobile] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   // 4개 원형 카드 데이터
   const testimonials = [
@@ -58,109 +56,49 @@ export function MomentsSection1() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // GSAP 무한 스크롤 애니메이션 (Desktop only)
+  // 화살표 클릭 핸들러
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? reviewImages.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev === reviewImages.length - 1 ? 0 : prev + 1));
+  };
+
+  // 슬라이드 애니메이션
   useEffect(() => {
     if (isMobile || !trackRef.current) return;
 
     const track = trackRef.current;
-    const cards = track.querySelectorAll('.review-card');
-
-    // 초기 위치 설정
-    gsap.set(track, { x: 0 });
-
-    // 무한 루프 애니메이션
-    const totalWidth = track.scrollWidth / 2;
+    const cardWidth = 280 + 16; // 카드 너비 + gap
     
-    animationRef.current = gsap.to(track, {
-      x: `-${totalWidth}px`,
-      duration: 80,
-      ease: 'linear',
-      repeat: -1,
+    gsap.to(track, {
+      x: -currentIndex * cardWidth,
+      duration: 0.6,
+      ease: 'power2.out',
     });
+  }, [currentIndex, isMobile]);
 
-    // Depth Layer - 각 카드가 미묘하게 움직임 (Y축 + X축 웨이브로 위상 어긋나게)
-    cards.forEach((card, i) => {
-      // Y축 움직임
-      const yAnim = gsap.to(card, {
-        y: i % 2 === 0 ? 6 : -6,
-        duration: 6 + Math.random() * 4,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-      });
-      depthAnimationsRef.current.push(yAnim);
-
-      // X축 웨이브 (위상 어긋나게)
-      const xOffset = i % 3 === 0 ? 4 : i % 3 === 1 ? -3 : 2;
-      const xAnim = gsap.to(card, {
-        x: `+=${xOffset}`,
-        duration: 7 + Math.random() * 4,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-      });
-      depthAnimationsRef.current.push(xAnim);
-    });
-
-    return () => {
-      if (animationRef.current) {
-        animationRef.current.kill();
-      }
-      depthAnimationsRef.current.forEach(anim => anim.kill());
-      depthAnimationsRef.current = [];
-    };
-  }, [isMobile]);
-
-  // Hover 시 애니메이션 pause/resume
-  useEffect(() => {
-    if (isMobile) return;
-
-    if (isHovered) {
-      if (animationRef.current) animationRef.current.pause();
-      depthAnimationsRef.current.forEach(anim => anim.pause());
-    } else {
-      if (animationRef.current) animationRef.current.resume();
-      depthAnimationsRef.current.forEach(anim => anim.resume());
-    }
-  }, [isHovered, isMobile]);
-
-  // 모바일 무한 스크롤 애니메이션
+  // 모바일 슬라이드 애니메이션
   useEffect(() => {
     if (!isMobile || !containerRef.current) return;
 
     const track = containerRef.current;
-    const cards = track.querySelectorAll('.mobile-review-card');
-    if (cards.length === 0) return;
-
-    // 초기 위치 설정
-    gsap.set(track, { x: 0 });
-
-    // 무한 루프 애니메이션
-    const totalWidth = track.scrollWidth / 2; // 이미지가 2번 반복되므로 절반
+    const cardWidth = 240 + 16; // 카드 너비 + gap
     
-    const animation = gsap.to(track, {
-      x: `-${totalWidth}px`,
-      duration: 35, // 35초에 걸쳐 이동
-      ease: 'linear',
-      repeat: -1,
+    gsap.to(track, {
+      x: -currentIndex * cardWidth,
+      duration: 0.6,
+      ease: 'power2.out',
     });
-
-    return () => {
-      animation.kill();
-      ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.vars.trigger === containerRef.current) {
-          trigger.kill();
-        }
-      });
-    };
-  }, [isMobile]);
+  }, [currentIndex, isMobile]);
 
   // Noise texture (SVG data URL)
   const noiseTexture = `data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E`;
 
   return (
-    <section className="relative bg-white py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+    <section className="relative bg-white pt-[90px] pb-24">
+      <div className="max-w-[1180px] mx-auto px-0">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -188,7 +126,8 @@ export function MomentsSection1() {
                 fontSize: 'clamp(0.94rem, 1.2vw, 1.1rem)',
                 color: '#8B7355',
                 fontWeight: 300,
-                lineHeight: 1.8,
+                lineHeight: 1.65,
+                letterSpacing: 0,
               }}
             >
               예술이 마음을 움직일 때 일어나는 변화의 기록이자,
@@ -196,10 +135,11 @@ export function MomentsSection1() {
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)',
+                fontSize: 'clamp(0.85rem, 1.2vw, 1.1rem)',
                 color: '#8B7355',
                 fontWeight: 300,
-                lineHeight: 1.8,
+                lineHeight: 1.65,
+                letterSpacing: 0,
               }}
             >
               크레용숲이 만든 고유의 증거입니다.
@@ -251,7 +191,7 @@ export function MomentsSection1() {
                       className="mb-4"
                       style={{
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.75rem, 0.9vw, 0.85rem)',
+                        fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                         color: '#2d5016',
                         fontWeight: 500,
                       }}
@@ -267,7 +207,7 @@ export function MomentsSection1() {
                           fontSize: 'clamp(0.8rem, 1vw, 0.95rem)',
                           color: '#555',
                           fontWeight: 300,
-                          lineHeight: 1.6,
+                          lineHeight: 1.65,
                         }}
                       >
                         {item.quote1}
@@ -284,7 +224,7 @@ export function MomentsSection1() {
                           fontSize: 'clamp(0.77rem, 1vw, 0.95rem)',
                           color: '#555',
                           fontWeight: 300,
-                          lineHeight: 1.6,
+                          lineHeight: 1.65,
                         }}
                       >
                         {item.quote3}
@@ -345,23 +285,39 @@ export function MomentsSection1() {
                     width: 'fit-content',
                   }}
                 >
-                  {/* Original Cards */}
+                  {/* Cards */}
                   {reviewImages.map((imageSrc, index) => (
-                    <ReviewCard key={`original-${index}`} imageSrc={imageSrc} index={index} />
-                  ))}
-                  {/* Cloned Cards for Seamless Loop */}
-                  {reviewImages.map((imageSrc, index) => (
-                    <ReviewCard key={`clone-${index}`} imageSrc={imageSrc} index={index} />
+                    <ReviewCard key={index} imageSrc={imageSrc} index={index} />
                   ))}
                 </div>
               </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={handlePrev}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+                style={{ border: '1px solid rgba(255,182,193,0.3)' }}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A66A5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button
+                onClick={handleNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+                style={{ border: '1px solid rgba(255,182,193,0.3)' }}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A66A5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
 
               {/* Archive Label */}
               <div
                 className="absolute left-12 bottom-6 pointer-events-none z-40"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: '0.75rem',
+                  fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                   letterSpacing: '0.3em',
                   color: 'rgba(139, 115, 85, 0.6)',
                   fontWeight: 400,
@@ -372,7 +328,7 @@ export function MomentsSection1() {
             </>
           )}
 
-          {/* Mobile: GSAP Infinite Horizontal Scroll */}
+          {/* Mobile: Review Gallery with Arrow Controls */}
           {isMobile && (
             <div className="relative overflow-hidden rounded-2xl" style={{ height: '400px' }}>
               {/* Scrolling Track */}
@@ -381,8 +337,8 @@ export function MomentsSection1() {
                 className="flex items-center absolute top-0 left-0 h-full"
                 style={{ gap: '1rem' }}
               >
-                {/* 이미지 2번 반복 (무한 루프를 위해) */}
-                {[...reviewImages, ...reviewImages].map((imageSrc, idx) => (
+                {/* Cards */}
+                {reviewImages.map((imageSrc, idx) => (
                   <div
                     key={idx}
                     className="mobile-review-card flex-shrink-0"
@@ -399,7 +355,7 @@ export function MomentsSection1() {
                       <div className="w-full h-full flex items-center justify-center p-4">
                         <img
                           src={imageSrc}
-                          alt={`Review ${(idx % reviewImages.length) + 1}`}
+                          alt={`Review ${idx + 1}`}
                           style={{
                             maxWidth: '100%',
                             maxHeight: '100%',
@@ -430,6 +386,26 @@ export function MomentsSection1() {
                   background: 'linear-gradient(to left, rgba(255,248,248,1) 0%, rgba(255,248,248,0) 100%)',
                 }}
               />
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={handlePrev}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300"
+                style={{ border: '1px solid rgba(255,182,193,0.3)' }}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A66A5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button
+                onClick={handleNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300"
+                style={{ border: '1px solid rgba(255,182,193,0.3)' }}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A66A5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
             </div>
           )}
         </div>

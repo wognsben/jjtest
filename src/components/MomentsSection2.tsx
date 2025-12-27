@@ -5,8 +5,8 @@ import { getImagePath } from '../utils/imageUtils';
 // MOMENTS Section 2: 철학 텍스트 + 붓질 이미지
 export function MomentsSection2() {
   return (
-    <section className="relative bg-white py-24 md:py-32 lg:py-40">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+    <section className="relative bg-white pt-[90px] pb-24">
+      <div className="max-w-[1180px] mx-auto px-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
           {/* LEFT: Image */}
           <motion.div
@@ -43,10 +43,11 @@ export function MomentsSection2() {
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1.1rem, 1.8vw, 1.5rem)',
+                fontSize: 'clamp(0.85rem, 1.8vw, 1.5rem)',
                 color: '#333',
                 fontWeight: 400,
-                lineHeight: 1.9,
+                lineHeight: 1.65,
+                letterSpacing: 0,
               }}
             >
               아이가 가진 내적 자원을 더욱 귀중히 여기고
@@ -55,10 +56,11 @@ export function MomentsSection2() {
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1.1rem, 1.8vw, 1.5rem)',
+                fontSize: 'clamp(0.85rem, 1.8vw, 1.5rem)',
                 color: '#333',
                 fontWeight: 400,
-                lineHeight: 1.9,
+                lineHeight: 1.65,
+                letterSpacing: 0,
               }}
             >
               스스로 느끼고 상상하며 표현하는 가장 인간적인 능력이 상실되지 않도록
@@ -67,10 +69,11 @@ export function MomentsSection2() {
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1.1rem, 1.8vw, 1.5rem)',
+                fontSize: 'clamp(0.85rem, 1.8vw, 1.5rem)',
                 color: '#333',
                 fontWeight: 400,
-                lineHeight: 1.9,
+                lineHeight: 1.65,
+                letterSpacing: 0,
               }}
             >
               먼저 사랑하고
@@ -79,10 +82,11 @@ export function MomentsSection2() {
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1.1rem, 1.8vw, 1.5rem)',
+                fontSize: 'clamp(0.85rem, 1.8vw, 1.5rem)',
                 color: '#2d5016',
                 fontWeight: 600,
-                lineHeight: 1.9,
+                lineHeight: 1.65,
+                letterSpacing: 0,
               }}
             >
               그 다음 가르칩니다.

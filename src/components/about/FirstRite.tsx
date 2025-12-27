@@ -116,8 +116,9 @@ export default function FirstRite() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
                         marginBottom: '20px',
@@ -129,9 +130,11 @@ export default function FirstRite() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
+                        color: '#4A4A4A',
                         marginBottom: '20px',
                       }}
                     >
@@ -140,13 +143,15 @@ export default function FirstRite() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
+                        color: '#4A4A4A',
                         marginBottom: '20px',
                       }}
                     >
-                      아이에게 "예술은 느끼는 것"이라는 첫 메시지를 건네기 때문입니다.
+                      아이에게 <span style={{ color: '#A66A5A' }}>"예술은 느끼는 것"이라는 첫 메시지</span>를 건네기 때문입니다.
                     </p>
                   </motion.div>
                   
@@ -162,8 +167,9 @@ export default function FirstRite() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
                         marginBottom: '20px',
@@ -175,59 +181,63 @@ export default function FirstRite() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
                         marginBottom: '20px',
                       }}
                     >
                       우리는 깨닫습니다.<br />
-                      "세상도 나의 재료가 될 수 있구나."
+                      <span style={{ color: '#A66A5A' }}>"세상도 나의 재료가 될 수 있구나."</span>
                     </p>
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
                         marginBottom: '20px',
                       }}
                     >
-                      질감은 감정을 닮아 있습니다.<br />
-                      엔카우스틱의 표면은 거칠고 매끄럽고, 때로는 겹쳐집니다.<br />
-                      아이의 마음처럼 여러 결을 가진 그대로.<br />
+                      질감은 감정을 닮아 있습니다.<br /><br />
+                      엔카우스틱의 표면은 거칠고 매끄럽고, 때로는 겹쳐집니다.<br /><br />
+                      아이의 마음처럼 여러 결을 가진 그대로.<br /><br />
                       그래서 이 작업은 감정의 언어를 찾는 첫 연습이 됩니다.
                     </p>
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
                         marginBottom: '20px',
                       }}
                     >
-                      녹고, 흐르고, 다시 굳는 밀랍을 보며<br />
-                      아이는 변화의 순간을 두려움 없이 바라봅니다.<br />
+                      녹고, 흐르고, 다시 굳는 밀랍을 보며<br /><br />
+                      아이는 변화의 순간을 두려움 없이 바라봅니다.<br /><br />
                       예술의 시작은 용기와 발견이라는 사실을 배우게 됩니다.
                     </p>
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.8,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                        lineHeight: 1.65,
+                        letterSpacing: 0,
                         fontWeight: 600,
-                        color: '#5a8c4a',
+                        color: '#4A4A4A',
                         marginBottom: '0',
                       }}
                     >
-                      그래서 크레용숲의 첫 의식은 엔카우스틱 회화로 시작됩니다.<br />
-                      이 첫 의식은 아이에게 말합니다.<br />
-                      "너의 감각을 믿어도 돼.<br />
-                      너의 세계를 만들어도 돼."
+                      그래서 크레용숲의 첫 의식은 엔카우스틱 회화로 시작됩니다.<br /><br />
+                      이 첫 의식은 아이에게 말합니다.<br /><br />
+                      <span style={{ color: '#A66A5A' }}>"너의 감각을 믿어도 돼.<br />
+                      너의 세계를 만들어도 돼."</span>
                     </p>
                   </motion.div>
                 </div>
@@ -304,7 +314,7 @@ export default function FirstRite() {
                       }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <div className="p-8 md:p-10 space-y-4">
+                      <div className="py-8 md:py-10 px-10 space-y-4">
                         <div className="mb-4 flex items-center justify-between">
                           <h3 
                             style={{
@@ -320,7 +330,7 @@ export default function FirstRite() {
                           <h3 
                             style={{
                               fontFamily: "'Noto Serif KR', serif",
-                              fontSize: 'clamp(1rem, 2vw, 1rem)',
+                              fontSize: 'clamp(0.85rem, 2vw, 1rem)',
                               fontWeight: 600,
                               color: '#5A8B5A',
                               letterSpacing: '-0.02em',
@@ -334,7 +344,8 @@ export default function FirstRite() {
                           style={{
                             fontFamily: "'Noto Serif KR', serif",
                             fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
-                            lineHeight: 1.7,
+                            lineHeight: 1.65,
+                            letterSpacing: 0,
                             color: '#555',
                           }}
                         >
@@ -344,7 +355,8 @@ export default function FirstRite() {
                           style={{
                             fontFamily: "'Noto Serif KR', serif",
                             fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
-                            lineHeight: 1.7,
+                            lineHeight: 1.65,
+                            letterSpacing: 0,
                             color: '#555',
                           }}
                         >

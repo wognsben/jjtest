@@ -52,8 +52,8 @@ export function AdultArtSection1() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-white py-24 md:py-32 lg:py-40">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+    <section ref={sectionRef} className="relative bg-white pt-[90px] pb-24">
+      <div className="max-w-[1180px] mx-auto px-0">
         {/* Hero Image with Text Overlay */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -155,10 +155,11 @@ export function AdultArtSection1() {
                     className="mb-2"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.75rem, 1.2vw, 0.9rem)',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#A66A5A',
                       fontWeight: 300,
-                      lineHeight: 1.8,
+lineHeight: 1.65,
+              letterSpacing: 0,
                       letterSpacing: '0.05em',
                     }}
                   >
@@ -170,7 +171,7 @@ export function AdultArtSection1() {
                     className="mb-2"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(1rem, 1.8vw, 1.3rem)',
+                      fontSize: 'clamp(0.85rem, 1.8vw, 1.3rem)',
                       color: '#A66A5A',
                       fontWeight: 600,
                       letterSpacing: '-0.01em',
@@ -206,8 +207,8 @@ export function AdultArtSection1() {
 // ADULT ART Section 2: Program Description - Editorial Style
 export function AdultArtSection2() {
   return (
-    <section className="relative bg-white py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+    <section className="relative bg-white pt-[90px] pb-24">
+      <div className="max-w-[1180px] mx-auto px-0">
         {/* Main Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -240,20 +241,21 @@ export function AdultArtSection2() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.95rem, 1.3vw, 1.05rem)',
+              fontSize: 'clamp(0.85rem, 1.3vw, 1.05rem)',
               color: '#666',
               fontWeight: 300,
-              lineHeight: 1.9,
+              lineHeight: 1.65,
+              letterSpacing: 0,
             }}
           >
             어른은 감정을 설명하기보다 적당히 덮어두는 기술이 먼저 늘죠.
-            <br />
+            <br /><br />
             그러다 어느 날, 삶이 톡 건드리기만 해도 결이 우둘투둘 튀어 오릅니다.
-            <br />
+            <br /><br />
             그때 필요한 건 '참아라'가 아니라
-            <br />
+            <br /><br />
             내 마음의 결을 스케치해보는 용기입니다.
-            <br />
+            <br /><br />
             그림은 때로 마음보다 먼저 진실을 말하니까요.
           </p>
         </motion.div>
@@ -272,7 +274,8 @@ export function AdultArtSection2() {
               fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
               color: '#2F6B4F',
               fontWeight: 500,
-              lineHeight: 1.7,
+              lineHeight: 1.65,
+              letterSpacing: 0,
             }}
           >
             "내 삶의 결을 다시 읽고, 나의 세계를 잇는 예술 리추얼입니다"
@@ -311,18 +314,21 @@ export function AdultArtSection2() {
               '해온 역할을 잠시 내려놓고, 자기감각을 회복하고 싶은 여성',
               '하나의 작업이 아니라 자기서사·패턴·결을 탐색해보고 싶은 분',
               '"예술은 어려울까?" 걱정하지만, 마음으로 그리는 경험을 원하시는 분'
-            ].map((item, i) => (
-              <li
-                key={i}
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: '0.95rem',
-                  lineHeight: 2,
-                  color: '#A66A5A',
-                }}
-              >
-                {item}
-              </li>
+            ].map((item, i, arr) => (
+              <React.Fragment key={i}>
+                <li
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: '0.95rem',
+                    lineHeight: 1.65,
+                    letterSpacing: 0,
+                    color: '#A66A5A',
+                  }}
+                >
+                  {item}
+                </li>
+                {i < arr.length - 1 && <><br /><br /></>}
+              </React.Fragment>
             ))}
           </ul>
           <div className="flex justify-end mt-8">

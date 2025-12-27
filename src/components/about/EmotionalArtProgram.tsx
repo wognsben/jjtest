@@ -62,7 +62,7 @@ export default function EmotionalArtProgram() {
             <p 
               className="text-brown-700 leading-relaxed max-w-6xl"
               style={{
-                fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
+                fontSize: 'clamp(0.85rem, 1.5vw, 1.1rem)',
               }}
             >
               <span style={{ color: '#bb8162', fontWeight: 600 }}>감각 기반 미술기법</span>과{' '}
@@ -303,7 +303,7 @@ export default function EmotionalArtProgram() {
                           className="text-xs md:text-sm leading-relaxed w-full"
                           style={{ 
                             color: '#555',
-                            lineHeight: '1.65',
+                            lineHeight: '1.4',
                             whiteSpace: 'pre-line',
                           }}
                         >

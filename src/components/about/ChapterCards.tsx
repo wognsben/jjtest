@@ -185,7 +185,8 @@ function ChapterCard({ number, title, subtitle, description, color, gradient, ta
               fontFamily: "'Noto Serif KR', serif",
               fontSize: 'clamp(1rem, 1.6vw, 1.125rem)',
               fontWeight: 300,
-              lineHeight: 1.85,
+              lineHeight: 1.65,
+              letterSpacing: 0,
               color: '#666666',
             }}
           >
@@ -204,7 +205,7 @@ function ChapterCard({ number, title, subtitle, description, color, gradient, ta
             <span 
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: '12px',
+                fontSize: 'clamp(0.8rem, 1.2vw, 0.9rem)',
                 fontWeight: 700,
                 letterSpacing: '0.15em',
                 textTransform: 'uppercase',
@@ -305,7 +306,8 @@ export default function ChapterCards() {
               fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
               fontWeight: 300,
               color: '#666666',
-              lineHeight: 1.85,
+              lineHeight: 1.65,
+              letterSpacing: 0,
             }}
           >
             크레용숲의 이야기를 세 개의 챕터로 펼쳐봅니다
