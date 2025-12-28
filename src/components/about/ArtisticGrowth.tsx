@@ -53,8 +53,8 @@ export default function ArtisticGrowth() {
           {/* 시각적 스택 컨테이너 */}
           <div className="growth-stack">
             
-            {/* 상단 숲 블롭들 - 연령 단계별 타이밍 */}
-            <div className="forest-row">
+          {/* 상단 숲 블롭들 - 연령 단계별 타이밍 */}
+          <div className="forest-row">
             {forests.map((forest, index) => (
               <motion.div
                 key={forest.id}

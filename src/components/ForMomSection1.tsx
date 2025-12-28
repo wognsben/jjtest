@@ -1,11 +1,199 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
+import { getImagePath } from '../utils/imageUtils';
 
 // FOR MOM Section 1: 엄마를 위한 예술 시간
 export function ForMomSection1() {
+  const outerRingRef = useRef<SVGCircleElement>(null);
+  const innerRingRef = useRef<SVGCircleElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (outerRingRef.current) {
+              const circumference = 2 * Math.PI * 138;
+              outerRingRef.current.style.strokeDasharray = `${circumference}`;
+              outerRingRef.current.style.strokeDashoffset = '0';
+            }
+            if (innerRingRef.current) {
+              const circumference = 2 * Math.PI * 126;
+              innerRingRef.current.style.strokeDasharray = `${circumference}`;
+              innerRingRef.current.style.strokeDashoffset = `${circumference * 0.08}`;
+            }
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    const section = document.querySelector('.for-mom-hero');
+    if (section) observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="relative bg-white pt-[90px] pb-24">
       <div className="max-w-[1180px] mx-auto px-0">
+        {/* Hero Image with Text Overlay */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mb-32 rounded-3xl overflow-hidden for-mom-hero"
+          style={{
+            boxShadow: '0 30px 80px rgba(0,0,0,0.12), 0 15px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04)'
+          }}
+        >
+          {/* Main Image */}
+          <div className="relative aspect-[16/9] md:aspect-[21/9]">
+            <img 
+              src={getImagePath("/assets/program/child/child sec.jpg")}
+              alt="크레용숲 예술리추얼"
+              className="w-full h-full object-cover"
+              style={{ 
+                transform: 'scaleX(-1)',
+                filter: 'sepia(15%) saturate(110%) brightness(98%)',
+              }}
+              onError={(e) => {
+                const src = e.currentTarget.src;
+                if (src.endsWith('.jpg')) {
+                  e.currentTarget.src = getImagePath('/assets/program/child/child sec.JPG');
+                } else if (src.endsWith('.JPG')) {
+                  e.currentTarget.src = getImagePath('/assets/program/child/child sec.png');
+                }
+              }}
+            />
+            
+            {/* Subtle Overlay for Differentiation */}
+            <div 
+              className="absolute inset-0"
+              style={{
+                background: 'linear-gradient(135deg, rgba(250, 223, 219, 0.15) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(250, 223, 219, 0.1) 100%)',
+                mixBlendMode: 'multiply',
+              }}
+            />
+            
+            {/* Blob + Ring Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="relative flex items-center justify-center w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+                {/* SVG Rings + Blob */}
+                <svg 
+                  viewBox="0 0 300 300" 
+                  className="absolute inset-0 w-full h-full"
+                  style={{ opacity: 0.95 }}
+                >
+                  <defs>
+                    <filter id="blobGrainForMom">
+                      <feTurbulence 
+                        type="fractalNoise" 
+                        baseFrequency="0.015" 
+                        numOctaves="2" 
+                        seed="9"
+                        result="noise"
+                      />
+                      <feDisplacementMap in="SourceGraphic" scale="8" />
+                    </filter>
+                  </defs>
+                  
+                  {/* Blob Shape - Different shape for differentiation */}
+                  <g transform="translate(150, 150) scale(1.2) translate(-135, -125)">
+                    <path
+                      d="M60,80 C30,110 25,190 100,210 C175,230 250,180 240,110 C230,50 150,20 90,40 C70,50 60,60 60,80 Z"
+                      fill="#FADFDB"
+                      filter="url(#blobGrainForMom)"
+                      stroke="#A66A5A"
+                      strokeWidth="1.5"
+                      strokeOpacity="0.25"
+                    />
+                  </g>
+                  
+                  {/* Outer Ring */}
+                  <circle
+                    ref={outerRingRef}
+                    cx="150"
+                    cy="150"
+                    r="138"
+                    fill="none"
+                    stroke="#A66A5A"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    style={{
+                      transform: 'rotate(180deg)',
+                      transformOrigin: '50% 50%',
+                    }}
+                  />
+                  
+                  {/* Inner Ring */}
+                  <circle
+                    ref={innerRingRef}
+                    cx="150"
+                    cy="150"
+                    r="126"
+                    fill="none"
+                    stroke="#A66A5A"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    style={{
+                      transform: 'rotate(180deg)',
+                      transformOrigin: '50% 50%',
+                    }}
+                  />
+                </svg>
+                
+                {/* Center Text */}
+                <div className="relative z-10 text-center px-8">
+                  <p 
+                    className="mb-2"
+                    style={{
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+                      color: '#A66A5A',
+                      fontWeight: 300,
+                      lineHeight: 1.5,
+                      letterSpacing: '0.05em',
+                    }}
+                  >
+                    감각을 회복하고, 삶의 결을 다시 잇는
+                    <br />
+                    어른의 감정의 숲
+                  </p>
+                  <h2 
+                    className="mb-2"
+                    style={{
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: 'clamp(0.85rem, 1.8vw, 1.3rem)',
+                      color: '#A66A5A',
+                      fontWeight: 600,
+                      letterSpacing: '-0.01em',
+                    }}
+                  >
+                    크레용숲 예술리추얼
+                  </h2>
+                  <p 
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: 'clamp(1.5rem, 2.5vw, 2.2rem)',
+                      color: '#A66A5A',
+                      fontWeight: 300,
+                      letterSpacing: '0.15em',
+                      fontStyle: 'italic',
+                    }}
+                  >
+                    FOR MOM
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-32" />
+
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

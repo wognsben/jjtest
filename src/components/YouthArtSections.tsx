@@ -240,7 +240,7 @@ export function YouthArtSection2() {
               transition={{ duration: 0.6, delay: 0.1 + i * 0.1 }}
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.85rem, 2.2vw, 1.6rem)',
+                fontSize: 'clamp(0.85rem, 2.2vw, 1rem)',
                 color: '#333',
                 fontWeight: 400,
                 lineHeight: 1.5,
@@ -263,7 +263,7 @@ export function YouthArtSection2() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 1.3vw, 1.05rem)',
+              fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
               color: '#666',
               fontWeight: 300,
               lineHeight: 1.5,
@@ -330,7 +330,7 @@ export function YouthArtSection2() {
                 <li 
                   style={{ 
                     fontFamily: "'Noto Serif KR', serif", 
-                    fontSize: '0.95rem', 
+                    fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)', 
                     lineHeight: 1.5,
                     letterSpacing: 0, 
                     color: '#A66A5A' 
@@ -338,7 +338,7 @@ export function YouthArtSection2() {
                 >
                   {item}
                 </li>
-                {i < targetList.length - 1 && <><br /><br /></>}
+                {i < targetList.length - 1 && <br />}
               </React.Fragment>
             ))}
           </ul>
@@ -403,23 +403,23 @@ export function YouthArtSection3() {
     {
       num: '2nd',
       name: 'Surface Room',
-      subtitle: '감정의 표면',
-      quote: '"내면의 물결을 보다"',
-      items: ['감정의 층과 색', '심리 텍스처 표현', '표면과 깊이의 시각화'],
+      subtitle: '감정이 스치는 표면의 세계',
+      quote: '',
+      items: ['질감 탐구', '벽·돌·나무 표면 실험', '그림자 드로잉', 'Emotion Layer 연구'],
     },
     {
       num: '3rd',
       name: 'Memory Room',
-      subtitle: '상징의 기억',
-      quote: '"의미를 새기다"',
-      items: ['기억의 색 아카이브', '상징 언어 만들기', '개인 신화 디자인'],
+      subtitle: '"색과 기억의 시간성"',
+      quote: '',
+      items: ['Color Biography', '싫어하는 색 화해하기', '시그니처 컬러 만들기'],
     },
     {
       num: '4th',
       name: 'Self Room',
-      subtitle: '나의 세계',
-      quote: '"철학을 완성하다"',
-      items: ['자기 철학 선언문', '나만의 미술관 설계', '최종 포트폴리오'],
+      subtitle: '"나의 세계관을 구축하는 시간"',
+      quote: '',
+      items: ['결 패턴 연구', '나의 문양 만들기', "'나의 색 선언문' 전시"],
     },
   ];
 
@@ -861,7 +861,7 @@ export function YouthArtSection3() {
                         fontWeight: 400,
                       }}
                     >
-                      {room.subtitle} — {room.quote}
+                      {room.subtitle}{room.quote ? ` — ${room.quote}` : ''}
                     </p>
                     
                     <ul className="space-y-1.5 mt-4">

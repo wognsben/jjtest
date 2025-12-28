@@ -95,7 +95,7 @@ export function ChildArtSection2() {
           transition={{ duration: 0.6, delay: 0.3 }}
           style={{
             fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.2rem, 2vw, 1rem)',
+              fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
             color: '#2F6B4F',
             fontWeight: 500,
             lineHeight: 1.5,
@@ -149,13 +149,13 @@ export function ChildArtSection2() {
             }}
           >
             <li>선·색·형태에 호기심이 많고 손으로 탐색하는 걸 좋아하는 아이</li>
-            <br /><br />
+            <br />
             <li>감정표현이 서툴지만, 말 대신 그림에서 마음이 잘 드러나는 아이</li>
-            <br /><br />
+            <br />
             <li>'잘 그리기'보다 자기 속도로 탐색하는 경험이 필요한 아이</li>
-            <br /><br />
+            <br />
             <li>정서 조절·감각 자극·표현력 성장을 균형 있게 경험하고 싶은 아이</li>
-            <br /><br />
+            <br />
             <li>자기만의 비밀 세계를 만드는 걸 좋아하는 아이</li>
           </ul>
         </motion.div>
@@ -417,7 +417,7 @@ export function ChildArtSection4() {
         >
           {/* Background Image */}
           <img
-            src={getImagePath("/assets/about/crayon forest/crayon forest.png")}
+            src={getImagePath("/assets/program/child/now we change the question.png")}
             alt="크레용숲 어린이 작품"
             className="w-full h-auto"
             style={{
@@ -428,13 +428,13 @@ export function ChildArtSection4() {
               console.error('Image load error:', e.currentTarget.src);
               const src = e.currentTarget.src;
               if (src.endsWith('.png')) {
-                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.jpg');
-              } else if (src.endsWith('.jpg')) {
-                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.PNG');
+                e.currentTarget.src = getImagePath('/assets/program/child/now we change the question.PNG');
               } else if (src.endsWith('.PNG')) {
-                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.JPG');
+                e.currentTarget.src = getImagePath('/assets/program/child/now we change the question.jpg');
+              } else if (src.endsWith('.jpg')) {
+                e.currentTarget.src = getImagePath('/assets/program/child/now we change the question.JPG');
               } else {
-                e.currentTarget.src = getImagePath('/assets/about/crayon forest/crayon forest.png');
+                e.currentTarget.src = getImagePath('/assets/program/child/now we change the question.png');
               }
             }}
           />
@@ -560,9 +560,10 @@ export function ChildArtSection5() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative mb-24 rounded-3xl overflow-hidden min-h-[350px] md:min-h-[300px]"
+          className="relative mb-24 rounded-3xl overflow-hidden"
           style={{
             boxShadow: '0 20px 60px rgba(47, 107, 79, 0.1)',
+            maxHeight: '280px',
           }}
         >
           {/* Background Image */}

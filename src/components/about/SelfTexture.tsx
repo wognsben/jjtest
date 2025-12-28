@@ -25,9 +25,11 @@ export default function SelfTexture() {
     // Set canvas size
     const updateCanvasSize = () => {
       const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * window.devicePixelRatio;
-      canvas.height = rect.height * window.devicePixelRatio;
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      if (rect.width > 0 && rect.height > 0) {
+        canvas.width = rect.width * window.devicePixelRatio;
+        canvas.height = rect.height * window.devicePixelRatio;
+        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      }
     };
     
     updateCanvasSize();
@@ -40,6 +42,11 @@ export default function SelfTexture() {
     const drawNoise = () => {
       const w = canvas.width / window.devicePixelRatio;
       const h = canvas.height / window.devicePixelRatio;
+      
+      // Check if dimensions are valid
+      if (w <= 0 || h <= 0 || !isFinite(w) || !isFinite(h)) {
+        return;
+      }
       
       // Very subtle noise
       const imageData = ctx.createImageData(w, h);
@@ -87,7 +94,7 @@ export default function SelfTexture() {
     <section className="relative py-24 md:py-32 lg:py-40 px-6 md:px-12 lg:px-24 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* 2 Column Layout: Text LEFT, Illustration RIGHT */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
           {/* LEFT: Text Content */}
           <div className="space-y-8">
@@ -219,7 +226,7 @@ export default function SelfTexture() {
             }}
             className="relative flex items-center justify-center lg:justify-end"
           >
-            <div className="relative w-full max-w-md aspect-[3/4] rounded-3xl overflow-hidden">
+            <div className="relative w-full max-w-lg min-h-[500px] rounded-3xl overflow-hidden">
               
               {/* Layer 1: Canvas depth/noise (프리미엄 효과) */}
               <canvas
@@ -235,21 +242,21 @@ export default function SelfTexture() {
               >
                 <div className="w-full h-full rounded-3xl overflow-hidden bg-[#FAF7F3]">
                   <img
-                    src={getImagePath("/assets/about/selftexture/selftexture.jpg")}
+                    src={getImagePath("/assets/about/selftexture/selftexturefe.png")}
                     alt="자기결"
-                    className="w-full h-full object-cover rounded-3xl"
+                    className="w-full h-full object-contain rounded-3xl"
                     style={{
                       filter: 'contrast(0.98) saturate(1.05)',
                     }}
                   onError={(e) => {
                     console.error('Image load error:', e.currentTarget.src);
                     const src = e.currentTarget.src;
-                    if (src.endsWith('.jpg')) {
-                      e.currentTarget.src = getImagePath('/assets/about/selftexture/selftexture.png');
-                    } else if (src.endsWith('.png')) {
-                      e.currentTarget.src = getImagePath('/assets/about/selftexture/selftexture.PNG');
-                    } else {
+                    if (src.endsWith('.png')) {
+                      e.currentTarget.src = getImagePath('/assets/about/selftexture/selftexturefe.PNG');
+                    } else if (src.endsWith('.PNG')) {
                       e.currentTarget.src = getImagePath('/assets/about/selftexture/selftexture.jpg');
+                    } else {
+                      e.currentTarget.src = getImagePath('/assets/about/selftexture/selftexturefe.png');
                     }
                   }}
                   />

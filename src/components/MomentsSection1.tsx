@@ -71,9 +71,11 @@ export function MomentsSection1() {
 
     const track = trackRef.current;
     const cardWidth = 280 + 16; // 카드 너비 + gap
+    const maxIndex = reviewImages.length - 1;
+    const clampedIndex = Math.min(currentIndex, maxIndex);
     
     gsap.to(track, {
-      x: -currentIndex * cardWidth,
+      x: -clampedIndex * cardWidth,
       duration: 0.6,
       ease: 'power2.out',
     });
@@ -85,9 +87,11 @@ export function MomentsSection1() {
 
     const track = containerRef.current;
     const cardWidth = 240 + 16; // 카드 너비 + gap
+    const maxIndex = reviewImages.length - 1;
+    const clampedIndex = Math.min(currentIndex, maxIndex);
     
     gsap.to(track, {
-      x: -currentIndex * cardWidth,
+      x: -clampedIndex * cardWidth,
       duration: 0.6,
       ease: 'power2.out',
     });
@@ -284,18 +288,6 @@ export function MomentsSection1() {
           {/* Desktop: Infinite Scroll */}
           {!isMobile && (
             <>
-              {/* Left Mask */}
-              <div
-                className="pointer-events-none absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-pink-50/60 to-transparent z-20"
-                style={{ backgroundColor: 'rgba(250, 240, 242, 0.96)' }}
-              />
-
-              {/* Right Mask */}
-              <div
-                className="pointer-events-none absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-pink-50/60 to-transparent z-20"
-                style={{ backgroundColor: 'rgba(250, 240, 242, 0.96)' }}
-              />
-
               {/* Track Wrapper */}
               <div className="overflow-hidden">
                 <div

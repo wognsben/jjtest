@@ -241,7 +241,7 @@ export function AdultArtSection2() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 1.3vw, 1.05rem)',
+              fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
               color: '#666',
               fontWeight: 300,
               lineHeight: 1.5,
@@ -298,7 +298,7 @@ export function AdultArtSection2() {
           <span
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: '1rem',
+              fontSize: '0.85rem',
               fontWeight: 600,
               color: '#2F6B4F',
               marginBottom: '1.5rem',
@@ -319,7 +319,7 @@ export function AdultArtSection2() {
                 <li
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: '0.95rem',
+                    fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
                     lineHeight: 1.5,
                     letterSpacing: 0,
                     color: '#A66A5A',
@@ -327,7 +327,7 @@ export function AdultArtSection2() {
                 >
                   {item}
                 </li>
-                {i < arr.length - 1 && <><br /><br /></>}
+                {i < arr.length - 1 && <br />}
               </React.Fragment>
             ))}
           </ul>

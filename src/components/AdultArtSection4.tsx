@@ -73,7 +73,7 @@ export function AdultArtSection4() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.87rem, 1.15vw, 1.05rem)',
+              fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
               color: '#333',
               fontWeight: 300,
               lineHeight: 1.5,
@@ -81,19 +81,19 @@ export function AdultArtSection4() {
             }}
           >
             엄마는 아이의 감정을 가장 가까이에서 바라보는 사람입니다.
-            <br />
+            <br /><br />
             가장 마지막으로 자기 마음을 돌보는 사람이기도 하지요.
-            <br />
+            <br /><br />
             엄마 자신의 마음에 물을 주고, 숨을 고르고,
-            <br />
+            <br /><br />
             다시 감각을 되찾는 시간입니다.
-            <br />
+            <br /><br />
             색으로 지금의 마음을 살피고, 선으로 쌓인 감정을 천천히 풀어내며,
-            <br />
+            <br /><br />
             그림과 기록을 통해 <span style={{ fontWeight: 500 }}>"나는 지금 어떤 상태일까?"</span>를 스스로 묻습니다.
-            <br />
+            <br /><br />
             가정의 정서는 그렇게, 조용히 다시 순환하기 시작합니다.
-            <br />
+            <br /><br />
             완벽한 엄마가 되기보다는 대신 엄마가 자기 마음과 다시 연결되는 길을 함께 걷습니다.
           </p>
         </motion.div>
@@ -114,7 +114,7 @@ export function AdultArtSection4() {
           <span
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: '1rem',
+              fontSize: '0.85rem',
               fontWeight: 600,
               color: '#2F6B4F',
               marginBottom: '1.5rem',
@@ -128,19 +128,21 @@ export function AdultArtSection4() {
               '무언가를 더 배우기보다 잠시 내려놓고 싶은 엄마',
               '엄마라는 역할 뒤에 가려진 나를 다시 느끼고 싶은 사람',
               '지금 당장 아웃풋은 없어도 삶이 조금 더 아름다워지길 바라는 사람'
-            ].map((item, i) => (
-              <li
-                key={i}
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: '0.95rem',
-                  lineHeight: 1.5,
-                  letterSpacing: 0,
-                  color: '#A66A5A',
-                }}
-              >
-                {item}
-              </li>
+            ].map((item, i, arr) => (
+              <React.Fragment key={i}>
+                <li
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
+                    lineHeight: 1.5,
+                    letterSpacing: 0,
+                    color: '#A66A5A',
+                  }}
+                >
+                  {item}
+                </li>
+                {i < arr.length - 1 && <br />}
+              </React.Fragment>
             ))}
           </ul>
         </motion.div>
@@ -193,6 +195,7 @@ export function AdultArtSection4() {
 
         {/* Divider */}
         <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-32" />
+        </div>
       </div>
     </section>
   );

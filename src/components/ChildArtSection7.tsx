@@ -224,7 +224,7 @@ export function ChildArtSection7() {
         
         .month-line {
           font-family: 'Noto Serif KR', serif;
-          font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+          font-size: clamp(0.85rem, 1.3vw, 0.85rem);
           color: #6F8F7A;
           font-weight: 500;
           line-height: 1.6;
@@ -233,7 +233,7 @@ export function ChildArtSection7() {
         
         .desc-line {
           font-family: 'Noto Serif KR', serif;
-          font-size: clamp(0.85rem, 1.1vw, 0.9rem);
+          font-size: clamp(0.85rem, 1.1vw, 0.85rem);
           color: #888;
           font-weight: 300;
           line-height: 1.7;
@@ -498,10 +498,9 @@ export function ChildArtSection7() {
                   {semester1.map((item, idx) => (
                     <div key={idx}>
                       <p className="month-line">
-                        {item.month} · {item.title}
+                        {item.month} · {item.title} {item.quote}
                       </p>
                       <p className="desc-line">
-                        {item.quote}<br />
                         {item.desc}
                       </p>
                     </div>
@@ -567,10 +566,9 @@ export function ChildArtSection7() {
                   {semester2.map((item, idx) => (
                     <div key={idx}>
                       <p className="month-line">
-                        {item.month} · {item.title}
+                        {item.month} · {item.title} {item.quote}
                       </p>
                       <p className="desc-line">
-                        {item.quote}<br />
                         {item.desc}
                       </p>
                     </div>
