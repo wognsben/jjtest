@@ -102,7 +102,7 @@ export function AdultArtSection3() {
                   fontSize: 'clamp(0.85rem, 1.1vw, 0.85rem)',
                   color: '#333',
                   fontWeight: 400,
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                 }}
               >
@@ -233,7 +233,7 @@ export function AdultArtSection3() {
                         fontSize: 'clamp(0.95rem, 1.2vw, 1.05rem)',
                         color: '#555',
                         fontWeight: 300,
-                        lineHeight: 1.65,
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                       }}
                     >
@@ -259,7 +259,7 @@ export function AdultArtSection3() {
                   fontSize: 'clamp(0.85rem, 1.1vw, 0.85rem)',
                   color: '#A66A5A',
                   fontWeight: 300,
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                   letterSpacing: '0.01em',
                 }}

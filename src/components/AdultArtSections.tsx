@@ -158,7 +158,7 @@ export function AdultArtSection1() {
                       fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#A66A5A',
                       fontWeight: 300,
-lineHeight: 1.65,
+lineHeight: 1.5,
               letterSpacing: 0,
                       letterSpacing: '0.05em',
                     }}
@@ -244,7 +244,7 @@ export function AdultArtSection2() {
               fontSize: 'clamp(0.85rem, 1.3vw, 1.05rem)',
               color: '#666',
               fontWeight: 300,
-              lineHeight: 1.65,
+              lineHeight: 1.5,
               letterSpacing: 0,
             }}
           >
@@ -274,7 +274,7 @@ export function AdultArtSection2() {
               fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
               color: '#2F6B4F',
               fontWeight: 500,
-              lineHeight: 1.65,
+              lineHeight: 1.5,
               letterSpacing: 0,
             }}
           >
@@ -320,7 +320,7 @@ export function AdultArtSection2() {
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
                     fontSize: '0.95rem',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                     color: '#A66A5A',
                   }}

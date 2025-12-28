@@ -379,7 +379,7 @@ export default function GrowthNew() {
             style={{ 
               fontFamily: "'Noto Serif KR', serif",
               fontSize: 'clamp(0.85rem, 3.4vw, 1.05rem)',
-lineHeight: 1.65,
+lineHeight: 1.5,
                 letterSpacing: 0,
               maxWidth: '32em',
               textAlign: 'left'
@@ -396,7 +396,7 @@ lineHeight: 1.65,
               style={{ 
                 color: '#8B6F47',
                 fontSize: 'clamp(0.85rem, 3.4vw, 1.05rem)',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 maxWidth: '34em',
                 textAlign: 'left'
@@ -408,7 +408,7 @@ lineHeight: 1.65,
               className="text-sm md:text-lg leading-relaxed"
               style={{
                 fontSize: 'clamp(0.85rem, 3.4vw, 1.05rem)',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 maxWidth: '34em',
                 textAlign: 'left'

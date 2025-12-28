@@ -325,7 +325,7 @@ export default function Founder() {
                 className="mb-10"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 3.5vw, 2.5rem)',
+                  fontSize: 'clamp(0.85rem, 3.5vw, 1.4rem)',
                   color: '#bb8162',
                   fontWeight: 600,
                   lineHeight: 1.4,
@@ -345,9 +345,9 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -363,9 +363,9 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -382,9 +382,9 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -399,9 +399,9 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -417,9 +417,9 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -434,9 +434,9 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -453,9 +453,9 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -471,9 +471,9 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -498,7 +498,7 @@ export default function Founder() {
                     <p
                       style={{
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+                        fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
                         color: '#8FBC88',
                         lineHeight: '1.6',
                         letterSpacing: '0',
@@ -510,7 +510,7 @@ export default function Founder() {
                     <p
                       style={{
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+                        fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
                         color: '#8FBC88',
                         lineHeight: '1.6',
                         letterSpacing: '0',
@@ -522,7 +522,7 @@ export default function Founder() {
                     <p
                       style={{
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+                        fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
                         color: '#8FBC88',
                         lineHeight: '1.6',
                         letterSpacing: '0',
@@ -542,9 +542,9 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -559,9 +559,9 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -576,9 +576,9 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -594,9 +594,9 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -611,9 +611,9 @@ export default function Founder() {
                   className="leading-loose"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -628,7 +628,7 @@ export default function Founder() {
                   className="leading-loose pt-6"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#4A4A4A',
                     lineHeight: '1.6',
                     letterSpacing: '0',
@@ -756,7 +756,7 @@ export default function Founder() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+                    fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
                     color: '#8FBC88',
                     fontWeight: 500,
                     lineHeight: '1.6',
@@ -789,7 +789,7 @@ export default function Founder() {
                     className="mb-4"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
                       color: '#A67C52',
                       fontWeight: 600,
                     }}
@@ -812,7 +812,7 @@ export default function Founder() {
                         transition={{ duration: 0.4, delay: 1.0 + index * 0.05 }}
                         style={{
                           fontFamily: "'Noto Serif KR', serif",
-                          fontSize: 'clamp(0.9rem, 1.6vw, 1rem)',
+                          fontSize: 'clamp(0.9rem, 1.6vw, 0.85rem)',
                           color: '#6B5C4F',
                           lineHeight: '1.6',
                         letterSpacing: '0',
@@ -830,7 +830,7 @@ export default function Founder() {
                     className="mb-4"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
                       color: '#A67C52',
                       fontWeight: 600,
                     }}
@@ -850,7 +850,7 @@ export default function Founder() {
                         transition={{ duration: 0.5, delay: 1.1 + index * 0.05, ease: [0.16, 1, 0.3, 1] }}
                         style={{
                           fontFamily: "'Noto Sans KR', sans-serif",
-                          fontSize: 'clamp(0.9rem, 1.6vw, 1rem)',
+                          fontSize: 'clamp(0.9rem, 1.6vw, 0.85rem)',
                           color: '#6B5C4F',
                           lineHeight: '1.6',
                         letterSpacing: '0',
@@ -894,9 +894,9 @@ export default function Founder() {
                   >
                     Instagram
                   </a>
-                  
+
                   <a
-                    href="https://brunch.co.kr/@jsm925"
+                    href="https://blog.naver.com/art_and_forrest"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-[#4A4A4A] transition-colors duration-300"
@@ -909,7 +909,7 @@ export default function Founder() {
                       textDecoration: 'none',
                     }}
                   >
-                    Brunch
+                    Blog
                   </a>
                   
                   <a
@@ -927,23 +927,6 @@ export default function Founder() {
                     }}
                   >
                     베이비뉴스
-                  </a>
-
-                  <a
-                    href="https://blog.naver.com/art_and_forrest"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-[#4A4A4A] transition-colors duration-300"
-                    style={{
-                      fontFamily: "'Noto Sans KR', sans-serif",
-                      fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
-                      fontWeight: 300,
-                      letterSpacing: '-0.01em',
-                      color: '#8B8B8B',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    Blog
                   </a>
                 </div>
               </div>

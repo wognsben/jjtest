@@ -133,7 +133,7 @@ export default function SelfTexture() {
                 className="text-brown-800 md:text-xl leading-relaxed"
                 style={{ 
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 1.25rem)'
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
                 }}
               >
                 결을 아는 아이는
@@ -143,7 +143,7 @@ export default function SelfTexture() {
                 className="text-brown-800 md:text-xl leading-relaxed"
                 style={{ 
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 1.25rem)'
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
                 }}
               >
                 자기가 누구인지 알고,
@@ -153,7 +153,7 @@ export default function SelfTexture() {
                 className="text-brown-800 md:text-xl leading-relaxed"
                 style={{ 
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 1.25rem)'
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
                 }}
               >
                 <span className="self-texture-highlight">자기가 원하는 삶을 선택할 수 있는 아이입니다.</span>
@@ -161,31 +161,43 @@ export default function SelfTexture() {
               
               <div className="space-y-4 pt-4">
                 <p 
-                  className="text-brown-800 text-lg md:text-xl leading-relaxed"
-                  style={{ fontFamily: "'Noto Serif KR', serif" }}
+                  className="text-brown-800 leading-relaxed"
+                  style={{ 
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
+                  }}
                 >
                   친구에게 다정할 수 있는{' '}
                   <span className="text-accent-green font-semibold">감정 이해력</span>,
                 </p>
                 
                 <p 
-                  className="text-brown-800 text-lg md:text-xl leading-relaxed"
-                  style={{ fontFamily: "'Noto Serif KR', serif" }}
+                  className="text-brown-800 leading-relaxed"
+                  style={{ 
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
+                  }}
                 >
                   자연과 타인을 배려하는{' '}
                   <span className="text-accent-green font-semibold">감각 민감성</span>,
                 </p>
                 
                 <p 
-                  className="text-brown-800 text-lg md:text-xl leading-relaxed"
-                  style={{ fontFamily: "'Noto Serif KR', serif" }}
+                  className="text-brown-800 leading-relaxed"
+                  style={{ 
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
+                  }}
                 >
                   스스로 선택하고 행동할 수 있는
                 </p>
                 
                 <p 
-                  className="text-brown-800 text-lg md:text-xl leading-relaxed"
-                  style={{ fontFamily: "'Noto Serif KR', serif" }}
+                  className="text-brown-800 leading-relaxed"
+                  style={{ 
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
+                  }}
                 >
                   <span className="text-accent-green font-semibold">자기결(自己結)</span>을 기릅니다
                 </p>

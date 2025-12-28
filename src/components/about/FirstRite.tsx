@@ -86,7 +86,7 @@ export default function FirstRite() {
                     <h2 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)',
+                        fontSize: 'clamp(1.75rem, 3.5vw, 1.8rem)',
                         lineHeight: 1.3,
                         fontWeight: 600,
                         color: '#4A4A4A',
@@ -116,8 +116,8 @@ export default function FirstRite() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
@@ -130,8 +130,8 @@ export default function FirstRite() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
@@ -143,8 +143,8 @@ export default function FirstRite() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
@@ -167,8 +167,8 @@ export default function FirstRite() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
@@ -181,8 +181,8 @@ export default function FirstRite() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
@@ -195,8 +195,8 @@ export default function FirstRite() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
@@ -211,8 +211,8 @@ export default function FirstRite() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
@@ -226,8 +226,8 @@ export default function FirstRite() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 600,
                         color: '#4A4A4A',
@@ -330,7 +330,7 @@ export default function FirstRite() {
                           <h3 
                             style={{
                               fontFamily: "'Noto Serif KR', serif",
-                              fontSize: 'clamp(0.85rem, 2vw, 1rem)',
+                              fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
                               fontWeight: 600,
                               color: '#5A8B5A',
                               letterSpacing: '-0.02em',
@@ -343,8 +343,8 @@ export default function FirstRite() {
                         <p 
                           style={{
                             fontFamily: "'Noto Serif KR', serif",
-                            fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
-                            lineHeight: 1.65,
+                            fontSize: 'clamp(0.7rem, 1.5vw, 0.75rem)',
+                            lineHeight: 1.5,
                             letterSpacing: 0,
                             color: '#555',
                           }}
@@ -354,8 +354,8 @@ export default function FirstRite() {
                         <p 
                           style={{
                             fontFamily: "'Noto Serif KR', serif",
-                            fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
-                            lineHeight: 1.65,
+                            fontSize: 'clamp(0.9rem, 1.5vw, 0.85rem)',
+                            lineHeight: 1.5,
                             letterSpacing: 0,
                             color: '#555',
                           }}

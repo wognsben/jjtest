@@ -102,8 +102,8 @@ export default function WhatIsEmotionalArt() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
@@ -165,7 +165,7 @@ export default function WhatIsEmotionalArt() {
                         style={{ 
                           fontFamily: "'Noto Serif KR', serif",
                           fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
-                          lineHeight: 1.65,
+                          lineHeight: 1.5,
                           letterSpacing: 0,
                           fontWeight: 400,
                           color: '#4A4A4A',
@@ -178,8 +178,8 @@ export default function WhatIsEmotionalArt() {
                         <p 
                           style={{ 
                             fontFamily: "'Noto Serif KR', serif",
-                            fontSize: 'clamp(0.75rem, 1.5vw, 1rem)',
-                            lineHeight: 1.65,
+                            fontSize: 'clamp(0.75rem, 1.5vw, 0.85rem)',
+                            lineHeight: 1.5,
                             color: '#666',
                           }}
                         >
@@ -188,8 +188,8 @@ export default function WhatIsEmotionalArt() {
                         <p 
                           style={{ 
                             fontFamily: "'Noto Serif KR', serif",
-                            fontSize: 'clamp(0.75rem, 1.5vw, 1rem)',
-                            lineHeight: 1.65,
+                            fontSize: 'clamp(0.75rem, 1.5vw, 0.85rem)',
+                            lineHeight: 1.5,
                             color: '#666',
                           }}
                         >
@@ -198,8 +198,8 @@ export default function WhatIsEmotionalArt() {
                         <p 
                           style={{ 
                             fontFamily: "'Noto Serif KR', serif",
-                            fontSize: 'clamp(0.75rem, 1.5vw, 1rem)',
-                            lineHeight: 1.65,
+                            fontSize: 'clamp(0.75rem, 1.5vw, 0.85rem)',
+                            lineHeight: 1.5,
                             color: '#666',
                           }}
                         >

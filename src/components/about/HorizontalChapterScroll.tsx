@@ -175,7 +175,7 @@ function HorizontalChapterCard({ number, title, subtitle, description, color, gr
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                 fontWeight: 600,
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 color: '#666666',
                 display: '-webkit-box',
                 WebkitLineClamp: 2,
@@ -309,15 +309,14 @@ export default function HorizontalChapterScroll() {
               className="max-w-2xl"
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
+                fontSize: 'clamp(1rem, 1.8vw, 0.85rem)',
                 fontWeight: 300,
                 color: '#666666',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
               }}
             >
               크레용숲의 이야기를 세 개의 챕터로 펼쳐봅니다.
-              <span className="hidden md:inline"><br />가로로 스크롤하며 각 챕터를 탐험해보세요.</span>
             </p>
           </div>
         </motion.div>

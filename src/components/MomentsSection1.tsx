@@ -126,7 +126,7 @@ export function MomentsSection1() {
                 fontSize: 'clamp(0.94rem, 1.2vw, 1.1rem)',
                 color: '#8B7355',
                 fontWeight: 300,
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
               }}
             >
@@ -138,7 +138,7 @@ export function MomentsSection1() {
                 fontSize: 'clamp(0.85rem, 1.2vw, 1.1rem)',
                 color: '#8B7355',
                 fontWeight: 300,
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
               }}
             >
@@ -200,41 +200,62 @@ export function MomentsSection1() {
                     </p>
 
                     {/* Quotes */}
-                    <div className="space-y-2">
-                      <p
-                        style={{
-                          fontFamily: "'Noto Serif KR', serif",
-                          fontSize: 'clamp(0.8rem, 1vw, 0.95rem)',
-                          color: '#555',
-                          fontWeight: 300,
-                          lineHeight: 1.65,
-                        }}
-                      >
-                        {item.quote1}
-                        {item.quote2 && (
-                          <>
-                            <br />
-                            {item.quote2}
-                          </>
-                        )}
-                      </p>
-                      <p
-                        style={{
-                          fontFamily: "'Noto Serif KR', serif",
-                          fontSize: 'clamp(0.77rem, 1vw, 0.95rem)',
-                          color: '#555',
-                          fontWeight: 300,
-                          lineHeight: 1.65,
-                        }}
-                      >
-                        {item.quote3}
-                        {item.quote4 && (
-                          <>
-                            <br />
-                            {item.quote4}
-                          </>
-                        )}
-                      </p>
+                    <div className="space-y-2" style={{ width: isMobile ? '300px' : 'auto' }}>
+                      {item.category === '정서 안정' ? (
+                        <p
+                          style={{
+                            fontFamily: "'Noto Serif KR', serif",
+                            fontSize: 'clamp(0.8rem, 1vw, 0.95rem)',
+                            color: '#555',
+                            fontWeight: 300,
+                            lineHeight: 1.5,
+                          }}
+                        >
+                          {item.quote1}
+                          <br />
+                          {item.quote2}
+                          {item.quote3}
+                        </p>
+                      ) : (
+                        <>
+                          <p
+                            style={{
+                              fontFamily: "'Noto Serif KR', serif",
+                              fontSize: 'clamp(0.8rem, 1vw, 0.95rem)',
+                              color: '#555',
+                              fontWeight: 300,
+                              lineHeight: 1.5,
+                            }}
+                          >
+                            {item.quote1}
+                            {item.quote2 && (
+                              <>
+                                <br />
+                                {item.quote2}
+                              </>
+                            )}
+                          </p>
+                          {item.quote3 && (
+                            <p
+                              style={{
+                                fontFamily: "'Noto Serif KR', serif",
+                                fontSize: 'clamp(0.77rem, 1vw, 0.95rem)',
+                                color: '#555',
+                                fontWeight: 300,
+                                lineHeight: 1.5,
+                              }}
+                            >
+                              {item.quote3}
+                              {item.quote4 && (
+                                <>
+                                  <br />
+                                  {item.quote4}
+                                </>
+                              )}
+                            </p>
+                          )}
+                        </>
+                      )}
                     </div>
                   </div>
                 </foreignObject>

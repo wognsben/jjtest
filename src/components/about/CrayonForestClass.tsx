@@ -195,7 +195,7 @@ export default function CrayonForestClass() {
                 <p 
                   className="text-brown-600 max-w-xl mx-auto leading-relaxed"
                   style={{
-                    fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)',
+                    fontSize: 'clamp(0.9rem, 1.5vw, 0.85rem)',
                   }}
                 >
                   자기결(Self Texture)을 깨우는 예술적 감각훈련

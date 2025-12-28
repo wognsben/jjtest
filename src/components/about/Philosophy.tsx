@@ -145,7 +145,7 @@ export default function Philosophy() {
                   <h2 
                     style={{ 
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)',
+                      fontSize: 'clamp(1.75rem, 3.5vw, 1.8rem)',
                       fontWeight: 600,
                       lineHeight: 1.3,
                       letterSpacing: '-0.03em',
@@ -159,22 +159,23 @@ export default function Philosophy() {
                     <span style={{ whiteSpace: 'nowrap' }}>
                       The Origin <span style={{ color: '#8fbc88' }}>of Color</span>
                     </span>
-                    
-                    {/* Divider next to "of Color" */}
-                    <motion.span
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                      style={{
-                        display: 'inline-block',
-                        width: 'clamp(4rem, 10vw, 6rem)',
-                        height: '1px',
-                        background: 'linear-gradient(to right, #8fbc88, transparent)',
-                        transformOrigin: 'left',
-                      }}
-                    />
                   </h2>
+                  
+                  {/* Divider below h2 */}
+                  <motion.div
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    style={{
+                      display: 'inline-block',
+                      width: 'clamp(4rem, 10vw, 6rem)',
+                      height: '1px',
+                      background: 'linear-gradient(to right, #8fbc88, transparent)',
+                      transformOrigin: 'left',
+                      marginTop: '1rem',
+                    }}
+                  />
                 </motion.div>
                 
                 {/* Text content */}
@@ -186,8 +187,8 @@ export default function Philosophy() {
                     transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     style={{ 
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
-                      lineHeight: 1.65,
+                      fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                      lineHeight: 1.5,
                       letterSpacing: 0,
                       color: '#666666',
                       fontWeight: 300,
@@ -204,8 +205,8 @@ export default function Philosophy() {
                     transition={{ duration: 0.7, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
                     style={{ 
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
-                      lineHeight: 1.65,
+                      fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                      lineHeight: 1.5,
                       letterSpacing: 0,
                       color: '#666666',
                       fontWeight: 300,
@@ -222,15 +223,15 @@ export default function Philosophy() {
                     transition={{ duration: 0.7, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     style={{ 
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
-                      lineHeight: 1.65,
+                      fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
+                      lineHeight: 1.5,
                       letterSpacing: 0,
-                      color: '#333333',
+                      color: '#4A4A4A',
                       fontWeight: 400,
                       marginBottom: 0,
                     }}
                   >
-                    그리고 1903년, <span style={{ color: '#333333', fontWeight: 700 }}>"아이들이 쥐어도 안전한 색"</span>이라는 개념이 등장하며 크레용은 더 이상 도구가 아닌, <span style={{ backgroundColor: 'rgba(255, 182, 193, 0.3)', padding: '2px 6px', borderRadius: '4px' }}>누구나 한 번은 손에 쥐어보는 <span style={{ color: '#8fbc88', fontWeight: 700 }}>첫 번째 예술 언어</span>가</span> 되었습니다.
+                    그리고 1903년, <span style={{ color: 'rgb(102, 102, 102)', fontWeight: 700 }}>"아이들이 쥐어도 안전한 색"</span>이라는 개념이 등장하며 크레용은 더 이상 도구가 아닌, <span style={{ backgroundColor: 'rgba(255, 182, 193, 0.3)', padding: '2px 6px', borderRadius: '4px' }}>누구나 한 번은 손에 쥐어보는 <span style={{ color: '#8fbc88', fontWeight: 700 }}>첫 번째 예술 언어</span>가</span> 되었습니다.
                   </motion.p>
                 </motion.div>
                 
@@ -246,9 +247,9 @@ export default function Philosophy() {
                   <blockquote
                     style={{ 
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+                      fontSize: '0.85rem',
                       lineHeight: 1.5,
-                      color: '#333333',
+                      color: '#4A4A4A',
                       fontWeight: 400,
                       letterSpacing: '-0.01em',
                     }}

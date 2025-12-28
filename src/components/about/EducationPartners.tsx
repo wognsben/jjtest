@@ -119,7 +119,7 @@ export default function EducationPartners() {
               >
                 <span style={{ 
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(1rem, 1.8vw, 1.125rem)',
+                  fontSize: 'clamp(1rem, 1.8vw, 0.85rem)',
                   fontWeight: 500,
                   letterSpacing: '0.02em'
                 }}>
@@ -147,7 +147,7 @@ export default function EducationPartners() {
                         fontFamily: "'Noto Serif KR', serif",
                         color: '#4A4A4A',
                         fontSize: '0.85rem',
-                        lineHeight: 1.65,
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400
                       }}
@@ -177,7 +177,7 @@ export default function EducationPartners() {
           <p
             style={{
               color: 'rgba(255, 182, 193, 1)',
-              fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
+              fontSize: 'clamp(1rem, 1.5vw, 0.85rem)',
               lineHeight: '1.6',
               letterSpacing: '0',
               fontWeight: '300',

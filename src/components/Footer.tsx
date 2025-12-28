@@ -174,24 +174,6 @@ export default function Footer() {
                 Instagram 어린이색채학교
               </a>
 
-              {/* Brunch */}
-              <a
-                href="https://brunch.co.kr/@jsm925"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#4A4A4A] transition-colors duration-300"
-                style={{
-                  fontFamily: "'Noto Sans KR', sans-serif",
-                  fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
-                  fontWeight: 300,
-                  letterSpacing: '-0.01em',
-                  color: '#8B8B8B',
-                  textDecoration: 'none',
-                }}
-              >
-                Brunch
-              </a>
-
               {/* Blog */}
               <a
                 href="https://blog.naver.com/dreaming_art_play"

@@ -83,8 +83,8 @@ export default function InstitutionCollaboration({ onShowPartners }: Institution
               className="mb-12"
               style={{ 
                 color: '#333333',
-                fontSize: 'clamp(1rem, 1.25vw, 1.125rem)',
-                lineHeight: 1.65,
+                fontSize: 'clamp(1rem, 1.25vw, 0.85rem)',
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 fontWeight: 400,
                 maxWidth: '580px'

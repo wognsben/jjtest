@@ -46,7 +46,7 @@ export function MomentsSection2() {
                 fontSize: 'clamp(0.85rem, 1.8vw, 1.5rem)',
                 color: '#333',
                 fontWeight: 400,
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
               }}
             >
@@ -59,7 +59,7 @@ export function MomentsSection2() {
                 fontSize: 'clamp(0.85rem, 1.8vw, 1.5rem)',
                 color: '#333',
                 fontWeight: 400,
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
               }}
             >
@@ -72,7 +72,7 @@ export function MomentsSection2() {
                 fontSize: 'clamp(0.85rem, 1.8vw, 1.5rem)',
                 color: '#333',
                 fontWeight: 400,
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
               }}
             >
@@ -85,7 +85,7 @@ export function MomentsSection2() {
                 fontSize: 'clamp(0.85rem, 1.8vw, 1.5rem)',
                 color: '#2d5016',
                 fontWeight: 600,
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
               }}
             >

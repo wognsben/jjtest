@@ -154,38 +154,14 @@ export default function SensoryArt() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
                       }}
                     >
-                      한 사람의 성장은 <span style={{ color: '#5a8c4a', fontWeight: 600 }}>하나의 능력이 아니라</span>
-                    </p>
-                    <p 
-                      style={{ 
-                        fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
-                        lineHeight: 1.65,
-                        letterSpacing: 0,
-                        fontWeight: 500,
-                        color: '#4A4A4A',
-                      }}
-                    >
-                      감정·감각·표현·관계·세계관으로 이어진
-                    </p>
-                    <p 
-                      style={{ 
-                        fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
-                        lineHeight: 1.65,
-                        letterSpacing: 0,
-                        fontWeight: 600,
-                        color: '#5a8c4a',
-                      }}
-                    >
-                      5개의 내적 기반이 함께 만들어냅니다.
+                      한 사람의 성장은 <span style={{ color: '#5a8c4a', fontWeight: 600 }}>하나의 능력이 아니라 감정·감각·표현·관계·세계관으로 이어진 5개의 내적 기반이 함께 만들어냅니다.</span>
                     </p>
                   </motion.div>
                   
@@ -201,7 +177,7 @@ export default function SensoryArt() {
                       className="md:text-xl leading-relaxed"
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.65rem, 1.8vw, 1.25rem)',
+                        fontSize: 'clamp(0.65rem, 1.8vw, 0.85rem)',
                         color: '#5a8c4a',
                         fontWeight: 600
                       }}

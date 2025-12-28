@@ -114,8 +114,8 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
@@ -127,8 +127,8 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         marginBottom: '20px',
@@ -148,8 +148,8 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
@@ -161,8 +161,8 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
@@ -174,8 +174,8 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 500,
                         color: '#4A4A4A',
@@ -198,8 +198,8 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#4A4A4A',
@@ -211,8 +211,8 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         marginBottom: '20px',
@@ -233,7 +233,7 @@ export default function EmotionalFoundation() {
                       className="md:text-lg text-brown-700 leading-relaxed"
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.6vw, 1.125rem)',
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                         marginBottom: '20px',
                       }}
                     >
@@ -243,7 +243,7 @@ export default function EmotionalFoundation() {
                       className="md:text-lg leading-relaxed"
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.6vw, 1.125rem)',
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                         marginBottom: '0',
                       }}
                     >
@@ -262,8 +262,8 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
-                        lineHeight: 1.65,
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
                         color: '#A66A5A',

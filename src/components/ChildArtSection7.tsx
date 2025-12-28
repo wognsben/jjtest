@@ -269,7 +269,7 @@ export function ChildArtSection7() {
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
                 color: '#d97878',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 fontWeight: 400,
               }}
@@ -281,7 +281,7 @@ export function ChildArtSection7() {
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
                 color: '#666',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 fontWeight: 300,
                 marginTop: '0.5rem',
@@ -367,7 +367,7 @@ export function ChildArtSection7() {
                       fontSize: 'clamp(0.95rem, 1.3vw, 1.05rem)',
                       color: '#6F8F7A',
                       fontWeight: 500,
-                      lineHeight: 1.65,
+                      lineHeight: 1.5,
                       letterSpacing: 0,
                     }}
                   >
@@ -378,7 +378,7 @@ export function ChildArtSection7() {
                       fontFamily: "'Noto Serif KR', serif",
                       fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#888',
-                      lineHeight: 1.65,
+                      lineHeight: 1.5,
                       letterSpacing: 0,
                       fontWeight: 300,
                     }}
@@ -392,7 +392,7 @@ export function ChildArtSection7() {
                         fontSize: 'clamp(0.95rem, 1.3vw, 1.05rem)',
                         color: '#6F8F7A',
                         fontWeight: 500,
-                        lineHeight: 1.65,
+                        lineHeight: 1.5,
                       letterSpacing: 0,
                       }}
                     >
@@ -403,7 +403,7 @@ export function ChildArtSection7() {
                         fontFamily: "'Noto Serif KR', serif",
                         fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                         color: '#888',
-                        lineHeight: 1.65,
+                        lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 300,
                       }}

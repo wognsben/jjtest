@@ -86,7 +86,7 @@ export function ForMomSection2() {
                   fontSize: 'clamp(0.85rem, 1.25vw, 1rem)',
                   color: '#333',
                   fontWeight: 400,
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                 }}
               >
@@ -207,7 +207,7 @@ export function ForMomSection2() {
                     fontSize: 'clamp(0.85rem, 1.15vw, 1.05rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -223,7 +223,7 @@ export function ForMomSection2() {
                     fontSize: 'clamp(0.85rem, 1.15vw, 1.05rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -241,7 +241,7 @@ export function ForMomSection2() {
                     fontSize: 'clamp(0.85rem, 1.15vw, 1.05rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -263,7 +263,7 @@ export function ForMomSection2() {
                     fontSize: 'clamp(0.85rem, 1.15vw, 1.05rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >

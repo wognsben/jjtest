@@ -95,9 +95,9 @@ export default function Interview() {
                   className="max-w-2xl leading-relaxed"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+                    fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
                     color: '#333333',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                     fontWeight: 400,
                   }}
@@ -108,9 +108,9 @@ export default function Interview() {
                   className="max-w-2xl leading-relaxed mt-4"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                     color: '#000000',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                     fontWeight: 300,
                   }}
@@ -128,9 +128,9 @@ export default function Interview() {
                 className="text-right lg:text-right"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.4vw, 1rem)',
+                  fontSize: 'clamp(0.85rem, 1.4vw, 0.85rem)',
                   color: '#666666',
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   fontWeight: 400,
                   letterSpacing: '0.02em',
                 }}
@@ -214,9 +214,9 @@ export default function Interview() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                    fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -252,9 +252,9 @@ export default function Interview() {
                   className="mb-6"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                    fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -273,9 +273,9 @@ export default function Interview() {
                   transition={{ duration: 0.6, delay: 0.3 }}
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                    fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                     color: '#4A4A4A',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -311,7 +311,7 @@ export default function Interview() {
                     fontSize: 'clamp(0.85rem, 2.5vw, 1.5rem)',
                     color: '#bb8162',
                     fontWeight: 500,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                   }}
                 >
                   Q. 우리 아이들에게 미술, 그림이 어떠한 의미가 있나요?
@@ -325,9 +325,9 @@ export default function Interview() {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                      fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                       color: '#4A4A4A',
-                      lineHeight: 1.65,
+                      lineHeight: 1.5,
                     letterSpacing: 0,
                     }}
                   >
@@ -341,9 +341,9 @@ export default function Interview() {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                      fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                       color: '#4A4A4A',
-                      lineHeight: 1.65,
+                      lineHeight: 1.5,
                     letterSpacing: 0,
                     }}
                   >
@@ -358,9 +358,9 @@ export default function Interview() {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                      fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                       color: '#4A4A4A',
-                      lineHeight: 1.65,
+                      lineHeight: 1.5,
                     letterSpacing: 0,
                     }}
                   >
@@ -374,9 +374,9 @@ export default function Interview() {
                     transition={{ duration: 0.6, delay: 0.5 }}
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                      fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                       color: '#4A4A4A',
-                      lineHeight: 1.65,
+                      lineHeight: 1.5,
                     letterSpacing: 0,
                     }}
                   >
@@ -391,9 +391,9 @@ export default function Interview() {
                     className="pt-4"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+                      fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                       color: '#4A4A4A',
-                      lineHeight: 1.65,
+                      lineHeight: 1.5,
                     letterSpacing: 0,
                     }}
                   >
@@ -480,32 +480,15 @@ export default function Interview() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                   color: '#4A4A4A',
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                 }}
               >
-                크레용의 어원은 <span style={{ color: '#D97757', fontWeight: 500 }}>creta, 흰 점토</span>에서 시작됩니다.<br /><br />
-                아주 작은 흙이 선이 되고, 선이 이야기가 되고, 그 이야기가 마음의 숲으로 자라나는 과정—<br /><br />
-                저는 그 흐름이 아이의 성장과 너무 닮아 있다고 느꼈습니다.<br className="md:hidden" />
-              </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
-                  color: '#4A4A4A',
-                  lineHeight: 1.65,
-                  letterSpacing: 0,
-                }}
-              >
-                숲은 누구도 억지로 꽃을 피우지 않습니다. 물과 빛을 허락하면, <span style={{ color: '#8FBC88', fontWeight: 500 }}>제 속도로 스스로 피어납니다</span>.<br /><br />
-                아이의 마음도 똑같습니다. 그래서 저는 <span style={{ color: '#8FBC88', fontWeight: 500 }}>'크레용'을 아이의 첫 예술 언어로, '숲'을 성장의 은유로</span> 삼아 크레용숲을 만들었습니다.<br className="md:hidden" />
+                크레용의 어원은 <span style={{ color: '#D97757', fontWeight: 500 }}>creta, 흰 점토</span>에서 시작됩니다. 아주 작은 흙이 선이 되고, 선이 이야기가 되고, 그 이야기가 마음의 숲으로 자라나는 과정—<br /><br />
+                저는 그 흐름이 아이의 성장과 너무 닮아 있다고 느꼈습니다. 숲은 누구도 억지로 꽃을 피우지 않습니다. 물과 빛을 허락하면, <span style={{ color: '#8FBC88', fontWeight: 500 }}>제 속도로 스스로 피어납니다</span>.<br /><br />
+                아이의 마음도 똑같습니다. 그래서 저는 <span style={{ color: '#8FBC88', fontWeight: 500 }}>'크레용'을 아이의 첫 예술 언어로, '숲'을 성장의 은유로</span> 삼아 크레용숲을 만들었습니다.
               </motion.p>
 
               <motion.p
@@ -515,13 +498,13 @@ export default function Interview() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                   color: '#4A4A4A',
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                 }}
               >
-                이우학교 김철원 교장선생님께서는 <span style={{ color: '#A67C52', fontStyle: 'italic' }}>"교육의 본질은 개개인성, 고유성, 자기다움이라는 살아있는 질문을 갖게 하는 일"</span>이라고 말씀하셨어요.<br className="md:hidden" />
+                이우학교 김철원 교장선생님께서는 <span style={{ color: '#A67C52', fontStyle: 'italic' }}>"교육의 본질은 개개인성, 고유성, 자기다움이라는 살아있는 질문을 갖게 하는 일"</span> 이라고 말씀하셨어요.
               </motion.p>
 
               <motion.p
@@ -531,14 +514,14 @@ export default function Interview() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                   color: '#4A4A4A',
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                 }}
               >
-                그동안 1000명이 넘는 아이들과 어른을 만나며 저는 한 가지를 보았습니다.<br className="md:hidden" /><br className="md:hidden" /> 사람은 누구나 마음을 표현하기 전에 이미 너무 바쁘고, 비교 속에서 자신을 잃고, 자기 감정의 속도를 잃어버린다는 사실을요.<br /><br />
-                그때 색, 선, 촉감 같은 <span style={{ color: '#8FBC88', fontWeight: 500 }}>가장 원초적인 감각이 어떻게 사람을 다시 회복</span>시키는지, 다시 자기 세계로 돌아오게 하는지를 반복해서 목격했습니다.<br className="md:hidden" />
+                그동안 1000명이 넘는 아이들과 어른을 만나며 저는 한 가지를 보았습니다. 사람은 누구나 마음을 표현하기 전에 이미 너무 바쁘고, 비교 속에서 자신을 잃고, 자기 감정의 속도를 잃어버린다는 사실을요.<br /><br />
+                그때 색, 선, 촉감 같은 <span style={{ color: '#8FBC88', fontWeight: 500 }}>가장 원초적인 감각이 어떻게 사람을 다시 회복</span>시키는지, 다시 자기 세계로 돌아오게 하는지를 반복해서 목격했습니다.
               </motion.p>
 
               <motion.p
@@ -548,15 +531,15 @@ export default function Interview() {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                   color: '#4A4A4A',
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                 }}
               >
-                그리고 제 마음속에는 오래전부터 한 단어가 자리하고 있었습니다.<br className="md:hidden" /><br className="md:hidden" /> 그리스어 <span style={{ color: '#D97757', fontWeight: 500 }}>초로스(Choros)</span>.<br /><br />
+                그리고 제 마음속에는 오래전부터 한 단어가 자리하고 있었습니다. 그리스어 <span style={{ color: '#D97757', fontWeight: 500 }}>초로스(Choros)</span>.<br /><br />
                 <span style={{ color: '#8FBC88', fontStyle: 'italic' }}>"자기 자신을 찾기 위해 돌아가는 정든 곳."</span> 마리야 이바시키나의 그림책에서 만난 이 단어는 저에게 언젠가 꼭 만들고 싶은 '마음의 공간'을 향한 신호 같았습니다.<br /><br />
-                그 공간이 바로 지금의 크레용숲이 되었습니다.<br className="md:hidden" />
+                그 공간이 바로 지금의 크레용숲이 되었습니다.
               </motion.p>
 
               <motion.p
@@ -566,13 +549,13 @@ export default function Interview() {
                 transition={{ duration: 0.6, delay: 0.6 }}
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                   color: '#4A4A4A',
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                 }}
               >
-                저에게 <span style={{ color: '#8FBC88', fontWeight: 500 }}>창조·쓰임·성장</span>은 삶을 움직이는 가장 근본적인 가치입니다.<br className="md:hidden" /><br className="md:hidden" /> 그리고 그 가치는 결국 한 사람의 내면이 자라는 숲을 돌보는 일로 이어졌습니다.<br className="md:hidden" />
+                저에게 <span style={{ color: '#8FBC88', fontWeight: 500 }}>창조·쓰임·성장</span>은 삶을 움직이는 가장 근본적인 가치입니다. 그리고 그 가치는 결국  한 사람의 내면이 자라는 숲을 돌보는 일로 이어졌습니다.
               </motion.p>
 
               <motion.p
@@ -582,13 +565,13 @@ export default function Interview() {
                 transition={{ duration: 0.6, delay: 0.7 }}
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                   color: '#4A4A4A',
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                 }}
               >
-                그래서 저는 결심했습니다.<br className="md:hidden" /><br className="md:hidden" /> <span style={{ color: '#8FBC88', fontWeight: 500 }}>"아이의 마음이 닫히기 전에, 자기 세계를 스스로 만들어갈 힘을 회복시키는 숲을 열어야 한다."</span><br className="md:hidden" /><br className="md:hidden" /> 크레용숲은 그 믿음에서 시작된 공간입니다.<br className="md:hidden" />
+                그래서 저는 결심했습니다. <span style={{ color: '#8FBC88', fontWeight: 500 }}>"아이의 마음이 닫히기 전에, 자기 세계를 스스로 만들어갈 힘을 회복시키는 숲을 열어야 한다."</span> 크레용숲은 그 믿음에서 시작된 공간입니다.
               </motion.p>
 
               <motion.p
@@ -598,13 +581,13 @@ export default function Interview() {
                 transition={{ duration: 0.6, delay: 0.8 }}
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                   color: '#4A4A4A',
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                 }}
               >
-                누군가의 정답을 따라 그리는 곳이 아니라, <span style={{ color: '#8FBC88', fontWeight: 500 }}>아이 스스로 자기 마음을 느끼고, 고르고, 표현하며 자기다움의 뿌리를 단단히 내리는 곳.</span><br className="md:hidden" />
+                누군가의 정답을 따라 그리는 곳이 아니라, <span style={{ color: '#8FBC88', fontWeight: 500 }}>아이 스스로 자기 마음을 느끼고, 고르고, 표현하며 자기다움의 뿌리를 단단히 내리는 곳.</span>
               </motion.p>
 
               <motion.p
@@ -612,17 +595,17 @@ export default function Interview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.9 }}
-                className="pt-6"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 18px)',
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
                   color: '#A67C52',
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                   fontWeight: 500,
                 }}
               >
-                그리고 이렇게 말할 수 있어서 참 고맙습니다.<br className="md:hidden" /><br className="md:hidden" /> 색의 언어가 나를 데리고 여기까지 와준 것처럼, 그 마법을 다른 이에게 건넬 수 있음에 마음 깊이 감사드립니다.<br className="md:hidden" />
+                그리고 이렇게 말할 수 있어서 참 고맙습니다.<br /><br />
+                색의 언어가 나를 데리고 여기까지 와준 것처럼, 그 마법을 다른 이에게 건넬 수 있음에 마음 깊이 감사드립니다.
               </motion.p>
             </div>
           </motion.div>

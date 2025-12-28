@@ -183,9 +183,9 @@ function ChapterCard({ number, title, subtitle, description, color, gradient, ta
             className="max-w-md leading-relaxed mb-10"
             style={{ 
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1rem, 1.6vw, 1.125rem)',
+              fontSize: 'clamp(1rem, 1.6vw, 0.85rem)',
               fontWeight: 300,
-              lineHeight: 1.65,
+              lineHeight: 1.5,
               letterSpacing: 0,
               color: '#666666',
             }}
@@ -303,10 +303,10 @@ export default function ChapterCards() {
             className="text-center mt-6 max-w-2xl mx-auto"
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
+              fontSize: 'clamp(1rem, 1.8vw, 0.85rem)',
               fontWeight: 300,
               color: '#666666',
-              lineHeight: 1.65,
+              lineHeight: 1.5,
               letterSpacing: 0,
             }}
           >

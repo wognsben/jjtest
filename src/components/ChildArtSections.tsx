@@ -20,7 +20,7 @@ export function ChildArtSection2() {
               fontFamily: "'Noto Serif KR', serif",
               fontSize: 'clamp(0.85rem, 2.2vw, 1.6rem)',
               color: '#333',
-              lineHeight: 1.65,
+              lineHeight: 1.5,
               letterSpacing: 0,
               fontWeight: 400,
             }}
@@ -33,7 +33,7 @@ export function ChildArtSection2() {
               fontFamily: "'Noto Serif KR', serif",
               fontSize: 'clamp(0.85rem, 2.2vw, 1.6rem)',
               color: '#333',
-              lineHeight: 1.65,
+              lineHeight: 1.5,
               letterSpacing: 0,
               fontWeight: 400,
             }}
@@ -46,7 +46,7 @@ export function ChildArtSection2() {
               fontFamily: "'Noto Serif KR', serif",
               fontSize: 'clamp(0.85rem, 2.2vw, 1.6rem)',
               color: '#333',
-              lineHeight: 1.65,
+              lineHeight: 1.5,
               letterSpacing: 0,
               fontWeight: 400,
             }}
@@ -68,7 +68,7 @@ export function ChildArtSection2() {
               fontFamily: "'Noto Serif KR', serif",
               fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
               color: '#444',
-              lineHeight: 1.65,
+              lineHeight: 1.5,
               letterSpacing: 0,
               fontWeight: 300,
               maxWidth: '34em',
@@ -98,7 +98,7 @@ export function ChildArtSection2() {
             fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
             color: '#2F6B4F',
             fontWeight: 500,
-            lineHeight: 1.65,
+            lineHeight: 1.5,
             letterSpacing: 0,
             marginBottom: '3rem',
             maxWidth: '34em',
@@ -140,7 +140,7 @@ export function ChildArtSection2() {
             style={{
               fontFamily: "'Noto Serif KR', serif",
               fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
-              lineHeight: 1.65,
+              lineHeight: 1.5,
               letterSpacing: 0,
               color: '#2F6B4F',
               listStyle: 'none',
@@ -271,7 +271,7 @@ export function ChildArtSection3() {
                     fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
                     color: '#2F6B4F',
                     fontWeight: 600,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     marginBottom: '1rem',
                   }}
                 >
@@ -282,7 +282,7 @@ export function ChildArtSection3() {
                     fontFamily: "'Noto Serif KR', serif",
                     fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
                     color: '#444',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                     fontWeight: 300,
                     maxWidth: '34em',
@@ -322,7 +322,7 @@ export function ChildArtSection3() {
                     fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
                     color: '#d97878',
                     fontWeight: 600,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     marginBottom: '1rem',
                   }}
                 >
@@ -333,7 +333,7 @@ export function ChildArtSection3() {
                     fontFamily: "'Noto Serif KR', serif",
                     fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
                     color: '#444',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                     fontWeight: 300,
                     maxWidth: '34em',
@@ -371,7 +371,7 @@ export function ChildArtSection3() {
                   fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                   color: '#2F6B4F',
                   fontWeight: 500,
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                   marginBottom: '0.5rem',
                 }}
@@ -384,7 +384,7 @@ export function ChildArtSection3() {
                   fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                   color: '#d97878',
                   fontWeight: 500,
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                 }}
               >
@@ -464,7 +464,7 @@ export function ChildArtSection4() {
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(0.85rem, 1.6vw, 1.2rem)',
                 color: '#2F6B4F',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 fontWeight: 400,
                 marginBottom: '1.5rem',
@@ -480,7 +480,7 @@ export function ChildArtSection4() {
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(0.85rem, 1.6vw, 1.2rem)',
                 color: '#2F6B4F',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 fontWeight: 300,
                 marginBottom: '0.5rem',
@@ -496,7 +496,7 @@ export function ChildArtSection4() {
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(0.85rem, 1.6vw, 1.2rem)',
                 color: '#2F6B4F',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 fontWeight: 300,
                 marginBottom: '2.5rem',
@@ -512,7 +512,7 @@ export function ChildArtSection4() {
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(0.85rem, 2vw, 1.5rem)',
                 color: '#2F6B4F',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 fontWeight: 600,
                 wordBreak: 'keep-all',
                 overflowWrap: 'break-word',
@@ -767,16 +767,16 @@ export function ChildArtSection5() {
               {/* Card Content */}
               <div>
                 <div className="space-y-1.5">
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.65, letterSpacing: 0 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.5, letterSpacing: 0 }}>
                     월별 감정예술 테마
                   </p>
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.65, letterSpacing: 0 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.5, letterSpacing: 0 }}>
                     발달 단계에 맞춘 4~12세 연령별 수업
                   </p>
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.65, letterSpacing: 0 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.5, letterSpacing: 0 }}>
                     감정 기록·색 그림으로 글쓰기·자기표현 활동
                   </p>
-                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.65, letterSpacing: 0 }}>
+                  <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.5, letterSpacing: 0 }}>
                     학기제로 이어지는 연속적 성장 흐름
                   </p>
                 </div>
@@ -816,7 +816,7 @@ export function ChildArtSection5() {
                   fontFamily: "'Noto Serif KR', serif",
                   fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
                   color: '#444',
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                   fontWeight: 300,
                 }}
@@ -844,19 +844,19 @@ export function ChildArtSection5() {
                 같은 대주제라도 아이의 나이에 따라 자연스럽게 '표현 깊이'가 달라집니다
               </h4>
               <div className="space-y-2">
-                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.65, letterSpacing: 0 }}>
+                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.5, letterSpacing: 0 }}>
                   예: 3월 &lt;마음의 의상실&gt;
                 </p>
-                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.65, letterSpacing: 0 }}>
+                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.5, letterSpacing: 0 }}>
                   4~5세: 감각 패턴, 표정, 단순한 색의 기분
                 </p>
-                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.65, letterSpacing: 0 }}>
+                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.5, letterSpacing: 0 }}>
                   6~7세: 마음의 '입고 싶은 색' 찾기
                 </p>
-                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.65, letterSpacing: 0 }}>
+                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.5, letterSpacing: 0 }}>
                   초등: 감정의 층과 겹을 의상으로 상징화
                 </p>
-                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.65, letterSpacing: 0 }}>
+                <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#A66A5A', lineHeight: 1.5, letterSpacing: 0 }}>
                   고학년: 감정의 기원·기억을 연결한 스토리 디자인
                 </p>
               </div>
@@ -874,7 +874,7 @@ export function ChildArtSection5() {
                   fontFamily: "'Noto Serif KR', serif",
                   fontSize: 'clamp(0.65rem, 0.6vw, 0.6rem)',
                   color: '#333',
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                   fontWeight: 400,
                 }}
@@ -897,7 +897,7 @@ export function ChildArtSection5() {
                   fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
                   color: '#2F6B4F',
                   fontWeight: 600,
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                   marginBottom: '0.75rem',
                   background: '#FADFDE',
@@ -914,7 +914,7 @@ export function ChildArtSection5() {
                   fontSize: 'clamp(0.85rem, 1vw, 0.9rem)',
                   color: '#444',
                   fontWeight: 300,
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                 }}
               >
@@ -926,7 +926,7 @@ export function ChildArtSection5() {
                   fontSize: 'clamp(0.8rem, 1vw, 0.9rem)',
                   color: '#666',
                   fontWeight: 300,
-                  lineHeight: 1.65,
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                   marginTop: '0.75rem',
                 }}

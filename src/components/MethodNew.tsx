@@ -233,7 +233,7 @@ export default function MethodNew() {
                   className="text-lg md:text-xl text-brown-800 leading-relaxed"
                   style={{
                     fontSize: 'clamp(0.85rem, 3.2vw, 1.05rem)',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                     maxWidth: '34em',
                     textAlign: 'left',
@@ -255,7 +255,7 @@ export default function MethodNew() {
                   className="text-base md:text-lg text-brown-700 leading-relaxed"
                   style={{
                     fontSize: 'clamp(0.85rem, 3.2vw, 1.05rem)',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                     maxWidth: '34em',
                     textAlign: 'left',
@@ -269,7 +269,7 @@ export default function MethodNew() {
                   className="text-base md:text-lg text-brown-700 leading-relaxed"
                   style={{
                     fontSize: 'clamp(0.85rem, 3.2vw, 1.05rem)',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                     maxWidth: '34em',
                     textAlign: 'left',
@@ -366,7 +366,7 @@ export default function MethodNew() {
               style={{ 
                 fontFamily: "'Noto Serif KR', serif",
 fontSize: 'clamp(0.85rem, 3.2vw, 1.05rem)',
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                     maxWidth: '34em',
                     wordBreak: 'keep-all',

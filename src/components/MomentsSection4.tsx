@@ -95,7 +95,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -107,7 +107,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -128,7 +128,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -140,7 +140,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -161,7 +161,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -173,7 +173,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -194,7 +194,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -206,7 +206,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -218,7 +218,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -239,7 +239,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -251,7 +251,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -272,7 +272,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#333',
                     fontWeight: 300,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -284,7 +284,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -296,7 +296,7 @@ export function MomentsSection4() {
                     fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
                     color: '#2d5016',
                     fontWeight: 400,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                   }}
                 >
@@ -316,10 +316,10 @@ export function MomentsSection4() {
                   className="inline-block"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.4vw, 1.25rem)',
+                    fontSize: 'clamp(0.85rem, 1.4vw, 1.125rem)',
                     color: '#2d5016',
                     fontWeight: 500,
-                    lineHeight: 1.65,
+                    lineHeight: 1.5,
                     letterSpacing: 0,
                     borderBottom: '2px solid #2d5016',
                     paddingBottom: '2px',

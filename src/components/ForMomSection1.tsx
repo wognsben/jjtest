@@ -20,7 +20,7 @@ export function ForMomSection1() {
               fontSize: 'clamp(1.5rem, 2.8vw, 2.2rem)',
               color: '#333',
               fontWeight: 500,
-              lineHeight: 1.65,
+              lineHeight: 1.5,
             }}
           >
             아이 마음을 잘 돌보고 싶은데,
@@ -44,7 +44,7 @@ export function ForMomSection1() {
               fontSize: 'clamp(0.85rem, 1.1vw, 0.95rem)',
               color: '#A66A5A',
               fontWeight: 300,
-              lineHeight: 1.65,
+              lineHeight: 1.5,
             }}
           >
             아이의 마음을 키우기 전에,
@@ -55,7 +55,7 @@ export function ForMomSection1() {
               fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
               color: '#A66A5A',
               fontWeight: 500,
-              lineHeight: 1.65,
+              lineHeight: 1.5,
             }}
           >
             먼저 자신의 마음을 돌보는 엄마를 위한 예술 시간
@@ -76,7 +76,7 @@ export function ForMomSection1() {
               fontSize: 'clamp(0.87rem, 1.15vw, 1.05rem)',
               color: '#333',
               fontWeight: 300,
-              lineHeight: 1.65,
+              lineHeight: 1.5,
               letterSpacing: 0,
             }}
           >
@@ -121,7 +121,7 @@ export function ForMomSection1() {
               style={{
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: '0.95rem',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 color: '#A66A5A',
               }}
@@ -132,7 +132,7 @@ export function ForMomSection1() {
               style={{
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: '0.95rem',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 color: '#A66A5A',
               }}
@@ -143,7 +143,7 @@ export function ForMomSection1() {
               style={{
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: '0.95rem',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 color: '#A66A5A',
               }}
@@ -167,7 +167,7 @@ export function ForMomSection1() {
               fontSize: 'clamp(0.8rem, 1.1vw, 1rem)',
               color: '#666',
               fontWeight: 300,
-              lineHeight: 1.65,
+              lineHeight: 1.5,
               letterSpacing: 0,
             }}
           ><span style={{ fontWeight: 500, color: '#333' }}>『미스 럼피우스』</span>가 그랬듯, 우리는 세상을 바꾸지 않습니다<br />
@@ -189,7 +189,7 @@ export function ForMomSection1() {
               fontSize: 'clamp(0.85rem, 1.35vw, 1.2rem)',
               color: '#2d5016',
               fontWeight: 500,
-              lineHeight: 1.65,
+              lineHeight: 1.5,
               letterSpacing: 0,
             }}
           >

@@ -40,13 +40,6 @@ export default function ContactInfo() {
       color: '#03C75A',
     },
     {
-      icon: getImagePath('/assets/1x/brunch.png'),
-      label: '브런치',
-      value: 'jsm925',
-      link: 'https://brunch.co.kr/@jsm925',
-      color: '#00C896',
-    },
-    {
       icon: getImagePath('/assets/1x/instagram.png'),
       label: '인스타그램',
       value: '@crayonforest.art',
@@ -71,7 +64,7 @@ export default function ContactInfo() {
       />
 
       <div className="max-w-5xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
           {contactItems.map((item, index) => (
             <motion.div
               key={index}
@@ -129,7 +122,7 @@ export default function ContactInfo() {
                             className="block text-[#6B4423] hover:text-[#7CB342] transition-colors duration-600 break-words"
                             style={{
                               fontSize: 'clamp(1rem, 1.8vw, 1.2rem)',
-                              lineHeight: 1.65,
+                              lineHeight: 1.5,
                               letterSpacing: 0,
                               textDecoration: 'underline',
                               textDecorationColor: item.color,
@@ -144,7 +137,7 @@ export default function ContactInfo() {
                               className="mt-2 text-[#6B4423]/60"
                               style={{
                                 fontSize: 'clamp(0.85rem, 1.4vw, 1rem)',
-                                lineHeight: 1.65,
+                                lineHeight: 1.5,
                               letterSpacing: 0,
                               }}
                             >
@@ -157,7 +150,7 @@ export default function ContactInfo() {
                           className="text-[#6B4423] whitespace-pre-line"
                           style={{
                             fontSize: 'clamp(1rem, 1.6vw, 1.2rem)',
-                            lineHeight: 1.65,
+                            lineHeight: 1.5,
                             letterSpacing: 0,
                           }}
                         >

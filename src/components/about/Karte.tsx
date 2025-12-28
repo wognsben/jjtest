@@ -80,8 +80,8 @@ export default function Karte() {
             <p 
               className="text-brown-600"
               style={{
-                fontSize: 'clamp(0.85rem, 1.8vw, 1.25rem)',
-                lineHeight: 1.65,
+                fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 fontFamily: "'Noto Serif KR', serif",
                 maxWidth: '900px',
@@ -126,7 +126,7 @@ export default function Karte() {
                 <h3 
                   className="text-brown-700 mb-6"
                   style={{
-                    fontSize: 'clamp(0.95rem, 2.2vw, 1.75rem)',
+                    fontSize: 'clamp(0.95rem, 2.2vw, 1.4rem)',
                     fontWeight: 600,
                     letterSpacing: '-0.02em',
                   }}
@@ -134,7 +134,7 @@ export default function Karte() {
                   6개월 성장카르테(스에나가하트앤컬러 메소드)
                 </h3>
 
-                <div className="space-y-3 text-brown-600" style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.05rem)', lineHeight: 1.65, letterSpacing: 0 }}>
+                <div className="space-y-3 text-brown-600" style={{ fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)', lineHeight: 1.5, letterSpacing: 0 }}>
                   <p>색채표현의 변화 = 마음의 성장 기록</p>
                   <p>싹트기 시작한 능력 = 향후 발달 방향 예측</p>
                 </div>
@@ -148,8 +148,8 @@ export default function Karte() {
               {/* 박스 외부 하단 텍스트 블록 */}
               <div className="mt-8 md:mt-10 space-y-6">
                 <p className="text-brown-600 leading-relaxed" style={{ 
-                  fontSize: 'clamp(0.95rem, 1.6vw, 1.05rem)',
-                  lineHeight: 1.65,
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                   fontFamily: "'Noto Serif KR', serif",
                 }}>
@@ -160,8 +160,8 @@ export default function Karte() {
                 </p>
 
                 <p className="text-brown-600 leading-relaxed" style={{ 
-                  fontSize: 'clamp(0.95rem, 1.6vw, 1.05rem)',
-                  lineHeight: 1.65,
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                  lineHeight: 1.5,
                   letterSpacing: 0,
                   fontFamily: "'Noto Serif KR', serif",
                 }}>
@@ -204,7 +204,7 @@ export default function Karte() {
               {/* 색상-감정 설명 텍스트 */}
               <div className="space-y-2 text-brown-600" style={{ 
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 fontFamily: "'Noto Serif KR', serif",
               }}>

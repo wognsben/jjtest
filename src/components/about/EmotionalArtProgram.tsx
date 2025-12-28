@@ -24,7 +24,7 @@ const stages = [
     number: '③',
     title: '클래스 후',
     subtitle: '매일 성장 기록으로 이어집니다',
-    description: '수업 종료 후, 작품과 감정의 연결을 한 줄로 남기는 \n\n컬러 성장차트\n\n색–감정–행동 패턴을 누적 기록, 부모에게 전달되는 오늘의 마음 메모\n\n모아진 기록은 6개월 단위로 어린이 성장 리포트로 완성\n\n➡ 미술 시간이 끝나도, 아이의 감정 생태는 계속 성장합니다.',
+    description: '수업 종료 후, 작품과 감정의 연결을 한 줄로 남기는 컬러 성장차트\n\n색–감정–행동 패턴을 누적 기록, 부모에게 전달되는 오늘의 마음 메모\n\n모아진 기록은 6개월 단위로 어린이 성장 리포트로 완성\n\n➡ 미술 시간이 끝나도, 아이의 감정 생태는 계속 성장합니다.',
     color: '#A67C52',
   },
 ];
@@ -62,7 +62,7 @@ export default function EmotionalArtProgram() {
             <p 
               className="text-brown-700 leading-relaxed max-w-6xl"
               style={{
-                fontSize: 'clamp(0.85rem, 1.5vw, 1.1rem)',
+                fontSize: 'clamp(0.85rem, 1.5vw, 0.85rem)',
               }}
             >
               <span style={{ color: '#bb8162', fontWeight: 600 }}>감각 기반 미술기법</span>과{' '}
@@ -300,10 +300,10 @@ export default function EmotionalArtProgram() {
                       {/* Bottom */}
                       <div className="flex-1 flex items-end">
                         <p 
-                          className="text-xs md:text-sm leading-relaxed w-full"
+                          className="w-full leading-[2] md:leading-[2.2]"
                           style={{ 
                             color: '#555',
-                            lineHeight: '1.4',
+                            fontSize: '0.65rem',
                             whiteSpace: 'pre-line',
                           }}
                         >

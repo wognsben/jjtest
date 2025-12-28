@@ -116,7 +116,7 @@ export default function ProgramMethodSection() {
               style={{
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: '1.05rem',
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 letterSpacing: 0,
                 color: '#444',
                 fontWeight: 300,

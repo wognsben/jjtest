@@ -288,7 +288,7 @@ export function MomentsSection3() {
               fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
               color: '#A66A5A',
               fontWeight: 300,
-              lineHeight: 1.65,
+              lineHeight: 1.5,
             }}
           >
             1000명의 아이들을 만나며
@@ -432,7 +432,7 @@ export function MomentsSection3() {
               fontSize: 'clamp(0.85rem, 1.1vw, 1rem)',
               color: '#9ca3af',
               fontWeight: 300,
-              lineHeight: 1.65,
+              lineHeight: 1.5,
               letterSpacing: 0,
               letterSpacing: '0.02em',
             }}

@@ -38,10 +38,10 @@ export default function ColorCartePanel({ dots, selected, onSelect }: ColorCarte
           transition={{ duration: 0.3, delay: 0.1 }}
           className="text-brown-700"
           style={{
-            fontSize: 'clamp(0.95rem, 1.4vw, 1.1rem)',
+            fontSize: 'clamp(0.95rem, 1.4vw, 0.85rem)',
             fontWeight: 400, // L6: No bold emphasis
             letterSpacing: '0.01em',
-            lineHeight: 1.65,
+            lineHeight: 1.5,
             fontFamily: "'Noto Serif KR', serif",
           }}
         >
@@ -57,7 +57,7 @@ export default function ColorCartePanel({ dots, selected, onSelect }: ColorCarte
           className="text-brown-600"
           style={{
             fontSize: 'clamp(0.85rem, 1.2vw, 0.95rem)',
-            lineHeight: 1.65,
+            lineHeight: 1.5,
             letterSpacing: 0,
             fontFamily: "'Noto Serif KR', serif",
             fontWeight: 300,
