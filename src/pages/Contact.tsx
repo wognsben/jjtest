@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'motion/react';
-import ContactHero from '../components/contact/ContactHero';
-import KakaoTalkCTA from '../components/contact/KakaoTalkCTA';
-import ContactInfo from '../components/contact/ContactInfo';
 import ScrollCredits3D from '../components/contact/ScrollCredits3D';
 import { Credits3DErrorBoundary } from '../components/contact/ErrorBoundary';
+import { PremiumHero } from '../components/contact/PremiumHero';
+import { BentoGrid } from '../components/contact/BentoGrid';
+import { SocialContactSection } from '../components/contact/SocialContactSection';
+import { SubscriptionSection } from '../components/contact/SubscriptionSection';
 
 export default function Contact() {
   return (
@@ -16,13 +17,16 @@ export default function Contact() {
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
     >
       {/* Hero Section */}
-      <ContactHero />
+      <PremiumHero />
       
-      {/* KakaoTalk CTA */}
-      <KakaoTalkCTA />
+      {/* Bento Grid */}
+      <BentoGrid />
       
-      {/* Contact Info */}
-      <ContactInfo />
+      {/* Social Contact Section */}
+      <SocialContactSection />
+      
+      {/* Subscription Section */}
+      <SubscriptionSection />
       
       {/* 3D Scroll Credits with Error Boundary */}
       <Credits3DErrorBoundary>
