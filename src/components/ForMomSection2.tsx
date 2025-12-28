@@ -83,7 +83,7 @@ export function ForMomSection2() {
               <p
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.25vw, 1rem)',
+                  fontSize: 'clamp(0.85rem, 1.25vw, 0.85rem)',
                   color: '#333',
                   fontWeight: 400,
                   lineHeight: 1.5,
@@ -130,7 +130,7 @@ export function ForMomSection2() {
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.85rem, 1.1vw, 1rem)',
+                fontSize: 'clamp(0.85rem, 1.1vw, 0.85rem)',
                 color: '#666',
                 fontWeight: 300,
               }}

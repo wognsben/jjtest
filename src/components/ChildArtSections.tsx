@@ -18,7 +18,7 @@ export function ChildArtSection2() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 2.2vw, 1.6rem)',
+              fontSize: 'clamp(0.85rem, 2.2vw, 1rem)',
               color: '#333',
               lineHeight: 1.5,
               letterSpacing: 0,
@@ -31,7 +31,7 @@ export function ChildArtSection2() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 2.2vw, 1.6rem)',
+              fontSize: 'clamp(0.85rem, 2.2vw, 1rem)',
               color: '#333',
               lineHeight: 1.5,
               letterSpacing: 0,
@@ -44,7 +44,7 @@ export function ChildArtSection2() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 2.2vw, 1.6rem)',
+              fontSize: 'clamp(0.85rem, 2.2vw, 1rem)',
               color: '#333',
               lineHeight: 1.5,
               letterSpacing: 0,
@@ -66,7 +66,7 @@ export function ChildArtSection2() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
+              fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
               color: '#444',
               lineHeight: 1.5,
               letterSpacing: 0,
@@ -95,7 +95,7 @@ export function ChildArtSection2() {
           transition={{ duration: 0.6, delay: 0.3 }}
           style={{
             fontFamily: "'Noto Serif KR', serif",
-            fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
+              fontSize: 'clamp(1.2rem, 2vw, 1rem)',
             color: '#2F6B4F',
             fontWeight: 500,
             lineHeight: 1.5,
@@ -268,7 +268,7 @@ export function ChildArtSection3() {
                 <h3
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
+                    fontSize: 'clamp(0.85rem, 1.2vw, 0.85rem)',
                     color: '#2F6B4F',
                     fontWeight: 600,
                     lineHeight: 1.5,
@@ -280,7 +280,7 @@ export function ChildArtSection3() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
+                    fontSize: 'clamp(0.85rem, 1.2vw, 0.85rem)',
                     color: '#444',
                     lineHeight: 1.5,
                     letterSpacing: 0,
@@ -319,7 +319,7 @@ export function ChildArtSection3() {
                 <h3
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
+                    fontSize: 'clamp(0.85rem, 1.2vw, 0.85rem)',
                     color: '#d97878',
                     fontWeight: 600,
                     lineHeight: 1.5,
@@ -331,7 +331,7 @@ export function ChildArtSection3() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
+                    fontSize: 'clamp(0.85rem, 1.2vw, 0.85rem)',
                     color: '#444',
                     lineHeight: 1.5,
                     letterSpacing: 0,
@@ -627,7 +627,7 @@ export function ChildArtSection5() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.8rem, 1.2vw, 1rem)',
+                    fontSize: 'clamp(0.8rem, 1.2vw, 0.85rem)',
                     color: '#444',
                     lineHeight: 1.6,
                   letterSpacing: 0,
@@ -640,7 +640,7 @@ export function ChildArtSection5() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.8rem, 1.2vw, 1rem)',
+                    fontSize: 'clamp(0.8rem, 1.2vw, 0.85rem)',
                     color: '#2F6B4F',
                     lineHeight: 1.6,
                   letterSpacing: 0,
@@ -655,9 +655,9 @@ export function ChildArtSection5() {
         </motion.div>
 
         {/* Main Content: Two Column Layout */}
-        <div className="grid lg:grid-cols-[45%,55%] gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           {/* LEFT COLUMN: Circles + Info */}
-          <div className="space-y-12">
+          <div className="space-y-12 lg:order-1">
             {/* Two Circles */}
             <div className="flex flex-row gap-4 md:gap-8 items-start justify-center">
               {/* Circle 1: 학기제 운영 */}
@@ -791,14 +791,12 @@ export function ChildArtSection5() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="space-y-10"
+            className="space-y-10 lg:order-2"
           >
             {/* 왜 학기제로 운영하나요? */}
             <div
-              style={{
-                borderLeft: '3px solid #2F6B4F',
-                paddingLeft: '1.5rem',
-              }}
+              className="pl-0 lg:pl-6"
+              data-pc-border="true"
             >
               <h3
                 style={{
@@ -831,7 +829,7 @@ export function ChildArtSection5() {
               <h4
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.65rem, 1.2vw, 1rem)',
+                  fontSize: 'clamp(0.65rem, 1.2vw, 0.85rem)',
                   color: '#2F6B4F',
                   fontWeight: 600,
                   marginBottom: '1rem',
@@ -937,6 +935,15 @@ export function ChildArtSection5() {
           </motion.div>
         </div>
       </div>
+      
+      {/* 반응형 border 스타일 */}
+      <style>{`
+        @media (min-width: 1024px) {
+          [data-pc-border="true"] {
+            border-left: 3px solid #2F6B4F;
+          }
+        }
+      `}</style>
     </section>
   );
 }

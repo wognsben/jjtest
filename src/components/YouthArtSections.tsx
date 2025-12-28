@@ -500,7 +500,7 @@ export function YouthArtSection3() {
                 <p
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.3vw, 1.1rem)',
+                    fontSize: 'clamp(0.85rem, 1.3vw, 0.85rem)',
                     color: '#A66A5A',
                     fontWeight: 400,
                   }}

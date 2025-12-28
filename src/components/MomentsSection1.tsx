@@ -123,7 +123,7 @@ export function MomentsSection1() {
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.94rem, 1.2vw, 1.1rem)',
+                fontSize: 'clamp(0.94rem, 1.2vw, 0.85rem)',
                 color: '#8B7355',
                 fontWeight: 300,
                 lineHeight: 1.5,
@@ -135,7 +135,7 @@ export function MomentsSection1() {
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.85rem, 1.2vw, 1.1rem)',
+                fontSize: 'clamp(0.85rem, 1.2vw, 0.85rem)',
                 color: '#8B7355',
                 fontWeight: 300,
                 lineHeight: 1.5,

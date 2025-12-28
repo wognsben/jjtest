@@ -575,7 +575,7 @@ export default function Programs({ onNavigateToProgram }: { onNavigateToProgram?
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.8rem, 1.6vw, 1.1rem)',
+              fontSize: 'clamp(0.8rem, 1.6vw, 0.85rem)',
               lineHeight: 1.5,
               letterSpacing: 0,
               fontWeight: 400,

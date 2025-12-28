@@ -314,7 +314,7 @@ export function ChildArtSection7() {
                     className="text-center"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.7rem, 1.2vw, 1rem)',
+                      fontSize: 'clamp(0.7rem, 1.2vw, 0.85rem)',
                       color: '#444',
                       fontWeight: 500,
                       lineHeight: 1.5,

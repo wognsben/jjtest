@@ -50,8 +50,11 @@ export default function ArtisticGrowth() {
         {/* 왼쪽: 비주얼 영역 */}
         <div className="growth-visual">
           
-          {/* 상단 숲 블롭들 - 연령 단계별 타이밍 */}
-          <div className="forest-row">
+          {/* 시각적 스택 컨테이너 */}
+          <div className="growth-stack">
+            
+            {/* 상단 숲 블롭들 - 연령 단계별 타이밍 */}
+            <div className="forest-row">
             {forests.map((forest, index) => (
               <motion.div
                 key={forest.id}
@@ -212,6 +215,8 @@ export default function ArtisticGrowth() {
             </div>
           )}
 
+          </div>
+
         </div>
 
         {/* 오른쪽: 설명 영역 */}
@@ -338,6 +343,15 @@ export default function ArtisticGrowth() {
           align-items: center;
         }
 
+        /* 시각적 스택 컨테이너 */
+        .growth-stack {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+
         .forest-row {
           display: flex;
           justify-content: center;
@@ -428,15 +442,17 @@ export default function ArtisticGrowth() {
           color: #fff;
         }
 
-        /* INTEGRITY CORE 컨테이너 - 시각적 중앙 보정 */
+        /* INTEGRITY CORE 컨테이너 - 중앙 레이어로 겹쳐 표시 */
         .integrity-core-container {
-          position: relative;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
           width: clamp(280px, 32vw, 360px);
           height: clamp(200px, 23vw, 250px);
           display: flex;
           justify-content: center;
           align-items: center;
-          transform: translateY(-7%);
+          z-index: 5;
         }
 
         .core-layer-stair {
@@ -661,6 +677,16 @@ export default function ArtisticGrowth() {
           .recovery {
             width: 260px;
             height: 70px;
+          }
+        }
+
+        /* 모바일: 겹침 제거, 자연스러운 세로 흐름 */
+        @media (max-width: 640px) {
+          .integrity-core-container {
+            position: relative;
+            top: auto;
+            transform: none;
+            margin-top: 24px;
           }
         }
 

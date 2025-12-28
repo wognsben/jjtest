@@ -56,7 +56,7 @@ export function MomentsSection4() {
                   textAnchor="middle"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.5vw, 1.1rem)',
+                    fontSize: 'clamp(0.85rem, 1.5vw, 0.85rem)',
                     fill: '#A66A5A',
                     fontWeight: 500,
                     letterSpacing: '0.1em',
@@ -316,7 +316,7 @@ export function MomentsSection4() {
                   className="inline-block"
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.4vw, 1.125rem)',
+                    fontSize: 'clamp(0.85rem, 1.4vw, 0.85rem)',
                     color: '#2d5016',
                     fontWeight: 500,
                     lineHeight: 1.5,

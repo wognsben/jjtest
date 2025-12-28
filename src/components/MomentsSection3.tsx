@@ -429,7 +429,7 @@ export function MomentsSection3() {
           <p
             style={{
               fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 1.1vw, 1rem)',
+              fontSize: 'clamp(0.85rem, 1.1vw, 0.85rem)',
               color: '#9ca3af',
               fontWeight: 300,
               lineHeight: 1.5,

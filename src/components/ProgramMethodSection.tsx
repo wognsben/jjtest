@@ -115,7 +115,7 @@ export default function ProgramMethodSection() {
               className="max-w-[22rem] ml-auto"
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: '1.05rem',
+                fontSize: 'clamp(0.85rem, 1.2vw, 1.05rem)',
                 lineHeight: 1.5,
                 letterSpacing: 0,
                 color: '#444',
@@ -127,15 +127,14 @@ export default function ProgramMethodSection() {
                   스에나가메소드 색채심리
                 </span>
                 는 일본의 스에나가타미오 박사에 의해 체계화되고 검증된 멘탈케어 시스템으로,<br /><br />
-                색채를 매개로 무의식의 심리적 에너지를 밖으로
+                색채를 매개로 무의식의 심리적 에너지를 밖으로{' '}
                 <span style={{ color: '#2F6B4F', fontWeight: 500 }}>
                   자유롭게 표출하며 마음의 건강을 유지
                 </span>
                 하도록 돕는 방법입니다.
               </p>
               <p style={{ marginTop: '1.5rem', color: '#2F6B4F', fontWeight: 500 }}>
-                스에나가 메소드는<br className="lg:hidden" />{' '}
-                크레용숲이 지향하는 예술 기반 정서교육의 핵심 토대입니다.
+                스에나가 메소드는 크레용숲이 지향하는 예술 기반 정서교육의 핵심 토대입니다.
               </p>
             </div>
 

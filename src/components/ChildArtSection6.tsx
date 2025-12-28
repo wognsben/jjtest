@@ -150,7 +150,7 @@ export function ChildArtSection6() {
             <p 
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.9rem, 1.2vw, 1rem)',
+                fontSize: 'clamp(0.9rem, 1.2vw, 0.85rem)',
                 color: '#444',
                 lineHeight: 1.5,
                 letterSpacing: 0,
@@ -181,7 +181,7 @@ export function ChildArtSection6() {
               <p 
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.9rem, 1.2vw, 1rem)',
+                  fontSize: 'clamp(0.9rem, 1.2vw, 0.85rem)',
                   color: '#2F6B4F',
                   fontWeight: 600,
                   marginBottom: '0.75rem',
@@ -305,7 +305,7 @@ export function ChildArtSection6() {
             <p 
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.9rem, 1.2vw, 1rem)',
+                fontSize: 'clamp(0.9rem, 1.2vw, 0.85rem)',
                 color: '#444',
                 lineHeight: 1.5,
                 letterSpacing: 0,
@@ -336,7 +336,7 @@ export function ChildArtSection6() {
               <p 
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.9rem, 1.2vw, 1rem)',
+                  fontSize: 'clamp(0.9rem, 1.2vw, 0.85rem)',
                   color: '#A66A5A',
                   fontWeight: 600,
                   marginBottom: '0.75rem',
@@ -460,7 +460,7 @@ export function ChildArtSection6() {
             <p 
               style={{
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.9rem, 1.2vw, 1rem)',
+                fontSize: 'clamp(0.9rem, 1.2vw, 0.85rem)',
                 color: '#444',
                 lineHeight: 1.5,
                 letterSpacing: 0,
@@ -491,7 +491,7 @@ export function ChildArtSection6() {
               <p 
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.9rem, 1.2vw, 1rem)',
+                  fontSize: 'clamp(0.9rem, 1.2vw, 0.85rem)',
                   color: '#2F6B4F',
                   fontWeight: 600,
                   marginBottom: '0.75rem',
