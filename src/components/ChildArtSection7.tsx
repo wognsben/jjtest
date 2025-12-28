@@ -334,8 +334,8 @@ export function ChildArtSection7() {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="relative"
             >
-              {/* Label Badge */}
-              <div className="absolute -left-2 sm:-left-4 top-6 z-10">
+              {/* Label Badge - PC: 카드 왼쪽 바깥 */}
+              <div className="hidden md:block absolute -left-4 top-6 z-10">
                 <div 
                   className="w-16 h-16 rounded-full bg-white flex items-center justify-center"
                   style={{
@@ -360,6 +360,29 @@ export function ChildArtSection7() {
 
               {/* Content Card - Open Frame */}
               <div className="special-card">
+                {/* Label Badge - 모바일: 카드 내부 상단 */}
+                <div className="md:hidden mb-4">
+                  <div 
+                    className="w-14 h-14 rounded-full bg-white flex items-center justify-center"
+                    style={{
+                      boxShadow: '0 8px 24px rgba(111, 143, 122, 0.15)',
+                      border: '3px solid #6F8F7A',
+                    }}
+                  >
+                    <p 
+                      className="text-center px-1"
+                      style={{
+                        fontFamily: "'Noto Serif KR', serif",
+                        fontSize: '0.85rem',
+                        color: '#6F8F7A',
+                        fontWeight: 600,
+                        lineHeight: 1.3,
+                      }}
+                    >
+                      방학<br />스페셜
+                    </p>
+                  </div>
+                </div>
                 <div className="space-y-4">
                   <p 
                     style={{
@@ -426,8 +449,8 @@ export function ChildArtSection7() {
               transition={{ duration: 0.7 }}
               className="relative"
             >
-              {/* Label Badge */}
-              <div className="absolute -left-2 sm:-left-4 top-8 z-10">
+              {/* Label Badge - PC: 카드 왼쪽 바깥 */}
+              <div className="hidden md:block absolute -left-4 top-8 z-10">
                 <div 
                   className="w-16 h-16 rounded-full bg-white flex items-center justify-center"
                   style={{
@@ -450,6 +473,27 @@ export function ChildArtSection7() {
 
               {/* Content Card - Open Frame */}
               <div className="curriculum-card">
+                {/* Label Badge - 모바일: 카드 내부 상단 */}
+                <div className="md:hidden mb-4">
+                  <div 
+                    className="w-14 h-14 rounded-full bg-white flex items-center justify-center"
+                    style={{
+                      boxShadow: '0 8px 24px rgba(111, 143, 122, 0.15)',
+                      border: '3px solid #6F8F7A',
+                    }}
+                  >
+                    <p 
+                      style={{
+                        fontFamily: "'Noto Serif KR', serif",
+                        fontSize: '0.85rem',
+                        color: '#6F8F7A',
+                        fontWeight: 600,
+                      }}
+                    >
+                      1학기
+                    </p>
+                  </div>
+                </div>
                 <div className="space-y-0">
                   {semester1.map((item, idx) => (
                     <div key={idx}>
@@ -474,8 +518,8 @@ export function ChildArtSection7() {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="relative"
             >
-              {/* Label Badge */}
-              <div className="absolute -left-2 sm:-left-4 top-8 z-10">
+              {/* Label Badge - PC: 카드 왼쪽 바깥 */}
+              <div className="hidden md:block absolute -left-4 top-8 z-10">
                 <div 
                   className="w-16 h-16 rounded-full bg-white flex items-center justify-center"
                   style={{
@@ -498,6 +542,27 @@ export function ChildArtSection7() {
 
               {/* Content Card - Open Frame */}
               <div className="curriculum-card">
+                {/* Label Badge - 모바일: 카드 내부 상단 */}
+                <div className="md:hidden mb-4">
+                  <div 
+                    className="w-14 h-14 rounded-full bg-white flex items-center justify-center"
+                    style={{
+                      boxShadow: '0 8px 24px rgba(111, 143, 122, 0.15)',
+                      border: '3px solid #6F8F7A',
+                    }}
+                  >
+                    <p 
+                      style={{
+                        fontFamily: "'Noto Serif KR', serif",
+                        fontSize: '0.85rem',
+                        color: '#6F8F7A',
+                        fontWeight: 600,
+                      }}
+                    >
+                      2학기
+                    </p>
+                  </div>
+                </div>
                 <div className="space-y-0">
                   {semester2.map((item, idx) => (
                     <div key={idx}>
