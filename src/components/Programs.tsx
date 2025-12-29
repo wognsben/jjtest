@@ -343,7 +343,7 @@ export default function Programs({ onNavigateToProgram }: { onNavigateToProgram?
               <RebuildText text="감정과" delay={0.1} />
             </span>
             <span className="inline md:inline-block mr-[0.3em]" style={{ color: 'rgba(168, 198, 143, 0.9)' }}>
-              <RebuildText text="감각," delay={0.12} />
+              <RebuildText text="감각" delay={0.12} />
             </span>
             <br className="md:hidden" />
             <span className="inline md:inline-block mr-[0.3em]">

@@ -386,8 +386,9 @@ lineHeight: 1.5,
             } as React.CSSProperties}
           >
             <span style={{ color: '#8B6F47' }}>크레용숲은</span>
+            <span style={{ color: '#8B6F47' }}> 색과 감정의 5단계 구조로</span>
             <br className="md:hidden" />
-            <span style={{ color: '#8B6F47' }}> 색과 감정의 5단계 구조로</span> <span style={{ color: '#2e7d32', fontWeight: 600 }}>예술적 성장을 만듭니다</span>
+            <span style={{ color: '#2e7d32', fontWeight: 600 }}>예술적 성장을 만듭니다</span>
           </p>
           
           <div className="pt-4 space-y-2">
