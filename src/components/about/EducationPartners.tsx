@@ -179,7 +179,6 @@ export default function EducationPartners() {
               color: 'rgba(255, 182, 193, 1)',
               fontSize: 'clamp(1rem, 1.5vw, 0.85rem)',
               lineHeight: '1.6',
-              letterSpacing: '0',
               fontWeight: '300',
               letterSpacing: '0.01em'
             }}

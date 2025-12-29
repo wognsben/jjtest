@@ -258,7 +258,6 @@ export function AdultArtSection3() {
                   color: '#A66A5A',
                   fontWeight: 300,
                   lineHeight: 1.5,
-                  letterSpacing: 0,
                   letterSpacing: '0.01em',
                 }}
               >

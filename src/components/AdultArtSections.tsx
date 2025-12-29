@@ -158,8 +158,7 @@ export function AdultArtSection1() {
                       fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                       color: '#A66A5A',
                       fontWeight: 300,
-lineHeight: 1.5,
-              letterSpacing: 0,
+                      lineHeight: 1.5,
                       letterSpacing: '0.05em',
                     }}
                   >

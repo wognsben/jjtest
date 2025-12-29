@@ -433,7 +433,6 @@ export function MomentsSection3() {
               color: '#9ca3af',
               fontWeight: 300,
               lineHeight: 1.5,
-              letterSpacing: 0,
               letterSpacing: '0.02em',
             }}
           >

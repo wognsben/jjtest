@@ -78,10 +78,9 @@ export default function Footer() {
               fontFamily: "'Noto Serif KR', serif",
               fontSize: 'clamp(0.9rem, 1.3vw, 0.95rem)',
               fontWeight: 300,
-              letterSpacing: '-0.01em',
+              letterSpacing: '0',
               color: '#6B6B6B',
               lineHeight: '1.6',
-              letterSpacing: '0',
               maxWidth: '500px',
             }}
           >
@@ -120,10 +119,9 @@ export default function Footer() {
                 fontFamily: "'Noto Sans KR', sans-serif",
                 fontSize: 'clamp(0.8rem, 1.2vw, 0.95rem)',
                 fontWeight: 300,
-                letterSpacing: '-0.01em',
+                letterSpacing: '0',
                 color: '#6B6B6B',
                 lineHeight: '1.6',
-              letterSpacing: '0',
               }}
             >
               경기도 성남시 수정구 창곡동 563번지 위례역 푸르지오 6단지 107호
