@@ -1,6 +1,7 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { getImagePath } from '../utils/imageUtils';
+import { PhilosophyRoomsExperience } from './PhilosophyRoomsExperience';
 
 // YOUTH ART Section 1: Hero - Premium Blob + Ring Style
 export function YouthArtSection1() {
@@ -158,7 +159,6 @@ export function YouthArtSection1() {
                       color: '#A66A5A',
                       fontWeight: 300,
                       lineHeight: 1.5,
-                      letterSpacing: 0,
                       letterSpacing: '0.05em',
                     }}
                   >
@@ -451,6 +451,38 @@ export function YouthArtSection3() {
       <section ref={sectionRef} className="philo-section relative bg-white pt-[90px] pb-24 overflow-hidden">
         <div className="max-w-[1180px] mx-auto px-0 relative">
 
+          {/* Mobile Title - 모바일에서만 상단에 표시 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="md:hidden mb-8 px-6"
+          >
+            <h2 
+              style={{
+                fontFamily: "'Noto Serif KR', serif",
+                fontSize: 'clamp(1.1rem, 4vw, 1.8rem)',
+                color: '#2F6B4F',
+                fontWeight: 500,
+                lineHeight: 1.4,
+                marginBottom: '0.5rem',
+              }}
+            >
+              철학미술관 : 나를 이해하는 색채의 방
+            </h2>
+            <p
+              style={{
+                fontFamily: "'Noto Serif KR', serif",
+                fontSize: 'clamp(0.85rem, 1.3vw, 0.85rem)',
+                color: '#A66A5A',
+                fontWeight: 400,
+              }}
+            >
+              청소년 사유예술 프로그램
+            </p>
+          </motion.div>
+
           {/* Title Banner with Background Image */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -482,8 +514,8 @@ export function YouthArtSection3() {
             />
             {/* Content - Title on top, rest at bottom */}
             <div className="relative z-10 flex flex-col justify-between h-full py-10 px-8 md:px-12" style={{ minHeight: '280px' }}>
-              {/* Top: Title (full width, single line) */}
-              <div>
+              {/* Top: Title (full width, single line) - PC에서만 표시 */}
+              <div className="hidden md:block">
                 <h2 
                   style={{
                     fontFamily: "'Noto Serif KR', serif",
@@ -699,192 +731,8 @@ export function YouthArtSection3() {
             </motion.div>
           </div>
 
-          {/* Main Diagram Area - PC Only */}
-          <div className="hidden md:block relative min-h-[1000px] lg:min-h-[950px]">
-            
-            {/* Center Philosophy Art Circle - PC */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full flex items-center justify-center"
-                style={{ 
-                  background: '#FADFDB',
-                  border: '3px solid #b98463'
-                }}
-              >
-                <div className="text-center px-4">
-                  <p
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
-                      color: '#A66A5A',
-                      fontWeight: 400,
-                      lineHeight: 1.5,
-              letterSpacing: 0,
-                      marginBottom: '0.25rem',
-                    }}
-                  >
-                    나는 누구인가 — <span style={{ color: '#2F6B4F', fontWeight: 500 }}>정체성</span>
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
-                      color: '#A66A5A',
-                      fontWeight: 400,
-                      lineHeight: 1.5,
-              letterSpacing: 0,
-                      marginBottom: '0.25rem',
-                    }}
-                  >
-                    어떻게 바라볼 것인가 — <span style={{ color: '#2F6B4F', fontWeight: 500 }}>사유력</span>
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
-                      color: '#A66A5A',
-                      fontWeight: 400,
-                      lineHeight: 1.5,
-              letterSpacing: 0,
-                      marginBottom: '1rem',
-                    }}
-                  >
-                    무엇을 만들며 살아갈까 — <span style={{ color: '#2F6B4F', fontWeight: 500 }}>세계관</span>
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
-                      color: '#A66A5A',
-                      fontWeight: 300,
-                      letterSpacing: '0.1em',
-                      fontStyle: 'italic',
-                    }}
-                  >
-                    Philosophy
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: 'clamp(0.85rem, 1.6vw, 1.3rem)',
-                      color: '#A66A5A',
-                      fontWeight: 500,
-                      letterSpacing: '0.15em',
-                    }}
-                  >
-                    ART
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-            
-            {/* 4 Room Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32 relative z-0">
-              {rooms.map((room, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.4 + idx * 0.15 }}
-                  className={`relative ${idx >= 2 ? 'md:mt-80' : ''}`}
-                >
-                  <div 
-                    className="room-card rounded-[40px] p-8 min-h-[200px] relative overflow-hidden"
-                    style={{ background: '#FADFDB' }}
-                  >
-                    {/* Animated Border SVG - Top Right + Bottom Left */}
-                    <motion.svg
-                      className="absolute inset-0 w-full h-full pointer-events-none"
-                      viewBox="0 0 400 300"
-                      preserveAspectRatio="none"
-                    >
-                      {/* Top Right Corner */}
-                      <motion.path
-                        d="M 320 20 H 380 Q 390 20 390 30 V 80"
-                        fill="none"
-                        stroke="#b98463"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        whileInView={{ pathLength: 1, opacity: 0.8 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.5, delay: 0.4 + idx * 0.15, ease: "easeInOut" }}
-                      />
-                      {/* Bottom Left Corner */}
-                      <motion.path
-                        d="M 10 240 V 270 Q 10 280 20 280 H 80"
-                        fill="none"
-                        stroke="#b98463"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        whileInView={{ pathLength: 1, opacity: 0.8 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.5, delay: 0.6 + idx * 0.15, ease: "easeInOut" }}
-                      />
-                    </motion.svg>
-                    
-                    <div className="flex items-center gap-3 mb-3">
-                      <span 
-                        className="text-xs font-medium px-3 py-1 rounded-full"
-                        style={{ background: '#A66A5A', color: '#FFF' }}
-                      >
-                        {room.num} ROOM
-                      </span>
-                      <span className="text-xs" style={{ color: '#888' }}>• 3개월</span>
-                    </div>
-                    
-                    <h4 
-                      className="mb-2"
-                      style={{
-                        fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.3rem, 2vw, 1.6rem)',
-                        color: '#2F6B4F',
-                        fontWeight: 600,
-                      }}
-                    >
-                      {room.name}
-                    </h4>
-                    <p 
-                      className="mb-3"
-                      style={{
-                        fontFamily: "'Noto Serif KR', serif",
-                        fontSize: '0.95rem',
-                        color: '#A66A5A',
-                        fontWeight: 400,
-                      }}
-                    >
-                      {room.subtitle}{room.quote ? ` — ${room.quote}` : ''}
-                    </p>
-                    
-                    <ul className="space-y-1.5 mt-4">
-                      {room.items.map((item, i) => (
-                        <li 
-                          key={i}
-                          style={{
-                            fontFamily: "'Noto Serif KR', serif",
-                            fontSize: '0.9rem',
-                            color: '#666',
-                            lineHeight: 1.5,
-              letterSpacing: 0,
-                          }}
-                        >
-                          • {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          {/* Main Diagram Area - PC Only - Experience Section */}
+          <PhilosophyRoomsExperience rooms={rooms} />
 
           {/* Mobile Layout - Vertical Stack */}
           <div className="md:hidden space-y-12">
