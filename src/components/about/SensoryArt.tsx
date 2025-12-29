@@ -182,7 +182,7 @@ export default function SensoryArt() {
                         fontWeight: 600
                       }}
                     >
-                      예술을 기반으로 내적 구조(INTEGRITY)가 단단한 사람은<br />
+                      예술을 기반으로 내적 구조(INTEGRITY)가 단단한 사람은<span className="md:hidden"><br /></span>
                       어떤 시대에도 '자기 방식으로 살아가는 힘'을 갖게 됩니다.
                     </p>
                   </motion.div>

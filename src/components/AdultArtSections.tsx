@@ -306,7 +306,7 @@ export function AdultArtSection2() {
           >
             이런 분에게 맞아요
           </span>
-          <ul className="space-y-2 mt-4">
+          <ul className="md:space-y-2 mt-4" style={{ marginBottom: 0 }}>
             {[
               "오랜만에 '나를 위한 시간'을 갖고 싶은 분",
               '색과 드로잉을 통해 감정 언어를 배우고 싶은 분',
@@ -314,20 +314,20 @@ export function AdultArtSection2() {
               '하나의 작업이 아니라 자기서사·패턴·결을 탐색해보고 싶은 분',
               '"예술은 어려울까?" 걱정하지만, 마음으로 그리는 경험을 원하시는 분'
             ].map((item, i, arr) => (
-              <React.Fragment key={i}>
-                <li
-                  style={{
-                    fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
-                    lineHeight: 1.5,
-                    letterSpacing: 0,
-                    color: '#A66A5A',
-                  }}
-                >
-                  {item}
-                </li>
-                {i < arr.length - 1 && <br />}
-              </React.Fragment>
+              <li
+                key={i}
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  color: '#A66A5A',
+                  marginBottom: 0,
+                  listStyle: 'none'
+                }}
+              >
+                {item}
+              </li>
             ))}
           </ul>
           <div className="flex justify-end mt-8">

@@ -352,9 +352,10 @@ export default function FirstRite() {
                           고대 그리스와 이집트에서 시작된 <span style={{ color: '#D97757', fontWeight: 600 }}>'불로 밀랍을 녹여 색을 입히는 회화 기법'</span>
                         </p>
                         <p 
+                          className="md:text-[clamp(0.9rem,1.5vw,0.85rem)]"
                           style={{
                             fontFamily: "'Noto Serif KR', serif",
-                            fontSize: 'clamp(0.9rem, 1.5vw, 0.85rem)',
+                            fontSize: '0.75rem',
                             lineHeight: 1.5,
                             letterSpacing: 0,
                             color: '#555',

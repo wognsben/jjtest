@@ -237,14 +237,14 @@ export function ChildArtSection7() {
           color: #888;
           font-weight: 300;
           line-height: 1.7;
-          margin-bottom: 1.75rem;
+          margin-bottom: 0.35rem;
         }
         
         @media (max-width: 640px) {
           .desc-line {
             font-size: 0.85rem;
             line-height: 1.8;
-            margin-bottom: 1.25rem;
+            margin-bottom: 0.35rem;
             letter-spacing: 0.01em;
           }
         }
@@ -485,7 +485,7 @@ export function ChildArtSection7() {
                     <p 
                       style={{
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: '0.85rem',
+                        fontSize: '0.75rem',
                         color: '#6F8F7A',
                         fontWeight: 600,
                       }}
@@ -553,7 +553,7 @@ export function ChildArtSection7() {
                     <p 
                       style={{
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: '0.85rem',
+                        fontSize: '0.75rem',
                         color: '#6F8F7A',
                         fontWeight: 600,
                       }}

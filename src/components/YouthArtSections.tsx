@@ -324,22 +324,22 @@ export function YouthArtSection2() {
           >
             이런 친구에게 맞아요
           </span>
-          <ul className="space-y-2 mt-4">
+          <ul className="mt-4" style={{ marginBottom: 0 }}>
             {targetList.map((item, i) => (
-              <React.Fragment key={i}>
-                <li 
-                  style={{ 
-                    fontFamily: "'Noto Serif KR', serif", 
-                    fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)', 
-                    lineHeight: 1.5,
-                    letterSpacing: 0, 
-                    color: '#A66A5A' 
-                  }}
-                >
-                  {item}
-                </li>
-                {i < targetList.length - 1 && <br />}
-              </React.Fragment>
+              <li 
+                key={i}
+                style={{ 
+                  fontFamily: "'Noto Serif KR', serif", 
+                  fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)', 
+                  lineHeight: 1.5,
+                  letterSpacing: 0, 
+                  color: '#A66A5A',
+                  marginBottom: 0,
+                  listStyle: 'none'
+                }}
+              >
+                {item}
+              </li>
             ))}
           </ul>
           

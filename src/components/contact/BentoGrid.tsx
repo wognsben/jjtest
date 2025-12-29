@@ -71,7 +71,7 @@ function Icon({ name, className }: { name: string; className?: string }) {
 
 // 미니멀 일러스트 컴포넌트 (이미지로 대체)
 function MinimalIllustration() {
-  return (
+    return (
     <div className="illustration-container">
       <img
         src={getImagePath("/assets/program/Social Medial Discussion 2.png")}
@@ -269,6 +269,12 @@ export function BentoGrid() {
 
   const handleChannelSelect = (index: number) => {
     setActiveIndex(index);
+    // 카카오톡 채널인 경우 준비중 툴팁 표시
+    if (index === 0) {
+      setShowKakaoTooltip(true);
+      setTimeout(() => setShowKakaoTooltip(false), 2000);
+      return;
+    }
     // 인스타그램인 경우 선택 UI 표시
     if (index === 1) {
       setShowInstagramOptions(true);
@@ -341,8 +347,8 @@ export function BentoGrid() {
                       준비중입니다
                     </div>
                   )}
-                </div>
-                
+          </div>
+          
                 <div className="relative">
                   <button
                     onClick={() => setShowInstagramOptions(!showInstagramOptions)}
@@ -417,7 +423,7 @@ export function BentoGrid() {
                 {snsChannels.map((channel, index) => (
                   <div
                     key={channel.id}
-                    className={`spiral-mobile-card ${activeIndex === index ? 'spiral-mobile-active' : ''}`}
+                    className={`spiral-mobile-card ${activeIndex === index ? 'spiral-mobile-active' : ''} relative`}
                     onClick={() => handleChannelSelect(index)}
             >
                     <div className={`absolute inset-0 bg-white border ${channel.borderColor} rounded-3xl`} />
@@ -436,43 +442,58 @@ export function BentoGrid() {
                             channel.icon && <Icon name={channel.icon} className="w-6 h-6" />
                           )}
                         </div>
-        </div>
+                      </div>
 
                       <div className="space-y-2 mt-auto">
                         <h3 className="text-xl text-[#6B4423] tracking-tight font-semibold">
                           {channel.title}
-          </h3>
+                        </h3>
                         {channel.id === 1 && channel.link2 ? (
                           <div className="space-y-1">
-              <a 
+                            <a 
                               href={channel.link}
-                target="_blank"
-                rel="noopener noreferrer"
+                              target="_blank"
+                              rel="noopener noreferrer"
                               className="block text-[#6B4423]/60 hover:text-[#6B4423] text-sm leading-relaxed transition-colors underline decoration-dotted underline-offset-4"
                               onClick={(e) => e.stopPropagation()}
-              >
+                            >
                               {channel.description}
-              </a>
-              <a 
+                            </a>
+                            <a 
                               href={channel.link2}
-                target="_blank"
-                rel="noopener noreferrer"
+                              target="_blank"
+                              rel="noopener noreferrer"
                               className="block text-[#6B4423]/40 hover:text-[#6B4423]/70 text-xs transition-colors underline decoration-dotted underline-offset-4"
                               onClick={(e) => e.stopPropagation()}
-              >
+                            >
                               {channel.subtitle}
-              </a>
-            </div>
-          ) : (
+                            </a>
+                          </div>
+                        ) : (
                           <p className="text-[#6B4423]/60 text-sm leading-relaxed">
                             {channel.description}
-                </p>
-              )}
+                          </p>
+                        )}
                       </div>
-        </div>
-      </div>
+                    </div>
+                    {/* 카카오톡 준비중 툴팁 (모바일) */}
+                    {channel.id === 0 && showKakaoTooltip && (
+                      <div
+                        className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-4 py-2 rounded-full whitespace-nowrap z-50"
+                        style={{
+                          background: 'rgba(166, 106, 90, 0.95)',
+                          color: '#FFF',
+                          fontFamily: "'Noto Serif KR', serif",
+                          fontSize: '0.85rem',
+                          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                        }}
+                      >
+                        준비중입니다
+                      </div>
+                    )}
+                  </div>
                 ))}
-              </div>
+      </div>
             ) : (
               /* 데스크톱: Spiral Orbit */
               <div ref={spiralWrapRef} className="spiral-wrap">

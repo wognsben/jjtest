@@ -565,8 +565,9 @@ export default function App() {
                   touchAction: 'manipulation'
                 }}
               >
+                {/* Top bar - 두껍게 + radius */}
                 <motion.span
-                  className="w-7 h-0.5 origin-center rounded-full"
+                  className="w-7 h-1 origin-center rounded-full"
                   style={{ backgroundColor: '#2d5016' }}
                   animate={{
                     rotate: isMenuOpen ? 45 : 0,
@@ -574,17 +575,22 @@ export default function App() {
                   }}
                   transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 />
+                {/* Middle bar - 짧게 (Notion/Linear/Arc 스타일) */}
                 <motion.span
-                  className="w-7 h-0.5 rounded-full"
-                  style={{ backgroundColor: '#2d5016' }}
+                  className="h-0.5 rounded-full"
+                  style={{ 
+                    backgroundColor: '#2d5016',
+                    width: '20px'
+                  }}
                   animate={{
                     opacity: isMenuOpen ? 0 : 1,
                     scaleX: isMenuOpen ? 0 : 1,
                   }}
                   transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 />
+                {/* Bottom bar - 두껍게 + radius */}
                 <motion.span
-                  className="w-7 h-0.5 origin-center rounded-full"
+                  className="w-7 h-1 origin-center rounded-full"
                   style={{ backgroundColor: '#2d5016' }}
                   animate={{
                     rotate: isMenuOpen ? -45 : 0,
