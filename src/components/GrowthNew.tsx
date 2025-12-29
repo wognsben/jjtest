@@ -462,50 +462,6 @@ lineHeight: 1.5,
                 </React.Fragment>
               ))}
             </div>
-            
-            {/* Mobile scroll hint arrow - fixed right */}
-            <div className="lg:hidden fixed right-4 bottom-24 pointer-events-none z-10">
-              <motion.svg 
-                width="28" 
-                height="28" 
-                viewBox="0 0 40 40" 
-                fill="none"
-                className="scroll-hint"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0.3, 0.8, 0.3] }}
-                transition={{ 
-                  duration: 1.8,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <motion.g
-                  animate={{ 
-                    x: [0, 6, 0],
-                    opacity: [0.3, 0.8, 0.3]
-                  }}
-                  transition={{ 
-                    duration: 1.8,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  <path
-                    d="M 10 20 H 26"
-                    stroke="#d4a89f"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M 26 14 L 32 20 L 26 26"
-                    stroke="#d4a89f"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </motion.g>
-              </motion.svg>
-            </div>
           </div>
         </div>
         
@@ -652,21 +608,6 @@ lineHeight: 1.5,
           
           .arrow-flow-container.lg\\:hidden {
             opacity: 0.6 !important;
-          }
-          
-          .scroll-hint {
-            display: block;
-          }
-        }
-        
-        /* Mobile scroll hint - subtle and elegant */
-        .scroll-hint {
-          filter: drop-shadow(0 2px 4px rgba(212, 168, 159, 0.2));
-        }
-        
-        @media (min-width: 1024px) {
-          .scroll-hint {
-            display: none;
           }
         }
         
