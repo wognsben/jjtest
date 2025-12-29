@@ -208,10 +208,10 @@ export default function MethodNew() {
             className="text-center mb-20 md:mb-28"
           >
             <h2 
-              className="text-brown-900 mb-4"
+              className="text-brown-900 mb-4 md:text-[clamp(1.2rem,3vw,2.25rem)]"
               style={{ 
                 fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1.2rem, 3vw, 2.25rem)',
+                fontSize: '1rem',
               } as React.CSSProperties}
             >
               <span style={{ color: '#2e7d32' }}>스에나가 하트앤컬러 메소드</span>는 무엇인가요?
