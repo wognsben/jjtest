@@ -179,7 +179,7 @@ export default function EmotionalFoundation() {
                         letterSpacing: 0,
                         fontWeight: 500,
                         color: '#4A4A4A',
-                        marginBottom: '20px',
+                        marginBottom: 0,
                       }}
                     >
                       그리고 이 현상은 연령이 내려갈수록 더 뚜렷해집니다.

@@ -90,8 +90,10 @@ export function ForMomSection2() {
                   letterSpacing: 0,
                 }}
               >
-                크레용숲 정원사는 엄마들이 <span style={{ fontWeight: 600, color: '#2d5016' }}>'다시 나로 살아나도록'</span>
-                <br />
+                크레용숲 정원사는 엄마들이 <br className="md:hidden" />
+                <span style={{ fontWeight: 600, color: '#2d5016' }}>'다시 나로 살아나도록'</span>
+                <br className="md:hidden" />
+                <br className="hidden md:block" />
                 씨앗을 나누는 <span
                   style={{
                     textDecoration: 'underline',

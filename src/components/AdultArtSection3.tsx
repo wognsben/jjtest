@@ -106,9 +106,7 @@ export function AdultArtSection3() {
                   letterSpacing: 0,
                 }}
               >
-                일상에서 잃어버린 감각과 감정의 언어를 회복하고,
-                <br />
-                나만의 색·
+                일상에서 잃어버린 감각과 감정의 언어를 회복하고,<span></span>나만의 색·
                 <span
                   style={{
                     background: 'linear-gradient(120deg, rgba(180,230,140,0.6) 0%, rgba(144,238,144,0.6) 100%)',
@@ -230,7 +228,7 @@ export function AdultArtSection3() {
                     <p
                       style={{
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.95rem, 1.2vw, 1.05rem)',
+                        fontSize: 'clamp(0.85rem, 1.2vw, 1.05rem)',
                         color: '#555',
                         fontWeight: 300,
                         lineHeight: 1.5,
@@ -264,9 +262,7 @@ export function AdultArtSection3() {
                   letterSpacing: '0.01em',
                 }}
               >
-                루틴한 일이 우리의 존재 이유가 아님은 분명하다.
-                <br />
-                우리가 창조하기 위해 존재한다. 우리는 사랑하기 위해 존재한다.
+                루틴한 일이 우리의 존재 이유가 아님은 분명하다.<span></span>우리가 창조하기 위해 존재한다. 우리는 사랑하기 위해 존재한다.
               </p>
               <p
                 className="mt-3"

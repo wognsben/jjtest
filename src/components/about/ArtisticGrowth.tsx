@@ -343,6 +343,12 @@ export default function ArtisticGrowth() {
           align-items: center;
         }
 
+        @media (max-width: 768px) {
+          .growth-visual {
+            min-height: 520px;
+          }
+        }
+
         /* 시각적 스택 컨테이너 */
         .growth-stack {
           position: relative;
@@ -445,14 +451,15 @@ export default function ArtisticGrowth() {
         /* INTEGRITY CORE 컨테이너 - 중앙 레이어로 겹쳐 표시 */
         .integrity-core-container {
           position: absolute;
+          left: 50%;
           top: 50%;
-          transform: translateY(-50%);
+          transform: translate(-50%, -50%);
           width: clamp(280px, 32vw, 360px);
           height: clamp(200px, 23vw, 250px);
           display: flex;
           justify-content: center;
           align-items: center;
-          z-index: 5;
+          z-index: 10;
         }
 
         .core-layer-stair {
@@ -657,6 +664,10 @@ export default function ArtisticGrowth() {
             min-height: 450px;
           }
 
+          .growth-stack {
+            justify-content: center;
+          }
+
           .forest-row {
             flex-direction: column;
             align-items: center;
@@ -682,11 +693,18 @@ export default function ArtisticGrowth() {
 
         /* 모바일: 겹침 제거, 자연스러운 세로 흐름 */
         @media (max-width: 640px) {
+          .growth-stack {
+            justify-content: center;
+            align-items: center;
+          }
+
+          /* integrity-core-container는 growth-visual 기준으로 절대 중앙 고정 */
           .integrity-core-container {
-            position: relative;
-            top: auto;
-            transform: none;
-            margin-top: 24px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
           }
         }
 

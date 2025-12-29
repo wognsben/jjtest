@@ -306,6 +306,7 @@ export function ForMomSection1() {
           </span>
           <ul className="space-y-2 mt-4">
             <li
+              className="for-mom-list-item"
               style={{
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: '0.95rem',
@@ -317,6 +318,7 @@ export function ForMomSection1() {
               무언가를 더 배우기보다 잠시 내려놓고 싶은 엄마<br /><br />
             </li>
             <li
+              className="for-mom-list-item"
               style={{
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: '0.95rem',
@@ -328,6 +330,7 @@ export function ForMomSection1() {
               엄마라는 역할 뒤에 가려진 나를 다시 느끼고 싶은 사람<br /><br />
             </li>
             <li
+              className="for-mom-list-item"
               style={{
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: '0.95rem',
@@ -388,6 +391,18 @@ export function ForMomSection1() {
         {/* Divider */}
         <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-32" />
       </div>
+
+      <style>{`
+        .for-mom-list-item {
+          font-size: 0.85rem;
+        }
+
+        @media (min-width: 768px) {
+          .for-mom-list-item {
+            font-size: 0.95rem;
+          }
+        }
+      `}</style>
     </section>
   );
 }

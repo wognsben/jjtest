@@ -316,10 +316,10 @@ export default function FirstRite() {
                     >
                       <div className="py-8 md:py-10 px-10 space-y-4">
                         <div className="mb-4 flex items-center justify-between">
-                          <h3 
+                          <h3
                             style={{
                               fontFamily: "'Noto Serif KR', serif",
-                              fontSize: 'clamp(1.15rem, 2vw, 1.5rem)',
+                              fontSize: 'clamp(0.8rem, 2vw, 1.5rem)',
                               fontWeight: 600,
                               color: '#8B5A3C',
                               letterSpacing: '-0.02em',

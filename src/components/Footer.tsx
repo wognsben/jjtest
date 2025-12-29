@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Footer() {
+  const [showKakaoTooltip, setShowKakaoTooltip] = useState(false);
+
+  const handleKakaoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowKakaoTooltip(true);
+    setTimeout(() => setShowKakaoTooltip(false), 2000);
+  };
+
   return (
     <footer 
       className="relative w-full overflow-hidden"
@@ -122,38 +130,132 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Social Links - Minimal, quiet */}
+          {/* Social Links - Premium Editorial Style */}
           <div>
             <div 
-              className="mb-6"
+              className="mb-8"
               style={{
-                fontFamily: "'Noto Sans KR', sans-serif",
-                fontSize: 'clamp(0.8rem, 1.1vw, 0.85rem)',
+                fontFamily: "'Inter', sans-serif",
+                fontSize: 'clamp(0.75rem, 1vw, 0.8rem)',
                 fontWeight: 400,
-                letterSpacing: '0.05em',
-                color: '#999',
+                letterSpacing: '0.12em',
+                color: 'rgba(153, 153, 153, 0.8)',
                 textTransform: 'uppercase',
               }}
             >
-              Follow
+              Connect
             </div>
-            <div className="flex flex-wrap gap-4 md:gap-6">
+            <div className="flex flex-col gap-3">
+              {/* KakaoTalk Channel - Premium */}
+              <div className="relative">
+                <a
+                  href="#"
+                  onClick={handleKakaoClick}
+                  className="group relative inline-flex items-center gap-3 cursor-pointer"
+                  style={{
+                    textDecoration: 'none',
+                  }}
+                >
+                <div
+                  className="absolute left-0 w-0 h-px bg-gradient-to-r from-[#A66A5A] to-[#8B5543] transition-all duration-500 group-hover:w-full"
+                  style={{ top: '50%' }}
+                />
+                <span
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.9rem, 1.3vw, 1rem)',
+                    fontWeight: 400,
+                    letterSpacing: '-0.02em',
+                    color: 'rgba(139, 139, 139, 0.9)',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                  }}
+                  className="group-hover:translate-x-1 group-hover:text-[#6B4423]"
+                >
+                  KakaoTalk
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: 'clamp(0.7rem, 0.9vw, 0.75rem)',
+                    fontWeight: 300,
+                    letterSpacing: '0.05em',
+                    color: 'rgba(153, 153, 153, 0.6)',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                  }}
+                  className="group-hover:opacity-100 opacity-0"
+                >
+                  →
+                </span>
+              </a>
+              {/* 준비중 툴팁 */}
+              {showKakaoTooltip && (
+                <div
+                  className="absolute left-0 bottom-full mb-2 px-4 py-2 rounded-full whitespace-nowrap z-50"
+                  style={{
+                    background: 'rgba(166, 106, 90, 0.95)',
+                    color: '#FFF',
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: '0.85rem',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                  }}
+                >
+                  준비중입니다
+                </div>
+              )}
+              </div>
+
               {/* Instagram - 크레용숲 */}
               <a
                 href="https://www.instagram.com/crayonforest.art"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#4A4A4A] transition-colors duration-300"
+                className="group relative inline-flex items-center gap-3"
                 style={{
-                  fontFamily: "'Noto Sans KR', sans-serif",
-                  fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
-                  fontWeight: 300,
-                  letterSpacing: '-0.01em',
-                  color: '#8B8B8B',
                   textDecoration: 'none',
                 }}
               >
-                Instagram (크레용숲)
+                <div
+                  className="absolute left-0 w-0 h-px bg-gradient-to-r from-[#A66A5A] to-[#8B5543] transition-all duration-500 group-hover:w-full"
+                  style={{ top: '50%' }}
+                />
+                <span
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.9rem, 1.3vw, 1rem)',
+                    fontWeight: 400,
+                    letterSpacing: '-0.02em',
+                    color: 'rgba(139, 139, 139, 0.9)',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                  }}
+                  className="group-hover:translate-x-1 group-hover:text-[#6B4423]"
+                >
+                  Instagram
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: 'clamp(0.7rem, 0.9vw, 0.75rem)',
+                    fontWeight: 300,
+                    letterSpacing: '0.05em',
+                    color: 'rgba(153, 153, 153, 0.6)',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                  }}
+                  className="group-hover:opacity-100 opacity-0"
+                >
+                  →
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Noto Sans KR', sans-serif",
+                    fontSize: 'clamp(0.75rem, 1vw, 0.8rem)',
+                    fontWeight: 300,
+                    letterSpacing: '0.02em',
+                    color: 'rgba(153, 153, 153, 0.7)',
+                    fontStyle: 'italic',
+                  }}
+                >
+                  (크레용숲)
+                </span>
               </a>
 
               {/* Instagram - 어린이색채학교 */}
@@ -161,17 +263,53 @@ export default function Footer() {
                 href="https://www.instagram.com/crayonforest_childart"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#4A4A4A] transition-colors duration-300"
+                className="group relative inline-flex items-center gap-3"
                 style={{
-                  fontFamily: "'Noto Sans KR', sans-serif",
-                  fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
-                  fontWeight: 300,
-                  letterSpacing: '-0.01em',
-                  color: '#8B8B8B',
                   textDecoration: 'none',
                 }}
               >
-                Instagram 어린이색채학교
+                <div
+                  className="absolute left-0 w-0 h-px bg-gradient-to-r from-[#A66A5A] to-[#8B5543] transition-all duration-500 group-hover:w-full"
+                  style={{ top: '50%' }}
+                />
+                <span
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.9rem, 1.3vw, 1rem)',
+                    fontWeight: 400,
+                    letterSpacing: '-0.02em',
+                    color: 'rgba(139, 139, 139, 0.9)',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                  }}
+                  className="group-hover:translate-x-1 group-hover:text-[#6B4423]"
+                >
+                  Instagram
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: 'clamp(0.7rem, 0.9vw, 0.75rem)',
+                    fontWeight: 300,
+                    letterSpacing: '0.05em',
+                    color: 'rgba(153, 153, 153, 0.6)',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                  }}
+                  className="group-hover:opacity-100 opacity-0"
+                >
+                  →
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Noto Sans KR', sans-serif",
+                    fontSize: 'clamp(0.75rem, 1vw, 0.8rem)',
+                    fontWeight: 300,
+                    letterSpacing: '0.02em',
+                    color: 'rgba(153, 153, 153, 0.7)',
+                    fontStyle: 'italic',
+                  }}
+                >
+                  (어린이색채학교)
+                </span>
               </a>
 
               {/* Blog */}
@@ -179,37 +317,78 @@ export default function Footer() {
                 href="https://blog.naver.com/dreaming_art_play"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#4A4A4A] transition-colors duration-300"
+                className="group relative inline-flex items-center gap-3"
                 style={{
-                  fontFamily: "'Noto Sans KR', sans-serif",
-                  fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
-                  fontWeight: 300,
-                  letterSpacing: '-0.01em',
-                  color: '#8B8B8B',
                   textDecoration: 'none',
                 }}
               >
-                Blog
-              </a>
-
-              {/* 베이비뉴스 */}
-              <a
-                href="https://www.ibabynews.com/news/articleView.html?idxno=114791"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#4A4A4A] transition-colors duration-300"
-                style={{
-                  fontFamily: "'Noto Sans KR', sans-serif",
-                  fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
-                  fontWeight: 300,
-                  letterSpacing: '-0.01em',
-                  color: '#8B8B8B',
-                  textDecoration: 'none',
-                }}
-              >
-                베이비뉴스
+                <div
+                  className="absolute left-0 w-0 h-px bg-gradient-to-r from-[#A66A5A] to-[#8B5543] transition-all duration-500 group-hover:w-full"
+                  style={{ top: '50%' }}
+                />
+                <span
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.9rem, 1.3vw, 1rem)',
+                    fontWeight: 400,
+                    letterSpacing: '-0.02em',
+                    color: 'rgba(139, 139, 139, 0.9)',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                  }}
+                  className="group-hover:translate-x-1 group-hover:text-[#6B4423]"
+                >
+                  Blog
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: 'clamp(0.7rem, 0.9vw, 0.75rem)',
+                    fontWeight: 300,
+                    letterSpacing: '0.05em',
+                    color: 'rgba(153, 153, 153, 0.6)',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                  }}
+                  className="group-hover:opacity-100 opacity-0"
+                >
+                  →
+                </span>
               </a>
             </div>
+          </div>
+        </div>
+
+        {/* Press Section */}
+        <div className="mb-12 md:mb-16">
+          <div 
+            className="mb-6"
+            style={{
+              fontFamily: "'Noto Sans KR', sans-serif",
+              fontSize: 'clamp(0.8rem, 1.1vw, 0.85rem)',
+              fontWeight: 400,
+              letterSpacing: '0.05em',
+              color: '#999',
+              textTransform: 'uppercase',
+            }}
+          >
+            Press
+          </div>
+          <div className="flex flex-wrap gap-4 md:gap-6">
+            <a
+              href="https://www.ibabynews.com/news/articleView.html?idxno=114791"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#4A4A4A] transition-colors duration-300"
+              style={{
+                fontFamily: "'Noto Sans KR', sans-serif",
+                fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
+                fontWeight: 300,
+                letterSpacing: '-0.01em',
+                color: '#8B8B8B',
+                textDecoration: 'none',
+              }}
+            >
+              베이비뉴스
+            </a>
           </div>
         </div>
 

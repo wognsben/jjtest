@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
+import { getImagePath } from '../utils/imageUtils';
 
-type Phase = 'intro' | 'showRoom' | 'stackToCapsule' | 'idle';
+type Phase = 'intro' | 'roomActive' | 'roomCollapsing' | 'stackIdle';
 
 interface Room {
   num: string;
@@ -11,62 +12,91 @@ interface Room {
   items: string[];
 }
 
-// Capsule Card 컴포넌트 (프로 디자이너 기준 스타일)
+// Capsule Card 컴포넌트 (Awwwards/Behance 프리미엄 스타일)
 function CapsuleCard({ room, order, isHovered }: { room: Room; order: number; isHovered?: boolean }) {
   return (
     <div
       className="rounded-full px-8 py-6 relative overflow-hidden"
       style={{
-        background: '#FADFDB',
-        border: '1px solid rgba(185, 132, 99, 0.35)',
-        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.06)',
+        background: 'linear-gradient(135deg, rgba(250, 223, 219, 0.55) 0%, rgba(250, 223, 219, 0.45) 100%)',
+        border: '1px solid rgba(185, 132, 99, 0.18)',
+        boxShadow: isHovered 
+          ? '0 20px 60px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(185, 132, 99, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6)'
+          : '0 12px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(185, 132, 99, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5)',
         width: '330px',
         minHeight: '96px',
+        backdropFilter: 'blur(20px)',
+        transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
       }}
     >
-      <div className="flex items-center gap-3 mb-1">
-        <span
-          className="text-xs font-medium px-3 py-1 rounded-full tracking-wide"
+      {/* Grain overlay (미세 텍스처 - 매우 연하게) */}
+      <div
+        className="absolute inset-0 rounded-full opacity-[0.015] pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          mixBlendMode: 'multiply',
+        }}
+      />
+
+      {/* Inner highlight */}
+      <div
+        className="absolute top-0 left-0 right-0 h-1/2 rounded-t-full pointer-events-none"
+        style={{
+          background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%)',
+        }}
+      />
+
+      <div className="relative z-10">
+        <div className="flex items-center gap-3 mb-2">
+          <span
+            className="text-xs font-medium px-3 py-1.5 rounded-full tracking-wider"
+            style={{
+              background: 'linear-gradient(135deg, rgba(166, 106, 90, 0.8) 0%, rgba(139, 85, 67, 0.7) 100%)',
+              color: '#FFF',
+              fontFamily: "'Noto Serif KR', serif",
+              boxShadow: '0 2px 8px rgba(166, 106, 90, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+              letterSpacing: '0.05em',
+            }}
+          >
+            {room.num} ROOM
+          </span>
+          <span
+            className="text-xs font-light"
+            style={{
+              color: 'rgba(136, 136, 136, 0.7)',
+              fontFamily: "'Noto Serif KR', serif",
+              letterSpacing: '0.02em',
+            }}
+          >
+            • 3개월
+          </span>
+        </div>
+        <h5
+          className="mt-1.5 leading-tight"
           style={{
-            background: '#A66A5A',
-            color: '#FFF',
             fontFamily: "'Noto Serif KR', serif",
+            fontSize: 'clamp(1.15rem, 1.8vw, 1.45rem)',
+            color: 'rgba(47, 107, 79, 0.8)',
+            fontWeight: 600,
+            letterSpacing: '-0.01em',
+            lineHeight: 1.3,
           }}
         >
-          {room.num} ROOM
-        </span>
-        <span
-          className="text-xs"
+          {room.name}
+        </h5>
+        <p
+          className="mt-1.5 text-sm leading-relaxed"
           style={{
-            color: '#888',
             fontFamily: "'Noto Serif KR', serif",
+            fontSize: '0.875rem',
+            color: 'rgba(166, 106, 90, 0.65)',
+            fontWeight: 400,
+            letterSpacing: '0.01em',
           }}
         >
-          • 3개월
-        </span>
+          {room.subtitle}
+        </p>
       </div>
-      <h5
-        className="mt-1"
-        style={{
-          fontFamily: "'Noto Serif KR', serif",
-          fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)',
-          color: '#2F6B4F',
-          fontWeight: 600,
-        }}
-      >
-        {room.name}
-      </h5>
-      <p
-        className="mt-1 text-sm"
-        style={{
-          fontFamily: "'Noto Serif KR', serif",
-          fontSize: '0.85rem',
-          color: 'rgba(166, 106, 90, 0.8)',
-          fontWeight: 400,
-        }}
-      >
-        {room.subtitle}
-      </p>
     </div>
   );
 }
@@ -82,12 +112,12 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
   const [expanded, setExpanded] = React.useState(false);
   const [focusedIndex, setFocusedIndex] = React.useState<number | null>(null);
 
-  // Capsule Stack 스타일 (겹치지 않도록 넉넉한 간격)
+  // Capsule Stack 스타일 (겹치지 않도록 충분한 간격)
   const capsuleStackStyle = [
     { y: 0, opacity: 1 },
-    { y: 100, opacity: 0.9 },
-    { y: 200, opacity: 0.8 },
-    { y: 300, opacity: 0.7 },
+    { y: 150, opacity: 0.9 },
+    { y: 300, opacity: 0.8 },
+    { y: 450, opacity: 0.7 },
   ];
 
   // ROOM 회전 방향 (시계방향 느낌)
@@ -113,11 +143,11 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
           hasPlayedRef.current = true;
           setExpanded(true);
           
-          // intro → showRoom (ROOM1)
+          // intro → roomActive (ROOM1)
           setTimeout(() => {
-            setPhase('showRoom');
+            setPhase('roomActive');
             setActiveRoom(0);
-          }, shouldReduceMotion ? 100 : 1800);
+          }, shouldReduceMotion ? 100 : 1200);
         }
       },
       { threshold: 0.6 }
@@ -127,31 +157,41 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
     return () => observer.disconnect();
   }, [shouldReduceMotion]);
 
-  // ROOM 순차 등장 로직
+  // ROOM 순차 등장 로직 (Phase 기반, 겹침 방지)
   React.useEffect(() => {
-    if (phase !== 'showRoom' || activeRoom === null) return;
+    if (phase !== 'roomActive' || activeRoom === null) return;
 
-    const delay = shouldReduceMotion ? 200 : 2500;
+    const delay = shouldReduceMotion ? 200 : 1800;
+    const collapseDuration = shouldReduceMotion ? 100 : 900;
 
     // 다음 ROOM으로 전환
     if (activeRoom < rooms.length - 1) {
       setTimeout(() => {
-        setPhase('stackToCapsule');
+        // roomActive → roomCollapsing
+        setPhase('roomCollapsing');
+        
+        // 큰 카드 축소 애니메이션 완료 후
         setTimeout(() => {
           setStackedRooms(prev => [...prev, activeRoom]);
-          setActiveRoom(activeRoom + 1);
-          setPhase('showRoom');
-        }, shouldReduceMotion ? 100 : 1200);
+          // stackIdle로 전환 (Capsule Stack만 보임)
+          setPhase('stackIdle');
+          
+          // 다음 룸 등장
+          setTimeout(() => {
+            setActiveRoom(activeRoom + 1);
+            setPhase('roomActive');
+          }, shouldReduceMotion ? 50 : 150);
+        }, collapseDuration);
       }, delay);
     } else {
       // 마지막 ROOM 완료
       setTimeout(() => {
-        setPhase('stackToCapsule');
+        setPhase('roomCollapsing');
         setTimeout(() => {
           setStackedRooms(prev => [...prev, activeRoom]);
-          setPhase('idle');
+          setPhase('stackIdle');
           setExpanded(false);
-        }, shouldReduceMotion ? 100 : 1200);
+        }, collapseDuration);
       }, delay);
     }
   }, [phase, activeRoom, rooms.length, shouldReduceMotion]);
@@ -172,38 +212,46 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
       <motion.div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
         animate={{
-          opacity: (phase === 'intro' || phase === 'idle') && focusedIndex === null ? 1 : 0,
-          scale: (phase === 'intro' || phase === 'idle') && focusedIndex === null ? 1 : 0.95,
+          opacity: (phase === 'intro' || phase === 'stackIdle') && focusedIndex === null ? 1 : 0,
+          scale: (phase === 'intro' || phase === 'stackIdle') && focusedIndex === null ? 1 : 0.95,
         }}
         transition={{
           duration: shouldReduceMotion ? 0.2 : 0.8,
           ease: [0.4, 0.0, 0.2, 1],
         }}
       >
-        {/* 프리미엄 패널 */}
+        {/* 프리미엄 패널 (Awwwards/Behance 스타일) */}
         <div
           className="relative rounded-[32px] p-10 md:p-12"
           style={{
-            background: 'rgba(250, 223, 219, 0.85)',
-            border: '1px solid rgba(185, 132, 99, 0.35)',
-            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.4)',
-            backdropFilter: 'blur(12px)',
+            background: 'linear-gradient(135deg, rgba(250, 223, 219, 0.55) 0%, rgba(250, 223, 219, 0.45) 100%)',
+            border: '1px solid rgba(185, 132, 99, 0.2)',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(185, 132, 99, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
+            backdropFilter: 'blur(20px)',
             minWidth: '420px',
           }}
         >
-          {/* Grain overlay */}
+          {/* Grain overlay (매우 연하게) */}
           <div
-            className="absolute inset-0 rounded-[32px] opacity-[0.03] pointer-events-none"
+            className="absolute inset-0 rounded-[32px] opacity-[0.015] pointer-events-none"
             style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
               mixBlendMode: 'multiply',
             }}
           />
 
+          {/* Inner highlight */}
+          <div
+            className="absolute top-0 left-0 right-0 h-1/2 rounded-t-[32px] pointer-events-none"
+            style={{
+              background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%)',
+            }}
+          />
+
           {/* Guide lines (SVG) */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none rounded-[32px]">
-            <line x1="40" y1="20" x2="380" y2="20" stroke="rgba(185, 132, 99, 0.15)" strokeWidth="1" />
-            <line x1="40" y1="180" x2="380" y2="180" stroke="rgba(185, 132, 99, 0.15)" strokeWidth="1" />
+            <line x1="40" y1="20" x2="380" y2="20" stroke="rgba(185, 132, 99, 0.12)" strokeWidth="1" />
+            <line x1="40" y1="180" x2="380" y2="180" stroke="rgba(185, 132, 99, 0.12)" strokeWidth="1" />
           </svg>
 
           {/* 텍스트 내용 (절대 변경 금지) */}
@@ -212,46 +260,46 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
               style={{
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
-                color: '#A66A5A',
+                color: 'rgba(166, 106, 90, 0.7)',
                 fontWeight: 400,
                 lineHeight: 1.5,
                 letterSpacing: 0,
                 marginBottom: '0.25rem',
               }}
             >
-              {PHILOSOPHY_TEXT.line1.split(' — ')[0]} — <span style={{ color: '#2F6B4F', fontWeight: 500 }}>{PHILOSOPHY_TEXT.line1.split(' — ')[1]}</span>
+              {PHILOSOPHY_TEXT.line1.split(' — ')[0]} — <span style={{ color: 'rgba(47, 107, 79, 0.75)', fontWeight: 500 }}>{PHILOSOPHY_TEXT.line1.split(' — ')[1]}</span>
             </p>
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
-                color: '#A66A5A',
+                color: 'rgba(166, 106, 90, 0.7)',
                 fontWeight: 400,
                 lineHeight: 1.5,
                 letterSpacing: 0,
                 marginBottom: '0.25rem',
               }}
             >
-              {PHILOSOPHY_TEXT.line2.split(' — ')[0]} — <span style={{ color: '#2F6B4F', fontWeight: 500 }}>{PHILOSOPHY_TEXT.line2.split(' — ')[1]}</span>
+              {PHILOSOPHY_TEXT.line2.split(' — ')[0]} — <span style={{ color: 'rgba(47, 107, 79, 0.75)', fontWeight: 500 }}>{PHILOSOPHY_TEXT.line2.split(' — ')[1]}</span>
             </p>
             <p
               style={{
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
-                color: '#A66A5A',
+                color: 'rgba(166, 106, 90, 0.7)',
                 fontWeight: 400,
                 lineHeight: 1.5,
                 letterSpacing: 0,
                 marginBottom: '1rem',
               }}
             >
-              {PHILOSOPHY_TEXT.line3.split(' — ')[0]} — <span style={{ color: '#2F6B4F', fontWeight: 500 }}>{PHILOSOPHY_TEXT.line3.split(' — ')[1]}</span>
+              {PHILOSOPHY_TEXT.line3.split(' — ')[0]} — <span style={{ color: 'rgba(47, 107, 79, 0.75)', fontWeight: 500 }}>{PHILOSOPHY_TEXT.line3.split(' — ')[1]}</span>
             </p>
             <p
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
-                color: '#A66A5A',
+                color: 'rgba(166, 106, 90, 0.65)',
                 fontWeight: 300,
                 letterSpacing: '0.1em',
                 fontStyle: 'italic',
@@ -263,7 +311,7 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: 'clamp(0.85rem, 1.6vw, 1.3rem)',
-                color: '#A66A5A',
+                color: 'rgba(166, 106, 90, 0.7)',
                 fontWeight: 500,
                 letterSpacing: '0.15em',
               }}
@@ -274,15 +322,15 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
         </div>
       </motion.div>
 
-      {/* LeftStage: ROOM 큰 카드 등장 (항상 왼쪽) */}
-      {(phase === 'showRoom' || phase === 'stackToCapsule') && activeRoom !== null && (
+      {/* LeftStage: ROOM 큰 카드 등장 (roomActive 또는 roomCollapsing일 때만) */}
+      {(phase === 'roomActive' || phase === 'roomCollapsing') && activeRoom !== null && (
         <div className="absolute inset-0" style={{ left: '6vw' }}>
           {rooms.map((room, idx) => {
-            const isActive = activeRoom === idx;
-            const isStacking = phase === 'stackToCapsule' && activeRoom === idx;
-            const isStacked = stackedRooms.includes(idx);
+            const isActive = activeRoom === idx && phase === 'roomActive';
+            const isCollapsing = activeRoom === idx && phase === 'roomCollapsing';
 
-            if (!isActive && !isStacking && !isStacked) return null;
+            // Phase 기반 렌더링: roomActive 또는 roomCollapsing일 때만
+            if (!isActive && !isCollapsing) return null;
 
             // 스택으로 이동할 때의 목표 스타일 (stackedRooms.length가 order가 됨)
             const targetOrder = stackedRooms.length;
@@ -294,19 +342,23 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
                 className="absolute left-0 top-1/2"
                 initial={isActive ? { opacity: 0, scale: 0.985, y: 14, rotate: roomRotations[idx] } : false}
                 animate={{
-                  opacity: isStacked ? 0 : isStacking ? targetStyle.opacity : isActive ? 1 : 0,
-                  scale: isStacking ? 1 : isActive ? 1 : 0,
-                  y: isStacking ? targetStyle.y : isActive ? 0 : 14,
-                  rotate: isStacking ? 0 : isActive ? roomRotations[idx] : 0,
-                  x: isStacking ? -80 : 0, // Capsule Stack 위치로 이동 (6vw → 5vw, 약 -1vw ≈ -80px)
+                  opacity: isCollapsing ? 0 : isActive ? 1 : 0,
+                  scale: isCollapsing ? 0.8 : isActive ? 1 : 0,
+                  y: isCollapsing ? targetStyle.y : isActive ? 0 : 14,
+                  rotate: isCollapsing ? 0 : isActive ? roomRotations[idx] : 0,
+                  x: isCollapsing ? -80 : 0, // Capsule Stack 위치로 이동 (6vw → 5vw, 약 -1vw ≈ -80px)
                 }}
                 transition={{
-                  duration: shouldReduceMotion ? 0.2 : isStacking ? 1.2 : 1.2,
+                  duration: shouldReduceMotion ? 0.2 : isCollapsing ? 0.9 : 1.0,
                   ease: [0.4, 0.0, 0.2, 1],
+                  opacity: {
+                    duration: shouldReduceMotion ? 0.1 : isCollapsing ? 0.5 : 1.0,
+                    ease: [0.4, 0.0, 0.2, 1],
+                  },
                 }}
                 style={{
                   width: '320px',
-                  zIndex: isActive ? 20 : isStacking ? 15 : 0,
+                  zIndex: isActive ? 20 : isCollapsing ? 15 : 0,
                 }}
               >
                 <div 
@@ -319,7 +371,7 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
                     viewBox="0 0 400 300"
                     preserveAspectRatio="none"
                     animate={{
-                      opacity: isStacking ? 0 : 1,
+                      opacity: isCollapsing ? 0 : 1,
                     }}
                   >
                     <motion.path
@@ -367,7 +419,7 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
                       fontSize: 'clamp(1.3rem, 2vw, 1.6rem)',
-                      color: '#2F6B4F',
+                      color: 'rgba(47, 107, 79, 0.8)',
                       fontWeight: 600,
                     }}
                   >
@@ -421,8 +473,8 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
         <div className="w-px h-full bg-gradient-to-b from-transparent via-[#b98463]/20 to-transparent" />
       </div>
 
-      {/* Capsule Stack (왼쪽, 항상 보임) */}
-      {stackedRooms.length > 0 && (
+      {/* Capsule Stack (stackIdle일 때만 렌더링, 겹침 방지) */}
+      {phase === 'stackIdle' && stackedRooms.length > 0 && (
         <div
           className="absolute z-30"
           style={{ 
@@ -430,7 +482,7 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
             width: '360px',
             top: '50%',
             transform: 'translateY(-50%)',
-            marginTop: stackedRooms.length > 2 ? '-150px' : '0px', // 3개 이상일 때 위로 조정
+            marginTop: stackedRooms.length > 2 ? '-225px' : '0px', // 3개 이상일 때 위로 조정 (간격이 넓어져서 더 위로)
           }}
         >
           <div className="relative">
@@ -459,8 +511,8 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
                       : style.opacity,
                   }}
                   transition={{
-                    duration: shouldReduceMotion ? 0.2 : 0.8,
-                    delay: isNewest ? (shouldReduceMotion ? 0.1 : 0.6) : 0,
+                    duration: shouldReduceMotion ? 0.2 : 0.6,
+                    delay: isNewest ? (shouldReduceMotion ? 0.1 : 0.15) : 0, // Phase 기반으로 단순화, 큰 카드는 이미 사라진 상태
                     ease: [0.4, 0.0, 0.2, 1],
                   }}
                   onMouseEnter={() => setFocusedIndex(roomIdx)}
@@ -492,81 +544,167 @@ export function PhilosophyRoomsExperience({ rooms }: { rooms: Room[] }) {
             }}
           >
             <div
-              className="relative rounded-[40px] p-8 max-w-md mx-4 cursor-pointer"
-              style={{ background: '#FADFDB' }}
+              className="relative rounded-[40px] p-8 max-w-md mx-4 cursor-pointer overflow-hidden"
+              style={{
+                background: 'linear-gradient(135deg, rgba(250, 223, 219, 0.55) 0%, rgba(250, 223, 219, 0.45) 100%)',
+                border: '1px solid rgba(185, 132, 99, 0.2)',
+                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(185, 132, 99, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
+                backdropFilter: 'blur(20px)',
+              }}
               onClick={() => setFocusedIndex(null)}
             >
+              {/* Grain overlay (매우 연하게) */}
+              <div
+                className="absolute inset-0 rounded-[40px] opacity-[0.015] pointer-events-none"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                  mixBlendMode: 'multiply',
+                }}
+              />
+
+              {/* Inner highlight */}
+              <div
+                className="absolute top-0 left-0 right-0 h-1/2 rounded-t-[40px] pointer-events-none"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%)',
+                }}
+              />
+
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   setFocusedIndex(null);
                 }}
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/50 transition-colors"
-                style={{ color: '#A66A5A' }}
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/50 transition-colors z-10"
+                style={{ color: 'rgba(166, 106, 90, 0.7)' }}
               >
                 ×
               </button>
               
-              {(() => {
-                const room = rooms[focusedIndex];
-                return (
-                  <>
-                    <div className="flex items-center gap-3 mb-3">
-                      <span 
-                        className="text-xs font-medium px-3 py-1 rounded-full"
-                        style={{ background: '#A66A5A', color: '#FFF' }}
-                      >
-                        {room.num} ROOM
-                      </span>
-                      <span className="text-xs" style={{ color: '#888' }}>• 3개월</span>
-                    </div>
-                    
-                    <h4 
-                      className="mb-2"
-                      style={{
-                        fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(1.3rem, 2vw, 1.6rem)',
-                        color: '#2F6B4F',
-                        fontWeight: 600,
-                      }}
-                    >
-                      {room.name}
-                    </h4>
-                    <p 
-                      className="mb-3"
-                      style={{
-                        fontFamily: "'Noto Serif KR', serif",
-                        fontSize: '0.95rem',
-                        color: '#A66A5A',
-                        fontWeight: 400,
-                      }}
-                    >
-                      {room.subtitle}{room.quote ? ` — ${room.quote}` : ''}
-                    </p>
-                    
-                    <ul className="space-y-1.5 mt-4">
-                      {room.items.map((item, i) => (
-                        <li 
-                          key={i}
+              <div className="relative z-10">
+                {(() => {
+                  const room = rooms[focusedIndex];
+                  return (
+                    <>
+                      <div className="flex items-center gap-3 mb-3">
+                        <span 
+                          className="text-xs font-medium px-3 py-1.5 rounded-full tracking-wider"
                           style={{
+                            background: 'linear-gradient(135deg, rgba(166, 106, 90, 0.8) 0%, rgba(139, 85, 67, 0.7) 100%)',
+                            color: '#FFF',
                             fontFamily: "'Noto Serif KR', serif",
-                            fontSize: '0.9rem',
-                            color: '#666',
-                            lineHeight: 1.5,
-                            letterSpacing: 0,
+                            boxShadow: '0 2px 8px rgba(166, 106, 90, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                            letterSpacing: '0.05em',
                           }}
                         >
-                          • {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                );
-              })()}
+                          {room.num} ROOM
+                        </span>
+                        <span 
+                          className="text-xs font-light"
+                          style={{
+                            color: 'rgba(136, 136, 136, 0.7)',
+                            fontFamily: "'Noto Serif KR', serif",
+                            letterSpacing: '0.02em',
+                          }}
+                        >
+                          • 3개월
+                        </span>
+                      </div>
+                      
+                      <h4 
+                        className="mb-2 leading-tight"
+                        style={{
+                          fontFamily: "'Noto Serif KR', serif",
+                          fontSize: 'clamp(1.3rem, 2vw, 1.6rem)',
+                          color: 'rgba(47, 107, 79, 0.8)',
+                          fontWeight: 600,
+                          letterSpacing: '-0.01em',
+                          lineHeight: 1.3,
+                        }}
+                      >
+                        {room.name}
+                      </h4>
+                      <p 
+                        className="mb-3 leading-relaxed"
+                        style={{
+                          fontFamily: "'Noto Serif KR', serif",
+                          fontSize: '0.95rem',
+                          color: 'rgba(166, 106, 90, 0.7)',
+                          fontWeight: 400,
+                          letterSpacing: '0.01em',
+                        }}
+                      >
+                        {room.subtitle}{room.quote ? ` — ${room.quote}` : ''}
+                      </p>
+                      
+                      <ul className="space-y-1.5 mt-4">
+                        {room.items.map((item, i) => (
+                          <li 
+                            key={i}
+                            style={{
+                              fontFamily: "'Noto Serif KR', serif",
+                              fontSize: '0.9rem',
+                              color: 'rgba(102, 102, 102, 0.8)',
+                              lineHeight: 1.5,
+                              letterSpacing: '0.01em',
+                            }}
+                          >
+                            • {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  );
+                })()}
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* 오른쪽 하단 이미지 */}
+      <div
+        className="absolute z-20"
+        style={{
+          right: '32px',
+          bottom: '32px',
+          maxWidth: '400px',
+        }}
+      >
+        <div className="relative">
+          {/* 흰색 배경 레이어 */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'rgba(255, 255, 255, 0.85)',
+              borderRadius: '8px',
+              zIndex: 0,
+            }}
+          />
+          {/* 흰색 오버레이 레이어 */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%)',
+              borderRadius: '8px',
+              zIndex: 2,
+              mixBlendMode: 'screen',
+            }}
+          />
+          <img
+            src={getImagePath('/assets/program/child/4room-Photoroom.png')}
+            alt="4 ROOM 과정 설명"
+            style={{
+              maxWidth: '100%',
+              height: 'auto',
+              display: 'block',
+              position: 'relative',
+              zIndex: 1,
+              borderRadius: '8px',
+            }}
+          />
+        </div>
+      </div>
     </motion.div>
   );
 }

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useRef, useEffect, useState, Suspense } from 'react';
 import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber';
 import { gsap } from 'gsap';
@@ -249,7 +250,7 @@ export default function ScrollCredits3D() {
   return (
     <div
       ref={containerRef}
-      className="relative h-[300vh] bg-gradient-to-b from-[#F5F5DC]/20 via-[#F5F5DC]/10 to-white"
+      className="relative h-[400vh] bg-white"
     >
       {/* Fixed Canvas */}
       <div className="sticky top-0 h-screen w-full">

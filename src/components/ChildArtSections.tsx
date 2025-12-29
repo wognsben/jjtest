@@ -425,16 +425,19 @@ export function ChildArtSection4() {
               objectFit: 'cover',
             }}
             onError={(e) => {
-              console.error('Image load error:', e.currentTarget.src);
-              const src = e.currentTarget.src;
-              if (src.endsWith('.png')) {
-                e.currentTarget.src = getImagePath('/assets/program/child/now we change the question.PNG');
-              } else if (src.endsWith('.PNG')) {
-                e.currentTarget.src = getImagePath('/assets/program/child/now we change the question.jpg');
-              } else if (src.endsWith('.jpg')) {
-                e.currentTarget.src = getImagePath('/assets/program/child/now we change the question.JPG');
-              } else {
-                e.currentTarget.src = getImagePath('/assets/program/child/now we change the question.png');
+              const target = e.currentTarget as HTMLImageElement;
+              const src = target.src;
+              console.error('Image load error:', src);
+              
+              // 무한 루프 방지: 한 번만 대문자 확장자 시도
+              if (src.includes('now%20we%20change%20the%20question')) {
+                if (src.endsWith('.png') || src.endsWith('%20question.png')) {
+                  // 소문자 png 실패 시 대문자 PNG 시도
+                  target.src = getImagePath('/assets/program/child/now we change the question.PNG');
+                } else {
+                  // 모든 시도 실패 시 이미지 숨김
+                  target.style.display = 'none';
+                }
               }
             }}
           />
@@ -796,7 +799,7 @@ export function ChildArtSection5() {
           >
             {/* 왜 학기제로 운영하나요? */}
             <div
-              className="pl-0 lg:pl-6"
+              className="pl-0 lg:pl-8"
               data-pc-border="true"
             >
               <h3

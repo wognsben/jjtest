@@ -300,10 +300,9 @@ export default function EmotionalArtProgram() {
                       {/* Bottom */}
                       <div className="flex-1 flex items-end">
                         <p 
-                          className="w-full leading-[2] md:leading-[2.2]"
+                          className="w-full stage-description-text"
                           style={{ 
                             color: '#555',
-                            fontSize: '0.65rem',
                             whiteSpace: 'pre-line',
                           }}
                         >
@@ -318,6 +317,20 @@ export default function EmotionalArtProgram() {
           </div>
         </div>
       </section>
+
+      <style>{`
+        .stage-description-text {
+          font-size: 0.75rem;
+          line-height: 1.5;
+        }
+
+        @media (min-width: 768px) {
+          .stage-description-text {
+            font-size: 0.9rem;
+            line-height: 1.8;
+          }
+        }
+      `}</style>
     </>
   );
 }

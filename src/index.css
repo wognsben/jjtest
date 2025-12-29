@@ -5833,3 +5833,368 @@
     transform: rotate(360deg);
   }
 }
+
+/* ============================================
+   BENTO GRID - HTML/CSS 기반 스타일
+   ============================================ */
+
+/* 카드 기본 스타일 - Depth 효과 */
+.bento-card {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              z-index 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: bentoFadeIn 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.bento-card-bg {
+  box-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 20px 40px rgba(0, 0, 0, 0.04),
+    0 8px 16px rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover 시 카드 상승 효과 */
+.bento-card:hover {
+  transform: translateY(-4px);
+  z-index: 10;
+}
+
+.bento-card:hover .bento-card-bg {
+  box-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 24px 60px rgba(0, 0, 0, 0.08),
+    0 12px 24px rgba(0, 0, 0, 0.04);
+}
+
+/* Gradient overlay - hover 시 표시 */
+.bento-card-gradient {
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover .bento-card-gradient {
+  opacity: 1;
+}
+
+/* Glow 효과 - hover 시 */
+.bento-glow {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover .bento-glow {
+  opacity: 0.15;
+}
+
+/* 아이콘 컨테이너 hover 효과 */
+.bento-icon-container {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover .bento-icon-container {
+  transform: scale(1.05) translateY(-2px);
+}
+
+/* External link - hover 시 표시 */
+.bento-external-link {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bento-card:hover .bento-external-link {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade in 애니메이션 */
+@keyframes bentoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header 애니메이션 */
+.bento-header {
+  animation: bentoFadeIn 0.8s ease-out forwards;
+}
+
+/* Title/Description 애니메이션 */
+.bento-title,
+.bento-description {
+  animation: bentoFadeIn 0.6s ease-out forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.bento-description {
+  animation-delay: 0.5s;
+}
+
+/* ============================================
+   GET IN TOUCH 카드 - 특별 애니메이션
+   ============================================ */
+
+.bento-card-animated {
+  /* Blob 부유감 애니메이션 */
+  animation: bentoFadeIn 0.6s ease-out forwards,
+             bentoFloat 6s ease-in-out infinite;
+}
+
+.bento-card-animated::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(107, 68, 35, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: bentoBlob 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* SVG Path 애니메이션 */
+.bento-stroke-path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: bentoDrawPath 1.2s ease-out forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+@keyframes bentoDrawPath {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* Dot 애니메이션 */
+.bento-dot-1 {
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: 8px 10px;
+  animation: bentoDotPop 0.4s ease-out forwards;
+  animation-delay: 0.8s;
+}
+
+.bento-dot-2 {
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: 16px 14px;
+  animation: bentoDotPop 0.4s ease-out forwards;
+  animation-delay: 1s;
+}
+
+@keyframes bentoDotPop {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+
+/* Float 애니메이션 */
+@keyframes bentoFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Blob 애니메이션 */
+@keyframes bentoBlob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  33% {
+    transform: translate(10px, -10px) scale(1.1);
+    opacity: 0.4;
+  }
+  66% {
+    transform: translate(-10px, 10px) scale(0.9);
+    opacity: 0.2;
+  }
+}
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+  .bento-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .bento-card-animated::before {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* ============================================
+   SPIRAL SNS - 나선형 궤도 인터랙션
+   ============================================ */
+
+/* LEFT 영역: 텍스트 블록 */
+.orbit-left-zone {
+  animation: bentoFadeIn 0.8s ease-out forwards;
+}
+
+/* LEFT 영역 h2 스타일 오버라이드 */
+.orbit-left-zone h2 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem) !important;
+}
+
+/* 미니멀 일러스트 */
+.illustration-container {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  pointer-events: none;
+}
+
+.minimal-illustration {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  opacity: 0.4;
+  filter: grayscale(100%);
+  color: #6B4423;
+  display: block;
+}
+
+/* RIGHT 영역: Spiral 컨테이너 */
+.spiral-right-zone {
+  position: relative;
+}
+
+.spiral-wrap {
+  position: relative;
+  width: 420px;
+  height: 420px;
+  margin: 0 auto;
+}
+
+/* Spiral SNS 카드 */
+.spiral-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240px;
+  min-height: 200px;
+  cursor: pointer;
+  transform-origin: center;
+  will-change: transform, opacity, filter;
+  /* 초기 위치 (GSAP이 제어) */
+  transform: translate(-50%, -50%);
+  /* 회전 각도 지원 */
+  transform-style: preserve-3d;
+}
+
+/* 활성 카드 (최상단 포커스) */
+.spiral-active {
+  z-index: 10;
+}
+
+.spiral-active .spiral-card-bg {
+  box-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 30px 80px rgba(212, 165, 116, 0.35),
+    0 12px 24px rgba(0, 0, 0, 0.04);
+}
+
+.spiral-active .spiral-card-gradient {
+  opacity: 1;
+}
+
+.spiral-active .spiral-glow {
+  opacity: 0.2;
+}
+
+/* 카드 배경 */
+.spiral-card-bg {
+  box-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 20px 40px rgba(0, 0, 0, 0.04),
+    0 8px 16px rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spiral-card-gradient {
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spiral-icon-container {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spiral-item:hover .spiral-icon-container {
+  transform: scale(1.1) translateY(-2px);
+}
+
+.spiral-glow {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 모바일: Spiral 제거, 세로 스택 */
+.spiral-mobile-card {
+  position: relative;
+  width: 100%;
+  min-height: 160px;
+  cursor: pointer;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.spiral-mobile-active {
+  border: 2px solid rgba(107, 68, 35, 0.3);
+  box-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.spiral-mobile-card:active {
+  transform: scale(0.98);
+}
+
+/* 인스타그램 선택 버튼 스타일 */
+.spiral-item button {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.spiral-item button:active {
+  transform: scale(0.98);
+}
+
+/* 활성화 시 애니메이션 중지 */
+.orbit-active {
+  animation: none !important;
+}

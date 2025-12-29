@@ -59,13 +59,13 @@ export default function PremiumIntegrityOrbit() {
         viewBox="0 0 800 720" 
         className="w-full max-w-5xl" 
         style={{ 
-          filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.08))',
+          filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.04))',
           minHeight: '400px' // 모바일에서 최소 높이 보장
         }}
       >
 
         {/* 관계 암시 라인 (느껴지는 수준) */}
-        <g opacity="0.05">
+        <g opacity="0.015">
           {nodes.map((n) => (
             <line
               key={n.id}
@@ -74,7 +74,7 @@ export default function PremiumIntegrityOrbit() {
               x2={n.x}
               y2={n.y}
               stroke="#D4B896"
-              strokeWidth="0.5"
+              strokeWidth="0.35"
               strokeDasharray="1 6"
               strokeLinecap="round"
             />
@@ -99,10 +99,10 @@ function CenterNode() {
       {/* 외부 글로우 효과 - 최소화 */}
       <defs>
         <filter id="centerShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
-          <feOffset dx="0" dy="3" result="offsetblur"/>
+          <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+          <feOffset dx="0" dy="2" result="offsetblur"/>
           <feComponentTransfer>
-            <feFuncA type="linear" slope="0.15"/>
+            <feFuncA type="linear" slope="0.08"/>
           </feComponentTransfer>
           <feMerge>
             <feMergeNode/>
@@ -130,8 +130,8 @@ function CenterNode() {
       <path
         d="M310,415 C340,445 380,465 420,465 C460,465 500,445 520,415 C540,385 540,345 520,315 C500,285 460,265 420,265 C380,265 340,285 310,315 C290,345 290,385 310,415 Z"
         fill="rgba(0,0,0,0.06)"
-        opacity="0.5"
-        style={{ filter: 'blur(8px)' }}
+        opacity="0.3"
+        style={{ filter: 'blur(14px)' }}
       />
 
       {/* 외곽 두께 링 (3D 층감) - gradient stroke */}
@@ -139,8 +139,8 @@ function CenterNode() {
         d="M305,365 C305,315 345,270 395,260 C445,250 495,275 520,315 C545,355 545,405 520,445 C495,485 445,510 395,500 C345,490 305,445 305,395 Z"
         fill="none"
         stroke="url(#ringGradient)"
-        strokeWidth="2.5"
-        opacity="0.6"
+        strokeWidth="1.5"
+        opacity="0.35"
       />
 
       {/* 중심 blob wrapper with filter */}
@@ -149,12 +149,13 @@ function CenterNode() {
           d="M310,360 C310,320 340,285 380,275 C420,265 465,280 490,315 C515,350 520,395 495,430 C470,465 425,480 385,475 C345,470 310,435 310,395 Z"
           fill="url(#blobGradient)"
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          whileInView={{ opacity: 0.55 }}
           viewport={{ once: true }}
           transition={{ 
             duration: 0.8,
             ease: [0.16, 1, 0.3, 1]
           }}
+          style={{ filter: 'blur(6px)' }}
         />
       </g>
 
@@ -163,18 +164,18 @@ function CenterNode() {
         d="M315,360 C315,325 345,292 385,282 C425,272 465,287 490,320 C515,353 515,398 490,428 C465,458 425,473 385,468 C345,463 315,428 315,393 Z"
         fill="none"
         stroke="url(#ringGradient)"
-        strokeWidth="1.5"
-        opacity="0.7"
+        strokeWidth="0.9"
+        opacity="0.35"
       />
 
       {/* 상단 하이라이트 아크 (빛 받는 부분) */}
       <path
         d="M 340,310 A 80,80 0 0,1 460,310"
         fill="none"
-        stroke="rgba(255,255,255,0.4)"
-        strokeWidth="2.5"
+        stroke="rgba(255,255,255,0.25)"
+        strokeWidth="1.8"
         strokeLinecap="round"
-        opacity="0.8"
+        opacity="0.6"
       />
 
       {/* 타이틀 */}
@@ -184,11 +185,11 @@ function CenterNode() {
         textAnchor="middle"
         fontSize="26"
         fontWeight="700"
-        fill="white"
+        fill="#8B7B6F"
         fontFamily="'Cormorant Garamond', serif"
         letterSpacing="0.03em"
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        whileInView={{ opacity: 0.92 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.6 }}
       >
@@ -201,12 +202,12 @@ function CenterNode() {
         y="380"
         textAnchor="middle"
         fontSize="13"
-        fill="white"
-        opacity="0.95"
+        fill="#9B8B7F"
+        opacity="0.9"
         fontFamily="'Noto Serif KR', serif"
         letterSpacing="0.01em"
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.95 }}
+        whileInView={{ opacity: 0.9 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.8 }}
       >
@@ -266,7 +267,7 @@ function PremiumNode({
         delay: 1.2 + index * 0.12,
         ease: [0.16, 1, 0.3, 1]
       }}
-      filter="drop-shadow(0 2px 6px rgba(0,0,0,0.04))"
+      filter="drop-shadow(0 1px 3px rgba(0,0,0,0.02))"
     >
       <g transform={`translate(${left}, ${top})`}>
       
@@ -276,7 +277,7 @@ function PremiumNode({
         y="0"
         width={W}
         height={pillH}
-        rx="999"
+        rx="8"
         fill="#F7F3EE"
         stroke="rgba(212,184,150,0.35)"
         strokeWidth="0.8"
@@ -291,7 +292,7 @@ function PremiumNode({
         y="-1"
         width={W + 2}
         height={pillH + 2}
-        rx="999"
+        rx="8"
         fill="none"
         stroke="rgba(212,184,150,0.15)"
         strokeWidth="0.4"
@@ -354,7 +355,7 @@ function PremiumNode({
         width={W}
         height={textAreaH}
         rx="10"
-        fill="#F5EEE6"
+        fill="rgba(255,255,255,0.5)"
         stroke="none"
         opacity="0.92"
       />
@@ -412,7 +413,7 @@ function PremiumNode({
             fontSize: '10px',
             lineHeight: '1.6',
             color: '#6B5B4F',
-            opacity: 0.85,
+            opacity: 0.78,
             textAlign: 'left',
             wordBreak: 'keep-all'
           }}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,6 +11,13 @@ export default function KakaoTalkCTA() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
   const buttonRef = useMagneticHover<HTMLAnchorElement>({ strength: 0.4, speed: 0.5 });
+  const [showKakaoTooltip, setShowKakaoTooltip] = useState(false);
+
+  const handleKakaoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowKakaoTooltip(true);
+    setTimeout(() => setShowKakaoTooltip(false), 2000);
+  };
 
   useEffect(() => {
     if (!sectionRef.current || !boxRef.current) return;
@@ -96,31 +103,47 @@ export default function KakaoTalkCTA() {
               </div>
 
               {/* CTA Button */}
-              <motion.a
-                ref={buttonRef}
-                href="http://pf.kakao.com/_xjPCxjG"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-14 px-8 md:px-12 py-4 md:py-5 bg-[#6B4423] text-white rounded-full transition-all duration-600 hover:bg-[#543318]"
-                style={{
-                  fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)',
-                  fontWeight: 500,
-                  letterSpacing: '-0.01em',
-                  boxShadow: '0 8px 24px rgba(107, 68, 35, 0.15), 0 4px 12px rgba(107, 68, 35, 0.1)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(107, 68, 35, 0.2), 0 6px 16px rgba(107, 68, 35, 0.12)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(107, 68, 35, 0.15), 0 4px 12px rgba(107, 68, 35, 0.1)';
-                }}
-                whileHover={{ scale: 1.01 }}
-                whileTap={{ scale: 0.99 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <span className="hidden md:inline">카톡에서 Crayonforestart 채널 추가 → 상담</span>
-                <span className="md:hidden">채널 추가하고 상담하기</span>
-              </motion.a>
+              <div className="relative inline-block mt-14">
+                <motion.a
+                  ref={buttonRef}
+                  href="#"
+                  onClick={handleKakaoClick}
+                  className="inline-block px-8 md:px-12 py-4 md:py-5 bg-[#6B4423] text-white rounded-full transition-all duration-600 hover:bg-[#543318] cursor-pointer"
+                  style={{
+                    fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)',
+                    fontWeight: 500,
+                    letterSpacing: '-0.01em',
+                    boxShadow: '0 8px 24px rgba(107, 68, 35, 0.15), 0 4px 12px rgba(107, 68, 35, 0.1)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = '0 12px 32px rgba(107, 68, 35, 0.2), 0 6px 16px rgba(107, 68, 35, 0.12)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(107, 68, 35, 0.15), 0 4px 12px rgba(107, 68, 35, 0.1)';
+                  }}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <span className="hidden md:inline">카톡에서 Crayonforestart 채널 추가 → 상담</span>
+                  <span className="md:hidden">채널 추가하고 상담하기</span>
+                </motion.a>
+                {/* 준비중 툴팁 */}
+                {showKakaoTooltip && (
+                  <div
+                    className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-4 py-2 rounded-full whitespace-nowrap z-50"
+                    style={{
+                      background: 'rgba(166, 106, 90, 0.95)',
+                      color: '#FFF',
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: '0.85rem',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                    }}
+                  >
+                    준비중입니다
+                  </div>
+                )}
+              </div>
 
               {/* Small note */}
               <p 

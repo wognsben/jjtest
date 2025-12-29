@@ -115,17 +115,6 @@ export default function SelfTexture() {
                 자기결을 세우는 아이는,<br />
                 자신을 믿는 힘으로 자랍니다
               </motion.h2>
-              
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-brown-600 text-sm md:text-base tracking-wider"
-                style={{ fontFamily: "'Noto Serif KR', serif" }}
-              >
-                Self Texture · The Core of One's Being
-              </motion.p>
             </div>
             
             {/* Body Text */}

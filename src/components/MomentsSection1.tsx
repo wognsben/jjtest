@@ -12,6 +12,8 @@ export function MomentsSection1() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const prevIndexRef = useRef(0);
+  const isJumpingRef = useRef(false); // 마지막→처음 점프 플래그
 
   // 4개 원형 카드 데이터
   const testimonials = [
@@ -58,11 +60,54 @@ export function MomentsSection1() {
 
   // 화살표 클릭 핸들러
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? reviewImages.length - 1 : prev - 1));
+    setCurrentIndex((prev) => {
+      const newIndex = prev === 0 ? reviewImages.length - 1 : prev - 1;
+      prevIndexRef.current = prev;
+      return newIndex;
+    });
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === reviewImages.length - 1 ? 0 : prev + 1));
+    const maxIndex = reviewImages.length - 1; // 5 (리뷰6은 인덱스 5)
+    const target = !isMobile ? trackRef.current : containerRef.current;
+    
+    if (!target) return;
+    
+    // 현재 translateX 위치 확인
+    const currentX = gsap.getProperty(target, 'x') as number;
+    const cardWidth = !isMobile ? 280 + 16 : 240 + 16;
+    const maxTranslateX = -maxIndex * cardWidth; // 마지막 카드가 맨 왼쪽에 올 때의 위치
+    
+    // 화면 너비 기준으로 보이는 카드 개수 추정 (대략 3-4개)
+    const viewportWidth = window.innerWidth;
+    const visibleCards = Math.ceil(viewportWidth / cardWidth);
+    
+    // 마지막 카드가 보이는 조건: 
+    // 1. currentIndex가 마지막 카드가 보이기 시작하는 위치 이상
+    // 2. 또는 translateX가 마지막 카드가 보이는 범위에 있음
+    const lastCardVisibleIndex = maxIndex - visibleCards + 1;
+    const isLastCardVisible = currentIndex >= lastCardVisibleIndex || 
+                              (currentX <= maxTranslateX + cardWidth * 2 && currentX >= maxTranslateX - cardWidth);
+    
+    console.log('handleNext - currentIndex:', currentIndex, 'currentX:', currentX, 'maxTranslateX:', maxTranslateX, 'visibleCards:', visibleCards, 'isLastCardVisible:', isLastCardVisible);
+    
+    // ✅ 핵심: 마지막 카드(리뷰6)가 보이는 상태 → 즉시 첫 번째로
+    if (isLastCardVisible || currentIndex >= maxIndex) {
+      console.log('마지막 카드 감지 - 즉시 첫 번째로 이동');
+      // 진행 중인 모든 애니메이션 중단
+      gsap.killTweensOf(target);
+      // 애니메이션 없이 즉시 처음으로 이동
+      gsap.set(target, { x: 0, clearProps: 'all' });
+      prevIndexRef.current = currentIndex;
+      isJumpingRef.current = true; // 점프 플래그 설정
+      setCurrentIndex(0);
+      return;
+    }
+    
+    // 일반 이동
+    console.log('일반 이동:', currentIndex, '->', currentIndex + 1);
+    prevIndexRef.current = currentIndex;
+    setCurrentIndex(currentIndex + 1);
   };
 
   // 슬라이드 애니메이션
@@ -72,14 +117,28 @@ export function MomentsSection1() {
     const track = trackRef.current;
     const cardWidth = 280 + 16; // 카드 너비 + gap
     const maxIndex = reviewImages.length - 1;
-    const clampedIndex = Math.min(currentIndex, maxIndex);
+    
+    console.log('useEffect 실행 - currentIndex:', currentIndex, 'isJumping:', isJumpingRef.current);
+    
+    // 핵심: 마지막에서 처음으로 돌아간 경우는 이미 handleNext에서 처리됨
+    // 점프 플래그가 설정되어 있으면 애니메이션 건너뛰기
+    if (isJumpingRef.current && currentIndex === 0) {
+      console.log('점프 플래그 감지 - 애니메이션 건너뛰기');
+      isJumpingRef.current = false; // 플래그 리셋
+      prevIndexRef.current = 0;
+      return;
+    }
+    
+    // 일반적인 경우: 애니메이션과 함께 이동
+    console.log('일반 애니메이션 실행 - x:', -currentIndex * cardWidth);
+    prevIndexRef.current = currentIndex;
     
     gsap.to(track, {
-      x: -clampedIndex * cardWidth,
+      x: -currentIndex * cardWidth,
       duration: 0.6,
       ease: 'power2.out',
     });
-  }, [currentIndex, isMobile]);
+  }, [currentIndex, isMobile, reviewImages.length]);
 
   // 모바일 슬라이드 애니메이션
   useEffect(() => {
@@ -88,14 +147,23 @@ export function MomentsSection1() {
     const track = containerRef.current;
     const cardWidth = 240 + 16; // 카드 너비 + gap
     const maxIndex = reviewImages.length - 1;
-    const clampedIndex = Math.min(currentIndex, maxIndex);
     
+    // 핵심: 마지막에서 처음으로 돌아간 경우는 이미 handleNext에서 처리됨
+    // 점프 플래그가 설정되어 있으면 애니메이션 건너뛰기
+    if (isJumpingRef.current && currentIndex === 0) {
+      isJumpingRef.current = false; // 플래그 리셋
+      prevIndexRef.current = 0;
+      return;
+    }
+    
+    // 일반적인 경우: 애니메이션과 함께 이동
+    prevIndexRef.current = currentIndex;
     gsap.to(track, {
-      x: -clampedIndex * cardWidth,
+      x: -currentIndex * cardWidth,
       duration: 0.6,
       ease: 'power2.out',
     });
-  }, [currentIndex, isMobile]);
+  }, [currentIndex, isMobile, reviewImages.length]);
 
   // Noise texture (SVG data URL)
   const noiseTexture = `data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E`;
@@ -189,7 +257,7 @@ export function MomentsSection1() {
 
                 {/* Text inside circle */}
                 <foreignObject x="30" y="30" width="240" height="240">
-                  <div className="flex flex-col items-center justify-center h-full px-8 text-center">
+                  <div className="flex flex-col items-center justify-center h-full px-8 text-center md:max-w-[280px] md:mx-auto">
                     {/* Category */}
                     <p
                       className="mb-4"
@@ -204,7 +272,7 @@ export function MomentsSection1() {
                     </p>
 
                     {/* Quotes */}
-                    <div className="space-y-2" style={{ width: isMobile ? '300px' : 'auto' }}>
+                    <div className="space-y-2" style={{ width: isMobile ? '300px' : 'auto', maxWidth: isMobile ? 'none' : '280px' }}>
                       {item.category === '정서 안정' ? (
                         <p
                           style={{
@@ -271,9 +339,7 @@ export function MomentsSection1() {
         {/* Review Cards Section - Premium Infinite Scroll Archive */}
         <div
           ref={containerRef}
-          className="relative bg-pink-50/60 rounded-3xl p-12 md:p-16 overflow-hidden"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          className="relative bg-pink-50/60 rounded-3xl px-0 py-12 md:p-16 overflow-hidden"
         >
           {/* Noise/Grain Layer */}
           <div
@@ -308,7 +374,7 @@ export function MomentsSection1() {
               {/* Navigation Arrows */}
               <button
                 onClick={handlePrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+                className="absolute left-2 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
                 style={{ border: '1px solid rgba(255,182,193,0.3)' }}
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A66A5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -317,7 +383,7 @@ export function MomentsSection1() {
               </button>
               <button
                 onClick={handleNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+                className="absolute right-2 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
                 style={{ border: '1px solid rgba(255,182,193,0.3)' }}
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A66A5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -403,7 +469,7 @@ export function MomentsSection1() {
               {/* Navigation Arrows */}
               <button
                 onClick={handlePrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300"
+                className="absolute left-2 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300"
                 style={{ border: '1px solid rgba(255,182,193,0.3)' }}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A66A5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -412,7 +478,7 @@ export function MomentsSection1() {
               </button>
               <button
                 onClick={handleNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300"
+                className="absolute right-2 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300"
                 style={{ border: '1px solid rgba(255,182,193,0.3)' }}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A66A5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -1,304 +1,498 @@
-import { motion } from "motion/react";
-import { MessageCircle, Instagram, Mail } from "lucide-react";
-import { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { getImagePath } from "../../utils/imageUtils";
 
-const features = [
+// SNS 채널 데이터
+const snsChannels = [
   {
-    id: 1,
+    id: 0,
     title: "카카오톡 채널",
-    description: "C:ing project의 새로운 소식을 가장 먼저 받아보세요",
-    icon: MessageCircle,
+    description: "Forêt des Crayons·크레용숲의 새로운 소식을 가장 먼저 받아보세요",
+    icon: "message-circle",
+    imagePath: getImagePath("/assets/1x/kakao.png"),
     link: "https://pf.kakao.com/_ELTxcK",
     gradient: "from-[#D4A574]/10 to-[#D4A574]/5",
     iconColor: "text-[#D4A574]",
     iconBg: "bg-[#D4A574]/10",
     borderColor: "border-[#D4A574]/20",
-    size: "large"
   },
   {
-    id: 2,
+    id: 1,
     title: "인스타그램",
     description: "@crayonforest.art",
     subtitle: "@crayonforest_childart",
-    icon: Instagram,
+    icon: "instagram",
+    imagePath: getImagePath("/assets/1x/instagram.png"),
     link: "https://www.instagram.com/crayonforest.art",
     link2: "https://www.instagram.com/crayonforest_childart",
     gradient: "from-[#fadfde]/30 to-[#fadfde]/10",
     iconColor: "text-[#6B4423]",
     iconBg: "bg-[#fadfde]/50",
     borderColor: "border-[#fadfde]/40",
-    size: "medium"
   },
   {
-    id: 3,
+    id: 2,
     title: "네이버 블로그",
     description: "dreaming_art_play",
-    icon: Mail,
+    icon: "mail",
+    imagePath: getImagePath("/assets/1x/blog bl.png"),
     link: "https://blog.naver.com/dreaming_art_play",
     gradient: "from-[#2D5016]/10 to-[#2D5016]/5",
     iconColor: "text-[#2D5016]",
     iconBg: "bg-[#2D5016]/10",
     borderColor: "border-[#2D5016]/20",
-    size: "medium"
-  },
-  {
-    id: 4,
-    title: "Get in Touch",
-    description: "함께 시작할 준비가 되셨나요?",
-    gradient: "from-[#6B4423]/10 to-[#6B4423]/5",
-    iconColor: "text-[#6B4423]",
-    iconBg: "bg-[#6B4423]/10",
-    borderColor: "border-[#6B4423]/20",
-    size: "small",
-    animated: true
   }
 ];
 
-function BentoCard({ feature, index }: { feature: typeof features[0], index: number }) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const sizeClasses = {
-    large: "md:col-span-2 md:row-span-2",
-    medium: "md:col-span-1 md:row-span-1",
-    small: "md:col-span-2 md:row-span-1"
+// 아이콘 SVG 컴포넌트
+function Icon({ name, className }: { name: string; className?: string }) {
+  const icons: Record<string, React.ReactElement> = {
+    "message-circle": (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+      </svg>
+    ),
+    "instagram": (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+      </svg>
+    ),
+    "mail": (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <rect width="20" height="16" x="2" y="4" rx="2" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+      </svg>
+    )
   };
+  return icons[name] || null;
+}
 
-  // Animated card special rendering
-  if (feature.animated) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: index * 0.1 }}
-        className={`group relative ${sizeClasses[feature.size]} overflow-hidden rounded-3xl`}
-      >
-        {/* Card background */}
-        <div className={`absolute inset-0 bg-white border ${feature.borderColor} rounded-3xl`} />
-
-        {/* Subtle background gradient overlay - only on hover */}
-        <motion.div
-          className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} rounded-3xl`}
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        />
-
-        {/* Content container */}
-        <div className="relative h-full p-6 md:p-10 lg:p-12 flex flex-col justify-between min-h-[280px]">
-          {/* Top section - Icon area with refined animation */}
-          <div className="flex items-start justify-between mb-6 md:mb-8">
-            <motion.div
-              className={`p-3 md:p-4 rounded-2xl ${feature.iconBg} border ${feature.borderColor} relative z-10`}
-              initial={{ scale: 0.95, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 + 0.2, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ scale: 1.05, y: -2 }}
-            >
-              {/* Minimal abstract art icon - custom SVG */}
-              <svg 
-                width="24" 
-                height="24" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-                className={feature.iconColor}
-              >
-                {/* Abstract brush stroke - subtle animation */}
-                <motion.path
-                  d="M4 12C4 12 8 8 12 10C16 12 20 8 20 8"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.2, delay: index * 0.1 + 0.4, ease: [0.16, 1, 0.3, 1] }}
-                />
-                {/* Subtle accent dots */}
-                <motion.circle
-                  cx="8"
-                  cy="10"
-                  r="1.5"
-                  fill="currentColor"
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 0.6 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 + 0.8, ease: [0.16, 1, 0.3, 1] }}
-                />
-                <motion.circle
-                  cx="16"
-                  cy="14"
-                  r="1.5"
-                  fill="currentColor"
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 0.6 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 + 1, ease: [0.16, 1, 0.3, 1] }}
-                />
-              </svg>
-            </motion.div>
-          </div>
-
-          {/* Bottom section - Typography with refined spacing */}
-          <div className="space-y-3 md:space-y-4 mt-auto relative z-10">
-            <motion.h3
-              className="text-[clamp(1.5rem, 2.5vw, 2rem)] md:text-[clamp(1.75rem, 3vw, 2.5rem)] text-[#6B4423] tracking-tight font-semibold leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 + 0.3, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {feature.title}
-            </motion.h3>
-            <motion.p
-              className="text-[#6B4423]/70 text-[clamp(0.875rem, 1.2vw, 1rem)] md:text-[clamp(0.9375rem, 1.4vw, 1.125rem)] leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 + 0.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {feature.description}
-            </motion.p>
-          </div>
-        </div>
-
-        {/* Subtle border glow on hover */}
-        <motion.div
-          className={`absolute -inset-[1px] bg-gradient-to-r ${feature.gradient} rounded-3xl -z-10`}
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 0.3 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        />
-      </motion.div>
-    );
-  }
-
+// 미니멀 일러스트 컴포넌트 (이미지로 대체)
+function MinimalIllustration() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`group relative ${sizeClasses[feature.size]} overflow-hidden rounded-3xl`}
-    >
-      {/* Card background with glass effect */}
-      <div className={`absolute inset-0 bg-white border ${feature.borderColor}`} />
-      
-      {/* Gradient overlay on hover */}
-      <motion.div
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.4 }}
-        className={`absolute inset-0 bg-gradient-to-br ${feature.gradient}`}
-      />
-
-      {/* Content */}
-      <div className="relative h-full p-8 md:p-10 flex flex-col justify-between">
-        {/* Top section */}
-        <div className="flex items-start justify-between">
-          <div className={`p-4 rounded-2xl ${feature.iconBg} border ${feature.borderColor} ${feature.iconColor} transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`}>
-            <feature.icon className="w-7 h-7" strokeWidth={1.5} />
-          </div>
+    <div className="illustration-container">
+      <img
+        src={getImagePath("/assets/program/Social Medial Discussion 2.png")}
+        alt="Social Media Discussion"
+        className="minimal-illustration"
+        onError={(e) => {
+          const target = e.target as HTMLImageElement;
+          console.error('Image load error:', target.src);
           
-          {feature.link && (
-            <motion.a
-              href={feature.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : 10 }}
-              transition={{ duration: 0.3 }}
-              className={`p-3 rounded-full ${feature.iconBg} hover:bg-opacity-80 transition-colors`}
-            >
-              <svg className={`w-5 h-5 ${feature.iconColor}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </motion.a>
-          )}
-        </div>
-
-        {/* Bottom section */}
-        <div className="space-y-3 mt-auto">
-          <h3 className="text-2xl md:text-3xl text-[#6B4423] tracking-tight">
-            {feature.title}
-          </h3>
-          {feature.id === 2 && feature.link && feature.link2 ? (
-            <div className="space-y-2">
-              <a 
-                href={feature.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-[#6B4423]/60 hover:text-[#6B4423] text-sm md:text-base leading-relaxed transition-colors underline decoration-dotted underline-offset-4"
-              >
-                {feature.description}
-              </a>
-              <a 
-                href={feature.link2}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-[#6B4423]/40 hover:text-[#6B4423]/70 text-sm transition-colors underline decoration-dotted underline-offset-4"
-              >
-                {feature.subtitle}
-              </a>
-            </div>
-          ) : (
-            <>
-              <p className="text-[#6B4423]/60 text-sm md:text-base leading-relaxed">
-                {feature.description}
-              </p>
-              {feature.subtitle && (
-                <p className="text-[#6B4423]/40 text-sm">
-                  {feature.subtitle}
-                </p>
-              )}
-            </>
-          )}
-        </div>
-      </div>
-
-      {/* Hover glow effect */}
-      <motion.div
-        animate={{ opacity: isHovered ? 0.15 : 0 }}
-        transition={{ duration: 0.4 }}
-        className={`absolute -inset-[1px] bg-gradient-to-r ${feature.gradient} rounded-3xl blur-xl -z-10`}
+          // 대문자 확장자 시도
+          if (target.src.includes('Social%20Medial%20Discussion%202')) {
+            if (target.src.endsWith('.png') || target.src.includes('%202.png')) {
+              target.src = getImagePath('/assets/program/Social Medial Discussion 2.PNG');
+            } else {
+              // 모든 시도 실패 시 이미지 숨김
+              target.style.display = 'none';
+            }
+          }
+        }}
       />
-    </motion.div>
+    </div>
   );
 }
 
+// 나선 위치 계산 함수 (세로 비스듬하게)
+function spiralPosition(i: number, activeIndex: number) {
+  const step = i - activeIndex;
+  
+  return {
+    x: step * 60, // 좌우 오프셋 감소
+    y: step * 150 * -1, // 위로 올라가는 느낌 (세로 배치) - 더 위로 올라가도록 증가
+    rotation: step * 8, // 비스듬한 각도
+    scale: 1 - Math.abs(step) * 0.15,
+    opacity: 1 - Math.abs(step) * 0.3,
+    zIndex: 10 - Math.abs(step),
+    blur: Math.abs(step) * 3
+  };
+}
+
+// Spiral SNS 카드 컴포넌트
+const SpiralSNSCard = React.forwardRef<HTMLDivElement, {
+  channel: typeof snsChannels[0];
+  index: number;
+  isActive: boolean;
+  onSelect: () => void;
+  showInstagramOptions?: boolean;
+  onInstagramLinkSelect?: (link: string) => void;
+}>(({ channel, index, isActive, onSelect, showInstagramOptions, onInstagramLinkSelect }, ref) => {
+
+    return (
+    <div
+      ref={ref}
+      className={`spiral-item ${isActive ? 'spiral-active' : ''}`}
+      data-index={index}
+      onClick={() => {
+        // 인스타그램이 아니거나 이미 선택 UI가 보이는 경우만 onSelect
+        if (channel.id !== 1 || !showInstagramOptions) {
+          onSelect();
+        }
+      }}
+    >
+      <div className={`absolute inset-0 bg-white border ${channel.borderColor} rounded-3xl spiral-card-bg`} />
+      <div className={`absolute inset-0 bg-gradient-to-br ${channel.gradient} rounded-3xl spiral-card-gradient`} />
+      
+      <div className="relative h-full p-6 md:p-8 flex flex-col justify-between min-h-[200px]">
+        <div className="flex items-start justify-between">
+          <div className={`p-3 rounded-2xl ${channel.iconBg} border ${channel.borderColor} ${channel.iconColor} spiral-icon-container flex items-center justify-center`}>
+            {channel.imagePath ? (
+              <img 
+                src={channel.imagePath} 
+                alt={channel.title}
+                className="w-6 h-6 object-contain"
+              />
+            ) : (
+              channel.icon && <Icon name={channel.icon} className="w-6 h-6" />
+            )}
+          </div>
+          </div>
+
+        <div className="space-y-2 mt-auto">
+          <h3 className="text-xl md:text-2xl text-[#6B4423] tracking-tight font-semibold">
+            {channel.title}
+          </h3>
+          {channel.id === 1 && channel.link2 ? (
+            showInstagramOptions && isActive ? (
+              // 인스타그램 선택 UI
+              <div className="space-y-2 mt-3">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onInstagramLinkSelect?.(channel.link);
+                  }}
+                  className="w-full text-left px-4 py-2.5 bg-white border border-[#fadfde]/60 rounded-xl hover:bg-[#fadfde]/20 transition-all duration-200 hover:scale-[1.02] hover:border-[#fadfde]"
+                >
+                  <p className="text-[#6B4423] font-medium text-sm">{channel.description}</p>
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onInstagramLinkSelect?.(channel.link2);
+                  }}
+                  className="w-full text-left px-4 py-2.5 bg-white border border-[#fadfde]/60 rounded-xl hover:bg-[#fadfde]/20 transition-all duration-200 hover:scale-[1.02] hover:border-[#fadfde]"
+                >
+                  <p className="text-[#6B4423] font-medium text-sm">{channel.subtitle}</p>
+                </button>
+              </div>
+            ) : (
+              <p className="text-[#6B4423]/60 text-sm leading-relaxed">
+                {isActive ? "클릭하여 계정 선택" : `${channel.description} / ${channel.subtitle}`}
+              </p>
+            )
+          ) : (
+            <p className="text-[#6B4423]/60 text-sm leading-relaxed">
+              {channel.description}
+            </p>
+          )}
+          </div>
+        </div>
+
+      <div className={`absolute -inset-[1px] bg-gradient-to-r ${channel.gradient} rounded-3xl blur-xl -z-10 spiral-glow`} />
+    </div>
+  );
+});
+
 export function BentoGrid() {
+  const [activeIndex, setActiveIndex] = useState(0); // 기본: 카카오톡 (섹션 진입 시 즉시 보이도록)
+  const [showInstagramOptions, setShowInstagramOptions] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [showKakaoTooltip, setShowKakaoTooltip] = useState(false);
+
+  const handleKakaoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowKakaoTooltip(true);
+    setTimeout(() => setShowKakaoTooltip(false), 2000);
+  };
+  const spiralWrapRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // 모바일 감지
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Spiral 애니메이션 렌더링
+  useEffect(() => {
+    if (isMobile || !spiralWrapRef.current) return;
+
+    const items = cardRefs.current.filter(Boolean) as HTMLDivElement[];
+    if (items.length === 0) return;
+
+    items.forEach((item, i) => {
+      const pos = spiralPosition(i, activeIndex);
+      const isActive = i === activeIndex;
+
+      gsap.to(item, {
+        x: pos.x,
+        y: pos.y,
+        rotation: pos.rotation,
+        scale: pos.scale,
+        opacity: pos.opacity,
+        zIndex: pos.zIndex,
+        filter: `blur(${pos.blur}px)`,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+
+      // Active 카드에만 클래스 추가
+      item.classList.toggle("spiral-active", isActive);
+    });
+  }, [activeIndex, isMobile]);
+
+  // 자동 슬라이드 회전 (스크롤 제거)
+  useEffect(() => {
+    if (isMobile) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => {
+        const nextIndex = (prev + 1) % snsChannels.length;
+        // 인스타그램이 아닌 경우 선택 UI 초기화
+        if (nextIndex !== 1) {
+          setShowInstagramOptions(false);
+        }
+        return nextIndex;
+      });
+    }, 3000); // 3초마다 자동 전환
+
+    return () => clearInterval(interval);
+  }, [isMobile]);
+
+  const handleChannelSelect = (index: number) => {
+    setActiveIndex(index);
+    // 인스타그램인 경우 선택 UI 표시
+    if (index === 1) {
+      setShowInstagramOptions(true);
+    } else {
+      // 다른 카드는 선택 UI 초기화 후 링크 이동
+      setShowInstagramOptions(false);
+      const channel = snsChannels[index];
+      if (channel && channel.link) {
+        // 애니메이션 완료 후 링크 이동
+        setTimeout(() => {
+          window.open(channel.link, '_blank', 'noopener,noreferrer');
+        }, 800); // GSAP 애니메이션 duration과 맞춤
+      }
+    }
+  };
+
+  const handleInstagramLinkSelect = (link: string) => {
+    // 인스타그램 링크 선택 후 이동
+    setTimeout(() => {
+      window.open(link, '_blank', 'noopener,noreferrer');
+      setShowInstagramOptions(false);
+    }, 100);
+  };
+
   return (
-    <section className="relative py-32 md:py-40 px-6 md:px-12 lg:px-24 bg-[#fadfde]/20 overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/3 w-96 h-96 bg-[#2D5016] rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-[#D4A574] rounded-full blur-3xl" />
+    <section className="relative py-20 md:py-32 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[500px]">
+
+          {/* LEFT 영역: 텍스트 블록 + 일러스트 */}
+          <div className="space-y-6 orbit-left-zone">
+            <div className="space-y-4">
+              <h2 className="text-[clamp(1.25rem,2vw,1.5rem)] text-[#363636] leading-[1.4]">
+                <strong>Forêt des Crayons·크레용숲</strong>
+              </h2>
+            </div>
+            
+            <div className="space-y-2 text-[#555555]">
+              <p>카카오톡 채널에서 '크레용숲'을 검색, 채널 추가하면</p>
+              <p>프로젝트 오픈 소식을 가장 먼저 받을 수 있어요.</p>
+          </div>
+          
+            <div className="pt-4 hidden md:block">
+              <div className="flex flex-wrap gap-3">
+                <div className="relative">
+                  <a
+                    href="#"
+                    onClick={handleKakaoClick}
+                    className="inline-flex items-center gap-3 bg-white border border-[#D4A574]/30 hover:border-[#D4A574]/50 text-[#6B4423] px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 hover:bg-[#D4A574]/5 cursor-pointer"
+                  >
+                    {snsChannels[0].imagePath ? (
+                      <img src={snsChannels[0].imagePath} alt="카카오톡" className="w-5 h-5 object-contain" />
+                    ) : (
+                      <Icon name="message-circle" className="w-5 h-5" />
+                    )}
+                    <span>카카오톡 채널</span>
+                  </a>
+                  {/* 준비중 툴팁 */}
+                  {showKakaoTooltip && (
+                    <div
+                      className="absolute left-0 bottom-full mb-2 px-4 py-2 rounded-full whitespace-nowrap z-50"
+                      style={{
+                        background: 'rgba(166, 106, 90, 0.95)',
+                        color: '#FFF',
+                        fontFamily: "'Noto Serif KR', serif",
+                        fontSize: '0.85rem',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                      }}
+                    >
+                      준비중입니다
+                    </div>
+                  )}
+                </div>
+                
+                <div className="relative">
+                  <button
+                    onClick={() => setShowInstagramOptions(!showInstagramOptions)}
+                    className="inline-flex items-center gap-3 bg-white border border-[#fadfde]/60 hover:border-[#fadfde] text-[#6B4423] px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 hover:bg-[#fadfde]/10"
+                  >
+                    {snsChannels[1].imagePath ? (
+                      <img src={snsChannels[1].imagePath} alt="Instagram" className="w-5 h-5 object-contain" />
+                    ) : (
+                      <Icon name="instagram" className="w-5 h-5" />
+                    )}
+                    <span>인스타그램</span>
+                  </button>
+                  
+                  {/* 인스타그램 링크 선택 툴팁 */}
+                  {showInstagramOptions && (
+                    <div className="absolute top-full left-0 mt-2 bg-white border border-[#fadfde]/60 rounded-xl shadow-lg p-2 z-50 min-w-[200px]">
+                      <a
+                        href="https://www.instagram.com/crayonforest.art"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => {
+                          setShowInstagramOptions(false);
+                          handleInstagramLinkSelect("https://www.instagram.com/crayonforest.art");
+                        }}
+                        className="block px-4 py-2 rounded-lg hover:bg-[#fadfde]/20 transition-colors text-sm text-[#6B4423]"
+                      >
+                        @crayonforest.art
+                      </a>
+                      <a
+                        href="https://www.instagram.com/crayonforest_childart"
+              target="_blank"
+              rel="noopener noreferrer"
+                        onClick={() => {
+                          setShowInstagramOptions(false);
+                          handleInstagramLinkSelect("https://www.instagram.com/crayonforest_childart");
+                        }}
+                        className="block px-4 py-2 rounded-lg hover:bg-[#fadfde]/20 transition-colors text-sm text-[#6B4423]"
+                      >
+                        @crayonforest_childart
+                      </a>
+                    </div>
+          )}
+        </div>
+
+                <a
+                  href="https://blog.naver.com/dreaming_art_play"
+              target="_blank"
+              rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 bg-white border border-[#2D5016]/30 hover:border-[#2D5016]/50 text-[#6B4423] px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 hover:bg-[#2D5016]/5"
+                >
+                  {snsChannels[2].imagePath ? (
+                    <img src={snsChannels[2].imagePath} alt="Blog" className="w-5 h-5 object-contain" />
+                  ) : (
+                    <Icon name="mail" className="w-5 h-5" />
+                  )}
+                  <span>네이버 블로그</span>
+                </a>
+              </div>
+            </div>
+
+            {/* 미니멀 일러스트 */}
+            <div className="mt-8">
+              <MinimalIllustration />
+            </div>
+          </div>
+
+          {/* RIGHT 영역: Spiral SNS */}
+          <div className="relative flex justify-center items-center min-h-[400px] md:min-h-[500px] spiral-right-zone">
+            {isMobile ? (
+              /* 모바일: 세로 스택 */
+              <div className="w-full max-w-md space-y-4">
+                {snsChannels.map((channel, index) => (
+                  <div
+                    key={channel.id}
+                    className={`spiral-mobile-card ${activeIndex === index ? 'spiral-mobile-active' : ''}`}
+                    onClick={() => handleChannelSelect(index)}
+            >
+                    <div className={`absolute inset-0 bg-white border ${channel.borderColor} rounded-3xl`} />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${channel.gradient} rounded-3xl`} />
+                    
+                    <div className="relative h-full p-6 flex flex-col justify-between min-h-[160px]">
+                      <div className="flex items-start justify-between">
+                        <div className={`p-3 rounded-2xl ${channel.iconBg} border ${channel.borderColor} ${channel.iconColor} flex items-center justify-center`}>
+                          {channel.imagePath ? (
+                            <img 
+                              src={channel.imagePath} 
+                              alt={channel.title}
+                              className="w-6 h-6 object-contain"
+                            />
+                          ) : (
+                            channel.icon && <Icon name={channel.icon} className="w-6 h-6" />
+                          )}
+                        </div>
+        </div>
+
+                      <div className="space-y-2 mt-auto">
+                        <h3 className="text-xl text-[#6B4423] tracking-tight font-semibold">
+                          {channel.title}
+          </h3>
+                        {channel.id === 1 && channel.link2 ? (
+                          <div className="space-y-1">
+              <a 
+                              href={channel.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                              className="block text-[#6B4423]/60 hover:text-[#6B4423] text-sm leading-relaxed transition-colors underline decoration-dotted underline-offset-4"
+                              onClick={(e) => e.stopPropagation()}
+              >
+                              {channel.description}
+              </a>
+              <a 
+                              href={channel.link2}
+                target="_blank"
+                rel="noopener noreferrer"
+                              className="block text-[#6B4423]/40 hover:text-[#6B4423]/70 text-xs transition-colors underline decoration-dotted underline-offset-4"
+                              onClick={(e) => e.stopPropagation()}
+              >
+                              {channel.subtitle}
+              </a>
+            </div>
+          ) : (
+                          <p className="text-[#6B4423]/60 text-sm leading-relaxed">
+                            {channel.description}
+                </p>
+              )}
+                      </div>
+        </div>
       </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-20 text-center"
-        >
-          <h2 className="text-[clamp(2.5rem,5vw,4rem)] text-[#6B4423] mb-6 tracking-tight">
-            크레용숲의 새로운 소식
-          </h2>
-          <p className="text-[#6B4423]/60 text-lg max-w-2xl mx-auto">
-            다양한 채널을 통해 크레용숲과 소통하세요
-          </p>
-        </motion.div>
-
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[minmax(280px,auto)]">
-          {features.map((feature, index) => (
-            <BentoCard key={feature.id} feature={feature} index={index} />
+                ))}
+              </div>
+            ) : (
+              /* 데스크톱: Spiral Orbit */
+              <div ref={spiralWrapRef} className="spiral-wrap">
+                {snsChannels.map((channel, index) => (
+                  <SpiralSNSCard
+                    key={channel.id}
+                    channel={channel}
+                    index={index}
+                    isActive={activeIndex === index}
+                    onSelect={() => handleChannelSelect(index)}
+                    showInstagramOptions={showInstagramOptions}
+                    onInstagramLinkSelect={handleInstagramLinkSelect}
+                    ref={(el) => {
+                      if (el) cardRefs.current[index] = el;
+                    }}
+                  />
           ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>
