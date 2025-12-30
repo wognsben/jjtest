@@ -254,7 +254,7 @@ export function ChildArtSection7() {
         }
       `}</style>
       
-      <section className="relative min-h-screen bg-white pt-[90px] pb-24">
+      <section className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
         <div className="max-w-[1180px] mx-auto px-0">
           {/* Top Text */}
           <motion.div

@@ -204,8 +204,9 @@ function ReviewCarousel3D() {
 // MOMENTS Section 3: Premium Review Gallery (Awwwards Style)
 export function MomentsSection3() {
   const mobileTrackRef = useRef<HTMLDivElement>(null);
-  const mobileAnimationRef = useRef<gsap.core.Tween | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const prevIndexRef = useRef(0);
 
   // 모바일 감지
   useEffect(() => {
@@ -217,37 +218,93 @@ export function MomentsSection3() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // GSAP 무한 스크롤 애니메이션 (Mobile only)
+  // 화살표 클릭 핸들러
+  const handlePrev = () => {
+    const maxIndex = reviewImagePaths.length - 1;
+    const target = mobileTrackRef.current;
+    
+    if (!target) return;
+    
+    // 현재 translateX 위치 확인
+    const currentX = gsap.getProperty(target, 'x') as number;
+    const cardWidth = 240 + 16; // 카드 너비 + gap
+    
+    // ✅ 핵심: 첫 번째 카드(인덱스 0)가 보이는 상태 → 멈춤
+    if (currentIndex === 0 || currentX >= 0) {
+      console.log('첫 번째 카드 - 더 이상 이동하지 않음');
+      return;
+    }
+    
+    // 일반 이동
+    console.log('일반 이동:', currentIndex, '->', currentIndex - 1);
+    prevIndexRef.current = currentIndex;
+    setCurrentIndex(currentIndex - 1);
+  };
+
+  const handleNext = () => {
+    const maxIndex = reviewImagePaths.length - 1; // 5 (6개 이미지: 인덱스 0~5)
+    const target = mobileTrackRef.current;
+    
+    if (!target) return;
+    
+    // ✅ 핵심: 이미 마지막 카드(인덱스 5)에 있는 경우 → 멈춤
+    if (currentIndex >= maxIndex) {
+      console.log('마지막 카드 - 더 이상 이동하지 않음', 'currentIndex:', currentIndex, 'maxIndex:', maxIndex);
+      return;
+    }
+    
+    // 일반 이동
+    console.log('일반 이동:', currentIndex, '->', currentIndex + 1);
+    prevIndexRef.current = currentIndex;
+    setCurrentIndex(currentIndex + 1);
+  };
+
+  // 모바일 슬라이드 애니메이션
   useEffect(() => {
     if (!isMobile || !mobileTrackRef.current) return;
 
     const track = mobileTrackRef.current;
-    const cards = track.querySelectorAll('.mobile-review-card');
-    if (cards.length === 0) return;
-
-    // 무한 루프 애니메이션
-    const totalWidth = track.scrollWidth / 2; // 이미지가 2번 반복되므로 절반
+    const cardWidth = 240 + 16; // 카드 너비 + gap
+    const maxIndex = reviewImagePaths.length - 1; // 5
     
-    // 초기 위치 설정 (오른쪽으로 이동하기 위해 왼쪽 끝에서 시작)
-    gsap.set(track, { x: `-${totalWidth}px` });
+    // 초기 위치 설정 (첫 번째 카드가 보이도록)
+    if (currentIndex === 0 && prevIndexRef.current === 0) {
+      gsap.set(track, { x: 0 });
+      return;
+    }
     
-    mobileAnimationRef.current = gsap.to(track, {
-      x: '0px', // 오른쪽으로 이동
-      duration: 40, // 40초에 걸쳐 이동
-      ease: 'linear',
-      repeat: -1,
+    // 마지막 카드가 완전히 보이도록 계산
+    // 컨테이너 너비 확인 (부모 요소의 너비)
+    const container = track.parentElement;
+    const containerWidth = container ? container.clientWidth : window.innerWidth;
+    
+    // 총 트랙 너비
+    const totalTrackWidth = reviewImagePaths.length * cardWidth;
+    
+    // 마지막 카드가 완전히 보이려면: 트랙 오른쪽 끝이 컨테이너 오른쪽 끝에 와야 함
+    // maxTranslateX = -(총 트랙 너비 - 컨테이너 너비)
+    const maxTranslateX = -(totalTrackWidth - containerWidth);
+    
+    // currentIndex에 따른 translateX 계산
+    let targetX = -currentIndex * cardWidth;
+    
+    // 마지막 카드인 경우, 완전히 보이도록 조정
+    if (currentIndex >= maxIndex) {
+      targetX = maxTranslateX;
+    }
+    
+    // 일반적인 경우: 애니메이션과 함께 이동
+    prevIndexRef.current = currentIndex;
+    
+    gsap.to(track, {
+      x: targetX,
+      duration: 0.6,
+      ease: 'power2.out',
     });
-
-    // Cleanup
-    return () => {
-      if (mobileAnimationRef.current) {
-        mobileAnimationRef.current.kill();
-      }
-    };
-  }, [isMobile]);
+  }, [currentIndex, isMobile]);
 
   return (
-    <section className="relative bg-white pt-[90px] pb-24">
+    <section className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
       <div className="max-w-[1180px] mx-auto px-0">
         {/* Header - Minimal typography */}
         <motion.div
@@ -378,10 +435,10 @@ export function MomentsSection3() {
           <div
             ref={mobileTrackRef}
             className="flex items-center absolute top-0 left-0 h-full"
-            style={{ gap: '1rem' }}
+            style={{ gap: '1rem', willChange: 'transform' }}
           >
-            {/* 이미지 2번 반복 (무한 루프를 위해) */}
-            {[...reviewImagePaths, ...reviewImagePaths].map((imagePath, idx) => (
+            {/* 이미지 카드 (무한 루프 제거, 단일 세트만 표시) */}
+            {reviewImagePaths.map((imagePath, idx) => (
               <div
                 key={idx}
                 className="mobile-review-card flex-shrink-0 rounded-xl overflow-hidden"
@@ -393,7 +450,7 @@ export function MomentsSection3() {
               >
                 <img
                   src={imagePath}
-                  alt={`크레용숲 후기 ${(idx % reviewImagePaths.length) + 1}`}
+                  alt={`크레용숲 후기 ${idx + 1}`}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
@@ -416,6 +473,26 @@ export function MomentsSection3() {
               background: 'linear-gradient(to left, rgba(249,250,251,1) 0%, rgba(249,250,251,0) 100%)',
             }}
           />
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={handlePrev}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300"
+            style={{ border: '1px solid rgba(255,182,193,0.3)' }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A66A5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300"
+            style={{ border: '1px solid rgba(255,182,193,0.3)' }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A66A5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
         </motion.div>
 
         {/* Bottom Text - Minimal */}

@@ -123,13 +123,13 @@ export default function SelfTexture() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="space-y-6"
             >
               <p 
                 className="text-brown-800 md:text-xl leading-relaxed"
                 style={{ 
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                  marginBottom: '20px'
                 }}
               >
                 결을 아는 아이는
@@ -139,7 +139,8 @@ export default function SelfTexture() {
                 className="text-brown-800 md:text-xl leading-relaxed"
                 style={{ 
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                  marginBottom: '20px'
                 }}
               >
                 자기가 누구인지 알고,
@@ -149,18 +150,20 @@ export default function SelfTexture() {
                 className="text-brown-800 md:text-xl leading-relaxed"
                 style={{ 
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
+                  fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                  marginBottom: '20px'
                 }}
               >
                 <span className="self-texture-highlight">자기가 원하는 삶을 선택할 수 있는 아이입니다.</span>
               </p>
               
-              <div className="space-y-4 pt-4">
+              <div className="pt-4">
                 <p 
                   className="text-brown-800 leading-relaxed"
                   style={{ 
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                    marginBottom: '20px'
                   }}
                 >
                   친구에게 다정할 수 있는{' '}
@@ -171,7 +174,8 @@ export default function SelfTexture() {
                   className="text-brown-800 leading-relaxed"
                   style={{ 
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                    marginBottom: '20px'
                   }}
                 >
                   자연과 타인을 배려하는{' '}
@@ -182,7 +186,8 @@ export default function SelfTexture() {
                   className="text-brown-800 leading-relaxed"
                   style={{ 
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                    marginBottom: '20px'
                   }}
                 >
                   스스로 선택하고 행동할 수 있는
@@ -192,7 +197,8 @@ export default function SelfTexture() {
                   className="text-brown-800 leading-relaxed"
                   style={{ 
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)'
+                    fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                    marginBottom: '0px'
                   }}
                 >
                   <span className="text-accent-green font-semibold">자기결(自己結)</span>을 기릅니다

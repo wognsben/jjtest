@@ -7,8 +7,8 @@ const programs = [
     id: 1,
     title: 'CHILD ART',
     subtitle: ['감정·감각·표현이 처음 만나는', '어린이 마음숲'],
-    color: 'hsl(48, 85%, 72%)', // Reduced saturation from ~95% to 85%
-    darkColor: 'hsl(48, 75%, 65%)',
+    color: '#ffcd40',
+    darkColor: '#e6b83a',
     textColor: '#ffffff',
     sectionId: 'childart'
   },
@@ -16,8 +16,8 @@ const programs = [
     id: 2,
     title: 'YOUTH ART',
     subtitle: ['\'나만의 철학 미술관\'을 완성하는', '청소년 사유의 숲'],
-    color: 'hsl(350, 75%, 78%)', // Reduced saturation from ~85% to 75%
-    darkColor: 'hsl(350, 65%, 70%)',
+    color: '#ecbec5',
+    darkColor: '#d4a8b0',
     textColor: '#ffffff',
     sectionId: 'youthart'
   },
@@ -25,8 +25,8 @@ const programs = [
     id: 3,
     title: 'ADULT ART',
     subtitle: ['감각을 회복하고, 삶의 결을', '다시 짓는 어른의 감정의 숲'],
-    color: 'hsl(28, 45%, 62%)', // Reduced saturation from ~55% to 45%
-    darkColor: 'hsl(28, 40%, 55%)',
+    color: '#bb8162',
+    darkColor: '#a6704f',
     textColor: '#ffffff',
     sectionId: 'adultart'
   },
@@ -34,8 +34,8 @@ const programs = [
     id: 4,
     title: 'FOR MOM',
     subtitle: ['엄마의 마음까지 함께 살피는', '창조의 숲'],
-    color: 'hsl(120, 35%, 78%)', // Reduced saturation from ~45% to 35%
-    darkColor: 'hsl(120, 30%, 70%)',
+    color: '#a8d09c',
+    darkColor: '#96ba8a',
     textColor: '#ffffff',
     sectionId: 'moments'
   }

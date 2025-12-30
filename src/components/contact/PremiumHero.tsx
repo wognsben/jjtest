@@ -21,14 +21,6 @@ export function PremiumHero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-32">
-        {/* Eyebrow text */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#fadfde]/30 border border-[#6B4423]/10">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#2D5016] animate-pulse" />
-            <span className="text-sm text-[#6B4423]/70 tracking-wider uppercase">Premium Experience</span>
-          </div>
-        </div>
-
         {/* Main heading */}
         <h1 className="text-center mb-8 relative z-20">
           <span

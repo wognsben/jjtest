@@ -13,7 +13,6 @@ export function MomentsSection1() {
   const [isMobile, setIsMobile] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const prevIndexRef = useRef(0);
-  const isJumpingRef = useRef(false); // 마지막→처음 점프 플래그
 
   // 4개 원형 카드 데이터
   const testimonials = [
@@ -60,11 +59,25 @@ export function MomentsSection1() {
 
   // 화살표 클릭 핸들러
   const handlePrev = () => {
-    setCurrentIndex((prev) => {
-      const newIndex = prev === 0 ? reviewImages.length - 1 : prev - 1;
-      prevIndexRef.current = prev;
-      return newIndex;
-    });
+    const maxIndex = reviewImages.length - 1; // 5 (리뷰6은 인덱스 5)
+    const target = !isMobile ? trackRef.current : containerRef.current;
+    
+    if (!target) return;
+    
+    // 현재 translateX 위치 확인
+    const currentX = gsap.getProperty(target, 'x') as number;
+    const cardWidth = !isMobile ? 280 + 16 : 240 + 16;
+    
+    // ✅ 핵심: 첫 번째 카드(인덱스 0)가 보이는 상태 → 멈춤 (오른쪽 화살표와 동일)
+    if (currentIndex === 0 || currentX >= 0) {
+      console.log('첫 번째 카드 - 더 이상 이동하지 않음');
+      return;
+    }
+    
+    // 일반 이동
+    console.log('일반 이동:', currentIndex, '->', currentIndex - 1);
+    prevIndexRef.current = currentIndex;
+    setCurrentIndex(currentIndex - 1);
   };
 
   const handleNext = () => {
@@ -91,16 +104,9 @@ export function MomentsSection1() {
     
     console.log('handleNext - currentIndex:', currentIndex, 'currentX:', currentX, 'maxTranslateX:', maxTranslateX, 'visibleCards:', visibleCards, 'isLastCardVisible:', isLastCardVisible);
     
-    // ✅ 핵심: 마지막 카드(리뷰6)가 보이는 상태 → 즉시 첫 번째로
+    // ✅ 핵심: 마지막 카드(리뷰6)가 보이는 상태 → 멈춤 (왼쪽 화살표와 동일)
     if (isLastCardVisible || currentIndex >= maxIndex) {
-      console.log('마지막 카드 감지 - 즉시 첫 번째로 이동');
-      // 진행 중인 모든 애니메이션 중단
-      gsap.killTweensOf(target);
-      // 애니메이션 없이 즉시 처음으로 이동
-      gsap.set(target, { x: 0, clearProps: 'all' });
-      prevIndexRef.current = currentIndex;
-      isJumpingRef.current = true; // 점프 플래그 설정
-      setCurrentIndex(0);
+      console.log('마지막 카드 - 더 이상 이동하지 않음');
       return;
     }
     
@@ -118,16 +124,9 @@ export function MomentsSection1() {
     const cardWidth = 280 + 16; // 카드 너비 + gap
     const maxIndex = reviewImages.length - 1;
     
-    console.log('useEffect 실행 - currentIndex:', currentIndex, 'isJumping:', isJumpingRef.current);
+    console.log('useEffect 실행 - currentIndex:', currentIndex);
     
-    // 핵심: 마지막에서 처음으로 돌아간 경우는 이미 handleNext에서 처리됨
-    // 점프 플래그가 설정되어 있으면 애니메이션 건너뛰기
-    if (isJumpingRef.current && currentIndex === 0) {
-      console.log('점프 플래그 감지 - 애니메이션 건너뛰기');
-      isJumpingRef.current = false; // 플래그 리셋
-      prevIndexRef.current = 0;
-      return;
-    }
+    // 일반적인 경우: 애니메이션과 함께 이동
     
     // 일반적인 경우: 애니메이션과 함께 이동
     console.log('일반 애니메이션 실행 - x:', -currentIndex * cardWidth);
@@ -148,14 +147,6 @@ export function MomentsSection1() {
     const cardWidth = 240 + 16; // 카드 너비 + gap
     const maxIndex = reviewImages.length - 1;
     
-    // 핵심: 마지막에서 처음으로 돌아간 경우는 이미 handleNext에서 처리됨
-    // 점프 플래그가 설정되어 있으면 애니메이션 건너뛰기
-    if (isJumpingRef.current && currentIndex === 0) {
-      isJumpingRef.current = false; // 플래그 리셋
-      prevIndexRef.current = 0;
-      return;
-    }
-    
     // 일반적인 경우: 애니메이션과 함께 이동
     prevIndexRef.current = currentIndex;
     gsap.to(track, {
@@ -169,7 +160,7 @@ export function MomentsSection1() {
   const noiseTexture = `data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E`;
 
   return (
-    <section className="relative bg-white pt-[90px] pb-24">
+    <section className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
       <div className="max-w-[1180px] mx-auto px-0">
         {/* Header */}
         <motion.div

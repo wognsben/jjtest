@@ -1,193 +1,398 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { getImagePath } from '../utils/imageUtils';
 
 // CHILD ART Section 2: Philosophy & Questions (Premium Editorial Style)
 export function ChildArtSection2() {
+  const ctaRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const cta = ctaRef.current;
+    if (!cta) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          cta.classList.add('is-visible');
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(cta);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <section className="relative min-h-screen bg-white pt-[90px] pb-24">
+    <section className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
       <div className="max-w-[1180px] mx-auto px-0">
-        {/* QUESTIONS - 최상단 */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="space-y-6 mb-20"
-        >
-          <p
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 2.2vw, 1rem)',
-              color: '#333',
-              lineHeight: 1.5,
-              letterSpacing: 0,
-              fontWeight: 400,
-            }}
-          >
-            "우리 아이는 지금 어떤 마음으로 세상을 보고 있을까?"
-          </p>
+        {/* Content Split - PC에서만 2컬럼, 모바일은 단일 컬럼 */}
+        <div className="content-split">
+          {/* LEFT 영역: 질문 + 서사 설명 */}
+          <div className="content-left">
+            {/* QUESTIONS - 최상단 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="space-y-6"
+              style={{ marginBottom: '48px' }}
+            >
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 2.2vw, 1.5rem)',
+                  color: '#333',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  fontWeight: 400,
+                }}
+              >
+                "우리 아이는 지금 어떤 마음으로 세상을 보고 있을까?"
+              </p>
 
-          <p
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 2.2vw, 1rem)',
-              color: '#333',
-              lineHeight: 1.5,
-              letterSpacing: 0,
-              fontWeight: 400,
-            }}
-          >
-            "말로 설명하지 못한 감정은 어디에 남아 있을까?"
-          </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 2.2vw, 1.5rem)',
+                  color: '#333',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  fontWeight: 400,
+                }}
+              >
+                "말로 설명하지 못한 감정은 어디에 남아 있을까?"
+              </p>
 
-          <p
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 2.2vw, 1rem)',
-              color: '#333',
-              lineHeight: 1.5,
-              letterSpacing: 0,
-              fontWeight: 400,
-            }}
-          >
-            "이 아이만의 감각·상징·세계는 어떻게 싹을 틔울까?"
-          </p>
-        </motion.div>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 2.2vw, 1.5rem)',
+                  color: '#333',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  fontWeight: 400,
+                }}
+              >
+                "이 아이만의 감각·상징·세계는 어떻게 싹을 틔울까?"
+              </p>
+            </motion.div>
 
-        {/* DESCRIPTION - 본문 */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="space-y-8 mb-16"
-        >
-          <p
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
-              color: '#444',
-              lineHeight: 1.5,
-              letterSpacing: 0,
-              fontWeight: 300,
-              maxWidth: '34em',
-              textAlign: 'left',
-              wordBreak: 'keep-all',
-              marginBottom: 0
-            } as React.CSSProperties}
-          >
-            아이들은 감정을 먼저 느끼고, 그 마음은 몸–색–선으로 표현되며,<br /><br />
-            그 다음이 비로소 언어입니다.<br /><br />
-            하지만 현실은 너무 빠르게 <span style={{ fontWeight: 500 }}>정답 · 속도 · 비교</span>를 요구하죠.<br /><br />
-            그 순간, 아이의 감정은 말해지지 못한 채 조용히 접히고,<br /><br />
-            표현은 줄어들고, 세계관의 씨앗도 자라날 자리를 잃어버립니다.<br /><br />
-            그래서 아이에게는 <span style={{ fontWeight: 500 }}>자기 마음을 먼저 알아차리고,</span><br /><br />
-            <span style={{ fontWeight: 500 }}>자기 방식으로 표현하는 힘</span>이 필요합니다.
-          </p>
-        </motion.div>
+            {/* DESCRIPTION - 본문 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="space-y-8"
+              style={{ marginBottom: '48px' }}
+            >
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.6vw, 1rem)',
+                  color: '#444',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  fontWeight: 300,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0.9em',
+                } as React.CSSProperties}
+              >
+                아이들은 감정을 먼저 느끼고, 그 마음은 몸–색–선으로 표현되며,
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.6vw, 1rem)',
+                  color: '#444',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  fontWeight: 300,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0.9em',
+                } as React.CSSProperties}
+              >
+                그 다음이 비로소 언어입니다.
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.6vw, 1rem)',
+                  color: '#444',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  fontWeight: 300,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0.9em',
+                } as React.CSSProperties}
+              >
+                하지만 현실은 너무 빠르게 <span style={{ fontWeight: 500 }}>정답 · 속도 · 비교</span>를 요구하죠.
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.6vw, 1rem)',
+                  color: '#444',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  fontWeight: 300,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0.9em',
+                } as React.CSSProperties}
+              >
+                그 순간, 아이의 감정은 말해지지 못한 채 조용히 접히고,
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.6vw, 1rem)',
+                  color: '#444',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  fontWeight: 300,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0.9em',
+                } as React.CSSProperties}
+              >
+                표현은 줄어들고, 세계관의 씨앗도 자라날 자리를 잃어버립니다.
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.6vw, 1rem)',
+                  color: '#444',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  fontWeight: 300,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0.9em',
+                } as React.CSSProperties}
+              >
+                그래서 아이에게는 <span style={{ fontWeight: 500 }}>자기 마음을 먼저 알아차리고,</span>
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.6vw, 1rem)',
+                  color: '#444',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  fontWeight: 300,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: 0,
+                } as React.CSSProperties}
+              >
+                <span style={{ fontWeight: 500 }}>자기 방식으로 표현하는 힘</span>이 필요합니다.
+              </p>
+            </motion.div>
+          </div>
 
-        {/* KEY MESSAGE */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          style={{
-            fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
-            color: '#2F6B4F',
-            fontWeight: 500,
-            lineHeight: 1.5,
-            letterSpacing: 0,
-            marginBottom: '3rem',
-            maxWidth: '34em',
-            textAlign: 'left',
-            wordBreak: 'keep-all'
-          } as React.CSSProperties}
-        >
-          "아이의 기질과 감정의 속도를 따라가며, 마음이 자라는 미술입니다."
-        </motion.p>
+          {/* RIGHT 영역: 핵심 문장 + 박스 */}
+          <div className="content-right">
+            {/* KEY MESSAGE */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="key-message"
+              style={{
+                fontFamily: "'Noto Serif KR', serif",
+                fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
+                color: '#2F6B4F',
+                fontWeight: 500,
+                lineHeight: 1.5,
+                letterSpacing: 0,
+                marginBottom: '3rem',
+                maxWidth: '34em',
+                textAlign: 'left',
+                wordBreak: 'keep-all'
+              } as React.CSSProperties}
+            >
+              "아이의 기질과 감정의 속도를 따라가며,<br className="key-message-br" /> 마음이 자라는 미술입니다."
+            </motion.p>
 
-        {/* BLOB CAPSULE */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          style={{
-            background: '#FADFDB',
-            borderRadius: '24px',
-            padding: '2rem 2.5rem',
-            marginBottom: '3rem',
-            minWidth: '200px',
-          }}
-        >
-          <span
-            style={{
-              display: 'inline-block',
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              color: '#2F6B4F',
-              marginBottom: '1rem',
-            }}
-          >
-            이런 친구에게 맞아요
-          </span>
+            {/* BLOB CAPSULE */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              style={{
+                background: '#FADFDB',
+                borderRadius: '24px',
+                padding: '2rem 2.5rem',
+                marginBottom: '3rem',
+                minWidth: '200px',
+              }}
+            >
+              <span
+                style={{
+                  display: 'inline-block',
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                  color: '#2F6B4F',
+                  marginBottom: '1rem',
+                }}
+              >
+                이런 친구에게 맞아요
+              </span>
 
-          <ul
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
-              lineHeight: 1.5,
-              letterSpacing: 0,
-              color: '#2F6B4F',
-              listStyle: 'none',
-              padding: 0,
-              margin: 0,
-            }}
-          >
-            <li>선·색·형태에 호기심이 많고 손으로 탐색하는 걸 좋아하는 아이</li>
-            <br />
-            <li>감정표현이 서툴지만, 말 대신 그림에서 마음이 잘 드러나는 아이</li>
-            <br />
-            <li>'잘 그리기'보다 자기 속도로 탐색하는 경험이 필요한 아이</li>
-            <br />
-            <li>정서 조절·감각 자극·표현력 성장을 균형 있게 경험하고 싶은 아이</li>
-            <br />
-            <li>자기만의 비밀 세계를 만드는 걸 좋아하는 아이</li>
-          </ul>
-        </motion.div>
+              <ul
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.6vw, 1rem)',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  color: '#2F6B4F',
+                  listStyle: 'none',
+                  padding: 0,
+                  margin: 0,
+                }}
+              >
+                <li>선·색·형태에 호기심이 많고 손으로 탐색하는 걸 좋아하는 아이</li>
+                <br />
+                <li>감정표현이 서툴지만, 말 대신 그림에서 마음이 잘 드러나는 아이</li>
+                <br />
+                <li>'잘 그리기'보다 자기 속도로 탐색하는 경험이 필요한 아이</li>
+                <br />
+                <li>정서 조절·감각 자극·표현력 성장을 균형 있게 경험하고 싶은 아이</li>
+                <br />
+                <li>자기만의 비밀 세계를 만드는 걸 좋아하는 아이</li>
+              </ul>
+            </motion.div>
 
-        {/* BLOG BUTTON */}
-        <div className="flex justify-end">
-          <motion.a
-            href="https://blog.naver.com/dreaming_art_play"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{
-              y: -2,
-              backgroundColor: '#F6D2CC',
-              transition: { duration: 0.3 },
-            }}
-            whileTap={{ scale: 0.98 }}
-            style={{
-              padding: '0.9rem 2.4rem',
-              border: '2px solid #A66A5A',
-              borderRadius: '9999px',
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: '0.95rem',
-              color: '#2d5016',
-              background: '#FADFDE',
-              textDecoration: 'none',
-              transition: 'all 0.3s ease',
-            }}
-          >
-            BLOG 바로가기
-          </motion.a>
+            {/* BLOG BUTTON */}
+            <div ref={ctaRef} className="blog-cta flex justify-end">
+              <motion.a
+                href="https://blog.naver.com/dreaming_art_play"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{
+                  y: -2,
+                  backgroundColor: '#F6D2CC',
+                  transition: { duration: 0.3 },
+                }}
+                whileTap={{ scale: 0.98 }}
+                style={{
+                  padding: '0.9rem 2.4rem',
+                  border: '2px solid #A66A5A',
+                  borderRadius: '9999px',
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: '0.95rem',
+                  color: '#2d5016',
+                  background: '#FADFDE',
+                  textDecoration: 'none',
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                BLOG 바로가기
+              </motion.a>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* CSS for Premium Editorial Layout */}
+      <style>{`
+        /* 기본: 모바일 유지 (단일 컬럼) */
+        .content-split {
+          display: block;
+        }
+
+        /* 모바일에서 줄바꿈 숨김 */
+        .key-message-br {
+          display: none;
+        }
+
+        /* 초기 상태 (안 보임) */
+        .blog-cta {
+          opacity: 0;
+          transform: translateY(12px);
+          transition:
+            opacity 0.6s ease,
+            transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* 스크롤 도달 시 활성화 */
+        .blog-cta.is-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* 위아래로 미세하게 움직이는 애니메이션 */
+        @keyframes floatY {
+          0%   { transform: translateY(0); }
+          50%  { transform: translateY(-4px); }
+          100% { transform: translateY(0); }
+        }
+
+        .blog-cta.is-visible a {
+          animation: floatY 3.5s ease-in-out infinite;
+        }
+
+        /* PC 이상에서만 분리 (2컬럼) */
+        @media (min-width: 1024px) {
+          .content-split {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            column-gap: 6rem;
+            align-items: start;
+          }
+
+          .content-left {
+            padding-right: 1rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+          }
+
+          .content-right {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+          }
+
+          .content-right .blog-cta {
+            position: sticky;
+            bottom: 32px;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: auto;
+            pointer-events: none;
+          }
+
+          .content-right .blog-cta a {
+            pointer-events: auto;
+          }
+
+          /* PC에서 줄바꿈 표시 */
+          .key-message-br {
+            display: block;
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -226,7 +431,7 @@ export function ChildArtSection3() {
   ];
 
   return (
-    <section className="relative bg-white py-32 md:py-40 lg:py-48">
+    <section className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
       <div className="max-w-[1180px] mx-auto px-0">
         {/* Title */}
         <motion.div
@@ -403,129 +608,320 @@ export function ChildArtSection4() {
   return (
     <section className="relative bg-white py-20 md:py-24">
       <div className="max-w-[1180px] mx-auto px-0">
-        {/* Image with Text Overlay - Premium Style */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative rounded-3xl overflow-hidden"
-          style={{
-            boxShadow: '0 20px 80px rgba(47, 107, 79, 0.12)',
-            minHeight: '600px',
-          }}
-        >
-          {/* Background Image */}
-          <img
-            src={getImagePath("/assets/program/child/now we change the question.png")}
-            alt="크레용숲 어린이 작품"
-            className="w-full h-auto"
-            style={{
-              minHeight: '600px',
-              objectFit: 'cover',
-            }}
-            onError={(e) => {
-              const target = e.currentTarget as HTMLImageElement;
-              const src = target.src;
-              console.error('Image load error:', src);
-              
-              // 무한 루프 방지: 한 번만 대문자 확장자 시도
-              if (src.includes('now%20we%20change%20the%20question')) {
-                if (src.endsWith('.png') || src.endsWith('%20question.png')) {
-                  // 소문자 png 실패 시 대문자 PNG 시도
-                  target.src = getImagePath('/assets/program/child/now we change the question.PNG');
-                } else {
-                  // 모든 시도 실패 시 이미지 숨김
-                  target.style.display = 'none';
-                }
-              }
-            }}
-          />
+        <div className="change-question-layout">
+          {/* LEFT : TEXT (PC에서는 왼쪽) */}
+          <div className="change-text">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <p
+                className="cq-lead"
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(1rem, 1.6vw, 1.2rem)',
+                  color: '#2F6B4F',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  fontWeight: 400,
+                  marginBottom: '1.5rem',
+                  wordBreak: 'keep-all',
+                  overflowWrap: 'break-word',
+                }}
+              >
+                이제 질문은 바뀝니다.
+              </p>
 
-          {/* Gradient Overlay */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 60%, rgba(255,255,255,0.98) 100%)',
-              zIndex: 1,
-            }}
-          />
+              <p
+                className="cq-sub"
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(1rem, 1.6vw, 1.2rem)',
+                  color: '#2F6B4F',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  fontWeight: 300,
+                  marginBottom: '0.5rem',
+                  wordBreak: 'keep-all',
+                  overflowWrap: 'break-word',
+                }}
+              >
+                "우리 아이가 잘 그리게 될까요?"가 아니라,
+              </p>
 
-          {/* Text Content Overlay */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="absolute bottom-0 left-0 right-0 text-center px-8 pb-16 md:pb-24 lg:pb-32"
-            style={{
-              zIndex: 2,
-            }}
-          >
-            <p
+              <p
+                className="cq-sub"
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(1rem, 1.6vw, 1.2rem)',
+                  color: '#2F6B4F',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  fontWeight: 300,
+                  marginBottom: '0.5rem',
+                  wordBreak: 'keep-all',
+                  overflowWrap: 'break-word',
+                }}
+              >
+                "이 아이가 자기다운 세계를 만들 힘을 갖게 될까요?"
+              </p>
+
+              <p
+                className="cq-main"
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                  color: '#2F6B4F',
+                  lineHeight: 1.5,
+                  fontWeight: 600,
+                  marginTop: '2rem',
+                  wordBreak: 'keep-all',
+                  overflowWrap: 'break-word',
+                }}
+              >
+                크레용숲은 그 질문에 대한 하나의 대답입니다.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* RIGHT : IMAGE (모바일에서는 전체, PC에서는 오른쪽) */}
+          <div className="change-image">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative rounded-3xl overflow-hidden change-image-mobile"
               style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.85rem, 1.6vw, 1.2rem)',
-                color: '#2F6B4F',
-                lineHeight: 1.5,
-                letterSpacing: 0,
-                fontWeight: 400,
-                marginBottom: '1.5rem',
-                wordBreak: 'keep-all',
-                overflowWrap: 'break-word',
+                boxShadow: '0 20px 80px rgba(47, 107, 79, 0.12)',
+                minHeight: '600px',
               }}
             >
-              이제 질문은 바뀝니다.
-            </p>
+              {/* Background Image */}
+              <img
+                src={getImagePath("/assets/program/child/now we change the question.png")}
+                alt="크레용숲 어린이 작품"
+                className="w-full h-auto"
+                style={{
+                  minHeight: '600px',
+                  objectFit: 'cover',
+                }}
+                onError={(e) => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  const src = target.src;
+                  console.error('Image load error:', src);
+                  
+                  // 무한 루프 방지: 한 번만 대문자 확장자 시도
+                  if (src.includes('now%20we%20change%20the%20question')) {
+                    if (src.endsWith('.png') || src.endsWith('%20question.png')) {
+                      // 소문자 png 실패 시 대문자 PNG 시도
+                      target.src = getImagePath('/assets/program/child/now we change the question.PNG');
+                    } else {
+                      // 모든 시도 실패 시 이미지 숨김
+                      target.style.display = 'none';
+                    }
+                  }
+                }}
+              />
 
-            <p
-              style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.85rem, 1.6vw, 1.2rem)',
-                color: '#2F6B4F',
-                lineHeight: 1.5,
-                letterSpacing: 0,
-                fontWeight: 300,
-                marginBottom: '0.5rem',
-                wordBreak: 'keep-all',
-                overflowWrap: 'break-word',
-              }}
-            >
-              "우리 아이가 잘 그리게 될까요?"가 아니라,
-            </p>
+              {/* Gradient Overlay - 모바일 전용 */}
+              <div
+                className="absolute inset-0 change-overlay"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 60%, rgba(255,255,255,0.98) 100%)',
+                  zIndex: 1,
+                }}
+              />
 
-            <p
-              style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.85rem, 1.6vw, 1.2rem)',
-                color: '#2F6B4F',
-                lineHeight: 1.5,
-                letterSpacing: 0,
-                fontWeight: 300,
-                marginBottom: '2.5rem',
-                wordBreak: 'keep-all',
-                overflowWrap: 'break-word',
-              }}
-            >
-              "이 아이가 자기다운 세계를 만들 힘을 갖게 될까요?"
-            </p>
+              {/* Text Content Overlay - 모바일 전용 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="absolute bottom-0 left-0 right-0 text-center px-8 pb-16 md:pb-24 lg:pb-32 change-text-mobile"
+                style={{
+                  zIndex: 2,
+                }}
+              >
+                <p
+                  className="cq-lead"
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.6vw, 1.2rem)',
+                    color: '#2F6B4F',
+                    lineHeight: 1.5,
+                    letterSpacing: 0,
+                    fontWeight: 400,
+                    marginBottom: '1.5rem',
+                    wordBreak: 'keep-all',
+                    overflowWrap: 'break-word',
+                  }}
+                >
+                  이제 질문은 바뀝니다.
+                </p>
 
-            <p
-              style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.85rem, 2vw, 1.5rem)',
-                color: '#2F6B4F',
-                lineHeight: 1.5,
-                fontWeight: 600,
-                wordBreak: 'keep-all',
-                overflowWrap: 'break-word',
-              }}
-            >
-              크레용숲은 그 질문에 대한 하나의 대답입니다.
-            </p>
-          </motion.div>
-        </motion.div>
+                <p
+                  className="cq-sub"
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.6vw, 1.2rem)',
+                    color: '#2F6B4F',
+                    lineHeight: 1.5,
+                    letterSpacing: 0,
+                    fontWeight: 300,
+                    marginBottom: '0.5rem',
+                    wordBreak: 'keep-all',
+                    overflowWrap: 'break-word',
+                  }}
+                >
+                  "우리 아이가 잘 그리게 될까요?"가 아니라,
+                </p>
+
+                <p
+                  className="cq-sub"
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.6vw, 1.2rem)',
+                    color: '#2F6B4F',
+                    lineHeight: 1.5,
+                    letterSpacing: 0,
+                    fontWeight: 300,
+                    marginBottom: '2.5rem',
+                    wordBreak: 'keep-all',
+                    overflowWrap: 'break-word',
+                  }}
+                >
+                  "이 아이가 자기다운 세계를 만들 힘을 갖게 될까요?"
+                </p>
+
+                <p
+                  className="cq-main"
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 2vw, 1.5rem)',
+                    color: '#2F6B4F',
+                    lineHeight: 1.5,
+                    fontWeight: 600,
+                    wordBreak: 'keep-all',
+                    overflowWrap: 'break-word',
+                  }}
+                >
+                  크레용숲은 그 질문에 대한 하나의 대답입니다.
+                </p>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
       </div>
+
+      {/* CSS for Change Question Layout */}
+      <style>{`
+        /* 기본값 (모바일 유지) */
+        .change-question-layout {
+          display: block;
+        }
+
+        .change-image img {
+          width: 100%;
+          min-height: 600px;
+          object-fit: cover;
+          border-radius: 24px;
+        }
+
+        .change-text {
+          display: none;
+        }
+
+        /* PC 전용: 텍스트 6 : 이미지 4 레이아웃 (겹침 구조) */
+        @media (min-width: 1024px) {
+          .change-question-layout {
+            display: grid;
+            grid-template-columns: 6fr 4fr;
+            gap: 0;
+            align-items: stretch;
+            position: relative;
+          }
+
+          /* 왼쪽 텍스트 */
+          .change-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 64px;
+            position: relative;
+            z-index: 2;
+          }
+
+          /* 텍스트 75% 삼킴 효과 */
+          .change-text > div {
+            margin-right: -35%;
+            padding-right: 35%;
+          }
+
+          /* 겹친 텍스트 자연스러운 전환 */
+          .change-text::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -35%;
+            width: 35%;
+            height: 100%;
+            background: linear-gradient(
+              to right,
+              rgba(255,255,255,0.95) 0%,
+              rgba(255,255,255,0.85) 40%,
+              rgba(255,255,255,0) 100%
+            );
+            pointer-events: none;
+            z-index: 1;
+          }
+
+          /* 오른쪽 이미지 */
+          .change-image {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .change-image-mobile {
+            min-height: 640px;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: rgba(47, 107, 79, 0.12) 0px 20px 80px;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .change-image img {
+            border-radius: 32px;
+            height: auto;
+            width: 100%;
+            object-fit: cover;
+            aspect-ratio: 4 / 5;
+          }
+
+          .change-overlay {
+            display: none;
+          }
+
+          .change-text-mobile {
+            display: none;
+          }
+
+          .cq-lead {
+            font-size: clamp(1rem, 3vw, 3rem) !important;
+          }
+
+          .cq-sub {
+            font-size: 1.5rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -533,15 +929,18 @@ export function ChildArtSection4() {
 // CHILD ART Section 5: Program Details (Premium Editorial Style)
 export function ChildArtSection5() {
   return (
-    <section className="relative bg-white pt-[90px] pb-24">
+    <section className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
       <div className="max-w-[1180px] mx-auto px-0">
+        {/* 시각용 상단 스페이서 - absolute overlay 구조로 인한 시각적 여백 보장 */}
+        <div aria-hidden="true" className="h-24" />
+
         {/* Mobile Title - 모바일에서만 상단에 표시 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="md:hidden mb-8"
+          className="md:hidden mb-0"
         >
           <h2
             style={{
@@ -563,7 +962,7 @@ export function ChildArtSection5() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative mb-24 rounded-3xl overflow-hidden"
+          className="relative mb-16 rounded-3xl overflow-hidden"
           style={{
             boxShadow: '0 20px 60px rgba(47, 107, 79, 0.1)',
             maxHeight: '280px',

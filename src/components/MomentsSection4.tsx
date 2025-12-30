@@ -5,7 +5,7 @@ import { getImagePath } from '../utils/imageUtils';
 // MOMENTS Section 4: 크레용숲 선언서
 export function MomentsSection4() {
   return (
-    <section className="relative bg-white pt-[90px] pb-24">
+    <section className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
       <div className="max-w-[1180px] mx-auto px-0">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left: Philosophy Text */}

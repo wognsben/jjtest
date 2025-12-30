@@ -15,7 +15,7 @@ export default function WhatIsEmotionalArt() {
   const images = [
     getImagePath('/assets/about/meaning of emotional art/emotional art-1.png'),
     getImagePath('/assets/about/meaning of emotional art/emotional art-2.png'),
-    getImagePath('/assets/about/meaning of emotional art/emotional art-3.png'),
+    getImagePath('/assets/about/meaning of emotional art/meaning of emotional art-1.jpg'),
     getImagePath('/assets/about/meaning of emotional art/emotional art-4.png'),
   ];
 
@@ -68,7 +68,15 @@ export default function WhatIsEmotionalArt() {
                 />
                 
                 {/* Content */}
-                <div className="relative p-10 md:p-12 lg:p-16">
+                <div 
+                  className="relative p-[32px] md:p-[40px] lg:p-[48px]"
+                  style={{
+                    paddingTop: '10px',
+                    paddingBottom: '10px',
+                    paddingLeft: '10px',
+                    paddingRight: '10px',
+                  }}
+                >
                   
                   {/* Title */}
                   <motion.div
@@ -110,7 +118,8 @@ export default function WhatIsEmotionalArt() {
                       }}
                     >
                       <span style={{ color: '#bb8162' }}>감정을 표현의 재료</span>로 삼아{' '}
-                      <span style={{ color: '#bb8162' }}>색·선·결·사물</span>의 과정을 통해{' '}
+                      <span style={{ color: '#bb8162' }}>색·선·결·사물</span>의 과정을 통해
+                      <br />
                       <span 
                         style={{
                           textDecoration: 'underline',
@@ -164,7 +173,7 @@ export default function WhatIsEmotionalArt() {
                       <p 
                         style={{ 
                           fontFamily: "'Noto Serif KR', serif",
-                          fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
+                          fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                           lineHeight: 1.5,
                           letterSpacing: 0,
                           fontWeight: 400,
@@ -172,7 +181,9 @@ export default function WhatIsEmotionalArt() {
                           marginBottom: '12px',
                         }}
                       >
-                        대신, 표현 이전에 반드시 작동해야 할 감정의 기능을 기준으로 삼습니다.
+                        대신, 표현 이전에 반드시 작동해야 할 감정의 기능을
+                        <br className="hidden lg:block" />
+                        기준으로 삼습니다.
                       </p>
                       <div className="space-y-2">
                         <p 

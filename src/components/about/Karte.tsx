@@ -126,7 +126,7 @@ export default function Karte() {
                 <h3 
                   className="text-brown-700 mb-6"
                   style={{
-                    fontSize: 'clamp(0.95rem, 2.2vw, 1.4rem)',
+                    fontSize: 'clamp(0.85rem, 2.2vw, 1.4rem)',
                     fontWeight: 600,
                     letterSpacing: '-0.02em',
                   }}

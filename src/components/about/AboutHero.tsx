@@ -261,17 +261,17 @@ export default function AboutHero() {
           className="hero-title max-w-6xl mx-auto lg:whitespace-nowrap"
           style={{ 
             fontFamily: "'Noto Serif KR', serif",
-            fontSize: 'clamp(2.5rem, 8vw, 8rem)',
+            fontSize: 'clamp(2.5rem, 6vw, 8rem)',
             fontWeight: 700,
             lineHeight: 1.1,
             letterSpacing: '0.02em', // 고정값 - 프리미엄 정적 타이포그래피
             color: '#1a1a1a',
           } as React.CSSProperties}
         >
-          <span className="inline-block">크레용숲</span>
+          <span className="lg:inline">크레용숲</span>
           {' '}
           <span 
-            className="inline-block"
+            className="lg:inline"
             style={{
               background: 'linear-gradient(135deg, #8fbc88 0%, #2d5016 70%, #1f3a10 100%)',
               WebkitBackgroundClip: 'text',

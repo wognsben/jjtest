@@ -6,7 +6,8 @@ export default function ProgramMethodSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    // Animation observer
+    const animationObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -22,12 +23,105 @@ export default function ProgramMethodSection() {
 
     const animatedElements = sectionRef.current?.querySelectorAll('[data-animate]');
     animatedElements?.forEach(el => {
-      observer.observe(el);
+      animationObserver.observe(el);
     });
 
+
+    // Program pill click handlers - reveal section in stage
+    // Wait for DOM to be ready
+    const initPillNavigation = () => {
+      const pills = document.querySelectorAll('.program-pill[data-pill]');
+      const stage = document.getElementById('program-reveal-stage');
+      const source = document.getElementById('program-source-container');
+
+      if (!pills.length || !stage || !source) {
+        // Retry if not ready
+        setTimeout(initPillNavigation, 100);
+        return;
+      }
+
+      // Build sections map from source container - target data-program-detail
+      const sections: { [key: string]: HTMLElement } = {};
+      source.querySelectorAll('[data-program-detail]').forEach((sec) => {
+        const sectionId = (sec as HTMLElement).dataset.programDetail;
+        if (sectionId) {
+          sections[sectionId] = sec as HTMLElement;
+        }
+      });
+
+      let currentKey: string | null = null;
+      let animating = false;
+
+      const setActive = (key: string) => {
+        pills.forEach((p) => {
+          const pill = p as HTMLElement;
+          pill.classList.toggle('is-active', pill.dataset.pill === key);
+        });
+      };
+
+      const reveal = (key: string) => {
+        if (animating || key === currentKey) return;
+        const target = sections[key];
+        if (!target) return;
+
+        animating = true;
+        setActive(key);
+
+        // Fade out old content
+        if (stage.firstChild) {
+          const oldChild = stage.firstChild as HTMLElement;
+          oldChild.style.transition = 'opacity 200ms cubic-bezier(0.25, 0.8, 0.25, 1), transform 200ms cubic-bezier(0.25, 0.8, 0.25, 1)';
+          oldChild.style.opacity = '0';
+          oldChild.style.transform = 'translateY(-24px)';
+        }
+
+        setTimeout(() => {
+          // Clear stage completely
+          stage.innerHTML = '';
+
+          // Move actual node from source to stage (not clone)
+          stage.appendChild(target);
+
+          // Reset initial state
+          target.style.opacity = '0';
+          target.style.transform = 'translateY(24px)';
+          target.style.transition = '';
+
+          requestAnimationFrame(() => {
+            target.style.transition = 'opacity 0.85s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.85s cubic-bezier(0.25, 0.8, 0.25, 1)';
+            target.style.opacity = '1';
+            target.style.transform = 'translateY(0)';
+          });
+
+          currentKey = key;
+          setTimeout(() => {
+            animating = false;
+          }, 400);
+        }, 200);
+      };
+
+      // Attach click handlers
+      pills.forEach((btn) => {
+        const handler = (e: Event) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const pill = btn as HTMLElement;
+          const sectionId = pill.dataset.pill;
+          if (sectionId) {
+            reveal(sectionId);
+          }
+        };
+        btn.addEventListener('click', handler);
+      });
+    };
+
+    // Initialize after a short delay to ensure DOM is ready
+    const timeoutId = setTimeout(initPillNavigation, 100);
+
     return () => {
+      clearTimeout(timeoutId);
       animatedElements?.forEach(el => {
-        observer.unobserve(el);
+        animationObserver.unobserve(el);
       });
     };
   }, []);
@@ -60,6 +154,7 @@ export default function ProgramMethodSection() {
         }
 
         .program-pill {
+          position: relative;
           padding: 0.65rem 1.5rem;
           border-radius: 9999px;
           background: #FADFDB;
@@ -75,10 +170,12 @@ export default function ProgramMethodSection() {
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
           transition:
             background 0.4s ease,
-            transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-            box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
+            box-shadow 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
+            border 0.35s ease;
         }
 
         .program-pill:hover {
@@ -91,14 +188,30 @@ export default function ProgramMethodSection() {
           transform: translateY(0);
           box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
         }
+
+        .program-pill.is-active {
+          background: #FADFDB;
+          border-width: 2.5px;
+          transform: scale(1.03);
+          box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+        }
+
+        .program-pill.is-active::after {
+          content: "";
+          position: absolute;
+          inset: 4px;
+          border-radius: 9999px;
+          border: 1px solid rgba(47, 107, 79, 0.35);
+          pointer-events: none;
+        }
       `}</style>
 
       <section 
         ref={sectionRef}
         className="relative bg-white pt-[90px] pb-24 overflow-hidden"
       >
-        <div className="max-w-[1180px] mx-auto px-0">
-          <div className="flex flex-col gap-20 lg:gap-28">
+        <div className="max-w-[1180px] mx-auto px-6 md:px-12 lg:px-20">
+          <div className="flex flex-col gap-20 lg:gap-28 lg:items-center">
             {/* METHOD 1 IMAGE - TOP */}
             <div data-animate="fade-up">
               <img
@@ -112,7 +225,7 @@ export default function ProgramMethodSection() {
             <div
               data-animate="fade-up"
               data-delay="120"
-              className="max-w-[22rem] ml-auto"
+              className="max-w-[22rem] lg:max-w-[32rem] ml-auto lg:mx-auto text-center"
               style={{
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(0.85rem, 1.2vw, 1.05rem)',
@@ -172,47 +285,36 @@ export default function ProgramMethodSection() {
                 {/* PROGRAM BUTTONS */}
                 <div className="flex flex-wrap gap-3">
                   <button
-                    onClick={() => {
-                      // 스크롤만 수행 (섹션 열기는 사용자가 "자세히 보기" 클릭)
-                      const element = document.querySelector('[data-section="childart"]');
-                      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }}
+                    type="button"
+                    data-pill="childart"
                     className="program-pill"
                   >
                     CHILD ART
                   </button>
                   <button
-                    onClick={() => {
-                      const element = document.querySelector('[data-section="youthart"]');
-                      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }}
+                    type="button"
+                    data-pill="youthart"
                     className="program-pill"
                   >
                     YOUTH ART
                   </button>
                   <button
-                    onClick={() => {
-                      const element = document.querySelector('[data-section="adultart"]');
-                      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }}
+                    type="button"
+                    data-pill="adultart"
                     className="program-pill"
                   >
                     ADULT ART
                   </button>
                   <button
-                    onClick={() => {
-                      const element = document.querySelector('[data-section="formom"]');
-                      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }}
+                    type="button"
+                    data-pill="formom"
                     className="program-pill"
                   >
                     FOR MOM
                   </button>
                   <button
-                    onClick={() => {
-                      const element = document.querySelector('[data-section="moments"]');
-                      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }}
+                    type="button"
+                    data-pill="moments"
                     className="program-pill"
                   >
                     MOMENTS
@@ -247,6 +349,13 @@ export default function ProgramMethodSection() {
                 </a>
               </div>
             </div>
+
+            {/* REVEAL STAGE - Program sections appear here */}
+            <div 
+              id="program-reveal-stage"
+              className="w-full mt-16"
+              style={{ minHeight: '200px' }}
+            />
           </div>
         </div>
       </section>

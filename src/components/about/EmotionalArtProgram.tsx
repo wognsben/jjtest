@@ -324,10 +324,10 @@ export default function EmotionalArtProgram() {
           line-height: 1.5;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
           .stage-description-text {
-            font-size: 0.9rem;
-            line-height: 1.8;
+            font-size: 0.85rem;
+            line-height: 2;
           }
         }
       `}</style>

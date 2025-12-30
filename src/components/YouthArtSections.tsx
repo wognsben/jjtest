@@ -53,8 +53,11 @@ export function YouthArtSection1() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-white pt-[90px] pb-24">
+    <section ref={sectionRef} className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
       <div className="max-w-[1180px] mx-auto px-0">
+        {/* 시각용 상단 스페이서 - absolute overlay 구조로 인한 시각적 여백 보장 */}
+        <div aria-hidden="true" className="h-24" />
+
         {/* Hero Image with Text Overlay */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -204,6 +207,26 @@ export function YouthArtSection1() {
 
 // YOUTH ART Section 2: Program Description - Premium Editorial Style
 export function YouthArtSection2() {
+  const sectionRef = React.useRef<HTMLElement>(null);
+  const blogCtaRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const blogCta = blogCtaRef.current;
+    if (!blogCta) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          blogCta.classList.add('is-visible');
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(blogCta);
+    return () => observer.disconnect();
+  }, []);
+
   const questions = [
     '"나는 누구일까?"',
     '"나는 어떤 세계를 만들고 싶은 사람일까?"',
@@ -221,153 +244,331 @@ export function YouthArtSection2() {
   ];
 
   return (
-    <section className="relative bg-white pt-[90px] pb-24">
-      <div className="max-w-[1180px] mx-auto px-0">
-        {/* Top: Three Big Questions */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-16 space-y-4"
-        >
-          {questions.map((question, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 + i * 0.1 }}
-              style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.85rem, 2.2vw, 1rem)',
-                color: '#333',
-                fontWeight: 400,
-                lineHeight: 1.5,
-                letterSpacing: 0,
-              }}
-            >
-              {question}
-            </motion.p>
-          ))}
-        </motion.div>
+    <>
+      <style>{`
+        /* 기본: 모바일 유지 (단일 컬럼) */
+        .content-split {
+          display: block;
+        }
 
-        {/* Description Text */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mb-16 max-w-3xl space-y-4"
-        >
-          <p
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
-              color: '#666',
-              fontWeight: 300,
-              lineHeight: 1.5,
-              letterSpacing: 0,
-            }}
-          >
-            이 시기에는 감정을 '왜 그런지' 묻기 시작하는 시기이며, 자기 생각과 세계관을 만들기 시작합니다.<br /><br />
-            하지만 학교와 입시는 여전히 기술·결과만 요구하죠.<br /><br />
-            정작 중요한 정체성·사유력·자기서사는 자리를 잃기 쉽습니다.
-          </p>
-        </motion.div>
+        /* 모바일에서 줄바꿈 숨김 */
+        .key-message-br {
+          display: none;
+        }
 
-        {/* Key Message - Green */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-16"
-        >
-          <p
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
-              color: '#2F6B4F',
-              fontWeight: 500,
-              lineHeight: 1.5,
-              letterSpacing: 0,
-            }}
-          >
-            "청소년의 세계관이 자라는 시간, 자기다움이 언어가 되는 수업입니다"
-          </p>
-        </motion.div>
+        /* PC 전용 줄바꿈 - 모바일에서 숨김 */
+        .pc-only-br {
+          display: none;
+        }
 
-        {/* Target Info - Rounded Card Style */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="relative mb-16"
-          style={{
-            background: '#FADFDB',
-            borderRadius: '32px',
-            padding: '2.5rem 3rem',
-            minWidth: '200px',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              color: '#2F6B4F',
-              marginBottom: '1.5rem',
-              display: 'inline-block',
-            }}
-          >
-            이런 친구에게 맞아요
-          </span>
-          <ul className="mt-4" style={{ marginBottom: 0 }}>
-            {targetList.map((item, i) => (
-              <li 
-                key={i}
-                style={{ 
-                  fontFamily: "'Noto Serif KR', serif", 
-                  fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)', 
+        .youth-key-message-br {
+          display: none;
+        }
+
+        /* 초기 상태 (안 보임) */
+        .blog-cta {
+          opacity: 0;
+          transform: translateY(12px);
+          transition:
+            opacity 0.6s ease,
+            transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* 스크롤 도달 시 활성화 */
+        .blog-cta.is-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* 위아래로 미세하게 움직이는 애니메이션 */
+        @keyframes floatY {
+          0%   { transform: translateY(0); }
+          50%  { transform: translateY(-4px); }
+          100% { transform: translateY(0); }
+        }
+
+        .blog-cta.is-visible a {
+          animation: floatY 3.5s ease-in-out infinite;
+        }
+
+        /* PC 이상에서만 분리 (2컬럼) */
+        @media (min-width: 1024px) {
+          .content-split {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            column-gap: 6rem;
+            align-items: start;
+          }
+
+          .content-left {
+            padding-right: 1rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+          }
+
+          .content-right {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+          }
+
+          .content-right .blog-cta {
+            position: sticky;
+            bottom: 32px;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: auto;
+            pointer-events: none;
+          }
+
+          .content-right .blog-cta a {
+            pointer-events: auto;
+          }
+
+          /* PC에서 줄바꿈 표시 */
+          .key-message-br {
+            display: block;
+          }
+
+          /* PC에서 PC 전용 줄바꿈 표시 */
+          .pc-only-br {
+            display: block;
+          }
+
+          /* PC에서 키 메시지 줄바꿈 표시 */
+          .youth-key-message-br {
+            display: block;
+          }
+
+          /* PC에서 설명 텍스트 폰트 크기 */
+          .youth-desc-text {
+            font-size: 1rem !important;
+          }
+        }
+      `}</style>
+      <section ref={sectionRef} className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
+        <div className="max-w-[1180px] mx-auto px-0">
+          <div className="content-split">
+            {/* Left Column */}
+            <div className="content-left">
+              {/* Top: Three Big Questions */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="space-y-6"
+                style={{ marginBottom: '48px' }}
+              >
+                {questions.map((question, i) => (
+                  <motion.p
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 + i * 0.1 }}
+                    style={{
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: 'clamp(0.85rem, 2.2vw, 1.5rem)',
+                      color: '#333',
+                      fontWeight: 400,
+                      lineHeight: 1.5,
+                      letterSpacing: 0,
+                    }}
+                  >
+                    {question}
+                  </motion.p>
+                ))}
+              </motion.div>
+
+              {/* Description Text */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="space-y-8"
+                style={{ marginBottom: '48px' }}
+              >
+                <p
+                  className="youth-desc-text"
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
+                    color: '#666',
+                    fontWeight: 300,
+                    lineHeight: 1.5,
+                    letterSpacing: 0,
+                    maxWidth: '34em',
+                    textAlign: 'left',
+                    wordBreak: 'keep-all',
+                    marginBottom: '0.9em',
+                  }}
+                >
+                  이 시기에는 감정을 '왜 그런지' 묻기 시작하는 시기이며,
+                </p>
+                <p
+                  className="youth-desc-text"
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
+                    color: '#666',
+                    fontWeight: 300,
+                    lineHeight: 1.5,
+                    letterSpacing: 0,
+                    maxWidth: '34em',
+                    textAlign: 'left',
+                    wordBreak: 'keep-all',
+                    marginBottom: '0.9em',
+                  }}
+                >
+                  자기 생각과 세계관을 만들기 시작합니다.
+                </p>
+                <p
+                  className="youth-desc-text"
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
+                    color: '#666',
+                    fontWeight: 300,
+                    lineHeight: 1.5,
+                    letterSpacing: 0,
+                    maxWidth: '34em',
+                    textAlign: 'left',
+                    wordBreak: 'keep-all',
+                    marginBottom: '0.9em',
+                  }}
+                >
+                  하지만 학교와 입시는 여전히 기술·결과만 요구하죠.
+                </p>
+                <p
+                  className="youth-desc-text"
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
+                    color: '#666',
+                    fontWeight: 300,
+                    lineHeight: 1.5,
+                    letterSpacing: 0,
+                    maxWidth: '34em',
+                    textAlign: 'left',
+                    wordBreak: 'keep-all',
+                    marginBottom: 0,
+                  }}
+                >
+                  정작 중요한 정체성·사유력·자기서사는 자리를 잃기 쉽습니다.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Right Column */}
+            <div className="content-right">
+              {/* Key Message - Green */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="key-message"
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
+                  color: '#2F6B4F',
+                  fontWeight: 500,
                   lineHeight: 1.5,
-                  letterSpacing: 0, 
-                  color: '#A66A5A',
-                  marginBottom: 0,
-                  listStyle: 'none'
+                  letterSpacing: 0,
+                  marginBottom: '3rem',
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
                 }}
               >
-                {item}
-              </li>
-            ))}
-          </ul>
-          
-          {/* Blog Button - Inside Block, Right Bottom */}
-          <div className="flex justify-end mt-8">
-            <a
-              href="https://blog.naver.com/dreaming_art_play"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 border-2 rounded-full transition-all duration-300 hover:bg-[#F6D2CC]"
-              style={{
-                background: '#FADFDE',
-                borderColor: '#A66A5A',
-                color: '#2d5016',
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: '0.95rem',
-                fontWeight: 500,
-              }}
-            >
-              BLOG 바로가기
-            </a>
-          </div>
-        </motion.div>
+                "청소년의 세계관이 자라는 시간,<br className="youth-key-message-br" /> 자기다움이 언어가 되는 수업입니다"
+              </motion.p>
 
-        {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-32" />
-      </div>
-    </section>
+              {/* Target Info - Rounded Card Style */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                style={{
+                  background: '#FADFDB',
+                  borderRadius: '24px',
+                  padding: '2rem 2.5rem',
+                  marginBottom: '3rem',
+                  minWidth: '200px',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'inline-block',
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    color: '#2F6B4F',
+                    marginBottom: '1rem',
+                  }}
+                >
+                  이런 친구에게 맞아요
+                </span>
+                <ul
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.6vw, 1rem)',
+                    lineHeight: 1.5,
+                    letterSpacing: 0,
+                    color: '#2F6B4F',
+                    listStyle: 'none',
+                    padding: 0,
+                    margin: 0,
+                  }}
+                >
+                  {targetList.map((item, i) => (
+                    <li
+                      key={i}
+                      style={{
+                        marginBottom: i < targetList.length - 1 ? '0.9em' : 0,
+                      }}
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Blog Button - Sticky on PC */}
+              <div ref={blogCtaRef} className="blog-cta flex justify-end">
+                <a
+                  href="https://blog.naver.com/dreaming_art_play"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tabIndex={0}
+                  style={{
+                    padding: '0.9rem 2.4rem',
+                    border: '2px solid #A66A5A',
+                    borderRadius: '9999px',
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: '0.95rem',
+                    color: '#2d5016',
+                    background: '#FADFDE',
+                    textDecoration: 'none',
+                    transition: '0.3s',
+                  }}
+                >
+                  BLOG 바로가기
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-32" />
+        </div>
+      </section>
+    </>
   );
 }
 
@@ -448,7 +649,7 @@ export function YouthArtSection3() {
         .philo-section .connect-line:nth-child(5) { transition-delay: 1.4s; }
       `}</style>
       
-      <section ref={sectionRef} className="philo-section relative bg-white pt-[90px] pb-24 overflow-hidden">
+      <section ref={sectionRef} className="philo-section relative bg-white pt-24 pb-24 overflow-hidden" style={{ paddingTop: '96px' }}>
         <div className="max-w-[1180px] mx-auto px-0 relative">
 
           {/* Mobile Title - 모바일에서만 상단에 표시 */}

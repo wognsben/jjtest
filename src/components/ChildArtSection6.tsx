@@ -5,8 +5,10 @@ import { getImagePath } from '../utils/imageUtils';
 // CHILD ART Section 6: Age-based Development (Premium Editorial Design)
 export function ChildArtSection6() {
   return (
-    <section className="relative bg-white pt-[90px] pb-24">
+    <section className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
       <div className="max-w-[1180px] mx-auto px-0">
+        {/* 시각적 패딩 앵커 - 첫 요소가 작아서 padding이 시각적으로 보이지 않는 문제 해결 */}
+        <div aria-hidden="true" className="h-24" />
         
         {/* Section Header - Left Aligned */}
         <motion.div

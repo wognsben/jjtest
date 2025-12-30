@@ -35,8 +35,11 @@ export function ForMomSection2() {
           pointer-events: none;
         }
       `}</style>
-    <section className="relative bg-white pt-[90px] pb-24">
+    <section className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
       <div className="max-w-[1180px] mx-auto px-0">
+        {/* 시각용 상단 스페이서 - absolute overlay 구조로 인한 시각적 여백 보장 */}
+        <div aria-hidden="true" className="h-24" />
+
         {/* Hero Banner */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

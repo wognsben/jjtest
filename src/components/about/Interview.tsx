@@ -135,7 +135,7 @@ export default function Interview() {
                   letterSpacing: '0.02em',
                 }}
               >
-                Crayonsoop Founder · 감정예술 콘텐츠 디자이너
+                Crayonforest Founder · 감정예술 콘텐츠 디자이너
               </motion.div>
             </div>
           </motion.div>

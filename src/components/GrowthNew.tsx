@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { getImagePath } from '../utils/imageUtils';
 
 const steps = [
   {
@@ -34,8 +35,8 @@ const steps = [
     id: 5,
     english: 'Integration',
     korean: '세계관',
-    color: '#d4e8d4',
-    darkColor: '#6b9b6b'
+    color: '#f9d5db',
+    darkColor: '#b8868f'
   }
 ];
 
@@ -346,13 +347,28 @@ export default function GrowthNew() {
       <FloatingBlob delay={0.8} className="top-1/3 right-4 md:right-[8%] text-pink-soft/60" />
       
       <div className="relative mx-auto">
+        {/* Mobile: Image replacement */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:hidden mb-8"
+        >
+          <img
+            src={getImagePath('/assets/main/pyramid 5-mov (2).png')}
+            alt="크레용숲 예술적 성장 구조"
+            className="w-full h-auto block rounded-2xl"
+          />
+        </motion.div>
+
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9 }}
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-16 md:mb-20 growth-pc-content"
         >
           <h2 
             className="mb-8"
@@ -372,7 +388,7 @@ export default function GrowthNew() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-w-4xl mx-auto mb-20 md:mb-28 space-y-4"
+          className="text-center max-w-4xl mx-auto mb-20 md:mb-28 space-y-4 growth-pc-content"
         >
           <p 
             className="text-sm md:text-xl text-brown-800 leading-relaxed"
@@ -385,46 +401,31 @@ lineHeight: 1.5,
               textAlign: 'left'
             } as React.CSSProperties}
           >
-            <span style={{ color: '#8B6F47' }}>크레용숲은</span>
-            <span style={{ color: '#8B6F47' }}> 색과 감정의 5단계 구조로</span>
-            <br className="md:hidden" />
+            <span style={{ color: '#8B6F47' }}>크레용숲은 </span>
+            <span style={{ color: '#8B6F47', fontWeight: 600 }}>색과 감정의 5단계</span>
+            <span style={{ color: '#8B6F47' }}> 구조로 </span>
             <span style={{ color: '#2e7d32', fontWeight: 600 }}>예술적 성장을 만듭니다</span>
           </p>
           
-          <div className="pt-4 space-y-2">
-            <p 
-              className="text-sm md:text-lg leading-relaxed" 
-              style={{ 
-                color: '#8B6F47',
-                fontSize: 'clamp(0.85rem, 3.4vw, 1.05rem)',
-                lineHeight: 1.5,
-                letterSpacing: 0,
-                maxWidth: '34em',
-                textAlign: 'left'
-              } as React.CSSProperties}
-            >
-              마음이 먼저 안전해지는 순간,
-            </p>
-            <p 
-              className="text-sm md:text-lg leading-relaxed"
-              style={{
-                fontSize: 'clamp(0.85rem, 3.4vw, 1.05rem)',
-                lineHeight: 1.5,
-                letterSpacing: 0,
-                maxWidth: '34em',
-                textAlign: 'left'
-              } as React.CSSProperties}
-            >
-              <span style={{ color: '#1b5e20', fontWeight: 600 }}>표현력·몰입력·창조성</span>
-              <span className="text-brown-700">은 자연스럽게 자라납니다</span>
-            </p>
-          </div>
+          <p 
+            className="text-sm md:text-lg leading-relaxed pt-4" 
+            style={{ 
+              color: '#8B6F47',
+              fontSize: 'clamp(0.85rem, 3.4vw, 1.05rem)',
+              lineHeight: 1.5,
+              letterSpacing: 0,
+              maxWidth: '34em',
+              textAlign: 'left'
+            } as React.CSSProperties}
+          >
+            마음이 먼저 안전해지는 순간, <span style={{ color: '#1b5e20', fontWeight: 600 }}>표현력·몰입력·창조성은 자연스럽게 자라납니다</span>
+          </p>
         </motion.div>
         
         {/* Steps flow */}
-        <div className="mb-24 md:mb-32">
+        <div className="mb-24 md:mb-32 growth-pc-content">
           {/* Desktop view - no scroll, fits in one screen */}
-          <div className="hidden lg:flex items-center justify-center growth-cards-container">
+          <div className="flex items-center justify-center growth-cards-container">
             {steps.map((step, index) => (
               <React.Fragment key={step.id}>
                 <StepCard 
@@ -441,29 +442,6 @@ lineHeight: 1.5,
               </React.Fragment>
             ))}
           </div>
-          
-          {/* Tablet/Mobile view - scrollable */}
-          <div className="lg:hidden horizontal-scroll pb-8 -mx-6 px-6">
-            <div className="flex items-center gap-4 min-w-max growth-cards-mobile-container">
-              {steps.map((step, index) => (
-                <React.Fragment key={step.id}>
-                  <StepCard 
-                    step={step} 
-                    index={index}
-                    isMobile={true}
-                  />
-                  {/* Arrow between cards - Mobile */}
-                  {index < steps.length - 1 && (
-                    <ArrowConnector 
-                      index={index} 
-                      delay={index * 0.1 + 0.3}
-                      isMobile={true}
-                    />
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
         </div>
         
         {/* Closing statement */}
@@ -472,7 +450,7 @@ lineHeight: 1.5,
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.3 }}
-          className="text-center"
+          className="text-center growth-pc-content"
         >
           <p 
             className="text-xl md:text-3xl lg:text-4xl leading-relaxed italic growth-art-title"
@@ -494,7 +472,7 @@ lineHeight: 1.5,
           whileInView={{ scaleX: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-20 md:mt-28 mx-auto"
+          className="mt-20 md:mt-28 mx-auto growth-pc-content"
           style={{ maxWidth: '600px' } as React.CSSProperties}
         >
           <div 
@@ -612,6 +590,18 @@ lineHeight: 1.5,
           }
         }
         
+               @media (max-width: 1023px) {
+                 .growth-pc-content {
+                   display: none !important;
+                 }
+               }
+               
+               @media (min-width: 1024px) {
+                 .growth-pc-content {
+                   display: block !important;
+                 }
+               }
+               
                @media (max-width: 768px) {
                  .floating-blob {
                    margin: -20px !important;

@@ -151,7 +151,9 @@ export default function PartnerInstitutions() {
                     fontSize: 'clamp(0.85rem, 3vw, 2rem)',
                   }}
                 >
-                  <span style={{ color: '#bb8162' }}>감정과 감각, 창조성과 진정성이 만나</span>{' '}
+                  <span style={{ color: '#bb8162' }}>감정과 감각, 창조성과 진정성이 만나</span>
+                  <br className="lg:hidden" />
+                  <span className="hidden lg:inline"> </span>
                   <span style={{ color: '#8FBC88' }}>한 사람의 숲을 자라게 한다고 믿기에</span>
                 </motion.h2>
               </div>
@@ -322,7 +324,7 @@ export default function PartnerInstitutions() {
                 fontSize: 'clamp(0.85rem, 2vw, 1.5rem)',
               }}
             >
-              "인간에게 가장 중요보다 더 조용하고 평온한 존재는 없다."
+              "인간에게 자신의 영혼보다 더 조용하고 평온한 은신처는 없다."
             </motion.blockquote>
 
             {/* Citation */}
@@ -333,7 +335,7 @@ export default function PartnerInstitutions() {
               transition={{ duration: 0.8, delay: 0.7 }}
               className="not-italic text-sm md:text-base text-brown-600"
             >
-              - 테르쿠스 아동발달전문가 철학자
+              - 마르쿠스 아우렐리우스 철학자
             </motion.cite>
           </motion.div>
         </div>

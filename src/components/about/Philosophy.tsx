@@ -105,6 +105,7 @@ export default function Philosophy() {
           className="relative flex items-center"
           style={{
             minHeight: 'clamp(60vh, 80vw, 80vh)',
+            height: 'clamp(500px, 75vw, 750px)',
           }}
         >
           
@@ -114,10 +115,10 @@ export default function Philosophy() {
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-20 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[50%] xl:w-[45%]"
+              className="relative z-20 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[50%] xl:w-[45%] lg:h-full"
             >
             {/* Glass card background */}
-            <div className="relative flex flex-col" style={{ minHeight: '100%' }}>
+            <div className="relative flex flex-col h-full">
               <div 
                 className="absolute inset-0 bg-white/80 backdrop-blur-xl border border-white/60"
                 style={{
@@ -282,7 +283,7 @@ export default function Philosophy() {
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 mt-12 lg:mt-0 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[48%] xl:w-[50%]"
+            className="relative z-10 mt-12 lg:mt-0 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[48%] xl:w-[50%] lg:h-full"
             style={{
               height: 'clamp(500px, 75vw, 750px)',
             }}

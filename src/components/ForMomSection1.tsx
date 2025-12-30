@@ -8,7 +8,8 @@ export function ForMomSection1() {
   const innerRingRef = useRef<SVGCircleElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    // Hero ring animation observer
+    const ringObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -29,14 +30,19 @@ export function ForMomSection1() {
     );
 
     const section = document.querySelector('.for-mom-hero');
-    if (section) observer.observe(section);
+    if (section) ringObserver.observe(section);
 
-    return () => observer.disconnect();
+    return () => {
+      ringObserver.disconnect();
+    };
   }, []);
 
   return (
-    <section className="relative bg-white pt-[90px] pb-24">
+    <section className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
       <div className="max-w-[1180px] mx-auto px-0">
+        {/* 시각용 상단 스페이서 - absolute overlay 구조로 인한 시각적 여백 보장 */}
+        <div aria-hidden="true" className="h-24" />
+
         {/* Hero Image with Text Overlay */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -194,205 +200,224 @@ export function ForMomSection1() {
         {/* Divider */}
         <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-32" />
 
-        {/* Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-16"
-        >
-          <h2
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.5rem, 2.8vw, 2.2rem)',
-              color: '#333',
-              fontWeight: 500,
-              lineHeight: 1.5,
-            }}
-          >
-            아이 마음을 잘 돌보고 싶은데,
-            <br />
-            정작 내 마음은 어디쯤 있을까요?
-          </h2>
-        </motion.div>
+        {/* Content Split - PC에서만 2컬럼, 모바일은 단일 컬럼 */}
+        <div className="content-split">
+          {/* LEFT 영역: 제목 + 설명 텍스트 */}
+          <div className="content-left">
+            {/* Title */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="mb-16"
+            >
+              <h2
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(1.3rem, 2.8vw, 2.2rem)',
+                  color: '#333',
+                  fontWeight: 500,
+                  lineHeight: 1.6,
+                }}
+              >
+                아이 마음을 잘 돌보고 싶은데,
+                <br />
+                정작 내 마음은 어디쯤 있을까요?
+              </h2>
+            </motion.div>
 
-        {/* Subtitle */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="mb-16"
-        >
-          <p
-            className="mb-2"
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 1.1vw, 0.95rem)',
-              color: '#A66A5A',
-              fontWeight: 300,
-              lineHeight: 1.5,
-            }}
-          >
-            아이의 마음을 키우기 전에,
-          </p>
-          <p
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
-              color: '#A66A5A',
-              fontWeight: 500,
-              lineHeight: 1.5,
-            }}
-          >
-            먼저 자신의 마음을 돌보는 엄마를 위한 예술 시간
-          </p>
-        </motion.div>
+            {/* Subtitle */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="mb-16 for-mom-subtitle"
+            >
+              <p
+                className="mb-2"
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.1vw, 0.95rem)',
+                  color: '#A66A5A',
+                  fontWeight: 300,
+                  lineHeight: 1.5,
+                }}
+              >
+                아이의 마음을 키우기 전에,
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.3vw, 1.15rem)',
+                  color: '#A66A5A',
+                  fontWeight: 500,
+                  lineHeight: 1.5,
+                }}
+              >
+                먼저 자신의 마음을 돌보는 엄마를 위한 예술 시간
+              </p>
+            </motion.div>
 
-        {/* Description */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-16 max-w-3xl space-y-4"
-        >
-          <p
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.87rem, 1.15vw, 1.05rem)',
-              color: '#333',
-              fontWeight: 300,
-              lineHeight: 1.5,
-              letterSpacing: 0,
-            }}
-          >
-            엄마는 아이의 감정을 가장 가까이에서 바라보는 사람입니다.<br /><br />
-            가장 마지막으로 자기 마음을 돌보는 사람이기도 하지요.<br /><br />
-            엄마 자신의 마음에 물을 주고, 숨을 고르고,<br /><br />
-            다시 감각을 되찾는 시간입니다.<br /><br />
-            색으로 지금의 마음을 살피고, 선으로 쌓인 감정을 천천히 풀어내며,<br /><br />
-            그림과 기록을 통해 <span style={{ fontWeight: 500 }}>"나는 지금 어떤 상태일까?"</span>를 스스로 묻습니다.<br /><br />
-            가정의 정서는 그렇게, 조용히 다시 순환하기 시작합니다.<br /><br />
-            완벽한 엄마가 되기보다는 대신 엄마가 자기 마음과 다시 연결되는 길을 함께 걷습니다.
-          </p>
-        </motion.div>
+            {/* Description */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-16 max-w-3xl space-y-4"
+            >
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.87rem, 1.15vw, 1.05rem)',
+                  color: '#333',
+                  fontWeight: 300,
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                }}
+              >
+                엄마는 아이의 감정을 가장 가까이에서 바라보는 사람입니다.<br /><br />
+                가장 마지막으로 자기 마음을 돌보는 사람이기도 하지요.<br /><br />
+                엄마 자신의 마음에 물을 주고, 숨을 고르고,<br /><br />
+                다시 감각을 되찾는 시간입니다.<br /><br />
+                색으로 지금의 마음을 살피고, 선으로 쌓인 감정을 천천히 풀어내며,<br /><br />
+                그림과 기록을 통해 <span style={{ fontWeight: 500 }}>"나는 지금 어떤 상태일까?"</span>를 스스로 묻습니다.<br /><br />
+                가정의 정서는 그렇게, 조용히 다시 순환하기 시작합니다.<br /><br />
+                완벽한 엄마가 되기보다는 대신 엄마가 자기 마음과 다시 연결되는 길을 함께 걷습니다.
+              </p>
+            </motion.div>
+          </div>
 
-        {/* Highlight Box */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative mb-16"
-          style={{
-            background: '#FADFDB',
-            borderRadius: '32px',
-            padding: '2.5rem 3rem',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              color: '#2F6B4F',
-              marginBottom: '1.5rem',
-              display: 'inline-block',
-            }}
-          >
-            우리는 이런 엄마들을 기다립니다
-          </span>
-          <ul className="space-y-2 mt-4">
-            <li
-              className="for-mom-list-item"
+          {/* RIGHT 영역: 리스트 박스 + BLOG 버튼 */}
+          <div className="content-right">
+            {/* Highlight Box */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative mb-16"
               style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: '0.95rem',
-                lineHeight: 1.5,
-                letterSpacing: 0,
-                color: '#A66A5A',
+                background: '#FADFDB',
+                borderRadius: '32px',
+                padding: '2.5rem 3rem',
               }}
             >
-              무언가를 더 배우기보다 잠시 내려놓고 싶은 엄마<br /><br />
-            </li>
-            <li
-              className="for-mom-list-item"
-              style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: '0.95rem',
-                lineHeight: 1.5,
-                letterSpacing: 0,
-                color: '#A66A5A',
-              }}
-            >
-              엄마라는 역할 뒤에 가려진 나를 다시 느끼고 싶은 사람<br /><br />
-            </li>
-            <li
-              className="for-mom-list-item"
-              style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: '0.95rem',
-                lineHeight: 1.5,
-                letterSpacing: 0,
-                color: '#A66A5A',
-              }}
-            >
-              지금 당장 아웃풋은 없어도 삶이 조금 더 아름다워지길 바라는 사람
-            </li>
-          </ul>
-        </motion.div>
+              <span
+                className="for-mom-title"
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                  color: '#2F6B4F',
+                  marginBottom: '1.5rem',
+                  display: 'inline-block',
+                }}
+              >
+                우리는 이런 엄마들을 기다립니다
+              </span>
+              <ul className="space-y-2 mt-4">
+                <li
+                  className="for-mom-list-item"
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: '0.95rem',
+                    lineHeight: 1.5,
+                    letterSpacing: 0,
+                    color: '#A66A5A',
+                    marginBottom: '0.9em',
+                  }}
+                >
+                  무언가를 더 배우기보다 잠시 내려놓고 싶은 엄마
+                </li>
+                <li
+                  className="for-mom-list-item"
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: '0.95rem',
+                    lineHeight: 1.5,
+                    letterSpacing: 0,
+                    color: '#A66A5A',
+                    marginBottom: '0.9em',
+                  }}
+                >
+                  엄마라는 역할 뒤에 가려진 나를 다시 느끼고 싶은 사람
+                </li>
+                <li
+                  className="for-mom-list-item"
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: '0.95rem',
+                    lineHeight: 1.5,
+                    letterSpacing: 0,
+                    color: '#A66A5A',
+                    marginBottom: 0,
+                  }}
+                >
+                  지금 당장 아웃풋은 없어도 삶이 조금 더 아름다워지길 바라는 사람
+                </li>
+              </ul>
+            </motion.div>
 
-        {/* Quote */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-16"
-        >
-          <p
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.8rem, 1.1vw, 0.85rem)',
-              color: '#666',
-              fontWeight: 300,
-              lineHeight: 1.5,
-              letterSpacing: 0,
-            }}
-          ><span style={{ fontWeight: 500, color: '#333' }}>『미스 럼피우스』</span>가 그랬듯, 우리는 세상을 바꾸지 않습니다<br />
-            다만 각자의 삶에 작은 아름다움이 자라나길 바랄 뿐입니다.
-          </p>
-        </motion.div>
+            {/* Quote */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mb-16"
+            >
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.8rem, 1.1vw, 0.85rem)',
+                  color: '#666',
+                  fontWeight: 300,
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                }}
+              >
+                <span style={{ fontWeight: 500, color: '#333' }}>『미스 럼피우스』</span>가 그랬듯, 우리는 세상을 바꾸지 않습니다<br />
+                다만 각자의 삶에 작은 아름다움이 자라나길 바랄 뿐입니다.
+              </p>
+            </motion.div>
 
-        {/* Footer */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="pt-8 border-t border-gray-200"
-        >
-          <p
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(0.85rem, 1.35vw, 1.2rem)',
-              color: '#2d5016',
-              fontWeight: 500,
-              lineHeight: 1.5,
-              letterSpacing: 0,
-            }}
-          >
-            엄마의 마음이 회복되면, 아이의 마음도 투명해집니다.
-          </p>
-        </motion.div>
+            {/* Footer */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="pt-8 border-t border-gray-200"
+            >
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.35vw, 1.2rem)',
+                  color: '#2d5016',
+                  fontWeight: 500,
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                }}
+              >
+                엄마의 마음이 회복되면, 아이의 마음도 투명해집니다.
+              </p>
+            </motion.div>
+          </div>
+        </div>
 
         {/* Divider */}
         <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-32" />
       </div>
 
       <style>{`
+        /* 기본: 모바일 유지 (단일 컬럼) */
+        .content-split {
+          display: block;
+        }
+
         .for-mom-list-item {
           font-size: 0.85rem;
         }
@@ -400,6 +425,40 @@ export function ForMomSection1() {
         @media (min-width: 768px) {
           .for-mom-list-item {
             font-size: 0.95rem;
+          }
+        }
+
+        /* PC 이상에서만 분리 (2컬럼) */
+        @media (min-width: 1024px) {
+          .content-split {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            column-gap: 6rem;
+            align-items: start;
+          }
+
+          .content-left {
+            padding-right: 1rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+          }
+
+          .content-right {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+          }
+
+          /* PC에서 제목 폰트 크기 */
+          .for-mom-title {
+            font-size: 1.3rem !important;
+          }
+
+          /* PC에서 서브타이틀 폰트 크기 */
+          .for-mom-subtitle p {
+            font-size: 1rem !important;
           }
         }
       `}</style>

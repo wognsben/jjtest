@@ -8,7 +8,6 @@ import FirstRite from '../components/about/FirstRite';
 import Overview from '../components/about/Overview';
 import EmotionalFoundation from '../components/about/EmotionalFoundation';
 import SensoryArt from '../components/about/SensoryArt';
-import ArtisticGrowth from '../components/about/ArtisticGrowth';
 import SelfTexture from '../components/about/SelfTexture';
 import CrayonForestClass from '../components/about/CrayonForestClass';
 import WhatIsEmotionalArt from '../components/about/WhatIsEmotionalArt';
@@ -72,7 +71,6 @@ export default function About() {
         <Overview />
         <EmotionalFoundation />
         <SensoryArt />
-        <ArtisticGrowth />
         <SelfTexture />
         <CrayonForestClass />
         <WhatIsEmotionalArt />

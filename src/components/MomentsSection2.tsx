@@ -5,7 +5,7 @@ import { getImagePath } from '../utils/imageUtils';
 // MOMENTS Section 2: 철학 텍스트 + 붓질 이미지
 export function MomentsSection2() {
   return (
-    <section className="relative bg-white pt-[90px] pb-24">
+    <section className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
       <div className="max-w-[1180px] mx-auto px-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
           {/* LEFT: Image */}

@@ -112,9 +112,12 @@ function ChildArtSection() {
     <section 
       ref={sectionRef}
       id="child-art-section"
-      className="relative bg-white pt-[90px] pb-24 lg:py-40"
+      className="relative bg-white pt-24 pb-24"
     >
       <div className="max-w-[1180px] mx-auto px-10">
+        {/* 시각용 상단 스페이서 - absolute overlay 구조로 인한 시각적 여백 보장 */}
+        <div aria-hidden="true" className="h-24" />
+
         {/* Hero Image with Text Overlay */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -354,29 +357,22 @@ export default function ProgramsPage({ initialOpenSection }: { initialOpenSectio
   React.useEffect(() => {
     if (initialOpenSection) {
       setOpenProgram(initialOpenSection);
+      // Dispatch event to update active state
+      const event = new CustomEvent('programSectionChanged', {
+        detail: { sectionId: initialOpenSection }
+      });
+      window.dispatchEvent(event);
     }
   }, [initialOpenSection]);
 
-  const toggleProgram = (programId: string) => {
-    const isClosing = openProgram === programId;
-    const wasOtherOpen = openProgram !== null && openProgram !== programId;
-    
-    setOpenProgram(isClosing ? null : programId);
-    
-    // 섹션을 열 때 해당 섹션 상단으로 스크롤
-    if (!isClosing) {
-      // 다른 섹션이 열려있었으면 닫히는 애니메이션(600ms) 후에 스크롤
-      // 아니면 바로 스크롤
-      const scrollDelay = wasOtherOpen ? 650 : 100;
-      
-      setTimeout(() => {
-        const element = document.querySelector(`[data-section="${programId}"]`);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, scrollDelay);
-    }
-  };
+  // ProgramsPage sections are now hidden and moved to reveal stage via ProgramMethodSection
+  // Keep state for internal accordion logic (if needed by ProgramCard components)
+  const toggleProgram = React.useCallback((programId: string) => {
+    setOpenProgram(prev => {
+      const isClosing = prev === programId;
+      return isClosing ? null : programId;
+    });
+  }, []);
 
 
   return (
@@ -384,8 +380,12 @@ export default function ProgramsPage({ initialOpenSection }: { initialOpenSectio
       {/* 스에나 메소드 섹션 (최상단) */}
       <ProgramMethodSection />
 
-      {/* Programs List */}
-      <section className="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-10 pt-[90px] pb-24">
+      {/* Programs List - Hidden source container (sections moved to reveal stage) */}
+      <section 
+        className="max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-10 pt-[90px] pb-24"
+        style={{ display: 'none' }}
+        id="program-source-container"
+      >
         {/* CHILD ART Card */}
         <div data-section="childart">
           <ProgramCard
@@ -397,15 +397,8 @@ export default function ProgramsPage({ initialOpenSection }: { initialOpenSectio
           />
         </div>
 
-        {/* CHILD ART Sections (Accordion) */}
-        <AnimatePresence>
-          {openProgram === 'childart' && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            >
+        {/* CHILD ART Sections - Always rendered for reveal stage */}
+        <div data-program-detail="childart">
               <ChildArtSection />
               <ChildArtSection2 />
               <ChildArtSection3 />
@@ -413,9 +406,7 @@ export default function ProgramsPage({ initialOpenSection }: { initialOpenSectio
               <ChildArtSection5 />
               <ChildArtSection6 />
               <ChildArtSection7 />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        </div>
 
         {/* YOUTH ART Card */}
         <div data-section="youthart">
@@ -428,21 +419,12 @@ export default function ProgramsPage({ initialOpenSection }: { initialOpenSectio
           />
         </div>
 
-        {/* YOUTH ART Sections (Accordion) */}
-        <AnimatePresence>
-          {openProgram === 'youthart' && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            >
+        {/* YOUTH ART Sections - Always rendered for reveal stage */}
+        <div data-program-detail="youthart">
               <YouthArtSection1 />
               <YouthArtSection2 />
               <YouthArtSection3 />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        </div>
 
         {/* ADULT ART Card */}
         <div data-section="adultart">
@@ -455,21 +437,12 @@ export default function ProgramsPage({ initialOpenSection }: { initialOpenSectio
           />
         </div>
 
-        {/* ADULT ART Sections (Accordion) */}
-        <AnimatePresence>
-          {openProgram === 'adultart' && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            >
+        {/* ADULT ART Sections - Always rendered for reveal stage */}
+        <div data-program-detail="adultart">
               <AdultArtSection1 />
               <AdultArtSection2 />
               <AdultArtSection3 />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        </div>
 
         {/* FOR MOM Card */}
         <div data-section="formom">
@@ -482,20 +455,11 @@ export default function ProgramsPage({ initialOpenSection }: { initialOpenSectio
           />
         </div>
 
-        {/* FOR MOM Sections (Accordion) */}
-        <AnimatePresence>
-          {openProgram === 'formom' && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            >
+        {/* FOR MOM Sections - Always rendered for reveal stage */}
+        <div data-program-detail="formom">
               <ForMomSection1 />
               <ForMomSection2 />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        </div>
 
         {/* MOMENTS Card */}
         <div data-section="moments">
@@ -509,23 +473,13 @@ export default function ProgramsPage({ initialOpenSection }: { initialOpenSectio
           />
         </div>
 
-        {/* MOMENTS Sections (Placeholder) */}
-        <AnimatePresence>
-          {openProgram === 'moments' && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.5 }}
-              className="py-24 text-center"
-            >
+        {/* MOMENTS Sections - Always rendered for reveal stage */}
+        <div data-program-detail="moments">
               <MomentsSection1 />
               <MomentsSection2 />
               <MomentsSection3 />
               <MomentsSection4 />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        </div>
       </section>
 
       {/* Bottom spacing */}

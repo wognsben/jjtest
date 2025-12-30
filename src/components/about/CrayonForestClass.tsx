@@ -189,7 +189,7 @@ export default function CrayonForestClass() {
                     letterSpacing: '-0.03em',
                   }}
                 >
-                  크래용 숲 클래스
+                  크레용 숲 클래스
                 </h2>
                 
                 <p 

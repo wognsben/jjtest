@@ -34,8 +34,24 @@ export function AdultArtSection3() {
           border-bottom-left-radius: 24px;
           pointer-events: none;
         }
+
+        /* 모바일: 단일 p 태그 표시, PC 버전 숨김 */
+        .adult-art-quote-pc {
+          display: none;
+        }
+
+        /* PC: 모바일 버전 숨김, p 태그 2개 표시 */
+        @media (min-width: 1024px) {
+          .adult-art-quote-mobile {
+            display: none;
+          }
+
+          .adult-art-quote-pc {
+            display: block;
+          }
+        }
       `}</style>
-      <section className="relative bg-white pt-[90px] pb-24">
+      <section className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
       <div className="max-w-[1180px] mx-auto px-0">
         {/* Header: 마음을 그리다 with Background Image */}
         <motion.div
@@ -250,19 +266,49 @@ export function AdultArtSection3() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="text-center"
             >
-              <p
-                className="mb-4"
-                style={{
-                  fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.85rem, 1.1vw, 0.85rem)',
-                  color: '#A66A5A',
-                  fontWeight: 300,
-                  lineHeight: 1.5,
-                  letterSpacing: '0.01em',
-                }}
-              >
-                루틴한 일이 우리의 존재 이유가 아님은 분명하다.<span></span>우리가 창조하기 위해 존재한다. 우리는 사랑하기 위해 존재한다.
-              </p>
+              <div className="adult-art-quote">
+                <p
+                  className="mb-4 adult-art-quote-mobile"
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.1vw, 0.85rem)',
+                    color: '#A66A5A',
+                    fontWeight: 300,
+                    lineHeight: 1.5,
+                    letterSpacing: '0.01em',
+                  }}
+                >
+                  "루틴한 일이 우리의 존재 이유가 아님은 분명하다.우리가 창조하기 위해 존재한다. 우리는 사랑하기 위해 존재한다."
+                </p>
+                <div className="adult-art-quote-pc">
+                  <p
+                    className="mb-4"
+                    style={{
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: 'clamp(0.85rem, 1.1vw, 0.85rem)',
+                      color: '#A66A5A',
+                      fontWeight: 300,
+                      lineHeight: 1.5,
+                      letterSpacing: '0.01em',
+                    }}
+                  >
+                    "루틴한 일이 우리의 존재 이유가 아님은 분명하다.
+                  </p>
+                  <p
+                    className="mb-4"
+                    style={{
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: 'clamp(0.85rem, 1.1vw, 0.85rem)',
+                      color: '#A66A5A',
+                      fontWeight: 300,
+                      lineHeight: 1.5,
+                      letterSpacing: '0.01em',
+                    }}
+                  >
+                    우리가 창조하기 위해 존재한다. 우리는 사랑하기 위해 존재한다."
+                  </p>
+                </div>
+              </div>
               <p
                 className="mt-3"
                 style={{
