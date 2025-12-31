@@ -116,6 +116,7 @@ export default function Philosophy() {
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="relative z-20 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[50%] xl:w-[45%] lg:h-full"
+              style={{ marginTop: 'clamp(2rem, 5vw, 0px)' }}
             >
             {/* Glass card background */}
             <div className="relative flex flex-col h-full">
@@ -129,9 +130,12 @@ export default function Philosophy() {
               
               {/* Content */}
               <div 
-                className="relative flex-1"
+                className="relative flex-1 philosophy-content-padding"
                 style={{
-                  padding: 'clamp(2.5rem, 6vw, 4rem)',
+                  paddingTop: 'clamp(2.5rem, 6vw, 4rem)',
+                  paddingBottom: 'clamp(2.5rem, 6vw, 4rem)',
+                  paddingLeft: 'clamp(2.5rem, 6vw, 4rem)',
+                  paddingRight: 'clamp(2.5rem, 6vw, 4rem)',
                 }}
               >
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(2rem, 5vw, 2.5rem)' }}>
@@ -155,6 +159,7 @@ export default function Philosophy() {
                       alignItems: 'center',
                       gap: '1rem',
                       flexWrap: 'wrap',
+                      marginBottom: '0.75rem',
                     }}
                   >
                     <span style={{ whiteSpace: 'nowrap' }}>
@@ -196,14 +201,14 @@ export default function Philosophy() {
                       marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
                     }}
                   >
-                    크레용(Crayon)이라는 단어는 프랑스어 'craie(분필)'와 라틴어 'creta(흙)'에서 유래되었습니다.
+                    크레용의 역사는 조용한 한 줌의 흙에서 시작됩니다.
                   </motion.p>
 
                   <motion.p
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.7, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.7, delay: 0.52, ease: [0.16, 1, 0.3, 1] }}
                     style={{ 
                       fontFamily: "'Noto Serif KR', serif",
                       fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
@@ -214,14 +219,126 @@ export default function Philosophy() {
                       marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
                     }}
                   >
-                    고대의 화가들은 <span style={{ color: '#666666', fontWeight: 700 }}>벌꿀 왁스</span>에 안료를 섞어 빛을 기록했고, 르네상스 화가들은 부서지는 <span style={{ color: '#666666', fontWeight: 700 }}>파스텔</span>을 길들였습니다.
+                    라틴어 creta, 흰 점토.
                   </motion.p>
 
                   <motion.p
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.7, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.7, delay: 0.54, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ 
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                      lineHeight: 1.5,
+                      letterSpacing: 0,
+                      color: '#666666',
+                      fontWeight: 300,
+                      marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
+                    }}
+                  >
+                    이 작은 점토가 프랑스어 craie가 되어 분필이 되었고,
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: 0.56, ease: [0.16, 1, 0.3, 1] }}
+                    className="philosophy-crayon-line"
+                    style={{ 
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                      lineHeight: 1.5,
+                      letterSpacing: 0,
+                      color: '#666666',
+                      fontWeight: 300,
+                      marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
+                    }}
+                  >
+                    <span className="philosophy-crayon-part1">그 분필이 다시 crayon,</span>
+                    <br className="lg:hidden" />
+                    <span className="lg:inline lg:ml-1">'작은 분필'이라는 이름으로 태어났습니다.</span>
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ 
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                      lineHeight: 1.5,
+                      letterSpacing: 0,
+                      color: '#666666',
+                      fontWeight: 300,
+                      marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
+                    }}
+                  >
+                    흙이 선이 되고, 선이 이야기가 된 오래된 기원입니다.
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ 
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                      lineHeight: 1.5,
+                      letterSpacing: 0,
+                      color: '#666666',
+                      fontWeight: 300,
+                      marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
+                    }}
+                  >
+                    고대의 화가들은 벌꿀 왁스에 안료를 섞어 빛을 기록했고,
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: 0.64, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ 
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                      lineHeight: 1.5,
+                      letterSpacing: 0,
+                      color: '#666666',
+                      fontWeight: 300,
+                      marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
+                    }}
+                  >
+                    르네상스 화가들은 부서지는 파스텔을 길들였습니다.
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: 0.66, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ 
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                      lineHeight: 1.5,
+                      letterSpacing: 0,
+                      color: '#666666',
+                      fontWeight: 300,
+                      marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
+                    }}
+                  >
+                    그리고 1903년, "아이들이 쥐어도 안전한 색"이라는 개념이 등장하며
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: 0.68, ease: [0.16, 1, 0.3, 1] }}
+                    className="philosophy-crayon-final-line"
                     style={{ 
                       fontFamily: "'Noto Serif KR', serif",
                       fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
@@ -232,7 +349,9 @@ export default function Philosophy() {
                       marginBottom: 0,
                     }}
                   >
-                    그리고 1903년, <span style={{ color: 'rgb(102, 102, 102)', fontWeight: 700 }}>"아이들이 쥐어도 안전한 색"</span>이라는 개념이 등장하며 크레용은 더 이상 도구가 아닌, <span className="text-accent-green font-semibold" style={{ WebkitTextStroke: '1px rgba(255, 182, 193, 0.6)', paintOrder: 'stroke fill' }}>누구나 한 번은 손에 쥐어보는 <span style={{ color: '#8fbc88', fontWeight: 700 }}>첫 번째 예술 언어</span>가</span> 되었습니다.
+                    <span className="philosophy-crayon-final-part1">크레용은 더 이상 도구가 아닌,</span>
+                    <br className="lg:hidden" />
+                    <span className="lg:inline lg:ml-1"><span className="text-accent-green font-semibold" style={{ WebkitTextStroke: '1px rgba(255, 182, 193, 0.6)', paintOrder: 'stroke fill' }}>누구나 한 번은 손에 쥐어보는 <span style={{ color: '#8fbc88', fontWeight: 700 }}>첫 번째 예술 언어</span>가</span> 되었습니다.</span>
                   </motion.p>
                 </motion.div>
                 
@@ -313,6 +432,22 @@ export default function Philosophy() {
           </motion.div>
         </div>
       </div>
+      
+      <style>{`
+        @media (max-width: 767px) {
+          .philosophy-content-padding {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+            padding-top: clamp(2rem, 5vw, 2.5rem) !important;
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .philosophy-crayon-line .philosophy-crayon-part1::after {
+            content: ' ';
+          }
+        }
+      `}</style>
     </section>
   );
 }
