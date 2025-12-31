@@ -113,6 +113,25 @@ export default function ProgramMethodSection() {
         };
         btn.addEventListener('click', handler);
       });
+
+      // Auto-reveal first program on initial load (prevent empty stage)
+      const firstPill = pills[0] as HTMLElement;
+      if (firstPill) {
+        const firstSectionId = firstPill.dataset.pill;
+        if (firstSectionId) {
+          // Set first pill as active
+          setActive(firstSectionId);
+          // Reveal first section without animation delay
+          const firstSection = sections[firstSectionId];
+          if (firstSection && stage) {
+            stage.innerHTML = '';
+            stage.appendChild(firstSection);
+            firstSection.style.opacity = '1';
+            firstSection.style.transform = 'translateY(0)';
+            currentKey = firstSectionId;
+          }
+        }
+      }
     };
 
     // Initialize after a short delay to ensure DOM is ready

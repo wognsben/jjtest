@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 
 export default function Footer() {
-  const [showKakaoTooltip, setShowKakaoTooltip] = useState(false);
-
   const handleKakaoClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    setShowKakaoTooltip(true);
-    setTimeout(() => setShowKakaoTooltip(false), 2000);
+    window.open('https://pf.kakao.com/_Cvzgn', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -147,7 +144,9 @@ export default function Footer() {
               {/* KakaoTalk Channel - Premium */}
               <div className="relative">
                 <a
-                  href="#"
+                  href="https://pf.kakao.com/_Cvzgn"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={handleKakaoClick}
                   className="group relative inline-flex items-center gap-3 cursor-pointer"
                   style={{
@@ -185,21 +184,6 @@ export default function Footer() {
                   →
                 </span>
               </a>
-              {/* 준비중 툴팁 */}
-              {showKakaoTooltip && (
-                <div
-                  className="absolute left-0 bottom-full mb-2 px-4 py-2 rounded-full whitespace-nowrap z-50"
-                  style={{
-                    background: 'rgba(166, 106, 90, 0.95)',
-                    color: '#FFF',
-                    fontFamily: "'Noto Serif KR', serif",
-                    fontSize: '0.85rem',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                  }}
-                >
-                  준비중입니다
-                </div>
-              )}
               </div>
 
               {/* Instagram - 크레용숲 */}

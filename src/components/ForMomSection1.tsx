@@ -266,7 +266,7 @@ export function ForMomSection1() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-16 max-w-3xl space-y-4"
+              style={{ marginBottom: '48px' }}
             >
               <p
                 style={{
@@ -276,15 +276,124 @@ export function ForMomSection1() {
                   fontWeight: 300,
                   lineHeight: 1.5,
                   letterSpacing: 0,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0.9em',
                 }}
               >
-                엄마는 아이의 감정을 가장 가까이에서 바라보는 사람입니다.<br /><br />
-                가장 마지막으로 자기 마음을 돌보는 사람이기도 하지요.<br /><br />
-                엄마 자신의 마음에 물을 주고, 숨을 고르고,<br /><br />
-                다시 감각을 되찾는 시간입니다.<br /><br />
-                색으로 지금의 마음을 살피고, 선으로 쌓인 감정을 천천히 풀어내며,<br /><br />
-                그림과 기록을 통해 <span style={{ fontWeight: 500 }}>"나는 지금 어떤 상태일까?"</span>를 스스로 묻습니다.<br /><br />
-                가정의 정서는 그렇게, 조용히 다시 순환하기 시작합니다.<br /><br />
+                엄마는 아이의 감정을 가장 가까이에서 바라보는 사람입니다.
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.87rem, 1.15vw, 1.05rem)',
+                  color: '#333',
+                  fontWeight: 300,
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0.9em',
+                }}
+              >
+                가장 마지막으로 자기 마음을 돌보는 사람이기도 하지요.
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.87rem, 1.15vw, 1.05rem)',
+                  color: '#333',
+                  fontWeight: 300,
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0.9em',
+                }}
+              >
+                엄마 자신의 마음에 물을 주고, 숨을 고르고,
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.87rem, 1.15vw, 1.05rem)',
+                  color: '#333',
+                  fontWeight: 300,
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0.9em',
+                }}
+              >
+                다시 감각을 되찾는 시간입니다.
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.87rem, 1.15vw, 1.05rem)',
+                  color: '#333',
+                  fontWeight: 300,
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0.9em',
+                }}
+              >
+                색으로 지금의 마음을 살피고, 선으로 쌓인 감정을 천천히 풀어내며,
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.87rem, 1.15vw, 1.05rem)',
+                  color: '#333',
+                  fontWeight: 300,
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0.9em',
+                }}
+              >
+                그림과 기록을 통해 <span style={{ fontWeight: 500 }}>"나는 지금 어떤 상태일까?"</span>를 스스로 묻습니다.
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.87rem, 1.15vw, 1.05rem)',
+                  color: '#333',
+                  fontWeight: 300,
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0.9em',
+                }}
+              >
+                가정의 정서는 그렇게, 조용히 다시 순환하기 시작합니다.
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.87rem, 1.15vw, 1.05rem)',
+                  color: '#333',
+                  fontWeight: 300,
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  maxWidth: '34em',
+                  textAlign: 'left',
+                  wordBreak: 'keep-all',
+                  marginBottom: '0px',
+                }}
+              >
                 완벽한 엄마가 되기보다는 대신 엄마가 자기 마음과 다시 연결되는 길을 함께 걷습니다.
               </p>
             </motion.div>

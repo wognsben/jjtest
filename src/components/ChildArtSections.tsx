@@ -270,15 +270,11 @@ export function ChildArtSection2() {
                   margin: 0,
                 }}
               >
-                <li>선·색·형태에 호기심이 많고 손으로 탐색하는 걸 좋아하는 아이</li>
-                <br />
-                <li>감정표현이 서툴지만, 말 대신 그림에서 마음이 잘 드러나는 아이</li>
-                <br />
-                <li>'잘 그리기'보다 자기 속도로 탐색하는 경험이 필요한 아이</li>
-                <br />
-                <li>정서 조절·감각 자극·표현력 성장을 균형 있게 경험하고 싶은 아이</li>
-                <br />
-                <li>자기만의 비밀 세계를 만드는 걸 좋아하는 아이</li>
+                <li style={{ marginBottom: '0.9em' }}>선·색·형태에 호기심이 많고 손으로 탐색하는 걸 좋아하는 아이</li>
+                <li style={{ marginBottom: '0.9em' }}>감정표현이 서툴지만, 말 대신 그림에서 마음이 잘 드러나는 아이</li>
+                <li style={{ marginBottom: '0.9em' }}>'잘 그리기'보다 자기 속도로 탐색하는 경험이 필요한 아이</li>
+                <li style={{ marginBottom: '0.9em' }}>정서 조절·감각 자극·표현력 성장을 균형 있게 경험하고 싶은 아이</li>
+                <li style={{ marginBottom: 0 }}>자기만의 비밀 세계를 만드는 걸 좋아하는 아이</li>
               </ul>
             </motion.div>
 
@@ -1273,7 +1269,7 @@ export function ChildArtSection5() {
               <p
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
-                  fontSize: 'clamp(0.65rem, 0.6vw, 0.6rem)',
+                  fontSize: 'clamp(0.65rem, 1vw, 0.85rem)',
                   color: '#333',
                   lineHeight: 1.5,
                   letterSpacing: 0,

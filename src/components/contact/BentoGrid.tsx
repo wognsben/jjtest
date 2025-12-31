@@ -10,7 +10,7 @@ const snsChannels = [
     description: "Forêt des Crayons·크레용숲의 새로운 소식을 가장 먼저 받아보세요",
     icon: "message-circle",
     imagePath: getImagePath("/assets/1x/kakao.png"),
-    link: "https://pf.kakao.com/_ELTxcK",
+    link: "https://pf.kakao.com/_Cvzgn",
     gradient: "from-[#D4A574]/10 to-[#D4A574]/5",
     iconColor: "text-[#D4A574]",
     iconBg: "bg-[#D4A574]/10",
@@ -200,12 +200,13 @@ export function BentoGrid() {
   const [activeIndex, setActiveIndex] = useState(0); // 기본: 카카오톡 (섹션 진입 시 즉시 보이도록)
   const [showInstagramOptions, setShowInstagramOptions] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [showKakaoTooltip, setShowKakaoTooltip] = useState(false);
 
   const handleKakaoClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    setShowKakaoTooltip(true);
-    setTimeout(() => setShowKakaoTooltip(false), 2000);
+    const kakaoChannel = snsChannels[0];
+    if (kakaoChannel && kakaoChannel.link) {
+      window.open(kakaoChannel.link, '_blank', 'noopener,noreferrer');
+    }
   };
   const spiralWrapRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -269,17 +270,11 @@ export function BentoGrid() {
 
   const handleChannelSelect = (index: number) => {
     setActiveIndex(index);
-    // 카카오톡 채널인 경우 준비중 툴팁 표시
-    if (index === 0) {
-      setShowKakaoTooltip(true);
-      setTimeout(() => setShowKakaoTooltip(false), 2000);
-      return;
-    }
     // 인스타그램인 경우 선택 UI 표시
     if (index === 1) {
       setShowInstagramOptions(true);
     } else {
-      // 다른 카드는 선택 UI 초기화 후 링크 이동
+      // 다른 카드(카카오톡 포함)는 선택 UI 초기화 후 링크 이동
       setShowInstagramOptions(false);
       const channel = snsChannels[index];
       if (channel && channel.link) {
@@ -321,7 +316,9 @@ export function BentoGrid() {
               <div className="flex flex-wrap gap-3">
                 <div className="relative">
                   <a
-                    href="#"
+                    href={snsChannels[0].link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={handleKakaoClick}
                     className="inline-flex items-center gap-3 bg-white border border-[#D4A574]/30 hover:border-[#D4A574]/50 text-[#6B4423] px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 hover:bg-[#D4A574]/5 cursor-pointer"
                   >
@@ -332,21 +329,6 @@ export function BentoGrid() {
                     )}
                     <span>카카오톡 채널</span>
                   </a>
-                  {/* 준비중 툴팁 */}
-                  {showKakaoTooltip && (
-                    <div
-                      className="absolute left-0 bottom-full mb-2 px-4 py-2 rounded-full whitespace-nowrap z-50"
-                      style={{
-                        background: 'rgba(166, 106, 90, 0.95)',
-                        color: '#FFF',
-                        fontFamily: "'Noto Serif KR', serif",
-                        fontSize: '0.85rem',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                      }}
-                    >
-                      준비중입니다
-                    </div>
-                  )}
           </div>
           
                 <div className="relative">
@@ -476,21 +458,6 @@ export function BentoGrid() {
                         )}
                       </div>
                     </div>
-                    {/* 카카오톡 준비중 툴팁 (모바일) */}
-                    {channel.id === 0 && showKakaoTooltip && (
-                      <div
-                        className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-4 py-2 rounded-full whitespace-nowrap z-50"
-                        style={{
-                          background: 'rgba(166, 106, 90, 0.95)',
-                          color: '#FFF',
-                          fontFamily: "'Noto Serif KR', serif",
-                          fontSize: '0.85rem',
-                          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                        }}
-                      >
-                        준비중입니다
-                      </div>
-                    )}
                   </div>
                 ))}
       </div>

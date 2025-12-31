@@ -228,7 +228,7 @@ export function ChildArtSection7() {
           color: #6F8F7A;
           font-weight: 500;
           line-height: 1.6;
-          margin-bottom: 0.35rem;
+          margin-bottom: 0;
         }
         
         .desc-line {
@@ -237,14 +237,14 @@ export function ChildArtSection7() {
           color: #888;
           font-weight: 300;
           line-height: 1.7;
-          margin-bottom: 0.35rem;
+          margin-bottom: 5px;
         }
         
         @media (max-width: 640px) {
           .desc-line {
             font-size: 0.85rem;
             line-height: 1.8;
-            margin-bottom: 0.35rem;
+            margin-bottom: 5px;
             letter-spacing: 0.01em;
           }
         }
@@ -392,6 +392,7 @@ export function ChildArtSection7() {
                       fontWeight: 500,
                       lineHeight: 1.5,
                       letterSpacing: 0,
+                      marginBottom: '1.25rem',
                     }}
                   >
                     예비초등을 위한 마음드로잉
@@ -416,7 +417,8 @@ export function ChildArtSection7() {
                         color: '#6F8F7A',
                         fontWeight: 500,
                         lineHeight: 1.5,
-                      letterSpacing: 0,
+                        letterSpacing: 0,
+                        marginBottom: '1.25rem',
                       }}
                     >
                       초등 마음의 실험실  : 이상해도 되는 미술
@@ -500,7 +502,7 @@ export function ChildArtSection7() {
                       <p className="month-line">
                         {item.month} · {item.title} {item.quote}
                       </p>
-                      <p className="desc-line">
+                      <p className="desc-line" style={{ marginBottom: '5px' }}>
                         {item.desc}
                       </p>
                     </div>
@@ -568,7 +570,7 @@ export function ChildArtSection7() {
                       <p className="month-line">
                         {item.month} · {item.title} {item.quote}
                       </p>
-                      <p className="desc-line">
+                      <p className="desc-line" style={{ marginBottom: '5px' }}>
                         {item.desc}
                       </p>
                     </div>

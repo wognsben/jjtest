@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,9 +10,10 @@ import MethodNew from './components/MethodNew';
 import GrowthNew from './components/GrowthNew';
 import SectionDivider from './components/SectionDivider';
 import Footer from './components/Footer';
-import About from './pages/About';
-import ProgramsPage from './pages/ProgramsPage';
-import Contact from './pages/Contact';
+// Code splitting: Lazy load pages
+const About = React.lazy(() => import('./pages/About'));
+const ProgramsPage = React.lazy(() => import('./pages/ProgramsPage'));
+const Contact = React.lazy(() => import('./pages/Contact'));
 import { BlobNavItem, BlobNavLogo } from './components/BlobNav';
 import { BlobMorphTransition } from './components/PageTransition';
 import ScrollProgress, { ScrollHint } from './components/ScrollProgress';
@@ -903,13 +904,24 @@ export default function App() {
               <SectionDivider />
               <GrowthNew />
             </>
-          ) : currentPage === 'about' ? (
-            <About />
-          ) : currentPage === 'program' ? (
-            <ProgramsPage initialOpenSection={programSection} />
-          ) : currentPage === 'contact' ? (
-            <Contact />
-          ) : null}
+          ) : (
+            <Suspense fallback={
+              <div className="min-h-screen flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                  <p className="text-sm text-gray-600">페이지를 불러오는 중...</p>
+                </div>
+              </div>
+            }>
+              {currentPage === 'about' ? (
+                <About />
+              ) : currentPage === 'program' ? (
+                <ProgramsPage initialOpenSection={programSection} />
+              ) : currentPage === 'contact' ? (
+                <Contact />
+              ) : null}
+            </Suspense>
+          )}
         </BlobMorphTransition>
       </div>
       
