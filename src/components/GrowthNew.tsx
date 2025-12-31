@@ -327,7 +327,7 @@ export default function GrowthNew() {
   return (
     <section 
       ref={sectionRef}
-      className="relative py-32 md:py-40 lg:py-48 px-6 md:px-12 lg:px-24 bg-gradient-to-br from-white via-beige/20 to-white"
+      className="relative py-32 md:py-40 lg:py-48 px-0 md:px-12 lg:px-24 bg-gradient-to-br from-white via-beige/20 to-white"
     >
       {/* Subtle texture */}
       <div 

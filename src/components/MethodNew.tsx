@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'motion/react';
 import { getImagePath } from '../utils/imageUtils';
 
@@ -114,6 +114,17 @@ export default function MethodNew() {
   const detailRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // 모바일 감지
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -139,6 +150,16 @@ export default function MethodNew() {
     setMousePos({ x: 0, y: 0 });
   };
   
+  // 모바일/데스크탑 배경 이미지 선택
+  const backgroundImage = isMobile 
+    ? getImagePath('/assets/main/what is method mob.png')
+    : getImagePath('/assets/main/what is method.png');
+  
+  // 모바일/데스크탑 메인 이미지 선택
+  const mainImage = isMobile
+    ? getImagePath('/assets/main/method-main-mob.png')
+    : getImagePath('/assets/main/method-main (2).png');
+  
   return (
     <>
       {/* Hero section - Image background */}
@@ -146,9 +167,9 @@ export default function MethodNew() {
         ref={sectionRef}
         className="relative py-24 md:py-32 lg:py-40 px-6 md:px-12 lg:px-24 overflow-hidden"
         style={{
-          backgroundImage: `url(${getImagePath('/assets/main/Group 4 (1).png')})`,
+          backgroundImage: `url(${backgroundImage})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat'
         }}
       >
@@ -168,7 +189,7 @@ export default function MethodNew() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          src={getImagePath('/assets/main/method-main (1).png')}
+          src={mainImage}
           alt="크레용숲 메소드"
           className="w-full h-auto block"
         />

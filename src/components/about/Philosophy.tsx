@@ -232,7 +232,7 @@ export default function Philosophy() {
                       marginBottom: 0,
                     }}
                   >
-                    그리고 1903년, <span style={{ color: 'rgb(102, 102, 102)', fontWeight: 700 }}>"아이들이 쥐어도 안전한 색"</span>이라는 개념이 등장하며 크레용은 더 이상 도구가 아닌, <span style={{ backgroundColor: 'rgba(255, 182, 193, 0.3)', padding: '2px 6px', borderRadius: '4px' }}>누구나 한 번은 손에 쥐어보는 <span style={{ color: '#8fbc88', fontWeight: 700 }}>첫 번째 예술 언어</span>가</span> 되었습니다.
+                    그리고 1903년, <span style={{ color: 'rgb(102, 102, 102)', fontWeight: 700 }}>"아이들이 쥐어도 안전한 색"</span>이라는 개념이 등장하며 크레용은 더 이상 도구가 아닌, <span className="text-accent-green font-semibold" style={{ WebkitTextStroke: '1px rgba(255, 182, 193, 0.6)', paintOrder: 'stroke fill' }}>누구나 한 번은 손에 쥐어보는 <span style={{ color: '#8fbc88', fontWeight: 700 }}>첫 번째 예술 언어</span>가</span> 되었습니다.
                   </motion.p>
                 </motion.div>
                 
@@ -259,7 +259,7 @@ export default function Philosophy() {
                       그리고 지금, 그 오래된 이야기는 크레용숲에서 다시 피어납니다.
                     </div>
                     <div style={{ marginBottom: 'clamp(1rem, 2vw, 1.25rem)' }}>
-                      여기서는 <span style={{ backgroundColor: 'rgba(255, 182, 193, 0.3)', padding: '2px 6px', borderRadius: '4px' }}>아이뿐 아니라 <span style={{ color: '#8fbc88', fontWeight: 700 }}>우리 모두가</span> 잃어버린 <span style={{ color: '#8fbc88', fontWeight: 700 }}>순수한 감각을</span> 되찾습니다.</span>
+                      여기서는 <span className="text-accent-green font-semibold" style={{ WebkitTextStroke: '1px rgba(255, 182, 193, 0.6)', paintOrder: 'stroke fill' }}>아이뿐 아니라 <span style={{ color: '#8fbc88', fontWeight: 700 }}>우리 모두가</span> 잃어버린 <span style={{ color: '#8fbc88', fontWeight: 700 }}>순수한 감각을</span> 되찾습니다.</span>
                     </div>
                     <div style={{ marginBottom: 'clamp(1rem, 2vw, 1.25rem)' }}>
                       낙서 한 줄에도 세상이 열리던 그 마음을 다시 만나는 장소이기도 합니다.
