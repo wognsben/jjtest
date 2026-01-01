@@ -40,6 +40,24 @@ export function AdultArtSection3() {
           display: none;
         }
 
+        /* 모바일에서 배너 패딩 조정 */
+        @media (max-width: 1023px) {
+          .adult-art-header-banner {
+            padding-top: 24px !important;
+            padding-bottom: 24px !important;
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+          }
+
+          .adult-art-header-title {
+            font-size: 1.1rem !important;
+          }
+
+          .adult-art-header-subtitle {
+            font-size: 0.85rem !important;
+          }
+        }
+
         /* PC: 모바일 버전 숨김, p 태그 2개 표시 */
         @media (min-width: 1024px) {
           .adult-art-quote-mobile {
@@ -59,7 +77,7 @@ export function AdultArtSection3() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative mb-20 rounded-3xl overflow-hidden"
+          className="relative mb-20 rounded-3xl overflow-hidden adult-art-header-banner"
           style={{
             padding: '4rem 3rem',
           }}
@@ -86,7 +104,7 @@ export function AdultArtSection3() {
             {/* Left: Title */}
             <div>
               <h2
-                className="mb-2"
+                className="mb-2 adult-art-header-title"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
                   fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
@@ -98,6 +116,7 @@ export function AdultArtSection3() {
                 마음을 그리다
               </h2>
               <p
+                className="adult-art-header-subtitle"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
                   fontSize: 'clamp(0.95rem, 1.2vw, 0.85rem)',

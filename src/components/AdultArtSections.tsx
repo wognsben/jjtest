@@ -490,6 +490,7 @@ export function AdultArtSection2() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.7 }}
+                className="target-friends-box"
                 style={{
                   background: '#FADFDB',
                   borderRadius: '24px',
@@ -570,6 +571,16 @@ export function AdultArtSection2() {
           <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-32" />
         </div>
       </section>
+
+      <style>{`
+        /* 모바일에서 좌우 패딩 변경 */
+        @media (max-width: 767px) {
+          .target-friends-box {
+            padding-left: 1.25rem !important;
+            padding-right: 1.25rem !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

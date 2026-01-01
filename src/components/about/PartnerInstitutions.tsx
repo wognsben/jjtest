@@ -164,7 +164,7 @@ export default function PartnerInstitutions() {
           <motion.div
             className="mb-20 md:mb-32"
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-4">
               {values.map((value, index) => (
                 <motion.div
                   key={value.id}
@@ -250,7 +250,7 @@ export default function PartnerInstitutions() {
 
                     {/* Text content */}
                     <p 
-                      className="relative z-10 text-center text-sm md:text-base leading-relaxed whitespace-pre-line"
+                      className="relative z-10 text-center text-sm md:text-base leading-relaxed whitespace-normal break-keep"
                       style={{
                         color: value.color === "#FFB6C1" ? '#D97B8F' : '#6B9F64',
                       }}
@@ -282,16 +282,77 @@ export default function PartnerInstitutions() {
                   </motion.div>
                 </motion.div>
               ))}
+
+              {/* ========== MOBILE ONLY: QUOTE CARD (6th grid item) ========== */}
+              <motion.div
+                key="quote-mobile"
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="relative group md:hidden col-span-2"
+              >
+                <div className="text-center">
+                  {/* Decorative quotation mark */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                    className="mb-6"
+                  >
+                    <svg 
+                      className="w-12 h-12 mx-auto opacity-20"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      style={{ color: '#FFB6C1' }}
+                    >
+                      <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
+                    </svg>
+                  </motion.div>
+
+                  {/* Quote text */}
+                  <motion.blockquote
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    className="leading-relaxed mb-6"
+                    style={{
+                      color: '#D97B8F',
+                      fontStyle: 'italic',
+                      fontSize: 'clamp(0.85rem, 2vw, 1.5rem)',
+                    }}
+                  >
+                    "인간에게 자신의 영혼보다 더 조용하고 평온한 은신처는 없다."
+                  </motion.blockquote>
+
+                  {/* Citation */}
+                  <motion.cite
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
+                    className="not-italic text-sm md:text-base text-brown-600"
+                  >
+                    - 마르쿠스 아우렐리우스 철학자
+                  </motion.cite>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
 
-          {/* ========== BOTTOM: QUOTE SECTION ========== */}
+          {/* ========== BOTTOM: QUOTE SECTION (PC ONLY) ========== */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center max-w-4xl mx-auto"
+            className="hidden md:block text-center max-w-4xl mx-auto"
           >
             {/* Decorative quotation mark */}
             <motion.div

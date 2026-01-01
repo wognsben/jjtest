@@ -65,37 +65,54 @@ export function MomentsSection1() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // 화살표 클릭 핸들러 (모바일/데스크탑 공용)
+  // 화살표 클릭 핸들러
   const handleNext = () => {
     if (!viewportRef.current || !trackRef.current) return;
 
-    const viewportWidth = viewportRef.current.clientWidth;
-
-    setCurrentPage((prev) => {
-      const next = prev + 1 >= totalPages ? 0 : prev + 1;
-      trackRef.current!.style.transform = `translateX(-${next * viewportWidth}px)`;
-      return next;
-    });
+    if (isMobile) {
+      // 모바일: 카드 index 기반 이동
+      setCurrentPage((prev) => Math.min(prev + 1, totalCards - 1));
+    } else {
+      // PC: 기존 방식 유지
+      const viewportWidth = viewportRef.current.clientWidth;
+      setCurrentPage((prev) => {
+        const next = prev + 1 >= totalPages ? 0 : prev + 1;
+        trackRef.current!.style.transform = `translateX(-${next * viewportWidth}px)`;
+        return next;
+      });
+    }
   };
 
   const handlePrev = () => {
     if (!viewportRef.current || !trackRef.current) return;
 
-    const viewportWidth = viewportRef.current.clientWidth;
-
-    setCurrentPage((prev) => {
-      const next = prev - 1 < 0 ? totalPages - 1 : prev - 1;
-      trackRef.current!.style.transform = `translateX(-${next * viewportWidth}px)`;
-      return next;
-    });
+    if (isMobile) {
+      // 모바일: 카드 index 기반 이동
+      setCurrentPage((prev) => Math.max(prev - 1, 0));
+    } else {
+      // PC: 기존 방식 유지
+      const viewportWidth = viewportRef.current.clientWidth;
+      setCurrentPage((prev) => {
+        const next = prev - 1 < 0 ? totalPages - 1 : prev - 1;
+        trackRef.current!.style.transform = `translateX(-${next * viewportWidth}px)`;
+        return next;
+      });
+    }
   };
 
-  // 초기 transform 설정 (모바일/데스크탑 공용)
+  // transform 설정
   useEffect(() => {
     if (!viewportRef.current || !trackRef.current) return;
-    
-    const viewportWidth = viewportRef.current.clientWidth;
-    trackRef.current.style.transform = `translateX(-${currentPage * viewportWidth}px)`;
+
+    if (isMobile) {
+      // 모바일: 카드 index × viewport width
+      const viewportWidth = viewportRef.current.offsetWidth;
+      trackRef.current.style.transform = `translateX(-${currentPage * viewportWidth}px)`;
+    } else {
+      // PC: 기존 방식 유지
+      const viewportWidth = viewportRef.current.clientWidth;
+      trackRef.current.style.transform = `translateX(-${currentPage * viewportWidth}px)`;
+    }
   }, [currentPage, isMobile]);
 
   // Noise texture (SVG data URL)
@@ -157,6 +174,12 @@ export function MomentsSection1() {
           @media (min-width: 1024px) {
             .focus-quote-pc {
               font-size: clamp(0.8rem, 0.85vw, 0.85rem) !important;
+            }
+          }
+
+          @media (max-width: 1023px) {
+            .moments-quote-mobile-bold {
+              font-weight: 600 !important;
             }
           }
         `}</style>
@@ -231,6 +254,7 @@ export function MomentsSection1() {
                       {item.category === '정서 안정' ? (
                         <>
                           <p
+                            className="moments-quote-mobile-bold"
                             style={{
                               fontFamily: "'Noto Serif KR', serif",
                               fontSize: 'clamp(0.8rem, 1vw, 0.95rem)',
@@ -256,6 +280,7 @@ export function MomentsSection1() {
                       ) : item.category === '자기 표현' ? (
                         <>
                           <p
+                            className="moments-quote-mobile-bold"
                             style={{
                               fontFamily: "'Noto Serif KR', serif",
                               fontSize: 'clamp(0.8rem, 1vw, 0.95rem)',
@@ -268,6 +293,7 @@ export function MomentsSection1() {
                           </p>
                           {item.quote2 && (
                             <p
+                              className="moments-quote-mobile-bold"
                               style={{
                                 fontFamily: "'Noto Serif KR', serif",
                                 fontSize: 'clamp(0.77rem, 1vw, 0.95rem)',
@@ -283,6 +309,7 @@ export function MomentsSection1() {
                       ) : item.category === '감정 표현' ? (
                         <>
                           <p
+                            className="moments-quote-mobile-bold"
                             style={{
                               fontFamily: "'Noto Serif KR', serif",
                               fontSize: 'clamp(0.8rem, 1vw, 0.95rem)',
@@ -295,6 +322,7 @@ export function MomentsSection1() {
                           </p>
                           {item.quote3 && (
                             <p
+                              className="moments-quote-mobile-bold"
                               style={{
                                 fontFamily: "'Noto Serif KR', serif",
                                 fontSize: 'clamp(0.77rem, 1vw, 0.95rem)',
@@ -310,7 +338,7 @@ export function MomentsSection1() {
                       ) : (
                         <>
                           <p
-                            className={item.category === '집중력 향상' ? 'focus-quote-pc' : ''}
+                            className={`moments-quote-mobile-bold ${item.category === '집중력 향상' ? 'focus-quote-pc' : ''}`}
                             style={{
                               fontFamily: "'Noto Serif KR', serif",
                               fontSize: 'clamp(0.8rem, 1vw, 0.95rem)',
@@ -323,6 +351,7 @@ export function MomentsSection1() {
                           </p>
                           {item.quote3 && (
                             <p
+                              className="moments-quote-mobile-bold"
                               style={{
                                 fontFamily: "'Noto Serif KR', serif",
                                 fontSize: 'clamp(0.77rem, 1vw, 0.95rem)',
@@ -370,14 +399,15 @@ export function MomentsSection1() {
             {/* Track */}
             <div
               ref={trackRef}
-              className="flex gap-4 transition-transform duration-500 ease-out"
+              className="flex transition-transform duration-500 ease-out"
               style={{
+                gap: isMobile ? '0px' : '16px',
                 willChange: 'transform',
               }}
             >
               {/* Cards */}
               {reviewImages.map((imageSrc, index) => (
-                <ReviewCard key={index} imageSrc={imageSrc} index={index} />
+                <ReviewCard key={index} imageSrc={imageSrc} index={index} isMobile={isMobile} />
               ))}
             </div>
           </div>
@@ -425,7 +455,7 @@ export function MomentsSection1() {
 }
 
 // Desktop Review Card Component (Premium Frame/Media structure)
-function ReviewCard({ imageSrc, index }: { imageSrc: string; index: number }) {
+function ReviewCard({ imageSrc, index, isMobile }: { imageSrc: string; index: number; isMobile: boolean }) {
   // Padding variance for organic feel
   const paddings = ['p-3', 'p-4', 'p-5'];
   const paddingClass = paddings[index % 3];
@@ -434,7 +464,7 @@ function ReviewCard({ imageSrc, index }: { imageSrc: string; index: number }) {
     <div
       className="review-card flex-shrink-0"
       style={{
-        width: '280px',
+        width: isMobile ? '100%' : '280px',
         opacity: 0.82,
         filter: 'saturate(0.95)',
         transition: 'opacity 0.4s ease, filter 0.4s ease',

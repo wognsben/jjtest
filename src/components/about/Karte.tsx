@@ -154,9 +154,12 @@ export default function Karte() {
                   fontFamily: "'Noto Serif KR', serif",
                 }}>
                   아이의 성장에는 '마음의 방향성'이 중요합니다<br /><br />
-                  그래서 우리는 결과보다 마음의 흐름과 성장의 흔적을 기록합니다.<br /><br />
-                  색과 선으로 드러난 감정은 스에나가 메소드 기반의 근거에 따라 섬세하게 해석되고,<br /><br />
-                  특히 유아·아동기에 아이가 '정보를 발신하는 경험'을 하는 것은 매우 중요합니다
+                  그래서 우리는 결과보다<br className="lg:hidden" />
+                  <span className="lg:inline"> </span>마음의 흐름과 성장의 흔적을 기록합니다.<br /><br />
+                  색과 선으로 드러난 감정은 <br className="lg:hidden" />
+                  <span className="lg:inline"> </span>스에나가 메소드 기반의 근거에 따라 섬세하게 해석되고,<br /><br />
+                  특히 유아·아동기에 아이가<br className="lg:hidden" />
+                  <span className="lg:inline"> </span>'정보를 발신하는 경험'을 하는 것은 매우 중요합니다
                 </p>
 
                 <p className="text-brown-600 leading-relaxed" style={{ 
@@ -166,7 +169,8 @@ export default function Karte() {
                   fontFamily: "'Noto Serif KR', serif",
                 }}>
                   크레용숲은 아이가 감정을 발신하고,<br /><br />
-                  어른은 그 신호를 읽고 반응하는 쌍방향 소통을 가장 소중하게 여깁니다
+                  어른은 그 신호를 읽고 반응하는<br className="lg:hidden" />
+                  <span className="lg:inline"> </span>쌍방향 소통을 가장 소중하게 여깁니다
                 </p>
               </div>
             </motion.div>
@@ -221,6 +225,23 @@ export default function Karte() {
           </div>
         </div>
       </section>
+
+      <style>{`
+        /* 모바일: br 다음 span에 줄 간격 적용 */
+        @media (max-width: 1023px) {
+          p br.lg\\:hidden + span.lg\\:inline {
+            display: block;
+            margin-top: 1.25rem;
+          }
+        }
+
+        /* PC: br 숨김 */
+        @media (min-width: 1024px) {
+          p br.lg\\:hidden {
+            display: none;
+          }
+        }
+      `}</style>
     </>
   );
 }

@@ -292,7 +292,7 @@ export default function HorizontalChapterScroll() {
         >
           <div className="max-w-7xl mx-auto">
             <h2 
-              className="mb-6"
+              className="mb-6 chapter-title"
               style={{ 
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
@@ -302,7 +302,7 @@ export default function HorizontalChapterScroll() {
                 lineHeight: 1.2,
               }}
             >
-              Three Chapters<br />
+              Three Chapters <br className="chapter-title-br" />
               <span style={{ color: '#8fbc88' }}>of Our Story</span>
             </h2>
             <p
@@ -370,6 +370,13 @@ export default function HorizontalChapterScroll() {
 
       {/* 모바일 전용 스타일 - 컴팩트 카드 레이아웃 */}
       <style>{`
+        /* PC에서 제목 한 줄로 표시 */
+        @media (min-width: 769px) {
+          .chapter-title-br {
+            display: none;
+          }
+        }
+
         /* 모바일 3열 그리드 레이아웃 */
         @media (max-width: 768px) {
           .chapter-grid {

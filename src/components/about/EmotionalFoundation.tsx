@@ -16,6 +16,7 @@ export default function EmotionalFoundation() {
     <>
       <hr className="section-divider" />
       <section 
+        id="emotional-foundation"
         ref={sectionRef}
         className="relative min-h-screen py-32 md:py-40 lg:py-56 overflow-hidden bg-white"
       >
@@ -26,27 +27,6 @@ export default function EmotionalFoundation() {
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           }}
         />
-        
-        {/* Section label - top right */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute top-16 md:top-20 right-8 md:right-16 lg:right-24 z-30"
-        >
-          <div className="relative group">
-            <div className="absolute inset-0 bg-pink-50/40 rounded-full blur-sm" />
-            <div className="relative px-8 py-3 rounded-full border border-pink-200/50 bg-gradient-to-r from-pink-50 to-rose-50/80 backdrop-blur-sm">
-              <span 
-                className="text-xs tracking-[0.2em] text-brown-700 italic"
-                style={{ fontFamily: "'Noto Serif KR', 'Noto Serif', serif" }}
-              >
-                ABOUT US
-              </span>
-            </div>
-          </div>
-        </motion.div>
         
         <div className="relative max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
@@ -106,6 +86,7 @@ export default function EmotionalFoundation() {
                   
                   {/* First paragraph group */}
                   <motion.div 
+                    className="emotional-foundation-paragraph-group"
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -114,7 +95,7 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                         lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
@@ -127,7 +108,7 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                         lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
@@ -141,14 +122,14 @@ export default function EmotionalFoundation() {
                           paintOrder: 'stroke fill'
                         }}
                       >
-                        감정이 말해지지 않을 때 마음은 서서히 닫히기
+                        감정이 말해지지 않을 때<span className="mobile-br-hidden"><br className="lg:hidden" /></span>
+                        <span className="lg:inline"> 마음은 서서히 닫히기<span style={{ color: '#4A4A4A', WebkitTextStroke: 'none' }}> 시작합니다.</span></span>
                       </span>
-                      <span style={{ color: '#4A4A4A' }}> 시작합니다.</span>
                     </p>
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                         lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
@@ -161,7 +142,7 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                         lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
@@ -174,7 +155,7 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                         lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 500,
@@ -182,13 +163,14 @@ export default function EmotionalFoundation() {
                         marginBottom: 0,
                       }}
                     >
-                      그리고 이 현상은 연령이 내려갈수록 더 뚜렷해집니다.
+                      그리고 이 현상은 연령이 내려갈수록<span className="mobile-br-hidden"><br className="lg:hidden" /></span>
+                      <span className="lg:inline"> </span>더 뚜렷해집니다.
                     </p>
                   </motion.div>
                   
                   {/* Second paragraph group */}
                   <motion.div 
-                    className="border-t border-brown-200/30"
+                    className="emotional-foundation-paragraph-group border-t border-brown-200/30"
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -198,7 +180,7 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                         lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
@@ -211,7 +193,7 @@ export default function EmotionalFoundation() {
                     <p 
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
-                        fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',
                         lineHeight: 1.5,
                         letterSpacing: 0,
                         fontWeight: 400,
@@ -225,9 +207,9 @@ export default function EmotionalFoundation() {
                           paintOrder: 'stroke fill'
                         }}
                       >
-                        집중력, 관계감, 자존감, 창조성이 모두 약해질 수밖에
+                        집중력, 관계감, 자존감, 창조성이<br className="lg:hidden" />
+                        <span className="lg:inline">모두 약해질 수밖에<span style={{ color: '#4A4A4A', WebkitTextStroke: 'none' }}> 없습니다.</span></span>
                       </span>
-                      <span className="text-brown-900 font-semibold"> 없습니다.</span>
                     </p>
                     <p 
                       className="md:text-lg text-brown-700 leading-relaxed"
@@ -237,7 +219,8 @@ export default function EmotionalFoundation() {
                         marginBottom: '20px',
                       }}
                     >
-                      이는 특정 연령의 문제가 아니라 모든 세대가 동시에 경험하는 변화입니다.
+                      이는 특정 연령의 문제가 아니라<br className="lg:hidden" />
+                      <span className="lg:inline"> </span>모든 세대가 동시에 경험하는 변화입니다.
                     </p>
                     <p 
                       className="md:text-lg leading-relaxed"
@@ -257,7 +240,8 @@ export default function EmotionalFoundation() {
                       >
                         가장 어린 존재들이
                       </span>
-                      <span className="text-brown-900 font-semibold"> 가장 많은 영향을 받는다는 사실이 우리를 멈추게 합니다.</span>
+                      <span className="font-semibold" style={{ color: '#4A4A4A' }}> 가장 많은 영향을 받는다는<br className="lg:hidden" />
+                      <span className="lg:inline"> </span>사실이 우리를 멈추게 합니다.</span>
                     </p>
                     <p 
                       style={{ 
@@ -271,8 +255,8 @@ export default function EmotionalFoundation() {
                         marginTop: '20px'
                       }}
                     >
-                      정서 영역을 다루는 교육은<br />
-                      공교육이 충분히 감당하기 어렵습니다.
+                      정서 영역을 다루는 교육은<br className="lg:hidden" />
+                      <span className="lg:inline"> </span>공교육이 충분히 감당하기 어렵습니다.
                     </p>
                   </motion.div>
                 </div>
@@ -293,6 +277,42 @@ export default function EmotionalFoundation() {
           </div>
         </div>
       </section>
+
+      <style>{`
+        /* 모바일: br 다음 span에 줄 간격 적용 및 폰트 크기 */
+        @media (max-width: 1023px) {
+          /* emotional-foundation-paragraph-group 내 p 태그들에 폰트 크기 적용 */
+          #emotional-foundation .emotional-foundation-paragraph-group p {
+            font-size: 0.75rem !important;
+            line-height: 1.5 !important;
+          }
+
+          p span.text-accent-green br.lg\\:hidden + span.lg\\:inline {
+            display: block;
+            margin-top: 1.25rem;
+          }
+
+          p br.lg\\:hidden + span.lg\\:inline,
+          p span br.lg\\:hidden + span.lg\\:inline {
+            display: block;
+            margin-top: 1.25rem;
+          }
+
+          /* 특정 br 모바일에서 숨김 */
+          p .mobile-br-hidden br.lg\\:hidden {
+            display: none !important;
+          }
+
+        }
+
+        /* PC: br 숨김 */
+        @media (min-width: 1024px) {
+          p span br.lg\\:hidden,
+          p br.lg\\:hidden {
+            display: none;
+          }
+        }
+      `}</style>
     </>
   );
 }

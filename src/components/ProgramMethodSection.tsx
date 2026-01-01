@@ -223,6 +223,16 @@ export default function ProgramMethodSection() {
           border: 1px solid rgba(47, 107, 79, 0.35);
           pointer-events: none;
         }
+
+        /* PC 레이아웃 강제 적용 */
+        @media (min-width: 768px) {
+          .program-nav-container {
+            order: 1 !important;
+          }
+          .program-healing-color-container {
+            order: 2 !important;
+          }
+        }
       `}</style>
 
       <section 
@@ -280,13 +290,13 @@ export default function ProgramMethodSection() {
             </div>
 
             {/* NAVIGATION AND BUTTON - BELOW METHOD 2 */}
-            <div 
-              className="flex items-center justify-between w-full"
+            <div
+              className="flex flex-col md:flex-row md:items-center md:justify-between w-full gap-6"
               data-animate="fade-up"
               data-delay="360"
             >
-              {/* LEFT NAVIGATION */}
-              <div className="flex flex-col gap-4">
+              {/* LEFT NAVIGATION - PC에서 왼쪽 */}
+              <div className="program-nav-container flex flex-col gap-4 order-2 md:order-1">
                 {/* PROGRAM LABEL */}
                 <p
                   style={{
@@ -341,8 +351,8 @@ export default function ProgramMethodSection() {
                 </div>
               </div>
 
-              {/* RIGHT IMAGE AND BUTTON */}
-              <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start">
+              {/* RIGHT IMAGE AND BUTTON - PC에서 오른쪽 */}
+              <div className="program-healing-color-container flex flex-wrap items-center gap-4 justify-center order-1 md:order-2">
                 <img
                   src={getImagePath("/assets/program/method/co.png")}
                   alt="색채심리연구소"

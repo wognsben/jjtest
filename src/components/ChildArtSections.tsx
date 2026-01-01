@@ -237,6 +237,7 @@ export function ChildArtSection2() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
+              className="target-friends-box"
               style={{
                 background: '#FADFDB',
                 borderRadius: '24px',
@@ -388,6 +389,14 @@ export function ChildArtSection2() {
             display: block;
           }
         }
+
+        /* 모바일에서 좌우 패딩 변경 */
+        @media (max-width: 767px) {
+          .target-friends-box {
+            padding-left: 1.25rem !important;
+            padding-right: 1.25rem !important;
+          }
+        }
       `}</style>
     </section>
   );
@@ -404,7 +413,7 @@ export function ChildArtSection3() {
     {
       number: '2',
       title: '정답이 없는 미술이라면, 아이는 뭘 기준으로 자라고 있다고 보면 될까요?',
-      content: `정답이 없는 것처럼 보이지만, 아이의 변화에는 분명한 기준이 있습니다. 결과물 대신 아이에게서 이런 변화가 보이면 수업은 제대로 작동하고 있는 거예요. 표현이 막히지 않는다/ 실패해도 다시 시도한다/ 설명을 피하지 않는다/ "내가 이런 느낌이었어"라고 말한다/ 이건 이건 취향의 문제가 아니라 누가 봐도 알 수 있는 변화입니다. 자기다움은 가르쳐서 생기는 게 아니라 감정이 원활하게 작동할 때 자연스럽게 드러나는 결과이기 때문입니다. 그래서 크레용숲은 아이를 바꾸려 하지 않고, 아이 안에 이미 있는 자기다움이 막히지 않도록 감정의 흐름을 풀어줍니다.`,
+      content: `정답이 없는 것처럼 보이지만, 아이의 변화에는 분명한 기준이 있습니다. 결과물 대신 아이에게서 이런 변화가 보이면 수업은 제대로 작동하고 있는 거예요. 표현이 막히지 않는다/ 실패해도 다시 시도한다/ 설명을 피하지 않는다/ "내가 이런 느낌이었어"라고 말한다/ 이건 취향의 문제가 아니라 누가 봐도 알 수 있는 변화입니다. 자기다움은 가르쳐서 생기는 게 아니라 감정이 원활하게 작동할 때 자연스럽게 드러나는 결과이기 때문입니다. 그래서 크레용숲은 아이를 바꾸려 하지 않고, 아이 안에 이미 있는 자기다움이 막히지 않도록 감정의 흐름을 풀어줍니다.`,
     },
     {
       number: '3',
@@ -595,6 +604,16 @@ export function ChildArtSection3() {
           </div>
         </div>
       </div>
+
+      {/* CSS for Mobile Padding */}
+      <style>{`
+        @media (max-width: 1023px) {
+          .child-art-banner-content {
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -737,7 +756,7 @@ export function ChildArtSection4() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="absolute bottom-0 left-0 right-0 text-center px-8 pb-16 md:pb-24 lg:pb-32 change-text-mobile"
+                className="absolute bottom-0 left-0 right-0 text-center pb-16 md:pb-24 lg:pb-32 change-text-mobile"
                 style={{
                   zIndex: 2,
                 }}
@@ -829,6 +848,27 @@ export function ChildArtSection4() {
 
         .change-text {
           display: none;
+        }
+
+        /* 모바일 전용: 이미지 높이 제한 및 하단 부분만 표시 */
+        @media (max-width: 1023px) {
+          .change-image-mobile {
+            height: 35vh !important;
+            min-height: 280px !important;
+            max-height: 350px !important;
+          }
+
+          .change-image img {
+            height: 100% !important;
+            min-height: 0 !important;
+            object-fit: cover;
+            object-position: bottom;
+          }
+
+          .change-text-mobile {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+          }
         }
 
         /* PC 전용: 텍스트 6 : 이미지 4 레이아웃 (겹침 구조) */
@@ -930,28 +970,6 @@ export function ChildArtSection5() {
         {/* 시각용 상단 스페이서 - absolute overlay 구조로 인한 시각적 여백 보장 */}
         <div aria-hidden="true" className="h-24" />
 
-        {/* Mobile Title - 모바일에서만 상단에 표시 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="md:hidden mb-0"
-        >
-          <h2
-            style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: 'clamp(1.3rem, 5vw, 1.8rem)',
-              color: '#2F6B4F',
-              fontWeight: 500,
-              lineHeight: 1.4,
-            }}
-          >
-            크레용숲 차일드아트<br />
-            어린이 색채학교
-          </h2>
-        </motion.div>
-
         {/* Image Banner with Text Overlay */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -992,7 +1010,24 @@ export function ChildArtSection5() {
 
           {/* Text Content Overlay */}
           <div className="absolute inset-0 flex items-center">
-            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 lg:gap-16 px-6 md:px-12 lg:px-16 py-8 md:py-10 w-full">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 lg:gap-16 px-6 md:px-12 lg:px-16 py-8 md:py-10 w-full child-art-banner-content">
+              {/* Mobile Title - 모바일에서만 표시 */}
+              <div className="md:hidden mb-0">
+                <h2
+                  className="child-art-mobile-title"
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(1.3rem, 5vw, 1.8rem)',
+                    color: '#2F6B4F',
+                    fontWeight: 500,
+                    lineHeight: 1.4,
+                  }}
+                >
+                  <span className="child-art-title-line1">크레용숲 차일드아트</span><br />
+                  <span className="child-art-title-line2">어린이 색채학교</span>
+                </h2>
+              </div>
+              
               {/* Left: Title - PC에서만 표시 */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -1226,6 +1261,7 @@ export function ChildArtSection5() {
             {/* 같은 대주제라도... */}
             <div>
               <h4
+                className="child-art-age-subject-h4"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
                   fontSize: 'clamp(0.65rem, 1.2vw, 0.85rem)',
@@ -1267,6 +1303,7 @@ export function ChildArtSection5() {
               }}
             >
               <p
+                className="child-art-key-statement"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
                   fontSize: 'clamp(0.65rem, 1vw, 0.85rem)',
@@ -1289,6 +1326,7 @@ export function ChildArtSection5() {
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               <p
+                className="child-art-siblings-p"
                 style={{
                   fontFamily: "'Noto Serif KR', serif",
                   fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
@@ -1340,6 +1378,32 @@ export function ChildArtSection5() {
         @media (min-width: 1024px) {
           [data-pc-border="true"] {
             border-left: 3px solid #2F6B4F;
+          }
+        }
+
+        /* 모바일에서 h4 좌우 패딩 조정 */
+        @media (max-width: 1023px) {
+          .child-art-age-subject-h4 {
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+          }
+
+          .child-art-key-statement {
+            font-size: 0.85rem !important;
+          }
+
+          .child-art-siblings-p {
+            font-size: 0.65rem !important;
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+          }
+
+          .child-art-mobile-title .child-art-title-line1 {
+            font-size: 1.1rem !important;
+          }
+
+          .child-art-mobile-title .child-art-title-line2 {
+            font-size: 0.85rem !important;
           }
         }
       `}</style>

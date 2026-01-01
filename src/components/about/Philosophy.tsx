@@ -58,42 +58,6 @@ export default function Philosophy() {
         </motion.div>
       </div>
       
-      {/* Section label - top right */}
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute z-30"
-        style={{
-          top: 'clamp(4rem, 10vw, 5rem)',
-          right: 'clamp(2rem, 6vw, 6rem)',
-        }}
-      >
-        <div className="relative group">
-          <div className="absolute inset-0 bg-pink-100/40 rounded-full blur-sm" />
-          <div 
-            className="relative rounded-full border border-pink-300/50 bg-gradient-to-r from-pink-50 to-pink-100/80 backdrop-blur-sm"
-            style={{
-              paddingLeft: 'clamp(1.5rem, 4vw, 2rem)',
-              paddingRight: 'clamp(1.5rem, 4vw, 2rem)',
-              paddingTop: 'clamp(0.625rem, 1.5vw, 0.75rem)',
-              paddingBottom: 'clamp(0.625rem, 1.5vw, 0.75rem)',
-            }}
-          >
-            <span 
-              className="tracking-[0.2em] text-brown-700 italic"
-              style={{ 
-                fontFamily: "'Noto Serif KR', 'Noto Serif', serif",
-                fontSize: 'clamp(0.75rem, 1.2vw, 0.85rem)',
-              }}
-            >
-              PHILOSOPHY
-            </span>
-          </div>
-        </div>
-      </motion.div>
-      
       <div 
         className="relative max-w-[1920px] mx-auto h-full"
         style={{
@@ -330,7 +294,8 @@ export default function Philosophy() {
                       marginBottom: 'clamp(1rem, 2vw, 1.25rem)',
                     }}
                   >
-                    그리고 1903년, "아이들이 쥐어도 안전한 색"이라는 개념이 등장하며
+                    그리고 1903년,<br className="lg:hidden" />
+                    <span className="lg:inline"> </span>"아이들이 쥐어도 안전한 색"이라는 개념이 등장하며
                   </motion.p>
 
                   <motion.p
@@ -351,7 +316,9 @@ export default function Philosophy() {
                   >
                     <span className="philosophy-crayon-final-part1">크레용은 더 이상 도구가 아닌,</span>
                     <br className="lg:hidden" />
-                    <span className="lg:inline lg:ml-1"><span className="text-accent-green font-semibold" style={{ WebkitTextStroke: '1px rgba(255, 182, 193, 0.6)', paintOrder: 'stroke fill' }}>누구나 한 번은 손에 쥐어보는 <span style={{ color: '#8fbc88', fontWeight: 700 }}>첫 번째 예술 언어</span>가</span> 되었습니다.</span>
+                    <span className="lg:inline lg:ml-1"><span style={{ color: '#8fbc88', fontWeight: 600 }}>누구나 한 번은 손에 쥐어보는</span></span>
+                    <br className="lg:hidden" />
+                    <span className="lg:inline lg:ml-1"><span style={{ color: '#8fbc88', fontWeight: 600 }}><span style={{ fontWeight: 700 }}>첫 번째 예술 언어</span>가</span> 되었습니다.</span>
                   </motion.p>
                 </motion.div>
                 
@@ -375,19 +342,25 @@ export default function Philosophy() {
                     }}
                   >
                     <div style={{ marginBottom: 'clamp(1rem, 2vw, 1.25rem)' }}>
-                      그리고 지금, 그 오래된 이야기는 크레용숲에서 다시 피어납니다.
+                      그리고 지금,<br className="lg:hidden" />
+                      <span className="lg:inline"> </span>그 오래된 이야기는 크레용숲에서 다시 피어납니다.
                     </div>
                     <div style={{ marginBottom: 'clamp(1rem, 2vw, 1.25rem)' }}>
-                      여기서는 <span className="text-accent-green font-semibold" style={{ WebkitTextStroke: '1px rgba(255, 182, 193, 0.6)', paintOrder: 'stroke fill' }}>아이뿐 아니라 <span style={{ color: '#8fbc88', fontWeight: 700 }}>우리 모두가</span> 잃어버린 <span style={{ color: '#8fbc88', fontWeight: 700 }}>순수한 감각을</span> 되찾습니다.</span>
+                      여기서는 <span style={{ color: '#8fbc88', fontWeight: 600 }}>아이뿐 아니라 <span style={{ fontWeight: 700 }}>우리 모두가</span></span>
+                      <br className="lg:hidden" />
+                      <span className="lg:inline"> </span><span style={{ color: '#8fbc88', fontWeight: 600 }}>잃어버린 <span style={{ fontWeight: 700 }}>순수한 감각을</span> 되찾습니다.</span>
                     </div>
                     <div style={{ marginBottom: 'clamp(1rem, 2vw, 1.25rem)' }}>
-                      낙서 한 줄에도 세상이 열리던 그 마음을 다시 만나는 장소이기도 합니다.
+                      낙서 한 줄에도 세상이 열리던<br className="lg:hidden" />
+                      <span className="lg:inline"> </span>그 마음을 다시 만나는 장소이기도 합니다.
                     </div>
                     <div style={{ marginBottom: 'clamp(1rem, 2vw, 1.25rem)' }}>
-                      색은 감정을 깨우고, 선은 마음의 결을 드러내며, 다시 우리 안의 '숲'을 자라게 합니다.
+                      색은 감정을 깨우고, 선은 마음의 결을 드러내며,<br className="lg:hidden" />
+                      <span className="lg:inline"> </span>다시 우리 안의 '숲'을 자라게 합니다.
                     </div>
                     <div>
-                      흙에서 시작된 색의 이야기가 이제 우리 각자의 숲에서 새로운 빛으로 이어집니다.
+                      흙에서 시작된 색의 이야기가<br className="lg:hidden" />
+                      <span className="lg:inline"> </span>이제 우리 각자의 숲에서 새로운 빛으로 이어집니다.
                     </div>
                   </blockquote>
                 </motion.div>
@@ -440,11 +413,102 @@ export default function Philosophy() {
             padding-right: 20px !important;
             padding-top: clamp(2rem, 5vw, 2.5rem) !important;
           }
+
+          /* 모바일에서 philosophy-crayon-line 줄 띄움 추가 - p 태그 간격과 일치 */
+          .philosophy-crayon-line br.lg\\:hidden + span {
+            display: block;
+            margin-top: clamp(1rem, 2vw, 1.25rem);
+          }
+
+
+          /* 모바일에서 일반 p 태그 내 br 다음 요소 줄 띄움 추가 - p 태그 간격과 일치 */
+          #chapter-philosophy p br.lg\\:hidden + span {
+            display: block;
+            margin-top: clamp(1rem, 2vw, 1.25rem);
+          }
+
+          /* 모바일에서 blockquote 내 div 안 br 다음 요소 줄 띄움 추가 - p 태그 간격과 일치 */
+          #chapter-philosophy blockquote div br.lg\\:hidden + span {
+            display: block;
+            margin-top: clamp(1rem, 2vw, 1.25rem);
+          }
         }
         
         @media (min-width: 1024px) {
           .philosophy-crayon-line .philosophy-crayon-part1::after {
             content: ' ';
+          }
+        }
+
+        /* 모바일에서 height clamp 문제 해결 - PC는 영향 없음 */
+        @media (max-width: 1023px) {
+          #chapter-philosophy > div.relative > div.relative.flex.items-center {
+            height: auto !important;
+            min-height: auto !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+          }
+
+          /* 모바일에서 philosophy-crayon-final-line 줄 간격 균일화 */
+          .philosophy-crayon-final-line br {
+            display: none !important;
+          }
+
+          .philosophy-crayon-final-line > span {
+            display: block !important;
+          }
+
+          /* 모바일에서 이미지 컨테이너를 normal flow로 복구 - 텍스트 하단에 위치 */
+          #chapter-philosophy .relative.z-10.mt-12 {
+            position: relative !important;
+            top: auto !important;
+            right: auto !important;
+            left: auto !important;
+            transform: none !important;
+            width: 100% !important;
+            height: auto !important;
+            min-height: auto !important;
+            margin-top: 3rem !important;
+          }
+
+          #chapter-philosophy .relative.z-10.mt-12 > div.relative.h-full {
+            min-height: 320px !important; /* 모바일 이미지 최소 높이 */
+          }
+
+          #chapter-philosophy p,
+          #chapter-philosophy blockquote {
+            font-size: 0.75rem !important;
+            line-height: 1.5 !important;
+          }
+        }
+
+        /* PC에서 텍스트 / 이미지 사이 실제 간격 만들기 + 스크롤 없이 모든 텍스트 표시 */
+        @media (min-width: 1024px) {
+          /* 부모 컨테이너 - 텍스트 높이에 맞춰 유연하게 조정 */
+          #chapter-philosophy > div.relative > div.relative.flex.items-center {
+            min-height: clamp(500px, 75vw, 750px) !important;
+            height: auto !important;
+            align-items: stretch !important;
+          }
+
+          /* 텍스트 영역 (width 조정으로 간격 확보, 높이 자동) */
+          #chapter-philosophy > div.relative > div.relative.flex.items-center > div.relative.z-20 {
+            width: 62% !important;
+            height: auto !important;
+          }
+
+          /* 텍스트 카드 내부 컨테이너 - 높이 자동 조정, overflow 제거 */
+          #chapter-philosophy > div.relative > div.relative.flex.items-center > div.relative.z-20 > div.relative.flex.flex-col.h-full {
+            height: auto !important;
+          }
+
+          /* 이미지 영역 */
+          #chapter-philosophy > div.relative > div.relative.flex.items-center > div.relative.z-10 {
+            width: 35% !important;
+            height: auto !important;
+            align-self: flex-start !important;
+            top: 1000px !important;
+            transform: none !important;
           }
         }
       `}</style>

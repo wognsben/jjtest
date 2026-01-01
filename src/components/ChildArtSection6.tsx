@@ -236,13 +236,13 @@ export function ChildArtSection6() {
               </p>
               <div className="space-y-1.5">
                 <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#2F6B4F', lineHeight: 1.5, letterSpacing: 0, fontWeight: 400 }}>
-                  촉감 드로잉
+                  • 촉감 드로잉
                 </p>
                 <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#2F6B4F', lineHeight: 1.5, letterSpacing: 0, fontWeight: 400 }}>
-                  크레용·파스텔 색 섞기
+                  • 크레용·파스텔 색 섞기
                 </p>
                 <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#2F6B4F', lineHeight: 1.5, letterSpacing: 0, fontWeight: 400 }}>
-                  자연 오브제로 그리는 이야기
+                  • 자연 오브제로 그리는 이야기
                 </p>
               </div>
             </div>
@@ -413,13 +413,13 @@ export function ChildArtSection6() {
 
             <div className="space-y-2 mb-6">
               <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#666', lineHeight: 1.5, letterSpacing: 0, fontWeight: 300 }}>
-                감정이 색이 되는 과정 경험
+                • 감정이 색이 되는 과정 경험
               </p>
               <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#666', lineHeight: 1.5, letterSpacing: 0, fontWeight: 300 }}>
-                "이건 이런 느낌이야"라고 마음을 설명하는 언어 발달
+                • "이건 이런 느낌이야"라고 마음을 설명하는 언어 발달
               </p>
               <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#666', lineHeight: 1.5, letterSpacing: 0, fontWeight: 300 }}>
-                스스로 선택하고 결정하는 자기결정성 강화
+                • 스스로 선택하고 결정하는 자기결정성 강화
               </p>
             </div>
 
@@ -440,13 +440,13 @@ export function ChildArtSection6() {
               </p>
               <div className="space-y-1.5">
                 <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#A66A5A', lineHeight: 1.5, letterSpacing: 0, fontWeight: 400 }}>
-                  감정 스케치
+                  • 감정 스케치
                 </p>
                 <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#A66A5A', lineHeight: 1.5, letterSpacing: 0, fontWeight: 400 }}>
-                  텍스처(질감) 드로잉
+                  • 텍스처(질감) 드로잉
                 </p>
                 <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#A66A5A', lineHeight: 1.5, letterSpacing: 0, fontWeight: 400 }}>
-                  상징적 그림 만들기
+                  • 상징적 그림 만들기
                 </p>
               </div>
             </div>
@@ -623,13 +623,13 @@ export function ChildArtSection6() {
 
             <div className="space-y-2 mb-6">
               <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#666', lineHeight: 1.5, letterSpacing: 0, fontWeight: 300 }}>
-                감정언어가 더 선명해지고
+                • 감정언어가 더 선명해지고
               </p>
               <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#666', lineHeight: 1.5, letterSpacing: 0, fontWeight: 300 }}>
-                상징과 표현이 깊어지고
+                • 상징과 표현이 깊어지고
               </p>
               <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#666', lineHeight: 1.5, letterSpacing: 0, fontWeight: 300 }}>
-                나만의 시선과 세계관이 자랍니다
+                • 나만의 시선과 세계관이 자랍니다
               </p>
             </div>
 
@@ -650,13 +650,13 @@ export function ChildArtSection6() {
               </p>
               <div className="space-y-1.5">
                 <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#2F6B4F', lineHeight: 1.5, letterSpacing: 0, fontWeight: 400 }}>
-                  감정 구조 드로잉
+                  • 감정 구조 드로잉
                 </p>
                 <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#2F6B4F', lineHeight: 1.5, letterSpacing: 0, fontWeight: 400 }}>
-                  감정 오브제 제작
+                  • 감정 오브제 제작
                 </p>
                 <p style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(0.85rem, 2vw, 0.85rem)', color: '#2F6B4F', lineHeight: 1.5, letterSpacing: 0, fontWeight: 400 }}>
-                  자기 서사 미니북
+                  • 자기 서사 미니북
                 </p>
               </div>
             </div>

@@ -494,6 +494,7 @@ export function YouthArtSection2() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.5 }}
+                className="target-friends-box"
                 style={{
                   background: '#FADFDB',
                   borderRadius: '24px',
@@ -568,6 +569,16 @@ export function YouthArtSection2() {
           <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-32" />
         </div>
       </section>
+
+      <style>{`
+        /* 모바일에서 좌우 패딩 변경 */
+        @media (max-width: 767px) {
+          .target-friends-box {
+            padding-left: 1.25rem !important;
+            padding-right: 1.25rem !important;
+          }
+        }
+      `}</style>
     </>
   );
 }
@@ -647,42 +658,18 @@ export function YouthArtSection3() {
         .philo-section .connect-line:nth-child(3) { transition-delay: 1s; }
         .philo-section .connect-line:nth-child(4) { transition-delay: 1.2s; }
         .philo-section .connect-line:nth-child(5) { transition-delay: 1.4s; }
+
+        /* 모바일에서 배너 컨텐츠 좌우 패딩 조정 */
+        @media (max-width: 1023px) {
+          .youth-art-banner-content {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+          }
+        }
       `}</style>
       
       <section ref={sectionRef} className="philo-section relative bg-white pt-24 pb-24 overflow-hidden" style={{ paddingTop: '96px' }}>
         <div className="max-w-[1180px] mx-auto px-0 relative">
-
-          {/* Mobile Title - 모바일에서만 상단에 표시 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="md:hidden mb-8 px-6"
-          >
-            <h2 
-              style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(1.1rem, 4vw, 1.8rem)',
-                color: '#2F6B4F',
-                fontWeight: 500,
-                lineHeight: 1.4,
-                marginBottom: '0.5rem',
-              }}
-            >
-              철학미술관 : 나를 이해하는 색채의 방
-            </h2>
-            <p
-              style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: 'clamp(0.85rem, 1.3vw, 0.85rem)',
-                color: '#A66A5A',
-                fontWeight: 400,
-              }}
-            >
-              청소년 사유예술 프로그램
-            </p>
-          </motion.div>
 
           {/* Title Banner with Background Image */}
           <motion.div
@@ -714,7 +701,33 @@ export function YouthArtSection3() {
               }}
             />
             {/* Content - Title on top, rest at bottom */}
-            <div className="relative z-10 flex flex-col justify-between h-full py-10 px-8 md:px-12" style={{ minHeight: '280px' }}>
+            <div className="relative z-10 flex flex-col justify-between h-full py-6 md:py-8 md:px-10 youth-art-banner-content" style={{ minHeight: '240px' }}>
+              {/* Top: Title - 모바일 */}
+              <div className="md:hidden mb-4">
+                <h2 
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(1.1rem, 4vw, 1.8rem)',
+                    color: '#2F6B4F',
+                    fontWeight: 500,
+                    lineHeight: 1.4,
+                    marginBottom: '0.5rem',
+                  }}
+                >
+                  철학미술관 : 나를 이해하는 색채의 방
+                </h2>
+                <p
+                  style={{
+                    fontFamily: "'Noto Serif KR', serif",
+                    fontSize: 'clamp(0.85rem, 1.3vw, 0.85rem)',
+                    color: '#A66A5A',
+                    fontWeight: 400,
+                  }}
+                >
+                  청소년 사유예술 프로그램
+                </p>
+              </div>
+              
               {/* Top: Title (full width, single line) - PC에서만 표시 */}
               <div className="hidden md:block">
                 <h2 

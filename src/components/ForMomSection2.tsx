@@ -34,6 +34,16 @@ export function ForMomSection2() {
           border-bottom-left-radius: 24px;
           pointer-events: none;
         }
+
+        /* 모바일에서 배너 패딩 조정 */
+        @media (max-width: 1023px) {
+          .for-mom-header-banner {
+            padding-top: 24px !important;
+            padding-bottom: 24px !important;
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+          }
+        }
       `}</style>
     <section className="relative bg-white pt-24 pb-24" style={{ paddingTop: '96px' }}>
       <div className="max-w-[1180px] mx-auto px-0">
@@ -46,7 +56,7 @@ export function ForMomSection2() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative mb-20 rounded-3xl overflow-hidden"
+          className="relative mb-20 rounded-3xl overflow-hidden for-mom-header-banner"
           style={{ padding: '4rem 3rem' }}
         >
           {/* Background Image */}
@@ -93,8 +103,7 @@ export function ForMomSection2() {
                   letterSpacing: 0,
                 }}
               >
-                크레용숲 정원사는 엄마들이 <br className="md:hidden" />
-                <span style={{ fontWeight: 600, color: '#2d5016' }}>'다시 나로 살아나도록'</span>
+                크레용숲 정원사는 엄마들이 <span style={{ fontWeight: 600, color: '#2d5016' }}>'다시 나로 살아나도록'</span>
                 <br className="md:hidden" />
                 <br className="hidden md:block" />
                 씨앗을 나누는 <span
@@ -116,6 +125,7 @@ export function ForMomSection2() {
         {/* Schedule Info */}
         <div className="mb-16">
           <motion.div
+            className="for-mom-schedule-info"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -190,7 +200,7 @@ export function ForMomSection2() {
             </div>
 
             {/* Changes Section */}
-            <div className="space-y-4">
+            <div className="space-y-4 for-mom-changes-section">
               <h4
                 style={{
                   fontFamily: "'Noto Serif KR', serif",

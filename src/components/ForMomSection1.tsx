@@ -407,61 +407,55 @@ export function ForMomSection1() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative mb-16"
+              className="relative for-mom-target-box"
               style={{
                 background: '#FADFDB',
-                borderRadius: '32px',
-                padding: '2.5rem 3rem',
+                borderRadius: '24px',
+                padding: '2rem 2.5rem',
+                marginBottom: '3rem',
+                minWidth: '200px',
               }}
             >
               <span
-                className="for-mom-title"
                 style={{
+                  display: 'inline-block',
                   fontFamily: "'Noto Serif KR', serif",
                   fontSize: '0.85rem',
                   fontWeight: 600,
                   color: '#2F6B4F',
-                  marginBottom: '1.5rem',
-                  display: 'inline-block',
+                  marginBottom: '1rem',
                 }}
               >
                 우리는 이런 엄마들을 기다립니다
               </span>
-              <ul className="space-y-2 mt-4">
+              <ul
+                style={{
+                  fontFamily: "'Noto Serif KR', serif",
+                  fontSize: 'clamp(0.85rem, 1.6vw, 1rem)',
+                  lineHeight: 1.5,
+                  letterSpacing: 0,
+                  color: '#2F6B4F',
+                  listStyle: 'none',
+                  padding: 0,
+                  margin: 0,
+                }}
+              >
                 <li
-                  className="for-mom-list-item"
                   style={{
-                    fontFamily: "'Noto Serif KR', serif",
-                    fontSize: '0.95rem',
-                    lineHeight: 1.5,
-                    letterSpacing: 0,
-                    color: '#A66A5A',
                     marginBottom: '0.9em',
                   }}
                 >
                   무언가를 더 배우기보다 잠시 내려놓고 싶은 엄마
                 </li>
                 <li
-                  className="for-mom-list-item"
                   style={{
-                    fontFamily: "'Noto Serif KR', serif",
-                    fontSize: '0.95rem',
-                    lineHeight: 1.5,
-                    letterSpacing: 0,
-                    color: '#A66A5A',
                     marginBottom: '0.9em',
                   }}
                 >
                   엄마라는 역할 뒤에 가려진 나를 다시 느끼고 싶은 사람
                 </li>
                 <li
-                  className="for-mom-list-item"
                   style={{
-                    fontFamily: "'Noto Serif KR', serif",
-                    fontSize: '0.95rem',
-                    lineHeight: 1.5,
-                    letterSpacing: 0,
-                    color: '#A66A5A',
                     marginBottom: 0,
                   }}
                 >
@@ -486,10 +480,12 @@ export function ForMomSection1() {
                   fontWeight: 300,
                   lineHeight: 1.5,
                   letterSpacing: 0,
+                  maxWidth: '32em',
+                  textIndent: '-0.6em',
+                  paddingLeft: '0.6em',
                 }}
               >
-                <span style={{ fontWeight: 500, color: '#333' }}>『미스 럼피우스』</span>가 그랬듯, 우리는 세상을 바꾸지 않습니다<br />
-                다만 각자의 삶에 작은 아름다움이 자라나길 바랄 뿐입니다.
+                <span style={{ fontWeight: 500, color: '#333' }}>『미스 럼피우스』</span>가 그랬듯, 우리는 세상을 바꾸지 않습니다. 다만 각자의 삶에 작은 아름다움이 자라나길 바랄 뿐입니다.
               </p>
             </motion.div>
 
@@ -568,6 +564,14 @@ export function ForMomSection1() {
           /* PC에서 서브타이틀 폰트 크기 */
           .for-mom-subtitle p {
             font-size: 1rem !important;
+          }
+        }
+
+        /* 모바일에서 좌우 패딩 변경 */
+        @media (max-width: 767px) {
+          .for-mom-target-box {
+            padding-left: 1.25rem !important;
+            padding-right: 1.25rem !important;
           }
         }
       `}</style>

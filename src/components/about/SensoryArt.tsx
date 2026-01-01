@@ -70,27 +70,6 @@ export default function SensoryArt() {
           }}
         />
         
-        {/* Section label - top left */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute top-16 md:top-20 left-8 md:left-16 lg:left-24 z-30"
-        >
-          <div className="relative group">
-            <div className="absolute inset-0 bg-amber-50/40 rounded-full blur-sm" />
-            <div className="relative px-8 py-3 rounded-full border border-amber-200/50 bg-gradient-to-r from-amber-50 to-beige/80 backdrop-blur-sm">
-              <span 
-                className="text-xs tracking-[0.2em] text-brown-700 italic"
-                style={{ fontFamily: "'Noto Serif KR', 'Noto Serif', serif" }}
-              >
-                SENSORY ART
-              </span>
-            </div>
-          </div>
-        </motion.div>
-        
         <div className="relative max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 xl:gap-24 items-center">
             
@@ -161,7 +140,9 @@ export default function SensoryArt() {
                         color: '#4A4A4A',
                       }}
                     >
-                      한 사람의 성장은 <span style={{ color: '#5a8c4a', fontWeight: 600 }}>하나의 능력이 아니라 감정·감각·표현·관계·세계관으로 이어진 5개의 내적 기반이 함께 만들어냅니다.</span>
+                      한 사람의 성장은 <span style={{ color: '#5a8c4a', fontWeight: 600 }}>하나의 능력이 아니라<br className="lg:hidden" />
+                      <span className="lg:inline"> </span>감정·감각·표현·관계·세계관으로 이어진<br className="lg:hidden" />
+                      <span className="lg:inline"> </span>5개의 내적 기반이 함께 만들어냅니다.</span>
                     </p>
                   </motion.div>
                   
@@ -204,6 +185,23 @@ export default function SensoryArt() {
           </div>
         </div>
       </section>
+
+      <style>{`
+        /* 모바일: br 다음 span에 줄 간격 적용 */
+        @media (max-width: 1023px) {
+          p span br.lg\\:hidden + span.lg\\:inline {
+            display: block;
+            margin-top: 1.25rem;
+          }
+        }
+
+        /* PC: br 숨김 */
+        @media (min-width: 1024px) {
+          p span br.lg\\:hidden {
+            display: none;
+          }
+        }
+      `}</style>
     </>
   );
 }

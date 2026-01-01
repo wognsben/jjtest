@@ -13,12 +13,12 @@ const reviewImagePaths = [
 ];
 
 // Review Card Component
-function ReviewCard({ imageSrc, index }: { imageSrc: string; index: number }) {
+function ReviewCard({ imageSrc, index, isMobile }: { imageSrc: string; index: number; isMobile: boolean }) {
   return (
     <div
       className="flex-shrink-0 rounded-xl overflow-hidden"
       style={{
-        width: '240px',
+        width: isMobile ? '100%' : '240px',
         height: '320px',
         boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)',
       }}
@@ -61,33 +61,50 @@ export function MomentsSection3() {
   const handleNext = () => {
     if (!viewportRef.current || !trackRef.current) return;
 
-    const viewportWidth = viewportRef.current.clientWidth;
-
-    setCurrentPage((prev) => {
-      const next = prev + 1 >= totalPages ? 0 : prev + 1;
-      trackRef.current!.style.transform = `translateX(-${next * viewportWidth}px)`;
-      return next;
-    });
+    if (isMobile) {
+      // 모바일: 카드 index 기반 이동
+      setCurrentPage((prev) => Math.min(prev + 1, totalCards - 1));
+    } else {
+      // PC: 기존 방식 유지
+      const viewportWidth = viewportRef.current.clientWidth;
+      setCurrentPage((prev) => {
+        const next = prev + 1 >= totalPages ? 0 : prev + 1;
+        trackRef.current!.style.transform = `translateX(-${next * viewportWidth}px)`;
+        return next;
+      });
+    }
   };
 
   const handlePrev = () => {
     if (!viewportRef.current || !trackRef.current) return;
 
-    const viewportWidth = viewportRef.current.clientWidth;
-
-    setCurrentPage((prev) => {
-      const next = prev - 1 < 0 ? totalPages - 1 : prev - 1;
-      trackRef.current!.style.transform = `translateX(-${next * viewportWidth}px)`;
-      return next;
-    });
+    if (isMobile) {
+      // 모바일: 카드 index 기반 이동
+      setCurrentPage((prev) => Math.max(prev - 1, 0));
+    } else {
+      // PC: 기존 방식 유지
+      const viewportWidth = viewportRef.current.clientWidth;
+      setCurrentPage((prev) => {
+        const next = prev - 1 < 0 ? totalPages - 1 : prev - 1;
+        trackRef.current!.style.transform = `translateX(-${next * viewportWidth}px)`;
+        return next;
+      });
+    }
   };
 
-  // 초기 transform 설정 (모바일/데스크탑 공용)
+  // transform 설정
   useEffect(() => {
     if (!viewportRef.current || !trackRef.current) return;
-    
-    const viewportWidth = viewportRef.current.clientWidth;
-    trackRef.current.style.transform = `translateX(-${currentPage * viewportWidth}px)`;
+
+    if (isMobile) {
+      // 모바일: viewport width 기준
+      const viewportWidth = viewportRef.current.offsetWidth;
+      trackRef.current.style.transform = `translateX(-${currentPage * viewportWidth}px)`;
+    } else {
+      // PC: 기존 방식 유지
+      const viewportWidth = viewportRef.current.clientWidth;
+      trackRef.current.style.transform = `translateX(-${currentPage * viewportWidth}px)`;
+    }
   }, [currentPage, isMobile]);
 
   return (
@@ -164,14 +181,14 @@ export function MomentsSection3() {
               ref={trackRef}
               className="flex items-center h-full"
               style={{
-                gap: '1rem',
+                gap: isMobile ? '0px' : '1rem',
                 willChange: 'transform',
                 transition: 'transform 0.5s ease-out',
               }}
             >
               {/* Cards */}
               {reviewImagePaths.map((imagePath, index) => (
-                <ReviewCard key={index} imageSrc={imagePath} index={index} />
+                <ReviewCard key={index} imageSrc={imagePath} index={index} isMobile={isMobile} />
               ))}
             </div>
           </div>

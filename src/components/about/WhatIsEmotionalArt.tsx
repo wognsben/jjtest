@@ -182,8 +182,7 @@ export default function WhatIsEmotionalArt() {
                         }}
                       >
                         대신, 표현 이전에 반드시 작동해야 할 감정의 기능을
-                        <br className="hidden lg:block" />
-                        기준으로 삼습니다.
+                        <br className="hidden lg:block" /> 기준으로 삼습니다.
                       </p>
                       <div className="space-y-2">
                         <p 
