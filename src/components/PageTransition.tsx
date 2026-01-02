@@ -230,6 +230,49 @@ export function StaggerRevealTransition({ children, pageKey }: PageTransitionPro
   );
 }
 
+// Silent Cut Transition - Awwwards Premium Style
+// 존재감 0에 가까운 전환: opacity 1 → 0.96 → 1
+// 사용자는 "전환을 봤다"는 기억 없음, "빠르다/부드럽다"고만 인식
+export function PremiumBotanicalTransition({ children, pageKey }: PageTransitionProps) {
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={pageKey}
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0.96 }}
+        transition={{
+          duration: 0.24,
+          ease: 'easeOut',
+        }}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
+// Silent Cut Transition - 모바일용 (동일)
+// 존재감 0에 가까운 전환: opacity 1 → 0.96 → 1
+export function PremiumBotanicalFade({ children, pageKey }: PageTransitionProps) {
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={pageKey}
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0.96 }}
+        transition={{
+          duration: 0.24,
+          ease: 'easeOut',
+        }}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 // Loading transition indicator
 export function TransitionLoader({ isTransitioning }: { isTransitioning: boolean }) {
   return (
@@ -239,13 +282,16 @@ export function TransitionLoader({ isTransitioning }: { isTransitioning: boolean
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed top-0 left-0 right-0 z-[110] h-1 bg-gradient-to-r from-[#8fbc88] via-[#FFB6C1] to-[#A67C52]"
+          className="fixed top-0 left-0 right-0 z-[110] h-1"
+          style={{
+            background: '#1F3D2B',
+          }}
         >
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="h-full bg-white/30 origin-left"
+            className="h-full bg-white/20 origin-left"
           />
         </motion.div>
       )}

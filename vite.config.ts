@@ -4,6 +4,7 @@
   import path from 'path';
 
   export default defineConfig({
+    base: '/',
     plugins: [react()],
     publicDir: 'assets',
     // Edge/Safari 호환성을 위한 사전 번들링 설정
@@ -78,69 +79,6 @@
           entryFileNames: 'assets/[name].[hash].js',
           chunkFileNames: 'assets/[name].[hash].js',
           assetFileNames: 'assets/[name].[hash].[ext]',
-          // 코드 스플리팅 - 큰 라이브러리들을 별도 청크로 분리
-          manualChunks: (id) => {
-            // React 및 React-DOM (가장 먼저 확인 - 다른 라이브러리들이 의존함)
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'vendor-react';
-            }
-            // React에 의존하는 라이브러리들은 vendor-react에 포함 (로딩 순서 보장)
-            if (
-              id.includes('@react-three/fiber') ||
-              id.includes('@react-three/drei') ||
-              id.includes('react-hook-form') ||
-              id.includes('lottie-react') ||
-              id.includes('embla-carousel-react') ||
-              id.includes('react-day-picker') ||
-              id.includes('react-resizable-panels')
-            ) {
-              return 'vendor-react';
-            }
-            // Three.js 관련 (3D 라이브러리) - React 의존 없음
-            if (
-              id.includes('three') ||
-              id.includes('three-mesh-bvh')
-            ) {
-              return 'vendor-three';
-            }
-            // GSAP 애니메이션 라이브러리
-            if (id.includes('gsap')) {
-              return 'vendor-gsap';
-            }
-            // Motion 라이브러리
-            if (id.includes('motion')) {
-              return 'vendor-motion';
-            }
-            // Radix UI 컴포넌트들 (React 의존)
-            if (id.includes('@radix-ui')) {
-              return 'vendor-react';
-            }
-            // 기타 큰 라이브러리들 (React 의존 가능성)
-            if (
-              id.includes('lucide-react') ||
-              id.includes('recharts') ||
-              id.includes('sonner') ||
-              id.includes('vaul') ||
-              id.includes('cmdk') ||
-              id.includes('next-themes') ||
-              id.includes('input-otp') ||
-              id.includes('class-variance-authority')
-            ) {
-              return 'vendor-react';
-            }
-            // 유틸리티 라이브러리들 (React 사용 안 함)
-            if (
-              id.includes('clsx') ||
-              id.includes('tailwind-merge') ||
-              id.includes('lenis')
-            ) {
-              return 'vendor-utils';
-            }
-            // 그 외 모든 node_modules 라이브러리는 vendor-react에 포함 (안전을 위해)
-            if (id.includes('node_modules')) {
-              return 'vendor-react';
-            }
-          },
         },
       },
       // 소스맵 생성 (프로덕션에서는 false 권장)

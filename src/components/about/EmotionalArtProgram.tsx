@@ -326,7 +326,7 @@ export default function EmotionalArtProgram() {
 
         @media (min-width: 1024px) {
           .stage-description-text {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             line-height: 2;
           }
         }

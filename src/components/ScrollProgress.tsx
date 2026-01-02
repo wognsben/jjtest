@@ -9,17 +9,28 @@ export default function ScrollProgress() {
     restDelta: 0.001
   });
 
-  // State for percentage display
-  const [scrollPercentage, setScrollPercentage] = useState(0);
+  // State for scroll-to-top button visibility
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Listen to scrollYProgress changes
+  // Show button when scrolled down
   useEffect(() => {
-    const unsubscribe = scrollYProgress.on('change', (latest) => {
-      setScrollPercentage(Math.round(latest * 100));
-    });
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
 
-    return () => unsubscribe();
-  }, [scrollYProgress]);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <>
@@ -29,58 +40,124 @@ export default function ScrollProgress() {
         style={{ scaleX }}
       />
       
-      {/* Circular progress indicator - bottom right */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1, type: 'spring', stiffness: 200, damping: 20 }}
-        className="fixed bottom-8 right-8 z-[200] hidden md:block"
-      >
-        <div className="relative w-16 h-16">
-          {/* Background circle */}
-          <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-            <circle
-              cx="50"
-              cy="50"
-              r="45"
-              fill="none"
-              stroke="rgba(0,0,0,0.1)"
-              strokeWidth="3"
-            />
-            <motion.circle
-              cx="50"
-              cy="50"
-              r="45"
-              fill="none"
-              stroke="url(#gradient)"
-              strokeWidth="3"
-              strokeLinecap="round"
-              style={{
-                pathLength: scrollYProgress
-              }}
-              strokeDasharray="283"
-              strokeDashoffset="0"
-            />
-            <defs>
-              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#8fbc88" />
-                <stop offset="50%" stopColor="#FFB6C1" />
-                <stop offset="100%" stopColor="#A67C52" />
-              </linearGradient>
-            </defs>
-          </svg>
-          
-          {/* Center percentage */}
-          <div 
-            className="absolute inset-0 flex items-center justify-center text-xs font-bold text-brown-800"
+      {/* Scroll to top button - Premium Awwwards/Behance Style */}
+      {showScrollTop && (
+        <motion.button
+          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 20, scale: 0.9 }}
+          whileHover={{ 
+            scale: 1.02,
+            y: -2,
+            transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
+          }}
+          whileTap={{ scale: 0.98 }}
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-[200] hidden md:flex items-center justify-center group"
+          style={{
+            cursor: 'pointer',
+          }}
+        >
+          {/* Glow effect */}
+          <motion.div
+            className="absolute inset-0 rounded-full blur-xl"
             style={{
-              fontFamily: "'Inter', sans-serif",
+              background: 'radial-gradient(circle, rgba(166, 124, 82, 0.15), transparent 70%)',
+            }}
+            animate={{
+              opacity: [0.5, 0.8, 0.5],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          
+          {/* Main button container */}
+          <div
+            className="relative px-5 py-3 rounded-full overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.75) 100%)',
+              border: '1px solid rgba(166, 124, 82, 0.12)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.5) inset',
+              transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
             }}
           >
-            <span>{scrollPercentage}%</span>
+            {/* Grain overlay - subtle texture */}
+            <div
+              className="absolute inset-0 rounded-full opacity-[0.02] pointer-events-none"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                mixBlendMode: 'multiply',
+              }}
+            />
+            
+            {/* Inner highlight */}
+            <div
+              className="absolute top-0 left-0 right-0 h-1/2 rounded-t-full pointer-events-none"
+              style={{
+                background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, transparent 100%)',
+              }}
+            />
+            
+            {/* Content */}
+            <div className="relative z-10 flex items-center gap-2.5">
+              {/* Arrow icon */}
+              <motion.svg
+                className="w-4 h-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{
+                  color: '#8B6F47',
+                }}
+                animate={{
+                  y: [0, -2, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+              >
+                <path d="M18 15l-6-6-6 6" />
+              </motion.svg>
+              
+              {/* Text */}
+              <span
+                className="text-xs tracking-[0.08em] font-medium uppercase"
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  color: '#8B6F47',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                Top
+              </span>
+            </div>
+            
+            {/* Shine effect on hover */}
+            <motion.div
+              className="absolute inset-0 rounded-full pointer-events-none"
+              style={{
+                background: 'linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.6) 50%, transparent 70%)',
+                opacity: 0,
+              }}
+              whileHover={{
+                opacity: 1,
+                x: ['-100%', '200%'],
+              }}
+              transition={{
+                x: { duration: 0.6 },
+                opacity: { duration: 0.3 },
+              }}
+            />
           </div>
-        </div>
-      </motion.div>
+        </motion.button>
+      )}
     </>
   );
 }

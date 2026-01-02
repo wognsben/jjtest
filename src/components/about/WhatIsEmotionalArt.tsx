@@ -74,7 +74,15 @@ export default function WhatIsEmotionalArt() {
                 />
                 
                 {/* Content */}
-                <div className="relative p-[32px] md:p-[40px] lg:p-[48px]">
+                <div 
+                  className="relative p-[32px] md:p-[40px] lg:p-[48px]"
+                  style={{
+                    paddingLeft: '10px',
+                    paddingRight: '10px',
+                    paddingTop: '24px',
+                    paddingBottom: '24px',
+                  }}
+                >
                   
                   {/* Title */}
                   <motion.div

@@ -15,7 +15,7 @@ const About = React.lazy(() => import('./pages/About'));
 const ProgramsPage = React.lazy(() => import('./pages/ProgramsPage'));
 const Contact = React.lazy(() => import('./pages/Contact'));
 import { BlobNavItem, BlobNavLogo } from './components/BlobNav';
-import { BlobMorphTransition } from './components/PageTransition';
+import { PremiumBotanicalTransition, PremiumBotanicalFade } from './components/PageTransition';
 import ScrollProgress, { ScrollHint } from './components/ScrollProgress';
 import CustomCursor from './components/CustomCursor';
 import LoadingScreen from './components/LoadingScreen';
@@ -883,46 +883,89 @@ export default function App() {
       
       {/* Page content with transition */}
       <div className="pt-20">
-        <BlobMorphTransition pageKey={currentPage}>
-          {currentPage === 'home' ? (
-            <>
-              <Hero />
-              <SectionDivider />
-              <Programs onNavigateToProgram={(sectionId) => {
-                setProgramSection(sectionId);
-                setCurrentPage('program');
-                // Wait for page transition to complete before scrolling
-                setTimeout(() => {
-                  const element = document.querySelector(`[data-section="${sectionId}"]`);
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }, 800); // Increased delay to ensure page transition completes
-              }} />
-              <SectionDivider />
-              <MethodNew />
-              <SectionDivider />
-              <GrowthNew />
-            </>
-          ) : (
-            <Suspense fallback={
-              <div className="min-h-screen flex items-center justify-center">
-                <div className="flex flex-col items-center gap-4">
-                  <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-                  <p className="text-sm text-gray-600">페이지를 불러오는 중...</p>
+        {isDesktop ? (
+          <PremiumBotanicalTransition pageKey={currentPage}>
+            {currentPage === 'home' ? (
+              <>
+                <Hero />
+                <SectionDivider />
+                <Programs onNavigateToProgram={(sectionId) => {
+                  setProgramSection(sectionId);
+                  setCurrentPage('program');
+                  // Wait for page transition to complete before scrolling
+                  setTimeout(() => {
+                    const element = document.querySelector(`[data-section="${sectionId}"]`);
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }, 800); // Increased delay to ensure page transition completes
+                }} />
+                <SectionDivider />
+                <MethodNew />
+                <SectionDivider />
+                <GrowthNew />
+              </>
+            ) : (
+              <Suspense fallback={
+                <div className="min-h-screen flex items-center justify-center">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                    <p className="text-sm text-gray-600">페이지를 불러오는 중...</p>
+                  </div>
                 </div>
-              </div>
-            }>
-              {currentPage === 'about' ? (
-                <About />
-              ) : currentPage === 'program' ? (
-                <ProgramsPage initialOpenSection={programSection} />
-              ) : currentPage === 'contact' ? (
-                <Contact />
-              ) : null}
-            </Suspense>
-          )}
-        </BlobMorphTransition>
+              }>
+                {currentPage === 'about' ? (
+                  <About />
+                ) : currentPage === 'program' ? (
+                  <ProgramsPage initialOpenSection={programSection} />
+                ) : currentPage === 'contact' ? (
+                  <Contact />
+                ) : null}
+              </Suspense>
+            )}
+          </PremiumBotanicalTransition>
+        ) : (
+          <PremiumBotanicalFade pageKey={currentPage}>
+            {currentPage === 'home' ? (
+              <>
+                <Hero />
+                <SectionDivider />
+                <Programs onNavigateToProgram={(sectionId) => {
+                  setProgramSection(sectionId);
+                  setCurrentPage('program');
+                  // Wait for page transition to complete before scrolling
+                  setTimeout(() => {
+                    const element = document.querySelector(`[data-section="${sectionId}"]`);
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }, 600); // 모바일은 더 빠른 전환
+                }} />
+                <SectionDivider />
+                <MethodNew />
+                <SectionDivider />
+                <GrowthNew />
+              </>
+            ) : (
+              <Suspense fallback={
+                <div className="min-h-screen flex items-center justify-center">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                    <p className="text-sm text-gray-600">페이지를 불러오는 중...</p>
+                  </div>
+                </div>
+              }>
+                {currentPage === 'about' ? (
+                  <About />
+                ) : currentPage === 'program' ? (
+                  <ProgramsPage initialOpenSection={programSection} />
+                ) : currentPage === 'contact' ? (
+                  <Contact />
+                ) : null}
+              </Suspense>
+            )}
+          </PremiumBotanicalFade>
+        )}
       </div>
       
       {/* Footer */}

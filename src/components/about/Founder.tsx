@@ -879,6 +879,23 @@ export default function Founder() {
                 {/* Social Links - Quiet text links */}
                 <div className="flex flex-wrap gap-6 md:gap-8 lg:gap-10 justify-center md:justify-start">
                   <a
+                    href="https://pf.kakao.com/_Cvzgn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[#4A4A4A] transition-colors duration-300"
+                    style={{
+                      fontFamily: "'Noto Sans KR', sans-serif",
+                      fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)',
+                      fontWeight: 300,
+                      letterSpacing: '-0.01em',
+                      color: '#8B8B8B',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    카카오톡 채널
+                  </a>
+
+                  <a
                     href="https://www.instagram.com/crayonforest.art"
                     target="_blank"
                     rel="noopener noreferrer"
