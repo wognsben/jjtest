@@ -121,13 +121,24 @@
               id.includes('recharts') ||
               id.includes('sonner') ||
               id.includes('vaul') ||
-              id.includes('cmdk')
+              id.includes('cmdk') ||
+              id.includes('next-themes') ||
+              id.includes('input-otp') ||
+              id.includes('class-variance-authority')
             ) {
               return 'vendor-react';
             }
-            // node_modules의 다른 라이브러리들 (React 의존 없는 것들만)
+            // 유틸리티 라이브러리들 (React 사용 안 함)
+            if (
+              id.includes('clsx') ||
+              id.includes('tailwind-merge') ||
+              id.includes('lenis')
+            ) {
+              return 'vendor-utils';
+            }
+            // 그 외 모든 node_modules 라이브러리는 vendor-react에 포함 (안전을 위해)
             if (id.includes('node_modules')) {
-              return 'vendor-misc';
+              return 'vendor-react';
             }
           },
         },
