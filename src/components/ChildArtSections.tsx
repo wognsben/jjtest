@@ -348,6 +348,13 @@ export function ChildArtSection2() {
           animation: floatY 3.5s ease-in-out infinite;
         }
 
+        /* PC 전용: 질문 그리드 gap 조정 */
+        @media (min-width: 1024px) {
+          .child-art-questions-grid {
+            gap: calc(var(--spacing) * 32) !important;
+          }
+        }
+
         /* PC 이상에서만 분리 (2컬럼) */
         @media (min-width: 1024px) {
           .content-split {
@@ -460,7 +467,7 @@ export function ChildArtSection3() {
         </motion.div>
 
         {/* Two Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start child-art-questions-grid">
           {/* LEFT COLUMN: Questions 1, 2, 3 */}
           <div className="space-y-10">
             {questionsLeft.map((q, index) => (
@@ -495,7 +502,7 @@ export function ChildArtSection3() {
                     lineHeight: 1.5,
                     letterSpacing: 0,
                     fontWeight: 300,
-                    maxWidth: '34em',
+                    maxWidth: '50em',
                     textAlign: 'left',
                     wordBreak: 'keep-all',
                     marginBottom: 0
@@ -546,7 +553,7 @@ export function ChildArtSection3() {
                     lineHeight: 1.5,
                     letterSpacing: 0,
                     fontWeight: 300,
-                    maxWidth: '34em',
+                    maxWidth: '50em',
                     textAlign: 'left',
                     wordBreak: 'keep-all',
                     marginBottom: 0

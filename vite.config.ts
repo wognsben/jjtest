@@ -78,6 +78,47 @@
           entryFileNames: 'assets/[name].[hash].js',
           chunkFileNames: 'assets/[name].[hash].js',
           assetFileNames: 'assets/[name].[hash].[ext]',
+          // 코드 스플리팅 - 큰 라이브러리들을 별도 청크로 분리
+          manualChunks: (id) => {
+            // React 및 React-DOM
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'vendor-react';
+            }
+            // Three.js 관련 (3D 라이브러리)
+            if (
+              id.includes('@react-three/fiber') ||
+              id.includes('@react-three/drei') ||
+              id.includes('three') ||
+              id.includes('three-mesh-bvh')
+            ) {
+              return 'vendor-three';
+            }
+            // GSAP 애니메이션 라이브러리
+            if (id.includes('gsap')) {
+              return 'vendor-gsap';
+            }
+            // Motion 라이브러리
+            if (id.includes('motion')) {
+              return 'vendor-motion';
+            }
+            // Radix UI 컴포넌트들
+            if (id.includes('@radix-ui')) {
+              return 'vendor-radix';
+            }
+            // 기타 큰 라이브러리들
+            if (
+              id.includes('lucide-react') ||
+              id.includes('lottie-react') ||
+              id.includes('recharts') ||
+              id.includes('embla-carousel')
+            ) {
+              return 'vendor-utils';
+            }
+            // node_modules의 다른 큰 라이브러리들
+            if (id.includes('node_modules')) {
+              return 'vendor-misc';
+            }
+          },
         },
       },
       // 소스맵 생성 (프로덕션에서는 false 권장)

@@ -507,7 +507,7 @@ export default function Philosophy() {
             width: 35% !important;
             height: auto !important;
             align-self: flex-start !important;
-            top: 1000px !important;
+            top: 400px !important;
             transform: none !important;
           }
         }

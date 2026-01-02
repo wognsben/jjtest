@@ -211,7 +211,7 @@ export function ForMomSection2() {
               >
                 이 정원에서 일어나는 변화
               </h4>
-              <div className="space-y-3">
+              <div className="for-mom-changes-paragraphs">
                 <motion.p
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -224,6 +224,7 @@ export function ForMomSection2() {
                     fontWeight: 300,
                     lineHeight: 1.5,
                     letterSpacing: 0,
+                    marginBottom: '0.75rem',
                   }}
                 >
                   이곳의 변화는 조용합니다.
@@ -240,6 +241,7 @@ export function ForMomSection2() {
                     fontWeight: 300,
                     lineHeight: 1.5,
                     letterSpacing: 0,
+                    marginBottom: '0.75rem',
                   }}
                 >
                   갑자기 인생이 바뀌지 않아도 괜찮고
@@ -258,6 +260,7 @@ export function ForMomSection2() {
                     fontWeight: 300,
                     lineHeight: 1.5,
                     letterSpacing: 0,
+                    marginBottom: '0.75rem',
                   }}
                 >
                   다만 어느 날 문득,
@@ -280,6 +283,7 @@ export function ForMomSection2() {
                     fontWeight: 300,
                     lineHeight: 1.5,
                     letterSpacing: 0,
+                    marginBottom: 0,
                   }}
                 >
                   그 정도면 충분합니다.

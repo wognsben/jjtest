@@ -41,8 +41,8 @@ export function MomentsSection1() {
     },
   ];
 
-  // 리뷰 카드 이미지 경로 (6개)
-  const reviewImages = Array.from({ length: 6 }, (_, i) => 
+  // 리뷰 카드 이미지 경로 (9개)
+  const reviewImages = Array.from({ length: 9 }, (_, i) => 
     getImagePath(`/assets/program/review/review${i + 1}.png`)
   );
   

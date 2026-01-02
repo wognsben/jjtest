@@ -131,6 +131,7 @@ export default function SensoryArt() {
                     transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <p 
+                      className="sensory-art-growth-text"
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
                         fontSize: 'clamp(0.85rem, 1.8vw, 0.85rem)',
@@ -142,7 +143,7 @@ export default function SensoryArt() {
                     >
                       한 사람의 성장은 <span style={{ color: '#5a8c4a', fontWeight: 600 }}>하나의 능력이 아니라<br className="lg:hidden" />
                       <span className="lg:inline"> </span>감정·감각·표현·관계·세계관으로 이어진<br className="lg:hidden" />
-                      <span className="lg:inline"> </span>5개의 내적 기반이 함께 만들어냅니다.</span>
+                      <span className="lg:inline"> </span><br className="hidden lg:block" /><span className="lg:block">5개의 내적 기반이 함께 만들어냅니다.</span></span>
                     </p>
                   </motion.div>
                   
@@ -155,7 +156,7 @@ export default function SensoryArt() {
                     className="pt-4 border-t border-brown-200/30"
                   >
                     <p 
-                      className="md:text-xl leading-relaxed"
+                      className="md:text-xl leading-relaxed sensory-art-integrity-text"
                       style={{ 
                         fontFamily: "'Noto Serif KR', serif",
                         fontSize: 'clamp(0.65rem, 1.8vw, 0.85rem)',
@@ -163,8 +164,11 @@ export default function SensoryArt() {
                         fontWeight: 600
                       }}
                     >
-                      예술을 기반으로 내적 구조(INTEGRITY)가 단단한 사람은<span className="md:hidden"><br /></span>
-                      어떤 시대에도 '자기 방식으로 살아가는 힘'을 갖게 됩니다.
+                      <span className="md:hidden">예술을 기반으로 내적 구조(INTEGRITY)가<br className="md:hidden" />
+                      <span className="md:inline"> </span>단단한 사람은 어떤 시대에도<br className="md:hidden" />
+                      <span className="md:inline"> </span>'자기 방식으로 살아가는 힘'을 갖게 됩니다.</span>
+                      <span className="hidden md:inline">예술을 기반으로 내적 구조(INTEGRITY)가 단단한 사람은</span><br className="hidden md:block" />
+                      <span className="hidden md:block">어떤 시대에도 '자기 방식으로 살아가는 힘'을 갖게 됩니다.</span>
                     </p>
                   </motion.div>
                 </div>
@@ -193,12 +197,39 @@ export default function SensoryArt() {
             display: block;
             margin-top: 1.25rem;
           }
+
+          /* sensory-art-integrity-text 모바일 폰트 크기 및 줄 간격 */
+          .sensory-art-integrity-text {
+            font-size: 0.85rem !important;
+          }
+
+          .sensory-art-integrity-text br.md\\:hidden + span.md\\:inline {
+            display: block;
+            margin-top: 1.25rem;
+          }
+
         }
 
-        /* PC: br 숨김 */
+        /* PC: br 숨김 및 줄 간격 */
         @media (min-width: 1024px) {
           p span br.lg\\:hidden {
             display: none;
+          }
+          .sensory-art-growth-text span br.hidden.lg\\:block + span.lg\\:block {
+            display: block;
+            margin-top: 1.25rem;
+          }
+        }
+
+        /* PC: md 이상에서 줄 간격 */
+        @media (min-width: 768px) {
+          .sensory-art-integrity-text br.md\\:hidden {
+            display: none;
+          }
+
+          .sensory-art-integrity-text br.hidden.md\\:block + span.hidden.md\\:block {
+            display: block !important;
+            margin-top: 1.25rem !important;
           }
         }
       `}</style>

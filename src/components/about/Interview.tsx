@@ -388,7 +388,6 @@ export default function Interview() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.6 }}
-                    className="pt-4"
                     style={{
                       fontFamily: "'Noto Serif KR', serif",
                       fontSize: 'clamp(0.85rem, 1.6vw, 0.85rem)',

@@ -45,7 +45,7 @@ export default function ChapterSection({ id, number, title, subtitle, color, chi
           }}
         >
           <div 
-            className="flex flex-col md:flex-row items-center"
+            className="flex flex-row items-center"
             style={{
               gap: 'clamp(2rem, 6vw, 3rem)',
             }}

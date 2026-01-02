@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { getImagePath } from '../utils/imageUtils';
 
-// Review image paths (6 images: review11~review16)
+// Review image paths (9 images: review11~review16, review20~review22)
 const reviewImagePaths = [
   getImagePath('/assets/program/review/review11.png'),
   getImagePath('/assets/program/review/review12.png'),
@@ -10,6 +10,9 @@ const reviewImagePaths = [
   getImagePath('/assets/program/review/review14.png'),
   getImagePath('/assets/program/review/review15.png'),
   getImagePath('/assets/program/review/review16.png'),
+  getImagePath('/assets/program/review/review20.png'),
+  getImagePath('/assets/program/review/review21.png'),
+  getImagePath('/assets/program/review/review22.png'),
 ];
 
 // Review Card Component

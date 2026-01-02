@@ -10,7 +10,7 @@ export default function Footer() {
     <footer 
       className="relative w-full overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #FEFDFB 0%, #F8F6F2 100%)',
+        background: 'linear-gradient(rgb(255 182 193 / 0%) 100%)',
         paddingTop: 'clamp(80px, 12vw, 120px)',
         paddingBottom: 'clamp(60px, 8vw, 80px)',
       }}
@@ -96,7 +96,7 @@ export default function Footer() {
 
         {/* Contact & Social Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mb-12 md:mb-16">
-          {/* Contact Information - Address only */}
+          {/* Location Information */}
           <div>
             <div 
               className="mb-6"
@@ -109,9 +109,10 @@ export default function Footer() {
                 textTransform: 'uppercase',
               }}
             >
-              Contact
+              Location
             </div>
             <div 
+              className="footer-address-text"
               style={{
                 fontFamily: "'Noto Sans KR', sans-serif",
                 fontSize: 'clamp(0.8rem, 1.2vw, 0.95rem)',
@@ -430,6 +431,14 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .footer-address-text {
+            font-size: 0.75rem !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }

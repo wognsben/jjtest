@@ -54,42 +54,65 @@ export default function PremiumIntegrityOrbit() {
   ];
 
   return (
-    <div className="w-full flex justify-center py-12 md:py-20">
-      <svg 
-        viewBox="0 0 800 720" 
-        className="w-full max-w-5xl" 
-        style={{ 
-          filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.04))',
-          minHeight: '400px' // 모바일에서 최소 높이 보장
-        }}
-      >
+    <>
+      {/* PC: 기존 SVG 레이아웃 */}
+      <div className="hidden md:flex w-full justify-center py-12 md:py-20">
+        <svg 
+          viewBox="0 0 800 720" 
+          className="w-full max-w-5xl" 
+          style={{ 
+            filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.04))',
+            minHeight: '400px'
+          }}
+        >
+          {/* 관계 암시 라인 (느껴지는 수준) */}
+          <g opacity="0.015">
+            {nodes.map((n) => (
+              <line
+                key={n.id}
+                x1="400"
+                y1="360"
+                x2={n.x}
+                y2={n.y}
+                stroke="#D4B896"
+                strokeWidth="0.35"
+                strokeDasharray="1 6"
+                strokeLinecap="round"
+              />
+            ))}
+          </g>
 
-        {/* 관계 암시 라인 (느껴지는 수준) */}
-        <g opacity="0.015">
-          {nodes.map((n) => (
-            <line
-              key={n.id}
-              x1="400"
-              y1="360"
-              x2={n.x}
-              y2={n.y}
-              stroke="#D4B896"
-              strokeWidth="0.35"
-              strokeDasharray="1 6"
-              strokeLinecap="round"
+          {/* 중앙 노드 */}
+          <CenterNode />
+
+          {/* 주변 노드 */}
+          {nodes.map((n, index) => (
+            <PremiumNode key={n.id} index={index} {...n} />
+          ))}
+        </svg>
+      </div>
+
+      {/* 모바일: 1열 배치 + 하단 코어 */}
+      <div className="md:hidden w-full py-12 px-4">
+        <div className="max-w-lg mx-auto space-y-6">
+          {/* 5개 카드 - 1열 배치 */}
+          {nodes.map((node, index) => (
+            <MobileCard
+              key={node.id}
+              index={index}
+              titleKr={node.titleKr}
+              titleEn={node.titleEn}
+              description={node.description}
             />
           ))}
-        </g>
-
-        {/* 중앙 노드 */}
-        <CenterNode />
-
-        {/* 주변 노드 */}
-        {nodes.map((n, index) => (
-          <PremiumNode key={n.id} index={index} {...n} />
-        ))}
-      </svg>
-    </div>
+          
+          {/* 하단 코어 */}
+          <div className="pt-8 flex justify-center">
+            <MobileCore />
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -183,13 +206,13 @@ function CenterNode() {
         x="400"
         y="350"
         textAnchor="middle"
-        fontSize="26"
+        fontSize="28"
         fontWeight="700"
-        fill="#8B7B6F"
+        fill="#6B5B4F"
         fontFamily="'Cormorant Garamond', serif"
         letterSpacing="0.03em"
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.92 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.6 }}
       >
@@ -304,10 +327,10 @@ function PremiumNode({
         x="20"
         y={pillH / 2 - 2}
         textAnchor="start"
-        fontSize="11"
-        fontWeight="500"
-        fill="#A89883"
-        opacity="0.7"
+        fontSize="12"
+        fontWeight="600"
+        fill="#7A6A5F"
+        opacity="0.9"
         style={{ 
           fontFamily: "'Noto Serif KR', serif"
         }}
@@ -320,9 +343,10 @@ function PremiumNode({
         x={W / 2}
         y={pillH / 2 - 2}
         textAnchor="middle"
-        fontSize="13"
-        fontWeight="600"
-        fill="#6B5B4F"
+        fontSize="14"
+        fontWeight="700"
+        fill="#5A4A3F"
+        opacity="1"
         style={{ 
           fontFamily: "'Noto Serif KR', serif",
           letterSpacing: '-0.01em'
@@ -336,10 +360,10 @@ function PremiumNode({
         x={W / 2}
         y={pillH / 2 + 14}
         textAnchor="middle"
-        fontSize="9"
-        fontWeight="400"
-        fill="#8B7B6F"
-        opacity="0.75"
+        fontSize="10"
+        fontWeight="500"
+        fill="#75665C"
+        opacity="0.95"
         style={{ 
           fontFamily: "'Inter', sans-serif",
           letterSpacing: '0.02em'
@@ -410,10 +434,11 @@ function PremiumNode({
         <div
           style={{
             fontFamily: "'Noto Serif KR', serif",
-            fontSize: '10px',
+            fontSize: '12px',
+            fontWeight: 500,
             lineHeight: '1.6',
-            color: '#6B5B4F',
-            opacity: 0.78,
+            color: 'rgb(92, 76, 64)',
+            opacity: 1,
             textAlign: 'left',
             wordBreak: 'keep-all'
           }}
@@ -424,5 +449,218 @@ function PremiumNode({
 
       </g>
     </motion.g>
+  );
+}
+
+// 모바일용 카드 컴포넌트
+function MobileCard({
+  index,
+  titleKr,
+  titleEn,
+  description
+}: {
+  index: number;
+  titleKr: string;
+  titleEn: string;
+  description: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ 
+        duration: 0.6, 
+        delay: index * 0.1,
+        ease: [0.16, 1, 0.3, 1]
+      }}
+      className="w-full"
+      style={{
+        filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.02))'
+      }}
+    >
+      {/* Pill 헤더 */}
+      <div
+        style={{
+          backgroundColor: '#F7F3EE',
+          border: '0.8px dashed rgba(212,184,150,0.35)',
+          borderRadius: '8px',
+          padding: '12px 20px',
+          marginBottom: '12px'
+        }}
+      >
+        <div className="flex items-center gap-3">
+          <span
+            style={{
+              fontFamily: "'Noto Serif KR', serif",
+              fontSize: '12px',
+              fontWeight: 600,
+              color: '#7A6A5F',
+              opacity: 0.9
+            }}
+          >
+            {titleKr.split('.')[0]}.
+          </span>
+          <div className="flex-1 text-center">
+            <div
+              style={{
+                fontFamily: "'Noto Serif KR', serif",
+                fontSize: '14px',
+                fontWeight: 700,
+                color: '#5A4A3F',
+                letterSpacing: '-0.01em',
+                marginBottom: '4px'
+              }}
+            >
+              {titleKr.split('.')[1]?.trim() || titleKr}
+            </div>
+            <div
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '10px',
+                fontWeight: 500,
+                color: '#75665C',
+                opacity: 0.95,
+                letterSpacing: '0.02em'
+              }}
+            >
+              {titleEn}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 설명 영역 */}
+      <div
+        style={{
+          backgroundColor: 'rgba(255,255,255,0.5)',
+          borderRadius: '10px',
+          padding: '14px 20px',
+          position: 'relative',
+          opacity: 0.92
+        }}
+      >
+        {/* 오른쪽 상단 코너 */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            width: '20px',
+            height: '20px',
+            borderTop: '0.8px solid rgba(212,184,150,0.4)',
+            borderRight: '0.8px solid rgba(212,184,150,0.4)',
+            borderTopRightRadius: '10px'
+          }}
+        />
+        {/* 왼쪽 하단 코너 */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '20px',
+            height: '20px',
+            borderBottom: '0.8px solid rgba(212,184,150,0.4)',
+            borderLeft: '0.8px solid rgba(212,184,150,0.4)',
+            borderBottomLeftRadius: '10px'
+          }}
+        />
+        <div
+          style={{
+            fontFamily: "'Noto Serif KR', serif",
+            fontSize: '12px',
+            fontWeight: 500,
+            lineHeight: '1.6',
+            color: 'rgb(92, 76, 64)',
+            wordBreak: 'keep-all'
+          }}
+        >
+          {description}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// 모바일용 코어 컴포넌트
+function MobileCore() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ 
+        duration: 0.8,
+        delay: 0.5,
+        ease: [0.16, 1, 0.3, 1]
+      }}
+      className="relative"
+      style={{
+        width: '200px',
+        height: '200px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
+      {/* 배경 blob 효과 */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(circle at 40% 30%, #F5D366 0%, #E8B449 50%, #D9A43A 100%)',
+          borderRadius: '50%',
+          opacity: 0.55,
+          filter: 'blur(6px)'
+        }}
+      />
+      
+      {/* 링 효과 */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: '-10px',
+          border: '1.5px solid rgba(255,255,255,0.35)',
+          borderRadius: '50%',
+          opacity: 0.35
+        }}
+      />
+
+      {/* INTEGRITY 텍스트 */}
+      <div
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: '24px',
+          fontWeight: 700,
+          color: '#6B5B4F',
+          letterSpacing: '0.03em',
+          marginBottom: '12px',
+          position: 'relative',
+          zIndex: 1
+        }}
+      >
+        INTEGRITY
+      </div>
+
+      {/* 서브 텍스트 */}
+      <div
+        style={{
+          fontFamily: "'Noto Serif KR', serif",
+          fontSize: '11px',
+          color: '#9B8B7F',
+          opacity: 0.9,
+          letterSpacing: '0.01em',
+          textAlign: 'center',
+          lineHeight: '1.6',
+          position: 'relative',
+          zIndex: 1
+        }}
+      >
+        <div>내면이 통합될 때</div>
+        <div>예술적 성장이 시작됩니다</div>
+      </div>
+    </motion.div>
   );
 }

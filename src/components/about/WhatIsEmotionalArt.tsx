@@ -48,7 +48,7 @@ export default function WhatIsEmotionalArt() {
 
         <div className="relative max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
           {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-start">
             
             {/* Left - Text Content */}
             <motion.div
@@ -57,6 +57,12 @@ export default function WhatIsEmotionalArt() {
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="relative"
+              style={{
+                paddingLeft: '10px',
+                paddingRight: '10px',
+                paddingTop: '24px',
+                paddingBottom: '24px',
+              }}
             >
               <div className="relative">
                 {/* Glass card background */}
@@ -68,15 +74,7 @@ export default function WhatIsEmotionalArt() {
                 />
                 
                 {/* Content */}
-                <div 
-                  className="relative p-[32px] md:p-[40px] lg:p-[48px]"
-                  style={{
-                    paddingTop: '10px',
-                    paddingBottom: '10px',
-                    paddingLeft: '10px',
-                    paddingRight: '10px',
-                  }}
-                >
+                <div className="relative p-[32px] md:p-[40px] lg:p-[48px]">
                   
                   {/* Title */}
                   <motion.div
@@ -372,7 +370,7 @@ export default function WhatIsEmotionalArt() {
               </svg>
 
               {/* 이미지 그룹 (프레임 위에 떠 있는 전시물, 아이 작품 기록) - 2x2 그리드 */}
-              <div className="relative z-10 grid grid-cols-2 grid-rows-2 gap-4 md:gap-6">
+              <div className="relative z-10 grid grid-cols-2 grid-rows-2 gap-4 md:gap-6 emotional-art-image-grid">
                 {/* SVG clipPath 정의 - 둥근 느낌 */}
                 <svg width="0" height="0" style={{ position: 'absolute' }}>
                   <defs>
@@ -453,6 +451,14 @@ export default function WhatIsEmotionalArt() {
           </div>
         </div>
       </section>
+
+      <style>{`
+        @media (min-width: 1024px) {
+          .emotional-art-image-grid {
+            padding-top: 50px !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

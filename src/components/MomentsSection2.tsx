@@ -54,6 +54,7 @@ export function MomentsSection2() {
             </p>
 
             <p
+              className="moments-philosophy-text"
               style={{
                 fontFamily: "'Noto Serif KR', serif",
                 fontSize: 'clamp(0.85rem, 1.8vw, 1.5rem)',
@@ -97,6 +98,14 @@ export function MomentsSection2() {
         {/* Divider */}
         <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-32" />
       </div>
+
+      <style>{`
+        @media (min-width: 1024px) {
+          .moments-philosophy-text {
+            font-size: clamp(0.85rem, 1.8vw, 1rem) !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

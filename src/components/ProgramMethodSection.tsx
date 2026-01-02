@@ -174,17 +174,17 @@ export default function ProgramMethodSection() {
 
         .program-pill {
           position: relative;
-          padding: 0.65rem 1.5rem;
+          padding: 0.35rem 0.7rem;
           border-radius: 9999px;
           background: #FADFDB;
           border: 1.5px solid #A66A5A;
           font-family: 'Inter', -apple-system, sans-serif;
-          font-size: 0.875rem;
+          font-size: 0.6rem;
           font-weight: 500;
           color: #2F6B4F;
           letter-spacing: 0.01em;
           cursor: pointer;
-          width: 140px;
+          width: 85px;
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -196,6 +196,7 @@ export default function ProgramMethodSection() {
             box-shadow 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
             border 0.35s ease;
         }
+
 
         .program-pill:hover {
           background: #F6D2CC;
@@ -231,6 +232,14 @@ export default function ProgramMethodSection() {
           }
           .program-healing-color-container {
             order: 2 !important;
+          }
+        }
+        @media (min-width: 1024px) {
+          .program-method-nav-container {
+            gap: calc(var(--spacing) * 35) !important;
+          }
+          .program-healing-color-container {
+            padding-top: 20px !important;
           }
         }
       `}</style>
@@ -291,12 +300,12 @@ export default function ProgramMethodSection() {
 
             {/* NAVIGATION AND BUTTON - BELOW METHOD 2 */}
             <div
-              className="flex flex-col md:flex-row md:items-center md:justify-between w-full gap-6"
+              className="flex flex-col md:flex-row md:items-center md:justify-between w-full gap-6 program-method-nav-container"
               data-animate="fade-up"
               data-delay="360"
             >
               {/* LEFT NAVIGATION - PC에서 왼쪽 */}
-              <div className="program-nav-container flex flex-col gap-4 order-2 md:order-1">
+              <div className="program-nav-container flex flex-col gap-4 order-2 md:order-1 md:flex-1">
                 {/* PROGRAM LABEL */}
                 <p
                   style={{
@@ -352,7 +361,7 @@ export default function ProgramMethodSection() {
               </div>
 
               {/* RIGHT IMAGE AND BUTTON - PC에서 오른쪽 */}
-              <div className="program-healing-color-container flex flex-wrap items-center gap-4 justify-center order-1 md:order-2">
+              <div className="program-healing-color-container flex flex-wrap items-center gap-4 justify-center order-1 md:order-2 md:flex-shrink-0">
                 <img
                   src={getImagePath("/assets/program/method/co.png")}
                   alt="색채심리연구소"
@@ -363,15 +372,17 @@ export default function ProgramMethodSection() {
                   href="https://www.healingcolor.co.kr/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-2 rounded-full method-button whitespace-nowrap"
+                  className="rounded-full method-button whitespace-nowrap"
                   style={{
                     background: '#FADFDB',
-                    border: '2px solid #A66A5A',
+                    border: '1.5px solid #A66A5A',
                     color: '#2F6B4F',
                     fontFamily: "'Noto Serif KR', serif",
-                    fontSize: '0.85rem',
+                    fontSize: '0.65rem',
                     fontWeight: 500,
                     letterSpacing: '-0.01em',
+                    padding: '0.35rem 0.7rem',
+                    boxShadow: '0 6px 16px rgba(0, 0, 0, 0.08)',
                   }}
                 >
                   색채심리연구소 바로가기 →

@@ -189,117 +189,23 @@ export default function FirstRite() {
               
               {/* Card 1: What is Encaustic? */}
               <div>
-                {/* SVG BORDER가 감싸는 영역 - Info Card만 포함 */}
                 <div className="relative group encaustic-card-wrapper">
-                  {/* SVG BORDER - Info Card만 감싸는 흔적(trace) */}
-                  <svg
-                    aria-hidden="true"
-                    className="absolute inset-0 pointer-events-none border-svg"
-                    viewBox="0 0 520 300"
-                    preserveAspectRatio="none"
-                    style={{ 
-                      zIndex: 1,
-                    }}
-                  >
-                    <defs>
-                      <linearGradient id="encausticBorderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#D97757" stopOpacity="1" />
-                        <stop offset="50%" stopColor="#C76A3A" stopOpacity="1" />
-                        <stop offset="100%" stopColor="#B85A2A" stopOpacity="1" />
-                      </linearGradient>
-                      <filter id="encausticGlow">
-                        <feGaussianBlur stdDeviation="0.7" result="blur"/>
-                        <feMerge>
-                          <feMergeNode in="blur"/>
-                          <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                      </filter>
-                    </defs>
-                    {/* 손으로 그린 듯한 비정형 테두리 */}
-                    <motion.path
-                      d="M35 38 H458 Q498 38 498 88 V208 Q498 248 458 248 H122 H62 Q28 248 28 228"
-                      stroke="url(#encausticBorderGradient)"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      filter="url(#encausticGlow)"
-                      initial={{ pathLength: 0 }}
-                      whileInView={{ pathLength: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-                      className="group-hover:translate-x-[1px] group-hover:translate-y-[-1px] transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+                  {/* 모바일 이미지 */}
+                  <div className="relative z-10 block md:hidden">
+                    <img
+                      src={getImagePath('/assets/about/Encaustic Painting (1).png')}
+                      alt="Encaustic Painting"
+                      className="w-full h-auto rounded-[24px]"
                     />
-                  </svg>
-                  
-                  {/* CONTENT - Info Card만 */}
-                  <div className="relative z-10 encaustic-card-content">
-                    {/* Info Card */}
-                    <motion.div 
-                      className="backdrop-blur-lg rounded-[24px] border border-white/40 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
-                      style={{
-                        backgroundColor: '#FADFDE',
-                        boxShadow: '0 20px 50px rgba(0,0,0,0.08), 0 8px 20px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.5)',
-                        position: 'relative',
-                        zIndex: 10,
-                      }}
-                      whileHover={{
-                        boxShadow: '0 24px 60px rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.6)',
-                      }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <div className="py-8 md:py-10 px-10 space-y-4">
-                        <div className="mb-4 flex items-center justify-between">
-                          <h3
-                            style={{
-                              fontFamily: "'Noto Serif KR', serif",
-                              fontSize: 'clamp(0.8rem, 2vw, 1.5rem)',
-                              fontWeight: 600,
-                              color: '#8B5A3C',
-                              letterSpacing: '-0.02em',
-                            }}
-                          >
-                            엔카우스틱 회화
-                          </h3>
-                          <h3 
-                            style={{
-                              fontFamily: "'Noto Serif KR', serif",
-                              fontSize: 'clamp(0.85rem, 2vw, 0.85rem)',
-                              fontWeight: 600,
-                              color: '#5A8B5A',
-                              letterSpacing: '-0.02em',
-                            }}
-                          >
-                            Encaustic Painting
-                          </h3>
                         </div>
                       
-                        <p 
-                          style={{
-                            fontFamily: "'Noto Serif KR', serif",
-                            fontSize: 'clamp(0.7rem, 1.5vw, 0.75rem)',
-                            lineHeight: 1.5,
-                            letterSpacing: 0,
-                            color: '#555',
-                          }}
-                        >
-                          고대 그리스와 이집트에서 시작된<br className="lg:hidden" />
-                          <span className="lg:inline"> </span><span style={{ color: '#D97757', fontWeight: 600 }}>'불로 밀랍을 녹여 색을 입히는 회화 기법'</span>
-                        </p>
-                        <p 
-                          className="md:text-[clamp(0.9rem,1.5vw,0.85rem)]"
-                          style={{
-                            fontFamily: "'Noto Serif KR', serif",
-                            fontSize: '0.75rem',
-                            lineHeight: 1.5,
-                            letterSpacing: 0,
-                            color: '#555',
-                          }}
-                        >
-                          밀랍(wax), 자연 안료, 열, 표면의 질감이 함께 어우러져 시간이 지나도 변하지 않는 깊은 층을 만들어냅니다.
-                        </p>
-                      </div>
-                    </motion.div>
+                  {/* PC 이미지 */}
+                  <div className="relative z-10 hidden md:block">
+                    <img
+                      src={getImagePath('/assets/about/Encaustic Painting pc.png')}
+                      alt="Encaustic Painting"
+                      className="w-full h-auto rounded-[24px]"
+                    />
                   </div>
                 </div>
                 
@@ -312,7 +218,7 @@ export default function FirstRite() {
                   className="mt-16 md:mt-20 lg:mt-24"
                 >
                   <div 
-                    className="relative w-full aspect-[16/9] rounded-lg overflow-hidden"
+                    className="relative w-full aspect-[16/9] md:aspect-[8/9] rounded-lg overflow-hidden"
                     style={{
                       backgroundImage: `url(${getImagePath('/assets/about/wax/wax.jpg')})`,
                       backgroundSize: 'cover',
@@ -430,6 +336,12 @@ export default function FirstRite() {
             margin-top: 1.25rem;
           }
 
+          /* encaustic-wax-text 줄 간격 조정 */
+          .encaustic-wax-text br.lg\\:hidden + span.lg\\:inline {
+            display: block;
+            margin-top: 1.25rem;
+          }
+
           /* 특정 줄의 br 모바일에서 숨김 */
           .encaustic-line .mobile-br-hidden br.lg\\:hidden {
             display: none !important;
@@ -459,6 +371,11 @@ export default function FirstRite() {
 
           /* 일반 p 태그 내 br 숨김 */
           .encaustic-card-content p br.lg\\:hidden {
+            display: none;
+          }
+
+          /* encaustic-wax-text PC에서 br 숨김 */
+          .encaustic-wax-text br.lg\\:hidden {
             display: none;
           }
         }

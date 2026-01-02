@@ -565,7 +565,7 @@ export default function Founder() {
                     letterSpacing: 0,
                   }}
                 >
-                  그리고 이 여정은 아이만의 것이 아닙니다. <span style={{ color: '#4A4A4A', fontWeight: 500 }}>부모의 마음이 안정될 때 아이의 마음은 가장 자연스럽게 회복됩니다.</span>
+                  그리고 이 여정은 아이만의 것이 아닙니다. <span style={{ color: '#4A4A4A', fontWeight: 300 }}>부모의 마음이 안정될 때 아이의 마음은 가장 자연스럽게 회복됩니다.</span>
                 </motion.p>
 
                 <motion.p
