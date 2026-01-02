@@ -387,6 +387,7 @@ export default function Footer() {
         {/* Bottom Area - Copyright & Legal */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div 
+            className="flex flex-col gap-1"
             style={{
               fontFamily: "'Noto Sans KR', sans-serif",
               fontSize: 'clamp(0.75rem, 1vw, 0.8rem)',
@@ -396,7 +397,10 @@ export default function Footer() {
               lineHeight: '1.6',
             }}
           >
-            © 2025 Forêt des Crayons. All rights reserved.
+            <div>© 2025 Forêt des Crayons. All rights reserved.</div>
+            <div style={{ fontSize: 'clamp(0.7rem, 0.9vw, 0.75rem)', color: '#B0B0B0' }}>
+              사업자 등록 번호: 604-09-79660
+            </div>
           </div>
           
           <div className="flex gap-6">
